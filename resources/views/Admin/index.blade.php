@@ -12,33 +12,42 @@
         </div>
 @endsection
 @section("admin")
+
+
 <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Recent Tickets</h4>
+                  <h4 class="card-title">管理列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            Assignee
+                            Id
                           </th>
                           <th>
-                            Subject
+                            Name
                           </th>
                           <th>
                             Status
                           </th>
                           <th>
-                            Last Update
+                            Phone
                           </th>
                           <th>
-                            Tracking ID
+                            Level
+                          </th>
+                          <th>
+                            Level
+                          </th>
+                          <th>
+                            Level
                           </th>
                         </tr>
                       </thead>
                       <tbody>
+                      	
                         <tr>
                           <td>
                             <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
@@ -56,59 +65,11 @@
                           <td>
                             WD-12345
                           </td>
-                        </tr>
-                        <tr>
                           <td>
-                            <img src="/static/Admin/images/faces/face2.jpg" class="mr-2" alt="image">
-                            Stella Johnson
+                            WD-12345
                           </td>
                           <td>
-                            High loading time
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-warning">PROGRESS</label>
-                          </td>
-                          <td>
-                            Dec 12, 2017
-                          </td>
-                          <td>
-                            WD-12346
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face3.jpg" class="mr-2" alt="image">
-                            Marina Michel
-                          </td>
-                          <td>
-                            Website down for one week
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-info">ON HOLD</label>
-                          </td>
-                          <td>
-                            Dec 16, 2017
-                          </td>
-                          <td>
-                            WD-12347
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face4.jpg" class="mr-2" alt="image">
-                            John Doe
-                          </td>
-                          <td>
-                            Loosing control on server
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-danger">REJECTED</label>
-                          </td>
-                          <td>
-                            Dec 3, 2017
-                          </td>
-                          <td>
-                            WD-12348
+                            WD-12345
                           </td>
                         </tr>
                       </tbody>
