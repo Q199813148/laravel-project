@@ -186,115 +186,73 @@
         <ul class="nav">
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false">
+              <span class="menu-title">管理员</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href=""> 管理列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加管理 </a></li>
+              </ul>
+              </div>
+          </li>	
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
               <span class="menu-title">用户管理</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-              </div>
-          </li>	
-          <li class="nav-item suibian">
-            <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
-            </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 用户列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加用户 </a></li>
               </ul>
               </div>
           </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
+              <span class="menu-title">商品分类</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 分类列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加列表 </a></li>
               </ul>
               </div>
           </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
+              <span class="menu-title">商品信息</span>
               <i class="menu-arrow"></i>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 商品列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加商品 </a></li>
               </ul>
               </div>
           </li>
-          <li class="nav-item suibian">
-            <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-title">商品订单</span>
+              <i class="mdi mdi-briefcase menu-icon"></i>
             </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-              </div>
           </li>
-          <li class="nav-item suibian">
-            <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-title">商品订单</span>
+              <i class="mdi mdi-briefcase menu-icon"></i>
             </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-              </div>
           </li>
-          <li class="nav-item suibian">
-            <a class="nav-link" aria-expanded="false" >
-              <span class="menu-title">Forms</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-title">商品订单</span>
+              <i class="mdi mdi-briefcase menu-icon"></i>
             </a>
-            <div class="collapse" id="general-pages">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-              </ul>
-              </div>
           </li>
           <script>
           	$('.suibian').click(function () {

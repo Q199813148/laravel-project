@@ -11,7 +11,7 @@
 |
 */
 Route::get("/", function () {
-	
+	echo "德玛西亚";
 });
 //请求
 Route::resource("/admin", "Admin\AdminController");
