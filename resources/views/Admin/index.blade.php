@@ -11,7 +11,6 @@
           </form>
         </div>
 @endsection
-德玛西亚1
 @section("admin")
 <div class="row">
             <div class="col-12 grid-margin">
