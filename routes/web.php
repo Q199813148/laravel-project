@@ -16,4 +16,4 @@ Route::get("/", function () {
 //请求
 Route::resource("/admin", "Admin\AdminController");
 //后台用户管理
-Route::resource("/adminusers","Admin\UserController");
+Route::resource("/adminuser","Admin\UserController");
