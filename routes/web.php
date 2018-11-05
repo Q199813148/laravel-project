@@ -11,7 +11,9 @@
 |
 */
 Route::get("/", function () {
-	echo "德玛西亚";
+	echo "前台首页";
 });
 //请求
 Route::resource("/admin", "Admin\AdminController");
+//后台用户管理
+Route::resource("/adminusers","Admin\UsersController");
