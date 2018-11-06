@@ -11,7 +11,7 @@
 |
 */
 Route::get("/", function () {
-	echo "前台首页";
+	return redirect("/index");
 });
 	//后台
 	//modifier:Memory
@@ -25,5 +25,8 @@ Route::get("/", function () {
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
 	//end Memory
-	
-	Route::resource("/adminusers", "Admin\UsersController");
+
+	//前台首页
+	Route::resource("/index", "Home\HomeController");
+	//后台用户管理
+	Route::resource("/adminuser","Admin\UsersController");
