@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class AdminController extends Controller
+use DB;
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view("Admin.Admin.index");
+        //加载
+        // echo "后台用户";
+        return view("Admin.Users.index");
     }
 
     /**
