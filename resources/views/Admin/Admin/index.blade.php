@@ -16,101 +16,59 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Recent Tickets</h4>
+                  <h4 class="card-title">管理列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            Assignee
-                          </th>
-                          <th>
-                            Subject
+                            Name
                           </th>
                           <th>
                             Status
                           </th>
                           <th>
-                            Last Update
+                            Phone
                           </th>
                           <th>
-                            Tracking ID
+                            Level
+                          </th>
+                          <th>
+                            email
+                          </th>
+                          <th>
+                            operate
                           </th>
                         </tr>
                       </thead>
                       <tbody>
+                      	@foreach($data as $val)
                         <tr>
                           <td>
                             <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
-                            David Grey
+                            {{$val->name}}
                           </td>
                           <td>
-                            Fund is not recieved
+                            @if($val->status == 1)
+                            <label class="badge badge-gradient-success">启用</label>
+                            @else
+                            <label class="badge badge-danger">禁用</label>
+                            @endif
                           </td>
                           <td>
-                            <label class="badge badge-gradient-success">DONE</label>
+                            {{$val->phone}}
                           </td>
                           <td>
-                            Dec 5, 2017
+                            {{$val->level}}
                           </td>
                           <td>
-                            WD-12345
+                            {{$val->email}}
+                          </td>
+                          <td>
+                          	
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face2.jpg" class="mr-2" alt="image">
-                            Stella Johnson
-                          </td>
-                          <td>
-                            High loading time
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-warning">PROGRESS</label>
-                          </td>
-                          <td>
-                            Dec 12, 2017
-                          </td>
-                          <td>
-                            WD-12346
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face3.jpg" class="mr-2" alt="image">
-                            Marina Michel
-                          </td>
-                          <td>
-                            Website down for one week
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-info">ON HOLD</label>
-                          </td>
-                          <td>
-                            Dec 16, 2017
-                          </td>
-                          <td>
-                            WD-12347
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face4.jpg" class="mr-2" alt="image">
-                            John Doe
-                          </td>
-                          <td>
-                            Loosing control on server
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-danger">REJECTED</label>
-                          </td>
-                          <td>
-                            Dec 3, 2017
-                          </td>
-                          <td>
-                            WD-12348
-                          </td>
-                        </tr>
+                      	@endforeach
                       </tbody>
                     </table>
                   </div>
@@ -124,8 +82,15 @@
               <div class="card">
               	<center>
               		<br />
-		          	paging
-		          	<br />
+					<div class="btn-group" role="group" aria-label="Basic example">
+					{{$data->render()}}
+					<script type="text/javascript">
+						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
+						
+						
+						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
+					</script>
+                        </div>
 		          	<br />
               	</center>
               </div>
