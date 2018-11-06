@@ -11,9 +11,11 @@
 |
 */
 Route::get("/", function () {
-	echo "前台首页";
+	return redirect(/index);
 });
-//请求
+//前台首页
+Route::resource("/index", "Home\HomeController");
+//后台管理
 Route::resource("/admin", "Admin\AdminController");
 //后台用户管理
 Route::resource("/adminuser","Admin\UsersController");
