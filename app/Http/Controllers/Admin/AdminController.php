@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -14,9 +16,48 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view("Admin.Admin.index");
-    }
 
+//		管理员列表
+		$data = DB::table("admin")->paginate(1);
+        return view("Admin.Admin.index",['data'=>$data]);
+    }
+//	登陆界面
+	public function login()
+	{
+		return view("Admin.Admin.login");
+	}
+//	执行登陆
+	public function dologin(Request $request)
+	{
+//		获取输入信息并加密密码
+		$name = $request->input('name');
+		$password =  $request->input('password');
+		$namebool = DB::table('admin')->where("name", "=", $name)->first();
+//		判断数据是否存在
+		if($namebool) {
+//			判断密码是否正确
+			if (Hash::check($password, $namebool->password)) {
+//				删除密码并存入session
+				unset($namebool->password);
+				session(['admin' => $namebool]);
+	            return redirect('/admin')->with('success','登录成功');
+			} 
+            return redirect('/admins/login')->with('error','用户名或密码不正确');
+        }else{
+            return redirect('/admins/login')->with('error','用户名或密码不正确');
+		}
+	}
+	public function exit(Request $request)
+	{
+		if($request->session()->pull('admin')) {
+			return redirect('/admins/login');
+		}else{
+			return redirect('/admin');
+		}
+		
+		
+	}
+	
     /**
      * Show the form for creating a new resource.
      *
