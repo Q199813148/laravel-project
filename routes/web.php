@@ -35,11 +35,3 @@ Route::get("/", function () {
 	//end Memory
 	//前台首页
 	Route::resource("/index", "Home\HomeController");
-<<<<<<< HEAD
-	//后台用户管理
-	Route::resource("/adminuser","Admin\UsersController");
-	//无限分类
-	Route::resource("/admintypes","Admin\TypesController");
-=======
-	
->>>>>>> 958e46d10a5976723d91b3b66cfb439753cc4b3c
