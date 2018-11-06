@@ -11,7 +11,7 @@
 |
 */
 Route::get("/", function () {
-	return redirect(/index);
+	return redirect("/index");
 });
 //前台首页
 Route::resource("/index", "Home\HomeController");
