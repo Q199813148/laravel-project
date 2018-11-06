@@ -6,7 +6,7 @@
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+              <input type="text" class="form-control bg-transparent border-0" name="keywords" value="{{$request['keywords'] or ''}}" placeholder="Search projects">
             </div>
           </form>
         </div>
@@ -16,101 +16,54 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Recent Tickets</h4>
+                  <h4 class="card-title">用户列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            Assignee
+                            USER_ID
                           </th>
                           <th>
-                            Subject
+                            NAME
                           </th>
                           <th>
-                            Status
+                            PASSWORD
                           </th>
                           <th>
-                            Last Update
+                            EMAIL
                           </th>
                           <th>
-                            Tracking ID
+                            STATUS
+                          </th>
+                          <th>
+                            ADDTIME
                           </th>
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach($data as $row)
                         <tr>
                           <td>
-                            <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
-                            David Grey
+                            {{$row->user_id}}
                           </td>
                           <td>
-                            Fund is not recieved
+                            {{$row->name}}
                           </td>
                           <td>
-                            <label class="badge badge-gradient-success">DONE</label>
+                            {{$row->password}}
                           </td>
                           <td>
-                            Dec 5, 2017
+                            {{$row->email}}
                           </td>
                           <td>
-                            WD-12345
+                            {{$row->status}}
+                          </td>
+                          <td>
+                            {{$row->addtime}}
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face2.jpg" class="mr-2" alt="image">
-                            Stella Johnson
-                          </td>
-                          <td>
-                            High loading time
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-warning">PROGRESS</label>
-                          </td>
-                          <td>
-                            Dec 12, 2017
-                          </td>
-                          <td>
-                            WD-12346
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face3.jpg" class="mr-2" alt="image">
-                            Marina Michel
-                          </td>
-                          <td>
-                            Website down for one week
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-info">ON HOLD</label>
-                          </td>
-                          <td>
-                            Dec 16, 2017
-                          </td>
-                          <td>
-                            WD-12347
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <img src="/static/Admin/images/faces/face4.jpg" class="mr-2" alt="image">
-                            John Doe
-                          </td>
-                          <td>
-                            Loosing control on server
-                          </td>
-                          <td>
-                            <label class="badge badge-gradient-danger">REJECTED</label>
-                          </td>
-                          <td>
-                            Dec 3, 2017
-                          </td>
-                          <td>
-                            WD-12348
-                          </td>
-                        </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -122,12 +75,7 @@
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
-              	<center>
-              		<br />
-		          	paging
-		          	<br />
-		          	<br />
-              	</center>
+		          	{{$data->appends($request)->render()}}
               </div>
             </div>
           </div>
