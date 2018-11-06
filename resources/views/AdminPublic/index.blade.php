@@ -212,8 +212,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 分类列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admintypes"> 分类列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admintypes/create"> 添加列表 </a></li>
               </ul>
               </div>
           </li>

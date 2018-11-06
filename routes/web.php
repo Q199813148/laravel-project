@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +10,23 @@
 |
 */
 Route::get("/", function () {
-	echo "前台首页";
+	return redirect("/index");
 });
-//请求
-Route::resource("/admin", "Admin\AdminController");
-//后台用户管理
-Route::resource("/adminuser","Admin\UserController");
+	//后台
+	//modifier:Memory
+//	后台各种页
+	Route::resource("/admin", "Admin\AdminController")->middleware('login');
+//	后台登陆页
+	Route::get("/admins/login", "Admin\AdminController@login");
+//	后台执行登陆
+	Route::post("/admins/dologin", "Admin\AdminController@dologin");
+//	退出登陆
+	Route::get("/admins/exit", "Admin\AdminController@exit");
+	//end Memory
+	//前台首页
+	Route::resource("/index", "Home\HomeController");
+	//后台用户管理
+	Route::resource("/adminuser","Admin\UsersController");
+
+//无限分类
+Route::resource("/admintypes","Admin\TypesController");
