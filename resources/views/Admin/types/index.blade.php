@@ -1,5 +1,5 @@
 
-@extends("AdminPublic.index")
+@extends("Admin.AdminPublic.index")
 @section("search")
         <div class="search-field d-none d-md-block">
           <form class="d-flex align-items-center h-100" action="#">
@@ -17,7 +17,7 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Recent Tickets</h4>
+                  <h4 class="card-title">分类列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -43,7 +43,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach ($type as $value)
+                      @foreach ($types as $value)
                       	
                       
                         <tr>
@@ -63,13 +63,20 @@
                             {{$value->path}}
                           </td>
                           <td>
-                          	<a href="">删除</a>|<a href="">修改</a>
+                          <form action="/admintypes/{{$value->id}}" method="post">
+                          {{csrf_field()}}
+                          {{method_field("DELETE")}}
+                          	<button class="btn btn-danger" onclick="return confirm('确定删除吗')">删除</button>|<a href="/admintypes/{{$value->id}}/edit" class="btn btn-success">修改</a>                         	
+                          </form>
                           </td>
                         </tr>
                         <tr>
                       @endforeach 
                       </tbody>
                     </table>
+                    <div class="dataTables_paginate paging_full_numbers" id="pages">
+						{{$types->appends($request)->render()}}
+					</div>
                   </div>
                 </div>
               </div>

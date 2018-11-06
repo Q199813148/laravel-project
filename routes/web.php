@@ -22,11 +22,11 @@ Route::get("/", function () {
 	Route::post("/admins/dologin", "Admin\AdminController@dologin");
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
+
 	//end Memory
 	//前台首页
 	Route::resource("/index", "Home\HomeController");
 	//后台用户管理
 	Route::resource("/adminuser","Admin\UsersController");
-
-//无限分类
-Route::resource("/admintypes","Admin\TypesController");
+	//无限分类
+	Route::resource("/admintypes","Admin\TypesController");
