@@ -242,12 +242,6 @@
               <i class="mdi mdi-briefcase menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
-            </a>
-          </li>
           <script>
           	$('.suibian').click(function () {
           		obj = $(this);
