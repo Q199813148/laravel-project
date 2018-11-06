@@ -11,7 +11,7 @@
 |
 */
 Route::get("/", function () {
-	return redirect("/index");
+//	return redirect("/index");
 });
 	//后台
 	//modifier:Memory
