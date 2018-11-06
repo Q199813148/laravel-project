@@ -186,8 +186,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 管理列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加管理 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin"> 管理列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/admin/create"> 添加管理 </a></li>
               </ul>
               </div>
           </li>	
@@ -199,8 +199,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 用户列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加用户 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminuser"> 用户列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminuser/create"> 添加用户 </a></li>
               </ul>
               </div>
           </li>
@@ -225,19 +225,13 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 商品列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/shop"> 商品列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/shop/create"> 添加商品 </a></li>
               </ul>
               </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
+            <a class="nav-link" href="/order">
               <span class="menu-title">商品订单</span>
               <i class="mdi mdi-briefcase menu-icon"></i>
             </a>
