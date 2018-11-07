@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+@extends("Admin.AdminPublic.index")
+<!--搜索-->
+=======
 ﻿@extends("Admin.AdminPublic.index")
+>>>>>>> 4947286ed077a0e767bbbc716620f3cfc04966cf
 @section("search")
         <div class="search-field d-none d-md-block">
           <form class="d-flex align-items-center h-100" action="#">
@@ -6,11 +11,12 @@
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+              <input type="text" class="form-control bg-transparent border-0" name="seek" value="{{$req['seek'] or ''}}" placeholder="Search projects">
             </div>
           </form>
         </div>
 @endsection
+<!--列表-->
 @section("admin")
 <div class="row">
             <div class="col-12 grid-margin">
@@ -34,10 +40,10 @@
                             Level
                           </th>
                           <th>
-                            email
+                            Email
                           </th>
                           <th>
-                            operate
+                            Operate
                           </th>
                         </tr>
                       </thead>
@@ -50,25 +56,50 @@
                           </td>
                           <td>
                             @if($val->status == 1)
-                            <label class="badge badge-gradient-success">启用</label>
+                            <span class="badge badge-gradient-success start">启用</span>
                             @else
-                            <label class="badge badge-danger">禁用</label>
+                            <span class="badge badge-danger start">禁用</span>
                             @endif
+                            <input type="hidden" name="{{$val->status}}" class="starts" value="{{$val->id}}" />
+                          </td>
+                          
+                          <td>
+                          	{{$val->phone}}
                           </td>
                           <td>
-                            {{$val->phone}}
-                          </td>
-                          <td>
-                            {{$val->level}}
+                          	@if($val->level == 1)
+                          		超级管理员
+                            @else
+                            	管理员
+                            @endif
                           </td>
                           <td>
                             {{$val->email}}
                           </td>
                           <td>
-                          	
+                          	<a href="" class="text-danger">删除</a>
+                          	<a href="" class="text-warning">修改</a>
                           </td>
                         </tr>
                       	@endforeach
+          
+<!--ajax转换状态-->     	
+<script>
+  	$(".start").click(function() {
+  		id = $(this).next().val();
+  		status = $(this).next().attr('name');
+		obj = $(this);
+  		$.get("/adminuser/ajax",{id:id,s:status},function(data) {
+			if(data['msg'] == 1) {
+				if(status == 0) {
+  					obj.html("启用").attr('class',"badge badge-gradient-success start").next().attr('name',1);
+				}else{
+  					obj.html("禁用").attr('class',"badge badge-danger start").next().attr('name',0);
+				}
+			}
+  		},"json");
+  	});
+</script>
                       </tbody>
                     </table>
                   </div>
@@ -76,27 +107,25 @@
               </div>
             </div>
           </div>
-          
+<!--分页-->
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
               	<center>
               		<br />
 					<div class="btn-group" role="group" aria-label="Basic example">
-					{{$data->render()}}
+					{{$data->appends($request)->render()}}
 					<script type="text/javascript">
 						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
-						
-						
 						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
 					</script>
-                        </div>
+                    </div>
 		          	<br />
               	</center>
               </div>
             </div>
           </div>
         </div>
-@endsection
+@endsection       
 @section('title','后台首页')
 
