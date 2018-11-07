@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Model\Shops;
 
 class ShopController extends Controller
 {
@@ -12,9 +14,19 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //获取搜索关键词
+        $k=$request->input('keywords');
+        $data=Shops::where('name',"like","%".$k."%")->paginate(3);
+
+        foreach ($data as $value){
+            $typeid = $value->type_id;
+            $name = DB::table("types")->where("id","=",$typeid)->first();
+            $value->type_id=$name->name;
+        }
+//        dd($data);
+        return view("Admin.Shops.index",['data'=>$data,'request'=>$request->all()]);
     }
 
     /**

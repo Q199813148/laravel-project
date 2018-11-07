@@ -19,9 +19,10 @@ Route::get("/", function () {
 		Route::resource("/admin", "Admin\AdminController");
 		//后台管理信息
 		Route::resource("/adminusers", "Admin\AdminuserController");
+//		ajax更改状态
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
-		Route::resource("/shop", "Admin\ShopController");
+		Route::resource("/adminshop","Admin\ShopController");
 		//后台用户管理
 		Route::resource("/adminuser", "Admin\UsersController");
 		//后台分类管理

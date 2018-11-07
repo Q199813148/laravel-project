@@ -1,22 +1,16 @@
-<<<<<<< HEAD
-@extends("Admin.AdminPublic.index")
-<!--搜索-->
-=======
 ﻿@extends("Admin.AdminPublic.index")
->>>>>>> 4947286ed077a0e767bbbc716620f3cfc04966cf
 @section("search")
         <div class="search-field d-none d-md-block">
-          <form class="d-flex align-items-center h-100" action="#">
+          <form class="d-flex align-items-center h-100" action="">
             <div class="input-group">
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" name="seek" value="{{$req['seek'] or ''}}" placeholder="Search projects">
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects" name="keywords" value="{{$request['keywords'] or ''}}">
             </div>
           </form>
         </div>
 @endsection
-<!--列表-->
 @section("admin")
 <div class="row">
             <div class="col-12 grid-margin">
@@ -28,22 +22,28 @@
                       <thead>
                         <tr>
                           <th>
-                            Name
+                            id
                           </th>
                           <th>
-                            Status
+                            商品名
                           </th>
                           <th>
-                            Phone
+                            分类名
                           </th>
                           <th>
-                            Level
+                            价格
                           </th>
                           <th>
-                            Email
+                            库存
                           </th>
                           <th>
-                            Operate
+                            销售量
+                          </th>
+                          <th>
+                            状态
+                          </th>
+                          <th>
+                            operate
                           </th>
                         </tr>
                       </thead>
@@ -51,55 +51,31 @@
                       	@foreach($data as $val)
                         <tr>
                           <td>
-                            <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
+                            {{$val->id}}
+                          </td>
+                          <td>
                             {{$val->name}}
                           </td>
                           <td>
-                            @if($val->status == 1)
-                            <span class="badge badge-gradient-success start">启用</span>
-                            @else
-                            <span class="badge badge-danger start">禁用</span>
-                            @endif
-                            <input type="hidden" name="{{$val->status}}" class="starts" value="{{$val->id}}" />
-                          </td>
-                          
-                          <td>
-                          	{{$val->phone}}
+                            {{$val->type_id}}
                           </td>
                           <td>
-                          	@if($val->level == 1)
-                          		超级管理员
-                            @else
-                            	管理员
-                            @endif
+                            {{$val->price}}
                           </td>
                           <td>
-                            {{$val->email}}
+                            {{$val->store}}
                           </td>
                           <td>
-                          	<a href="" class="text-danger">删除</a>
-                          	<a href="" class="text-warning">修改</a>
+                            {{$val->sales}}
+                          </td>
+                          <td>
+                            {{$val->status}}
+                          </td>
+                          <td>
+                            <a href="/adminshop/{{$val->id}}/eidt" class="btn btn-gradient-primary btn-sm">编辑</a>
                           </td>
                         </tr>
                       	@endforeach
-          
-<!--ajax转换状态-->     	
-<script>
-  	$(".start").click(function() {
-  		id = $(this).next().val();
-  		status = $(this).next().attr('name');
-		obj = $(this);
-  		$.get("/adminuser/ajax",{id:id,s:status},function(data) {
-			if(data['msg'] == 1) {
-				if(status == 0) {
-  					obj.html("启用").attr('class',"badge badge-gradient-success start").next().attr('name',1);
-				}else{
-  					obj.html("禁用").attr('class',"badge badge-danger start").next().attr('name',0);
-				}
-			}
-  		},"json");
-  	});
-</script>
                       </tbody>
                     </table>
                   </div>
@@ -107,7 +83,7 @@
               </div>
             </div>
           </div>
-<!--分页-->
+          
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
@@ -117,15 +93,17 @@
 					{{$data->appends($request)->render()}}
 					<script type="text/javascript">
 						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
+						
+						
 						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
 					</script>
-                    </div>
+                        </div>
 		          	<br />
               	</center>
               </div>
             </div>
           </div>
         </div>
-@endsection       
+@endsection
 @section('title','后台首页')
 
