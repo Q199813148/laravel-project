@@ -28,7 +28,7 @@
                             NAME
                           </th>
                           <th>
-                            PASSWORD
+                            level
                           </th>
                           <th>
                             EMAIL
@@ -38,6 +38,9 @@
                           </th>
                           <th>
                             ADDTIME
+                          </th>
+                          <th>
+                            操作
                           </th>
                         </tr>
                       </thead>
@@ -51,17 +54,19 @@
                             {{$row->name}}
                           </td>
                           <td>
-                            {{$row->password}}
+                          <label class="badge badge-gradient-success">{{$row->level}}</label>
                           </td>
                           <td>
                             {{$row->email}}
                           </td>
                           <td>
                           <label class="badge badge-gradient-success">{{$row->status}}</label>
-                            
                           </td>
                           <td>
                             {{$row->addtime}}
+                          </td>
+                          <td>
+                            <a href="/adminuser/{{$row->user_id}}">用户详情</a>
                           </td>
                         </tr>
                         @endforeach
@@ -79,7 +84,7 @@
                 <center>
                   <br />
           <div class="btn-group" role="group" aria-label="Basic example">
-          {{$data->render()}}
+          {{$data->appends($request)->render()}}          
           <script type="text/javascript">
             $(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
             

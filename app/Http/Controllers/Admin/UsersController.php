@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Users;
+use App\Model\User_info;
 class UsersController extends Controller
 {
     /**
@@ -55,7 +56,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        //单条结果
+        // echo $id;
+        $data=User_info::where("user_id",'=',$id)->first();
+        //加载模板
+        // dd($data);
+        return view("Admin.Users.info",['data'=>$data]);
     }
 
     /**
