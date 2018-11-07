@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 @extends("Admin.AdminPublic.index")
-<!--搜索-->
-=======
-﻿@extends("Admin.AdminPublic.index")
->>>>>>> 4947286ed077a0e767bbbc716620f3cfc04966cf
 @section("search")
         <div class="search-field d-none d-md-block">
           <form class="d-flex align-items-center h-100" action="#">
@@ -127,5 +122,6 @@
           </div>
         </div>
 @endsection       
+
 @section('title','后台首页')
 
