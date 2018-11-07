@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class AdminController extends Controller
 {
@@ -21,14 +22,28 @@ class AdminController extends Controller
 		$data = DB::table("admin")->paginate(1);
         return view("Admin.Admin.index",['data'=>$data]);
     }
-//	登陆界面
+    /**
+     * 登陆界面
+     *
+     */
 	public function login()
 	{
 		return view("Admin.Admin.login");
 	}
-//	执行登陆
+	
+    /**
+     * 执行登陆
+     *
+     */
+     
 	public function dologin(Request $request)
 	{
+		session_start();
+//		验证验证码
+		$request -> flashOnly('name');
+		if($_SESSION['code'] != $request->input('code')) {
+            return redirect('/admins/login')->with('error','验证码错误');
+		}	
 //		获取输入信息并加密密码
 		$name = $request->input('name');
 		$password =  $request->input('password');
@@ -40,6 +55,10 @@ class AdminController extends Controller
 //				删除密码并存入session
 				unset($namebool->password);
 				session(['admin' => $namebool]);
+//				存储七天自动登陆
+				if(!empty($request->input('keep'))) {
+					Cookie::queue('admin', $name, 10080);	
+				}
 	            return redirect('/admin')->with('success','登录成功');
 			} 
             return redirect('/admins/login')->with('error','用户名或密码不正确');
@@ -47,9 +66,17 @@ class AdminController extends Controller
             return redirect('/admins/login')->with('error','用户名或密码不正确');
 		}
 	}
+	
+    /**
+     * 退出登录
+     *
+     */
+     
 	public function exit(Request $request)
 	{
-		if($request->session()->pull('admin')) {
+		$cookie = Cookie::queue('admin', 'end', -1);
+		$session = $request->session()->pull('admin');
+		if($cookie && $session) {
 			return redirect('/admins/login');
 		}else{
 			return redirect('/admin');

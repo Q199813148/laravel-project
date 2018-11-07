@@ -1,4 +1,5 @@
-﻿@extends("Admin.AdminPublic.index")
+
+@extends("Admin.AdminPublic.index")
 @section("search")
         <div class="search-field d-none d-md-block">
           <form class="d-flex align-items-center h-100" action="#">
@@ -16,87 +17,70 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">管理列表</h4>
+                  <h4 class="card-title">分类列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            Name
+                            ID
+                          </th>
+                          <th>
+                            分类
                           </th>
                           <th>
                             Status
                           </th>
                           <th>
-                            Phone
+                            Pid
                           </th>
                           <th>
-                            Level
+                            Path
                           </th>
                           <th>
-                            email
-                          </th>
-                          <th>
-                            operate
+                          	操作
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                      	@foreach($data as $val)
+                      @foreach ($types as $value)
+                      	
+                      
                         <tr>
                           <td>
-                            <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
-                            {{$val->name}}
+                            {{$value->id}}
                           </td>
                           <td>
-                            @if($val->status == 1)
-                            <label class="badge badge-gradient-success">启用</label>
-                            @else
-                            <label class="badge badge-danger">禁用</label>
-                            @endif
+                            {{$value->name}}
                           </td>
                           <td>
-                            {{$val->phone}}
+                            {{$value->status}}
                           </td>
                           <td>
-                            {{$val->level}}
+                           {{$value->pid}}
                           </td>
                           <td>
-                            {{$val->email}}
+                            {{$value->path}}
                           </td>
                           <td>
-                          	
+                          <form action="/admintypes/{{$value->id}}" method="post">
+                          {{csrf_field()}}
+                          {{method_field("DELETE")}}
+                          	<button class="btn btn-danger" onclick="return confirm('确定删除吗')">删除</button>|<a href="/admintypes/{{$value->id}}/edit" class="btn btn-success">修改</a>                         	
+                          </form>
                           </td>
                         </tr>
-                      	@endforeach
+                        <tr>
+                      @endforeach 
                       </tbody>
                     </table>
+                    <div class="dataTables_paginate paging_full_numbers" id="pages">
+						{{$types->appends($request)->render()}}
+					</div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
-          <div class="row">
-            <div class="col-12 grid-margin">
-              <div class="card">
-              	<center>
-              		<br />
-					<div class="btn-group" role="group" aria-label="Basic example">
-					{{$data->render()}}
-					<script type="text/javascript">
-						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
-						
-						
-						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
-					</script>
-                        </div>
-		          	<br />
-              	</center>
-              </div>
-            </div>
-          </div>
-        </div>
 @endsection
-@section('title','后台首页')
-
+@section('title','分类列表')                

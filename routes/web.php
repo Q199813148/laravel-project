@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +10,7 @@
 |
 */
 Route::get("/", function () {
-	return redirect("/index");
+//	return redirect("/index");
 });
 	//后台
 	//modifier:Memory
@@ -34,7 +33,6 @@ Route::get("/", function () {
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
 	//end Memory
-
 	//前台首页
 	Route::resource("/index", "Home\HomeController");
-	
+
