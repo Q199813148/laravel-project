@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Model\Users;
 class UsersController extends Controller
 {
     /**
@@ -12,11 +13,17 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+        //获取搜索关键词
+        $k=$request->input('keywords');
+        //用户列表
+        $data=Users::where('name',"like","%".$k."%")->paginate(3);
+        // var_dump($data);exit;
         //加载
         // echo "后台用户";
-        return view("Admin.Users.index");
+        // dd($data);
+        return view("Admin.Users.index",['data'=>$data,'request'=>$request->all()]);
     }
 
     /**

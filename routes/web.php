@@ -37,3 +37,4 @@ Route::get("/", function () {
 	//end Memory
 	//前台首页
 	Route::resource("/index", "Home\HomeController");
+
