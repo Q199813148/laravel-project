@@ -74,13 +74,32 @@
                       @endforeach 
                       </tbody>
                     </table>
-                    <div class="dataTables_paginate paging_full_numbers" id="pages">
-						{{$types->appends($request)->render()}}
-					</div>
+         
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-12 grid-margin">
+              <div class="card">
+                <center>
+                  <br />
+          <div class="btn-group" role="group" aria-label="Basic example">
+          {{$types->render()}}
+          <script type="text/javascript">
+            $(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
+            
+            
+            $(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
+          </script>
+                        </div>
+                <br />
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
 @endsection
 @section('title','分类列表')                
