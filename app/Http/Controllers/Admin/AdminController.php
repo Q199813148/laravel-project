@@ -18,8 +18,8 @@ class AdminController extends Controller
     public function index()
     {
 
-//		return redirect('/adminusers');
-		echo "this is admin home page";
+		return redirect('/adminusers');
+//		echo "this is admin home page";
     }
     /**
      * 登陆界面
