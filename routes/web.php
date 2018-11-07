@@ -15,14 +15,16 @@ Route::get("/", function () {
 	//后台
 	//modifier:Memory
 //	后台各种页
-	Route::group(["middleware"=>'login'],function(){
+	Route::group(["middleware"=>'login'], function(){
 		Route::resource("/admin", "Admin\AdminController");
+		//后台管理信息
+		Route::resource("/adminusers", "Admin\AdminuserController");
 		//后台商品信息
-		Route::resource("/shop","Admin\ShopController");
+		Route::resource("/shop", "Admin\ShopController");
 		//后台用户管理
-		Route::resource("/adminuser","Admin\UsersController");
+		Route::resource("/adminuser", "Admin\UsersController");
 		//后台分类管理
-		Route::resource("/admintypes","Admin\TypesController");
+		Route::resource("/admintypes", "Admin\TypesController");
 	});
 	
 //	后台登陆页
