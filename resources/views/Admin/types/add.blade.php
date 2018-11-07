@@ -22,20 +22,22 @@
                   <form class="forms-sample" action="/admintypes" method="post">
                     <div class="form-group">
                       <label for="exampleInputName1"><h5>类别</h5></label>
-                      <input type="text" class="form-control" id="exampleInputName1" name="name">
+                      <input type="text" class="form-control" id="exampleInputName1" name="name" >
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputName1"><h5>父类</h5></label>
-                      <select class="" name="pid">
-                      	<option value="0">--请选择--</option>
+                    <div class="form-group" style="display:inline">
+                      <label for="exampleInputName1"><h5>选择分类</h5></label>
+                      <select class="form-control form-control-sm" name="pid" id="exampleFormControlSelect3" style="width:500px;">
+                      	<option value="0" style="text-align:center">--顶级分类--</option>
                       	@foreach($types as $value)
                       	<option value="{{$value->id}}">{{$value->name}}</option>
                       	@endforeach
-                      </select><select class="" name="status">
-                      	<option value="0">--关闭--</option>
-                      	<option value="1">--开启--</option>
-                      	
-                      </select>
+                    </div>
+                    <br>
+                    <div class="form-group" style="display:inline">
+		               	</select><select class="form-control form-control-sm" name="status" id="exampleFormControlSelect3" style="width:500px;">              	
+		               		<option value="1" style="text-align:center">--开启--</option>
+		               		<option value="0" style="text-align:center">--禁用--</option>
+		               	</select>
                     </div>
                     {{csrf_field()}}
                     <input type="submit" value="Submit" class="btn btn-info">
