@@ -29,6 +29,7 @@ class LoginMiddleware
 			unset($namebool->password);
 			session(['admin' => $namebool]);
             return $next($request);
+//			未登陆 跳转登陆页面
 		} else {
             return redirect("/admins/login");
         }

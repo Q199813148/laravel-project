@@ -43,7 +43,7 @@
 						      <span class="text-danger">{{session('error')}}</span>
 						      @endif 
                   <br /><br />
-                  <input type="password" name="code" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Code">
+                  <input type="text" name="code" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Code">
                 </div>
                 {{csrf_field()}}
                 <div class="mt-3">
