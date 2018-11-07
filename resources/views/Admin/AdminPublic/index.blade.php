@@ -225,8 +225,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/shop"> 商品列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/shop/create"> 添加商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshop"> 商品列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshop/create"> 添加商品 </a></li>
               </ul>
               </div>
           </li>

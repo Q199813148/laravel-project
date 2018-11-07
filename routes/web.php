@@ -18,7 +18,7 @@ Route::get("/", function () {
 	Route::group(["middleware"=>'login'],function(){
 		Route::resource("/admin", "Admin\AdminController");
 		//后台商品信息
-		Route::resource("/shop","Admin\ShopController");
+		Route::resource("/adminshop","Admin\ShopController");
 		//后台用户管理
 		Route::resource("/adminuser","Admin\UsersController");
 		//后台分类管理
