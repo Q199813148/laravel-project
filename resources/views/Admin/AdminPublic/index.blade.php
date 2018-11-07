@@ -186,8 +186,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/admin"> 管理列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/admin/create"> 添加管理 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminusers"> 管理列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminusers/create"> 添加管理 </a></li>
               </ul>
               </div>
           </li>	
@@ -200,7 +200,7 @@
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminuser"> 用户列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/adminuser/create"> 添加用户 </a></li>
+
               </ul>
               </div>
           </li>

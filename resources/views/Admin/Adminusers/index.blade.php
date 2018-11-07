@@ -6,7 +6,7 @@
               <div class="input-group-prepend bg-transparent">
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
-              <input type="text" class="form-control bg-transparent border-0" name="keywords" value="{{$request['keywords'] or ''}}" placeholder="Search projects">
+              <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
             </div>
           </form>
         </div>
@@ -16,55 +16,59 @@
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">用户列表</h4>
+                  <h4 class="card-title">管理列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
                         <tr>
                           <th>
-                            USER_ID
+                            Name
                           </th>
                           <th>
-                            NAME
+                            Status
                           </th>
                           <th>
-                            PASSWORD
+                            Phone
                           </th>
                           <th>
-                            EMAIL
+                            Level
                           </th>
                           <th>
-                            STATUS
+                            email
                           </th>
                           <th>
-                            ADDTIME
+                            operate
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach($data as $row)
+                      	@foreach($data as $val)
                         <tr>
                           <td>
-                            {{$row->user_id}}
+                            <img src="/static/Admin/images/faces/face1.jpg" class="mr-2" alt="image">
+                            {{$val->name}}
                           </td>
                           <td>
-                            {{$row->name}}
+                            @if($val->status == 1)
+                            <label class="badge badge-gradient-success">启用</label>
+                            @else
+                            <label class="badge badge-danger">禁用</label>
+                            @endif
                           </td>
                           <td>
-                            {{$row->password}}
+                            {{$val->phone}}
                           </td>
                           <td>
-                            {{$row->email}}
+                            {{$val->level}}
                           </td>
                           <td>
-                          <label class="badge badge-gradient-success">{{$row->status}}</label>
-                            
+                            {{$val->email}}
                           </td>
                           <td>
-                            {{$row->addtime}}
+                          	
                           </td>
                         </tr>
-                        @endforeach
+                      	@endforeach
                       </tbody>
                     </table>
                   </div>
@@ -76,19 +80,19 @@
           <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
-                <center>
-                  <br />
-          <div class="btn-group" role="group" aria-label="Basic example">
-          {{$data->render()}}
-          <script type="text/javascript">
-            $(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
-            
-            
-            $(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
-          </script>
+              	<center>
+              		<br />
+					<div class="btn-group" role="group" aria-label="Basic example">
+					{{$data->render()}}
+					<script type="text/javascript">
+						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
+						
+						
+						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
+					</script>
                         </div>
-                <br />
-                </center>
+		          	<br />
+              	</center>
               </div>
             </div>
           </div>

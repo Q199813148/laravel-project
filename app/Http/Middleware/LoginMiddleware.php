@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use DB;
 
 class LoginMiddleware
 {
@@ -17,11 +18,18 @@ class LoginMiddleware
     public function handle($request, Closure $next)
     {
         //检测是否具有用户登录的session信息
-        if($request->session()->has("admin")){
+        $cookiebool = \Cookie::get('admin');
+        if($request->session()->has("admin")) {
              //经过中间件过滤 执行下一个请求
             return $next($request);
-        }else{
-            //直接跳转到登录界面 redirect 跳转  /login 路由规则
+//			检查是否存在cookie
+        } elseif(!empty($cookiebool)) {
+//      	查询cookie用户存入session
+			$namebool = DB::table('admin')->where("name", "=", $cookiebool)->first();
+			unset($namebool->password);
+			session(['admin' => $namebool]);
+            return $next($request);
+		} else {
             return redirect("/admins/login");
         }
     }
