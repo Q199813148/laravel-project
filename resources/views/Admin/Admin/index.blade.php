@@ -1,4 +1,4 @@
-@extends("Admin.AdminPublic.index")
+﻿@extends("Admin.AdminPublic.index")
 @section("search")
         <div class="search-field d-none d-md-block">
           <form class="d-flex align-items-center h-100" action="#">
