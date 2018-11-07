@@ -21,6 +21,8 @@ Route::get("/", function () {
 		Route::resource("/adminusers", "Admin\AdminuserController");
 		//后台商品信息
 		Route::resource("/adminshop","Admin\ShopController");
+		//后台商品删除
+        Route::get("/adminshopdel","Admin\ShopController@del");
 		//后台用户管理
 		Route::resource("/adminuser", "Admin\UsersController");
 		//后台分类管理

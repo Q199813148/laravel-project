@@ -12,11 +12,24 @@
         </div>
 @endsection
 @section("admin")
+    <style>
+        table{
+            width:100px;
+            table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+        }
+        td{
+            width:100%;
+            word-break:keep-all;/* 不换行 */
+            white-space:nowrap;/* 不换行 */
+            overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+            text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+        }
+    </style>
 <div class="row">
             <div class="col-12 grid-margin">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">管理列表</h4>
+                  <h4 class="card-title">商品列表</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -50,9 +63,7 @@
                       <tbody>
                       	@foreach($data as $val)
                         <tr>
-                          <td>
-                            {{$val->id}}
-                          </td>
+                          <td style="width: 2px;">{{$val->id}}</td>
                           <td>
                             {{$val->name}}
                           </td>
@@ -72,7 +83,8 @@
                             {{$val->status}}
                           </td>
                           <td>
-                            <a href="/adminshop/{{$val->id}}/eidt" class="btn btn-gradient-primary btn-sm">编辑</a>
+                            <a href="/adminshop/{{$val->id}}/edit" class="mdi mdi-settings"></a> |
+                            <a href="#" class="delete mdi mdi-delete" ></a>
                           </td>
                         </tr>
                       	@endforeach
@@ -92,10 +104,10 @@
 					<div class="btn-group" role="group" aria-label="Basic example">
 					{{$data->appends($request)->render()}}
 					<script type="text/javascript">
-						$(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
+						$(".pagination>li>a").attr('class','badge badge-danger').css('margin-left','10px').css('color','#fff');
 						
 						
-						$(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
+						$(".pagination>li>span").attr('class','badge badge-danger').css('margin-left','10px').css('color','#555');
 					</script>
                         </div>
 		          	<br />
@@ -104,6 +116,24 @@
             </div>
           </div>
         </div>
+<script>
+  $(".delete").click(function(){
+      if(confirm('确定删除吗')){
+          id = $(this).parents('tr').find('td:first').html();
+          td = $(this);
+          $.get('/adminshopdel',{id:id},function(data){
+              if(data == 1){
+                  // alert("删除成功");
+                  td.parents('tr').remove();
+              }else{
+                  alert("删除失败");
+              }
+          })
+      }
+
+
+  })
+</script>
 @endsection
-@section('title','后台首页')
+@section('title','商品列表')
 
