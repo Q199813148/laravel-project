@@ -18,8 +18,7 @@ class AdminController extends Controller
     public function index()
     {
 
-		return redirect('/adminusers');
-//		echo "this is admin home page";
+		return view("Admin.Admin.index");
     }
     /**
      * 登陆界面
@@ -41,12 +40,16 @@ class AdminController extends Controller
 //		验证验证码
 		$request -> flashOnly('name');
 		if($_SESSION['code'] != $request->input('code')) {
-            return redirect('/admins/login')->with('error','验证码错误');
-		}	
+            return redirect('/admins/login')->with('error','　*验证码错误');
+		}
 //		获取输入信息并加密密码
 		$name = $request->input('name');
 		$password =  $request->input('password');
 		$namebool = DB::table('admin')->where("name", "=", $name)->first();
+//		判断是否被禁用
+    	if($namebool->status == 0) {
+        	return redirect("/admins/login")->with('error','　*您已被禁用');
+    	}
 //		判断数据是否存在
 		if($namebool) {
 //			判断密码是否正确
@@ -60,9 +63,9 @@ class AdminController extends Controller
 				}
 	            return redirect('/admin')->with('success','登录成功');
 			} 
-            return redirect('/admins/login')->with('error','用户名或密码不正确');
-        }else{
-            return redirect('/admins/login')->with('error','用户名或密码不正确');
+            return redirect('/admins/login')->with('error','　*用户名或密码不正确');
+        } else {
+            return redirect('/admins/login')->with('error','　*用户名或密码不正确');
 		}
 	}
 	

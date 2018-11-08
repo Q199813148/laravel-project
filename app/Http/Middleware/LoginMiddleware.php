@@ -19,13 +19,14 @@ class LoginMiddleware
     {
         //检测是否具有用户登录的session信息
         $cookiebool = \Cookie::get('admin');
+		$namebool = DB::table('admin')->where("name", "=", $cookiebool)->first();
+//      判断是否被禁用
         if($request->session()->has("admin")) {
              //经过中间件过滤 执行下一个请求
             return $next($request);
 //			检查是否存在cookie
         } elseif(!empty($cookiebool)) {
 //      	查询cookie用户存入session
-			$namebool = DB::table('admin')->where("name", "=", $cookiebool)->first();
 			unset($namebool->password);
 			session(['admin' => $namebool]);
             return $next($request);

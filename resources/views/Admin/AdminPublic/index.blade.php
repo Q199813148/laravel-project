@@ -178,6 +178,30 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+        	<li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="/static/Admin/images/faces/face1.jpg" alt="轮廓">
+                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+              </div>
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{session('admin')->name}}</font><font style="vertical-align: inherit;"></font></font></span>
+                <span class="text-secondary text-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                	@if(session('admin')->level == 1) 
+                	超级管理员
+                	@else
+                	管理员
+                	@endif
+                </font></font></span>
+              </div>
+                	@if(session('admin')->status == 1)
+             			<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                	@else
+              		<i class="mdi mdi-bookmark-remove text-danger nav-profile-badge"></i>
+                	@endif
+              
+            </a>
+          </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false">
               <span class="menu-title">管理员</span>
@@ -332,11 +356,12 @@
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="/static/Admin/js/off-canvas.js"></script>
+  <script src="/static/Admin/js/misc.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
+  <script src="/static/Admin/js/dashboard.js"></script>
+  <script src="/static/Admin/js/chart.js"></script>
   <!-- End custom js for this page-->
 </body>
 
