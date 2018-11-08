@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Http\Requests\Admin\AdminuserTypesinsert;
 class TypesController extends Controller
 {
     /**
@@ -71,7 +72,7 @@ class TypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminuserTypesinsert $request)
     {
         //获取需要添加的数据
 		$data=$request->only(['name','pid','status']);

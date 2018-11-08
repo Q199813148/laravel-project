@@ -40,8 +40,8 @@
 		               	</select>
                     </div>
                     {{csrf_field()}}
-                    <input type="submit" value="Submit" class="btn btn-info">
-                    <input type="reset" value="Reset" class="btn" >
+                    <input type="submit" value="添加" class="btn btn-info">
+                    <input type="reset" value="Reset" class="btn btn-info" >
                   </form>
                 </div>
               </div>
