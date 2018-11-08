@@ -72,8 +72,12 @@
                             {{$val->email}}
                           </td>
                           <td>
-                          	<a href="" class="text-danger">删除</a>
-                          	<a href="" class="text-warning">修改</a>
+                          	<form style="display: initial;" action="/adminusers/{{$val->id}}" onsubmit="return confirm('你确定删除吗？')" method="post">
+          {{csrf_field()}}
+          {{method_field("DELETE")}}
+          <button style="border: 0; background: #fff;" class="text-danger" type="submit"><a class="text-danger">删除</a></button>
+        </form>
+                          	<a href="/adminusers/{{$val->id}}/edit" class="text-warning">修改</a>
                           </td>
                         </tr>
                       	@endforeach
