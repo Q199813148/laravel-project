@@ -14,7 +14,7 @@ class Users extends Model
     //修改器方法 status 数据表字段 getAttribute() 获取字段值
     public function getStatusAttribute($value){
     	//自动处理
-    	$status=[0=>'未激活',1=>'启用',2=>'禁用'];
+    	$status=[0=>0,1=>1];
     	//返回数据
     	return $status[$value];
     }
@@ -22,7 +22,7 @@ class Users extends Model
     //修改器方法 level 数据表字段 getAttribute() 获取字段值
     public function getLevelAttribute($value){
         //自动处理
-        $level=[0=>'普通用户',1=>'会员'];
+        $level=[0=>'非会员',1=>'会员'];
         //返回数据
         return $level[$value];
     }

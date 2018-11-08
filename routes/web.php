@@ -25,6 +25,8 @@ Route::get("/", function () {
 		Route::resource("/adminshop","Admin\ShopController");
 		//后台用户管理
 		Route::resource("/adminuser", "Admin\UsersController");
+		Route::get("/adminuse/ajax", "Admin\UsersController@ajax");
+		Route::get("/adminuserss","Admin\UsersController@edits");
 		//后台分类管理
 		Route::resource("/admintypes", "Admin\TypesController");
 	});
