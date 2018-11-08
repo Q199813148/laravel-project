@@ -50,15 +50,18 @@ class ShowsController extends Controller
             //获取上传文件后缀
             // $ext=$request->file('photo')->extension();
             $ext=$request->file("pic")->getClientOriginalExtension();
-
+            $date = date("Y-m-d");
             //移动到指定的目录下（提前在public下新建uploads目录）
-            $request->file("pic")->move("./uploads/shows/".date("Y-m-d"),$name.".".$ext);
+            $request->file("pic")->move("./uploads/shows/".$date,$name.".".$ext);
         }else{
             return back()->with("notice","请上传主图");
         }
-
         //获取输入数据
         $data = $request->except("_token");
+
+        //拼接图片路径
+        $data['pic'] = "/uploads/shows/".$date."/".$name.'.'.$ext;
+
         dd($data);
     }
 
