@@ -24,7 +24,11 @@ class ShopController extends Controller
         foreach ($data as $value){
             $typeid = $value->type_id;
             $name = DB::table("types")->where("id","=",$typeid)->first();
-            $value->type_id=$name->name;
+            if($name) { 
+	            $value->type_id=$name->name;
+            } else { 
+            	$value->type_id='分类不存在';
+            }
         }
 //        dd($data);
         return view("Admin.Shops.index",['data'=>$data,'request'=>$request->all()]);
@@ -151,16 +155,16 @@ class ShopController extends Controller
             //获取上传文件后缀
             // $ext=$request->file('photo')->extension();
             $ext=$request->file("photo")->getClientOriginalExtension();
-
+            $date = date("Y-m-d");
             //移动到指定的目录下（提前在public下新建uploads目录）
-            $request->file("photo")->move("./uploads",$name.".".$ext);
+            $request->file("photo")->move("./uploads/shops/".$date,$name.".".$ext);
         }
 
         $data = $request->except("_token","_method");
         //判断是否有主图修改
         if(isset($data['photo'])){
             //拼接商品主图路径
-            $data['photo'] = '/uploads/'.$name.'.'.$ext;
+            $data['photo'] = "/uploads/shops/".$date."/".$name.'.'.$ext;
         }else{
             //获取原主图信息
             $data['photo'] = DB::table("goods")->select('photo')->where("id","=",$id)->first()->photo;
