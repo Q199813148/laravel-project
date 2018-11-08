@@ -19,7 +19,7 @@ class ShowsController extends Controller
         //获取搜索内容
         $k = $request->input('keywords');
         //获取数据库数据
-        $data = Shows::where("name","like","%".$k."%")->paginate(3);
+        $data = Shows::where("name","like","%".$k."%")->orderBy("id")->paginate(3);
 //        dd($request->all());
         return view("Admin.Shows.index",['data'=>$data,'request'=>$request->all()]);
     }
@@ -43,6 +43,8 @@ class ShowsController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->file('pic')->getClientSize());
+
         //处理文件上传
         if($request->hasFile('pic')){
             //初始化名字
@@ -61,8 +63,13 @@ class ShowsController extends Controller
 
         //拼接图片路径
         $data['pic'] = "/uploads/shows/".$date."/".$name.'.'.$ext;
-
-        dd($data);
+//        dd($data);
+        //写入数据库
+        if(DB::table("shows")->insert($data)){
+            return redirect('/adminshows')->with("success","添加成功");
+        }else{
+            return back()->with("error",'添加失败');
+        }
     }
 
     /**
@@ -107,6 +114,11 @@ class ShowsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //获取删除的id
+        if(DB::delete("delete from shows where id = $id")){
+            return redirect('/adminshows')->with("success","删除成功");
+        }else{
+            return back()->with("error",'删除失败');;
+        }
     }
 }

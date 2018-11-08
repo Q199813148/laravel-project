@@ -244,7 +244,7 @@
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminshows"> 轮播图列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/adminshows/create"> 轮播图商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshows/create"> 轮播图添加 </a></li>
               </ul>
             </div>
           </li>

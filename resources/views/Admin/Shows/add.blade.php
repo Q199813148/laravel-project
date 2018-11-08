@@ -25,12 +25,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputName1"><h5>展示图</h5></label>
+                            <label for="exampleInputName1"><h5>展示图</h5><h5 class="text-muted">最佳展示尺寸:1010px*455px</h5></label>
                             <input type="file" class="form-control" id="exampleInputName1" name="pic" >
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>跳转地址</h5></label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="company" >
+                            <input type="text" class="form-control" id="exampleInputName1" name="url" >
                         </div>
 
                         <div class="form-group">
@@ -55,5 +55,6 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('title','添加商品')

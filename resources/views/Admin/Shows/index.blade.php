@@ -70,10 +70,16 @@
                           <td>
                               <span class="badge badge-gradient-success" href="">{{$val->status}}</span>
                           </td>
+                            <form action="/adminshows/{{$val->id}}" method="post">
                           <td>
-                            <a href="/adminshows/{{$val->id}}/edit" class="mdi mdi-settings"></a> |
-                            <a href="/adminshows/{{$val->id}}" class="mdi mdi-delete" onclick="return confirm('确定删除吗,数据无价,谨慎操作!')"></a>
+                            <a href="/adminshows/{{$val->id}}/edit" class="mdi mdi-settings btn btn-gradient-primary btn-sm"></a> |
+
+                            <button class="mdi mdi-delete btn btn-gradient-danger btn-sm" onclick="return confirm('确定删除吗,数据无价,谨慎操作!')"></button>
+                                {{csrf_field()}}
+                                {{method_field('DELETE')}}
+
                           </td>
+                            </form>
                         </tr>
                       	@endforeach
                       </tbody>
