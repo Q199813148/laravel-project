@@ -21,16 +21,16 @@
                     <form class="forms-sample" action="/adminshows" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>名称</h5></label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="name" required>
+                            <input type="text" class="form-control" id="exampleInputName1" name="name" >
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>展示图</h5></label>
-                            <input type="file" class="form-control" id="exampleInputName1" name="pic" required>
+                            <input type="file" class="form-control" id="exampleInputName1" name="pic" >
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>跳转地址</h5></label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="company" required>
+                            <input type="text" class="form-control" id="exampleInputName1" name="company" >
                         </div>
 
                         <div class="form-group">

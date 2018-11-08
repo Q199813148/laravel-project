@@ -43,7 +43,23 @@ class ShowsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //处理文件上传
+        if($request->hasFile('pic')){
+            //初始化名字
+            $name=time()+rand(1,10000);
+            //获取上传文件后缀
+            // $ext=$request->file('photo')->extension();
+            $ext=$request->file("pic")->getClientOriginalExtension();
+
+            //移动到指定的目录下（提前在public下新建uploads目录）
+            $request->file("pic")->move("./uploads/shows/".date("Y-m-d"),$name.".".$ext);
+        }else{
+            return back()->with("notice","请上传主图");
+        }
+
+        //获取输入数据
+        $data = $request->except("_token");
+        dd($data);
     }
 
     /**

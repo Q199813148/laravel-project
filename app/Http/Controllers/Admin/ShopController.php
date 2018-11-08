@@ -92,7 +92,7 @@ class ShopController extends Controller
             $ext=$request->file("photo")->getClientOriginalExtension();
 
         //移动到指定的目录下（提前在public下新建uploads目录）
-            $request->file("photo")->move("./uploads",$name.".".$ext);
+            $request->file("photo")->move("./uploads/shop/".date("Y-m-d"),$name.".".$ext);
         }
 
         $data = $request->except("_token");
