@@ -4,17 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Model\Shows;
 
 class ShowsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 轮播图管理类
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //获取搜索内容
+        $k = $request->input('keywords');
+        //获取数据库数据
+        $data = Shows::where("name","like","%".$k."%")->paginate(3);
+//        dd($request->all());
+        return view("Admin.Shows.index",['data'=>$data,'request'=>$request->all()]);
     }
 
     /**
@@ -25,6 +32,7 @@ class ShowsController extends Controller
     public function create()
     {
         //
+        return view("Admin.Shows.add");
     }
 
     /**
