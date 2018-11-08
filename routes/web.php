@@ -19,12 +19,21 @@ Route::get("/", function () {
 		Route::resource("/admin", "Admin\AdminController");
 		//后台管理信息
 		Route::resource("/adminusers", "Admin\AdminuserController");
+//		ajax更改状态
+		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
-		Route::resource("/shop", "Admin\ShopController");
+		Route::resource("/adminshop","Admin\ShopController");
+		//后台商品删除
+        Route::get("/adminshopdel","Admin\ShopController@del");
 		//后台用户管理
 		Route::resource("/adminuser", "Admin\UsersController");
+		Route::get("/adminuse/ajax", "Admin\UsersController@ajax");
+		Route::get("/adminuserss","Admin\UsersController@edits");
 		//后台分类管理
 		Route::resource("/admintypes", "Admin\TypesController");
+		Route::get("/admintypess","Admin\TypesController@edits");
+		//轮播图管理
+        Route::resource("/adminshows","Admin\ShowsController");
 	});
 	
 //	后台登陆页

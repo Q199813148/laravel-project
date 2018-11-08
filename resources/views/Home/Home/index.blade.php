@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -2346,3 +2347,6 @@
   </body>
 
 </html>
+=======
+@extends("Home.HomePublic.index")
+>>>>>>> 8f75b1a6d48a61ec39b8eb760de698019193d35d

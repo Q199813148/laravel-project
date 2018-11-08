@@ -25,7 +25,7 @@
         <a class="navbar-brand brand-logo-mini" href="/admin"><img src="/static/Admin/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
-      	
+        
       @section('search')
        
       @show
@@ -43,12 +43,12 @@
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
                 <i class="mdi mdi-cached mr-2 text-success"></i>
-               	 活动日志
+                 活动日志
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/admins/exit">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-               	 退出
+                 退出
               </a>
             </div>
           </li>
@@ -178,6 +178,30 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+        	<li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="/static/Admin/images/faces/face1.jpg" alt="轮廓">
+                <span class="login-status online"></span> <!--change to offline or busy as needed-->              
+              </div>
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{session('admin')->name}}</font><font style="vertical-align: inherit;"></font></font></span>
+                <span class="text-secondary text-small"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                	@if(session('admin')->level == 1) 
+                	超级管理员
+                	@else
+                	管理员
+                	@endif
+                </font></font></span>
+              </div>
+                	@if(session('admin')->status == 1)
+             			<i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                	@else
+              		<i class="mdi mdi-bookmark-remove text-danger nav-profile-badge"></i>
+                	@endif
+              
+            </a>
+          </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false">
               <span class="menu-title">管理员</span>
@@ -190,7 +214,7 @@
                 <li class="nav-item"> <a class="nav-link" href="/adminusers/create"> 添加管理 </a></li>
               </ul>
               </div>
-          </li>	
+          </li> 
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
               <span class="menu-title">用户管理</span>
@@ -200,7 +224,6 @@
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminuser"> 用户列表 </a></li>
-
               </ul>
               </div>
           </li>
@@ -225,35 +248,82 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/shop"> 商品列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/shop/create"> 添加商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshop"> 商品列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshop/create"> 添加商品 </a></li>
               </ul>
               </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/order">
               <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">轮播图管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/adminshows"> 轮播图列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshows/create"> 轮播图添加 </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">公告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/affiche"> 公告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/affiche/create"> 添加公告 </a></li>
+              </ul>
+              </div>
+          </li>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">广告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/advertising"> 广告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/advertising/create"> 添加广告 </a></li>
+              </ul>
+              </div>
+          </li>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">友情链接管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/link"> 链接列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/linkreq"> 链接申请列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/link/create"> 添加链接 </a></li>
+              </ul>
+              </div>
           </li>
           <script>
-          	$('.suibian').click(function () {
-          		obj = $(this);
-          		bool = obj.find('a:first').attr('aria-expanded');
-          		if(bool == 'false'){
-	          		obj.find('a:first').attr('aria-expanded',"true");
-          			obj.find('div:first').attr('class','collapse show');
-          		}else{
-	          		obj.find('a:first').attr('aria-expanded',"false");
-          			obj.find('div:first').attr('class','collapse');
-          		}
-          	});
+            $('.suibian').click(function () {
+              obj = $(this);
+              bool = obj.find('a:first').attr('aria-expanded');
+              if(bool == 'false'){
+                obj.find('a:first').attr('aria-expanded',"true");
+                obj.find('div:first').attr('class','collapse show');
+              }else{
+                obj.find('a:first').attr('aria-expanded',"false");
+                obj.find('div:first').attr('class','collapse');
+              }
+            });
           </script>
         </ul>
       </nav>
@@ -286,11 +356,12 @@
   <!-- Plugin js for this page-->
   <!-- End plugin js for this page-->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/misc.js"></script>
+  <script src="/static/Admin/js/off-canvas.js"></script>
+  <script src="/static/Admin/js/misc.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
+  <script src="/static/Admin/js/dashboard.js"></script>
+  <script src="/static/Admin/js/chart.js"></script>
   <!-- End custom js for this page-->
 </body>
 

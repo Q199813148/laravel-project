@@ -56,6 +56,25 @@ class TypesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function edits(Request $request)
+    {
+        $id=$request->input("id");
+        // echo $id;
+        $status = DB::table("types")->where("id","=",$id)->value("status");
+        if($status == 0){
+
+            if(DB::table("types")->where("id","=",$id)->update(['status'=>1])){
+                return response()->json(['status'=>1]);
+            }
+
+        }else{
+            if(DB::table("types")->where("id","=",$id)->update(['status'=>0])){
+                return response()->json(['status'=>1]);
+            }
+        }
+        
+    }
+
     //添加分类
     public function create()
     {
