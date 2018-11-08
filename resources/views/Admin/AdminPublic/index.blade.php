@@ -25,7 +25,7 @@
         <a class="navbar-brand brand-logo-mini" href="/admin"><img src="/static/Admin/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
-      	
+        
       @section('search')
        
       @show
@@ -43,12 +43,12 @@
             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="#">
                 <i class="mdi mdi-cached mr-2 text-success"></i>
-               	 活动日志
+                 活动日志
               </a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/admins/exit">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>
-               	 退出
+                 退出
               </a>
             </div>
           </li>
@@ -214,7 +214,7 @@
                 <li class="nav-item"> <a class="nav-link" href="/adminusers/create"> 添加管理 </a></li>
               </ul>
               </div>
-          </li>	
+          </li> 
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
               <span class="menu-title">用户管理</span>
@@ -248,8 +248,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/adminshop"> 商品列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/adminshop/create"> 添加商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/shop"> 商品列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/shop/create"> 添加商品 </a></li>
               </ul>
               </div>
           </li>
@@ -268,7 +268,7 @@
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminshows"> 轮播图列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/adminshows/create"> 轮播图商品 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminshows/create"> 轮播图添加 </a></li>
               </ul>
             </div>
           </li>
@@ -313,17 +313,17 @@
               </div>
           </li>
           <script>
-          	$('.suibian').click(function () {
-          		obj = $(this);
-          		bool = obj.find('a:first').attr('aria-expanded');
-          		if(bool == 'false'){
-	          		obj.find('a:first').attr('aria-expanded',"true");
-          			obj.find('div:first').attr('class','collapse show');
-          		}else{
-	          		obj.find('a:first').attr('aria-expanded',"false");
-          			obj.find('div:first').attr('class','collapse');
-          		}
-          	});
+            $('.suibian').click(function () {
+              obj = $(this);
+              bool = obj.find('a:first').attr('aria-expanded');
+              if(bool == 'false'){
+                obj.find('a:first').attr('aria-expanded',"true");
+                obj.find('div:first').attr('class','collapse show');
+              }else{
+                obj.find('a:first').attr('aria-expanded',"false");
+                obj.find('div:first').attr('class','collapse');
+              }
+            });
           </script>
         </ul>
       </nav>

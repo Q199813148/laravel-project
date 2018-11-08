@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Users;
+use App\Model\User_info;
 class UsersController extends Controller
 {
     /**
@@ -55,7 +56,12 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        //单条结果
+        // echo $id;
+        $data=User_info::where("user_id",'=',$id)->first();
+        //加载模板
+        // dd($data);
+        return view("Admin.Users.info",['data'=>$data]);
     }
 
     /**
@@ -90,5 +96,46 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+//  ajax更改状态
+    public function ajax(Request $request)
+    {
+//      获取传输数据
+            return response()->json(['msg'=>1]);
+        $id = $request->input('id');
+        $sta = $request->input('s');
+//      执行修改操作
+        if($sta == 1){  
+        $data = DB::table("users")->where("user_id",'=',$id)->update(['status'=>0]);
+        }else{
+        $data = DB::table("users")->where("user_id",'=',$id)->update(['status'=>1]);
+        }
+//      返回结果
+        if($data){
+            return response()->json(['msg'=>1]);
+        }else{
+            return response()->json(['msg'=>0]);
+        }
+    }
+
+    public function edits(Request $request)
+    {
+        $id=$request->input("id");
+        // echo $id;
+        $level = DB::table("users")->where("user_id","=",$id)->value("level");
+        if($level == 0){
+
+            if(DB::table("users")->where("user_id","=",$id)->update(['level'=>1])){
+                return response()->json(['level'=>1]);
+            }
+
+        }else{
+            if(DB::table("users")->where("user_id","=",$id)->update(['level'=>0])){
+                return response()->json(['level'=>1]);
+            }
+        }
+        
     }
 }

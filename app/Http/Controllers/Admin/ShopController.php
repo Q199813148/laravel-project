@@ -90,14 +90,14 @@ class ShopController extends Controller
         //获取上传文件后缀
         // $ext=$request->file('photo')->extension();
             $ext=$request->file("photo")->getClientOriginalExtension();
-
+            $date = date("Y-m-d");
         //移动到指定的目录下（提前在public下新建uploads目录）
-            $request->file("photo")->move("./uploads/shop/".date("Y-m-d"),$name.".".$ext);
+            $request->file("photo")->move("./uploads/shops/".$date,$name.".".$ext);
         }
 
         $data = $request->except("_token");
         //拼接商品主图路径
-        $data['photo'] = '/uploads/'.$name.'.'.$ext;
+        $data['photo'] = "/uploads/shops/".$date."/".$name.'.'.$ext;
 //        dd($data);
         if(DB::table("goods")->insert($data)){
             return redirect('/adminshop')->with("success","添加成功");
