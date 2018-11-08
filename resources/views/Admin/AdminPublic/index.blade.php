@@ -230,6 +230,12 @@
               </ul>
               </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <span class="menu-title">商品订单</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
               <span class="menu-title">轮播图管理</span>
@@ -243,17 +249,45 @@
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/order">
-              <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">公告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href=""> 公告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加公告 </a></li>
+              </ul>
+              </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <span class="menu-title">商品订单</span>
-              <i class="mdi mdi-briefcase menu-icon"></i>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">广告管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href=""> 广告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加广告 </a></li>
+              </ul>
+              </div>
+          </li>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">友情链接管理</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href=""> 链接列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 链接申请列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href=""> 添加链接 </a></li>
+              </ul>
+              </div>
           </li>
           <script>
           	$('.suibian').click(function () {
