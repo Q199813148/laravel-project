@@ -231,7 +231,7 @@
               </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="/order">
               <span class="menu-title">商品订单</span>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
@@ -257,8 +257,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 公告列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加公告 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/affiche"> 公告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/affiche/create"> 添加公告 </a></li>
               </ul>
               </div>
           </li>
@@ -270,8 +270,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 广告列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加广告 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/advertising"> 广告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/advertising/create"> 添加广告 </a></li>
               </ul>
               </div>
           </li>
@@ -283,9 +283,9 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href=""> 链接列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 链接申请列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href=""> 添加链接 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/link"> 链接列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/linkreq"> 链接申请列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/link/create"> 添加链接 </a></li>
               </ul>
               </div>
           </li>
