@@ -4,17 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Model\Shows;
 
 class ShowsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 轮播图管理类
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //获取搜索内容
+        $k = $request->input('keywords');
+        //获取数据库数据
+        $data = Shows::where("name","like","%".$k."%")->paginate(3);
+//        dd($request->all());
+        return view("Admin.Shows.index",['data'=>$data,'request'=>$request->all()]);
     }
 
     /**
@@ -25,6 +32,7 @@ class ShowsController extends Controller
     public function create()
     {
         //
+        return view("Admin.Shows.add");
     }
 
     /**
@@ -35,7 +43,23 @@ class ShowsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //处理文件上传
+        if($request->hasFile('pic')){
+            //初始化名字
+            $name=time()+rand(1,10000);
+            //获取上传文件后缀
+            // $ext=$request->file('photo')->extension();
+            $ext=$request->file("pic")->getClientOriginalExtension();
+
+            //移动到指定的目录下（提前在public下新建uploads目录）
+            $request->file("pic")->move("./uploads/shows/".date("Y-m-d"),$name.".".$ext);
+        }else{
+            return back()->with("notice","请上传主图");
+        }
+
+        //获取输入数据
+        $data = $request->except("_token");
+        dd($data);
     }
 
     /**

@@ -31,7 +31,6 @@ Route::get("/", function () {
 		Route::resource("/admintypes", "Admin\TypesController");
 		//轮播图管理
         Route::resource("/adminshows","Admin\ShowsController");
-
 	});
 	
 //	后台登陆页
