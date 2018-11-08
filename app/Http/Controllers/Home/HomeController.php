@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
+use Hash;
+use Illuminate\Support\Facades\Cookie;
 class HomeController extends Controller
 {
     /**
@@ -15,6 +17,51 @@ class HomeController extends Controller
     public function index()
     {
         return view("Home.Home.index");
+    }
+    //注册页面
+    public function regist()
+    { 
+    	return view("Home.Home.regist");
+    }
+    //执行注册
+    public function register(Request $request)
+    { 
+   
+
+    }
+
+    //登录界面
+    public function login()
+    { 
+    	return view("Home.Home.login");
+    }
+
+    //执行登录
+    public function dologin(Request $request)
+    { 
+    	session_start();
+    	//验证验证码
+    	$request->flashOnly('name');
+    	if($_SESSION['code']!=$request->input('code')){ 
+    		return redirect('/login')->with('error','验证错误');
+    	}
+    	//获取输出信息并加密密码
+    	$name = $request->input('name');
+    	$password = $request->input('password');
+    	$namebool = DB::table('users')->where("name",'=',$name)->first();
+    	//$username=$namebool['name'];
+    	//dd($username);
+    	//dd($namebool->name);
+    	if ($namebool->name==$name) {
+    		if ($namebool->password==$password) {
+    			
+    		}
+    		return redirect('/index')->with('success','登录成功');
+    	} else {
+    		return redirect('/login')->with('error',"用户名或密码不正确");
+    	}
+    	
+    	
     }
 
     /**

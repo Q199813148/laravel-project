@@ -54,8 +54,12 @@
                             {{$value->name}}
                           </td>
                           <td>
-                            {{$value->status}}
-                          </td>
+                          @if($value->status == 0)
+                          <span class="badge badge-gradient-success status">禁用</span>
+                          @else
+                          <span class="badge badge-danger status">开启</span>
+                          @endif
+
                           <td>
                            {{$value->pid}}
                           </td>
@@ -72,6 +76,28 @@
                         </tr>
                         <tr>
                       @endforeach 
+   <!--ajax转换状态-->
+<script>
+    $(".status").click(function(){
+      // alert('ss');
+      obj = $(this);
+      id=$(this).parents("tr").find("td:first").html();
+      // alert(id);
+      $.get("/admintypess",{id:id},function(data){
+        // alert(data['status']);
+        if(data['status'] == 1){
+          if(obj.html() == "开启" ){
+            obj.html("禁用").attr('class',"badge badge-gradient-success start");
+          }else{
+            obj.html("开启").attr('class',"badge badge-danger start");
+            
+          }
+          
+        }
+      },"json");
+    });
+
+</script> 
                       </tbody>
                     </table>
          

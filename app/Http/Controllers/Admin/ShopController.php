@@ -24,7 +24,11 @@ class ShopController extends Controller
         foreach ($data as $value){
             $typeid = $value->type_id;
             $name = DB::table("types")->where("id","=",$typeid)->first();
-            $value->type_id=$name->name;
+            if($name) { 
+	            $value->type_id=$name->name;
+            } else { 
+            	$value->type_id='分类不存在';
+            }
         }
 //        dd($data);
         return view("Admin.Shops.index",['data'=>$data,'request'=>$request->all()]);
