@@ -34,6 +34,8 @@ Route::get("/", function () {
 		Route::get("/admintypess","Admin\TypesController@edits");
 		//轮播图管理
         Route::resource("/adminshows","Admin\ShowsController");
+        //友情链接管理
+        Route::resource("adminlinks","Admin\LinksController");
 	});
 	
 //	后台登陆页
