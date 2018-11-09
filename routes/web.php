@@ -9,9 +9,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get("/", function () {
-//	return redirect("/index");
-});
+
 	//后台
 	//modifier:Memory
 //	后台各种页
@@ -46,13 +44,13 @@ Route::get("/", function () {
 
 	//end Memory
 	//前台首页
-	Route::resource("/index", "Home\HomeController");
+	Route::resource("/", "Home\HomeController");
 	//前台注册页
 	Route::get("/regist","Home\HomeController@regist");
 	//前台执行注册
-	Route::post("/index/register","Home\HomeController@register");
+	Route::post("/register","Home\HomeController@register");
 	//前台登录
 	Route::get("/login","Home\HomeController@login");
 	//前台执行登录
-	Route::post("/index/dologin","Home\HomeController@dologin");
+	Route::post("/dologin","Home\HomeController@dologin");
 

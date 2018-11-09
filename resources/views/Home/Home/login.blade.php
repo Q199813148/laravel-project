@@ -30,11 +30,11 @@
 							<div class="clear"></div>
 						
 						<div class="login-form">
-						  <form class="" action="/index/dologin" method="post">
+						  <form class="" action="/dologin" method="post">
 							   <div class="user-name">
 								    <label for="user"><i class="am-icon-user"></i></label>
 								    <input type="text" name="name" id="user" placeholder="邮箱/手机/用户名" value="{{old('name')}}">
-                 </div>
+                 				</div>
                  <div class="user-pass">
 								    <label for="password"><i class="am-icon-lock"></i></label>
 								    <input type="password" name="password" id="password" placeholder="请输入密码">
@@ -48,7 +48,7 @@
 						      <span class="text-danger">{{session('error')}}</span>
 						      @endif 
                   <br />
-                  <input type="password" name="code" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Code">
+							<input type="text" name="code"  placeholder="验证码">
                 </div>
             <div class="login-links">
                 <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
