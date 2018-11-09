@@ -17,14 +17,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function gettypesbypid($pid)
+    {
+
+        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $data=[];
+        foreach($res as $key=>$value)
+        {
+            $value->suv=$this->gettypesbypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
     public function index()
     {
         //获取轮播图信息
         $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
-//        $shows = DB::select("select * from shows where status = 1");
-//        dd($shows);
+//      $shows = DB::select("select * from shows where status = 1");
+//      dd($shows);
         $i=1;
-        return view("Home.Home.index",['shows'=>$shows,'i'=>$i]);
+
+        $types=$this->gettypesbypid(0);
+        // dd($types);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i]);
+
     }
     //注册页面
     public function regist()
