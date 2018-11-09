@@ -34,7 +34,6 @@ class HomeController extends Controller
         //获取轮播图信息
         $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
 //      $shows = DB::select("select * from shows where status = 1");
-//      dd($shows);
         $i=1;
 
         $types=$this->gettypesbypid(0);

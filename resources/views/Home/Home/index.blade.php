@@ -6,16 +6,15 @@
         <!--轮播 -->
         <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
             <ul class="am-slides">
-
+                @if(!empty($shows->all()))
                 @foreach($shows as $value)
                 <li class="banner{{$i++}}">
                     <a href="{{$value->url}}">
                         <img id="shows" src="{{$value->pic}}" alt="{{$value->name}}"/>
                     </a>
                 </li>
-
                 @endforeach
-
+                @endif
             </ul>
         </div>
         <div class="clear"></div>
