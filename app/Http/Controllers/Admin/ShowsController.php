@@ -61,7 +61,7 @@ class ShowsController extends Controller
         //获取输入数据
         $data = $request->except("_token");
         //判断是否写入协议
-        if(substr($data['url'],0,7)!="http://" && substr($data['url'],0,8)!="https://"){
+        if(substr($data['url'],0,7)!="http://" && substr($data['url'],0,8)!="https://" && $data['url'] != '/'){
             $data['url']='http://'.$data['url'];
         }
         //拼接图片路径
@@ -135,7 +135,7 @@ class ShowsController extends Controller
         }
 
         //判断是否写入协议
-        if(substr($data['url'],0,7)!="http://" && substr($data['url'],0,8)!="https://"){
+        if(substr($data['url'],0,7)!="http://" && substr($data['url'],0,8)!="https://" && $data['url'] != '/'){
             $data['url']='http://'.$data['url'];
         }
 

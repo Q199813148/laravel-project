@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Cookie;
+//导入模型类
+use App\Model\Home\shows;
 
 class HomeController extends Controller
 {
@@ -17,7 +19,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view("Home.Home.index");
+        //获取轮播图信息
+        $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
+//        $shows = DB::select("select * from shows where status = 1");
+//        dd($shows);
+        $i=1;
+        return view("Home.Home.index",['shows'=>$shows,'i'=>$i]);
     }
     //注册页面
     public function regist()

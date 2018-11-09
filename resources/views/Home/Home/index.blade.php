@@ -6,31 +6,21 @@
         <!--轮播 -->
         <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
             <ul class="am-slides">
-                <li class="banner1">
-                    <a href="introduction.html">
-                        <img src="/static/Home/images/ad1.jpg" />
+
+                @foreach($shows as $value)
+                <li class="banner{{$i++}}">
+                    <a href="{{$value->url}}">
+                        <img id="shows" src="{{$value->pic}}" alt="{{$value->name}}"/>
                     </a>
                 </li>
-                <li class="banner2">
-                    <a>
-                        <img src="/static/Home/images/ad2.jpg" />
-                    </a>
-                </li>
-                <li class="banner3">
-                    <a>
-                        <img src="/static/Home/images/ad3.jpg" />
-                    </a>
-                </li>
-                <li class="banner4">
-                    <a>
-                        <img src="/static/Home/images/ad4.jpg" />
-                    </a>
-                </li>
+
+                @endforeach
 
             </ul>
         </div>
         <div class="clear"></div>
     </div>
+
 @endsection
 <!--侧边导航-->
 @section('types')
