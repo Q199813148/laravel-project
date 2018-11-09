@@ -102,37 +102,45 @@ class UsersController extends Controller
 //  ajax更改状态
     public function ajax(Request $request)
     {
-//      获取传输数据
-            return response()->json(['msg'=>1]);
-        $id = $request->input('id');
-        $sta = $request->input('s');
-//      执行修改操作
-        if($sta == 1){  
-        $data = DB::table("users")->where("user_id",'=',$id)->update(['status'=>0]);
+        //获取ID
+        $id=$request->input("id");
+        // echo $id;
+        // 查询level
+        $status = DB::table("users")->where("user_id","=",$id)->value("status");
+        // 判断level
+        if($status == 0){
+
+            if(DB::table("users")->where("user_id","=",$id)->update(['status'=>1])){
+                //返回
+                return response()->json(['status'=>1]);
+            }
+
         }else{
-        $data = DB::table("users")->where("user_id",'=',$id)->update(['status'=>1]);
-        }
-//      返回结果
-        if($data){
-            return response()->json(['msg'=>1]);
-        }else{
-            return response()->json(['msg'=>0]);
+            if(DB::table("users")->where("user_id","=",$id)->update(['status'=>0])){
+                //返回
+                return response()->json(['status'=>1]);
+            }
         }
     }
 
     public function edits(Request $request)
-    {
+    {   
+        //获取ID
         $id=$request->input("id");
         // echo $id;
+        // 查询level
         $level = DB::table("users")->where("user_id","=",$id)->value("level");
+        // 判断level
         if($level == 0){
 
             if(DB::table("users")->where("user_id","=",$id)->update(['level'=>1])){
+                //返回
                 return response()->json(['level'=>1]);
             }
 
         }else{
             if(DB::table("users")->where("user_id","=",$id)->update(['level'=>0])){
+                //返回
                 return response()->json(['level'=>1]);
             }
         }

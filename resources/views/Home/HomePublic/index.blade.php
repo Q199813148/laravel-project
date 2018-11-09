@@ -25,14 +25,26 @@
 			<div class="am-container header">
 				<ul class="message-l">
 					<div class="topMessage">
+						@if(session('user'))
 						<div class="menu-hd">
 							<a href="#" target="_top" class="h">
+								{{session('user')->name}}
+							</a>
+							<a class="dropdown-item" href="/exit">
+                <i class="mdi mdi-logout mr-2 text-primary"></i>
+                 退出
+              </a>
+						</div>
+						@else
+						<div class="menu-hd">
+							<a href="/login" target="_top" class="h">
 								亲，请登录
 							</a>
 							<a href="#" target="_top">
 								免费注册
 							</a>
 						</div>
+						@endif
 					</div>
 				</ul>
 				<ul class="message-r">
@@ -309,7 +321,39 @@ $(document).ready(function() {
 						<a href="# ">
 							<span class="setting "></span>
 						</a>
-						<div class="ibar_login_box status_login personals"style="display: block;">
+						@if(session('user'))
+						<div class="ibar_login_box status_login personals">
+							<div class="avatar_box ">
+								<p class="avatar_imgbox ">
+									<img src="/static/Home/images/no-img_mid_.jpg " />
+								</p>
+								<ul class="user_info ">
+									<li>
+										用户名:{{session('user')->name}}
+									</li>
+									@if(session('user')->level == 1)
+									<li>
+										级&nbsp;别:VIP会员
+									</li>
+									@else
+									<li>
+										级&nbsp;别:普通会员
+									</li>
+									@endif
+								</ul>
+							</div>
+							<div class="login_btnbox ">
+								<a href="# " class="login_order ">
+									我的订单
+								</a>
+								<a href="# " class="login_favorite ">
+									我的收藏
+								</a>
+							</div>
+							<i class="icon_arrow_white "></i>
+						</div>
+						@else
+						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
 									<img src="/static/Home/images/no-img_mid_.jpg " />
@@ -319,7 +363,7 @@ $(document).ready(function() {
 										用户名sl1903
 									</li>
 									<li>
-										级&nbsp;别普通会员
+										级&nbsp;别:普通会员
 									</li>
 								</ul>
 							</div>
@@ -333,7 +377,7 @@ $(document).ready(function() {
 							</div>
 							<i class="icon_arrow_white "></i>
 						</div>
-
+						@endif
 					</div>
 					<div id="shopCart " class="item ">
 						<a href="# ">

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
+use App\Model\Links;
 class LinksController extends Controller
 {
     /**
@@ -12,19 +13,44 @@ class LinksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //获取搜索内容
+        $k = $request->input('keywords');
+        //获取数据库数据
+        $data = DB::table("links")->where('name','like','%'.$k.'%')->paginate(3);
+        return view("Admin.Links.index",['data'=>$data,'request'=>$request->all()]);
     }
 
+
+    public function ajax(Request $request)
+    {
+        $id=$request->input("id");
+        // echo $id;
+        $status = DB::table("links")->where("id","=",$id)->value("status");
+        if($status == 0){
+
+            if(DB::table("links")->where("id","=",$id)->update(['status'=>1])){
+                return response()->json(['status'=>1]);
+            }
+
+        }else{
+            if(DB::table("links")->where("id","=",$id)->update(['status'=>0])){
+                return response()->json(['status'=>1]);
+            }
+        }
+        
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {	
+
+        //加载添加模版
+        return view("Admin.Links.add");
     }
 
     /**
@@ -35,7 +61,15 @@ class LinksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取需要添加的数据
+        $data = $request->only(['name','url','status']);
+        //dd($data);
+        if (DB::table("links")->insert($data)) {
+        	return redirect("/adminlinks")->with('success','添加成功');
+        } else {
+        	return back()->with("error",'添加失败');
+        }
+        
     }
 
     /**

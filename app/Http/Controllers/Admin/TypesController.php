@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Http\Requests\Admin\AdminuserTypesinsert;
 class TypesController extends Controller
 {
     /**
@@ -34,7 +35,7 @@ class TypesController extends Controller
 	public function index(Request $request)
 	{
   		 //连贯方法结合原始表达式 防止sql语句注入
-			$types=DB::table("types")->select(DB::raw('*,concat(path,",",id) as paths'))->where('name','like',"%".$request->input('keywords')."%")->orderBy('paths')->paginate(3);
+			$types=DB::table("types")->select(DB::raw('*,concat(path,",",id) as paths'))->where('name','like',"%".$request->input('keywords')."%")->orderBy('paths')->paginate(5);
 			//遍历
 			foreach($types as $key=>$value){
 			// echo $value->path."<br>";
@@ -90,7 +91,7 @@ class TypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminuserTypesinsert $request)
     {
         //获取需要添加的数据
 		$data=$request->only(['name','pid','status']);

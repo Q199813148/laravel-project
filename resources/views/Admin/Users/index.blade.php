@@ -64,10 +64,10 @@
                             {{$row->email}}
                           </td>
                           <td>
-                          @if($row->status == 1)
-                          <span class="badge badge-gradient-success start">启用</span>
+                          @if($row->status == "启用")
+                          <span class="badge badge-gradient-success status">{{$row->status}}</span>
                           @else
-                          <span class="badge badge-danger start">禁用</span>
+                          <span class="badge badge-danger status">{{$row->status}}</span>
                           @endif
                           <input type="hidden" name="{{$row->status}}" class="starts" value="{{$row->user_id}}" />
                           </td>
@@ -81,17 +81,21 @@
                         @endforeach
 <!--ajax转换状态-->
 <script>
-    $(".start").click(function() {
-      id = $(this).next().val();
-      status = $(this).next().attr('name');
-    obj = $(this);
-      $.get("/adminuse/ajax",{id:id,s:status},function(data) {
-        if(data['msg'] == 1) {
-          if(status == 0) {
-              obj.html("启用").attr('class',"badge badge-gradient-success start").next().attr('name',1);
+    $(".status").click(function(){
+      // alert('ss');
+      obj = $(this);
+      id=$(this).parents("tr").find("td:first").html();
+      // alert(id);
+      $.get("/adminuse/ajax",{id:id},function(data){
+        // alert(data['status']);
+        if(data['status'] == 1){
+          if(obj.html() == "启用" ){
+            obj.html("禁用").attr('class',"badge badge-danger start");
           }else{
-              obj.html("禁用").attr('class',"badge badge-danger start").next().attr('name',0);
+            obj.html("启用").attr('class',"badge badge-gradient-success start");
+            
           }
+          
         }
       },"json");
     });
@@ -105,9 +109,9 @@
         // alert(data['level']);
         if(data['level'] == 1){
           if(obj.html() == "会员" ){
-            obj.html("非会员").attr('class',"badge badge-gradient-success start");
+            obj.html("非会员").attr('class',"badge badge-gradient-success level");
           }else{
-            obj.html("会员").attr('class',"badge badge-danger start");
+            obj.html("会员").attr('class',"badge badge-danger level");
             
           }
           

@@ -306,9 +306,9 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/link"> 链接列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminlinks"> 链接列表 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="/linkreq"> 链接申请列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/link/create"> 添加链接 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminlinks/create"> 添加链接 </a></li>
               </ul>
               </div>
           </li>

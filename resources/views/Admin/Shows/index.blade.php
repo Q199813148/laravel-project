@@ -57,7 +57,7 @@
                       <tbody>
                       	@foreach($data as $val)
                         <tr>
-                          <td style="width: 2px;">{{$val->id}}</td>
+                          <td>{{$val->id}}</td>
                           <td>
                             {{$val->name}}
                           </td>
@@ -65,10 +65,15 @@
                             {{$val->pic}}
                           </td>
                           <td>
-                              <a href=" {{$val->url}}">{{$val->url}}</a>
+                              <a href="{{$val->url}}" target="_blank">{{$val->url}}</a>
                           </td>
                           <td>
-                              <span class="badge badge-gradient-success" href="">{{$val->status}}</span>
+                              @if($val->status=='展示')
+                              <span class="status badge badge-gradient-success" href="">{{$val->status}}</span>
+                              @else
+                              <span class="status badge badge-gradient-danger" href="">{{$val->status}}</span>
+                              @endif
+                                  <input type="hidden" value="{{$val->id}}" name="{{$val->status}}">
                           </td>
                             <form action="/adminshows/{{$val->id}}" method="post">
                           <td>
@@ -110,7 +115,23 @@
             </div>
           </div>
         </div>
-
+    <script>
+        $(".status").click(function () {
+            id = $(this).next('input').val();
+            status = $(this).next().attr('name');
+            obj = $(this);
+            $.get("/adminshowsajax",{id:id,status:status},function (data) {
+                if(data['msg'] == '1'){
+                    console.log(status);
+                    if(status == '隐藏') {
+                        obj.html("展示").attr('class',"status badge badge-gradient-success").next().attr('name','展示');
+                    }else{
+                        obj.html("隐藏").attr('class',"status badge badge-gradient-danger").next().attr('name','隐藏');
+                    }
+                }
+            },'json')
+        })
+    </script>
 @endsection
 @section('title','轮播图列表')
 
