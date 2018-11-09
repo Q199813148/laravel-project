@@ -39,14 +39,15 @@
 	<div class="area clearfix">
 		<div class="category-content" id="guide_2">
 			<div class="category">
-				<ul class="category-list" style="height: 430px;" id="js_climit_li">
+				<ul class="category-list" style="height: 450px;" id="js_climit_li">
+        @foreach ($types as $row)
 					<li class="appliance js_toggle relative first">
 						<div class="category-info">
 							<h3 class="category-name b-category-name"><i>
 							<img src="/static/Home/images/cake.png">
 							</i>
 							<a class="ml-22" title="点心">
-								点心/蛋糕
+              {{$row->name}}
 							</a></h3>
 							<em>&gt;</em>
 						</div>
@@ -55,144 +56,20 @@
 								<div class="area-bg">
 									<div class="menu-srot">
 										<div class="sort-side">
-											<dl class="dl-sort">
+                    @foreach ($row->suv as $rows)
+											<dl class="dl-sort" style="height:150px;">
 												<dt>
-												<span title="蛋糕">蛋糕</span>
+												<span title="蛋糕">{{$rows->name}}</span>
 												</dt>
+                        @foreach ($rows->suv as $rowss)
 												<dd>
 													<a title="蒸蛋糕" href="#">
-														<span>蒸蛋糕</span>
+														<span>{{$rowss->name}}</span>
 													</a>
 												</dd>
-												<dd>
-													<a title="脱水蛋糕" href="#">
-														<span>脱水蛋糕</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="瑞士卷" href="#">
-														<span>瑞士卷</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="软面包" href="#">
-														<span>软面包</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="马卡龙" href="#">
-														<span>马卡龙</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="千层饼" href="#">
-														<span>千层饼</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="甜甜圈" href="#">
-														<span>甜甜圈</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="蒸三明治" href="#">
-														<span>蒸三明治</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="铜锣烧" href="#">
-														<span>铜锣烧</span>
-													</a>
-												</dd>
+                        @endforeach
 											</dl>
-											<dl class="dl-sort">
-												<dt>
-												<span title="蛋糕">点心</span>
-												</dt>
-												<dd>
-													<a title="蒸蛋糕" href="#">
-														<span>蒸蛋糕</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="脱水蛋糕" href="#">
-														<span>脱水蛋糕</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="瑞士卷" href="#">
-														<span>瑞士卷</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="软面包" href="#">
-														<span>软面包</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="马卡龙" href="#">
-														<span>马卡龙</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="千层饼" href="#">
-														<span>千层饼</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="甜甜圈" href="#">
-														<span>甜甜圈</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="蒸三明治" href="#">
-														<span>蒸三明治</span>
-													</a>
-												</dd>
-												<dd>
-													<a title="铜锣烧" href="#">
-														<span>铜锣烧</span>
-													</a>
-												</dd>
-											</dl>
-
-										</div>
-										<div class="brand-side">
-											<dl class="dl-sort">
-												<dt>
-												<span>实力商家</span>
-												</dt>
-												<dd>
-													<a rel="nofollow" title="呵官方旗舰店" target="_blank" href="#" rel="nofollow">
-														<span  class="red" >呵官方旗舰店</span>
-													</a>
-												</dd>
-												<dd>
-													<a rel="nofollow" title="格瑞旗舰店" target="_blank" href="#" rel="nofollow">
-														<span >格瑞旗舰店</span>
-													</a>
-												</dd>
-												<dd>
-													<a rel="nofollow" title="飞彦大厂直供" target="_blank" href="#" rel="nofollow">
-														<span  class="red" >飞彦大厂直供</span>
-													</a>
-												</dd>
-												<dd>
-													<a rel="nofollow" title="红e·艾菲妮" target="_blank" href="#" rel="nofollow">
-														<span >红e·艾菲妮</span>
-													</a>
-												</dd>
-												<dd>
-													<a rel="nofollow" title="本真旗舰店" target="_blank" href="#" rel="nofollow">
-														<span  class="red" >本真旗舰店</span>
-													</a>
-												</dd>
-												<dd>
-													<a rel="nofollow" title="杭派女装批发网" target="_blank" href="#" rel="nofollow">
-														<span  class="red" >杭派女装批发网</span>
-													</a>
-												</dd>
-											</dl>
+                      @endforeach
 										</div>
 									</div>
 								</div>
@@ -200,10 +77,10 @@
 						</div>
 						<b class="arrow"></b>
 					</li>
+          @endforeach
 				</ul>
 			</div>
 		</div>
-
 	</div>
 </div>
 @endsection

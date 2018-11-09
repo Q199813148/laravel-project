@@ -15,9 +15,22 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function gettypesbypid($pid)
     {
-        return view("Home.Home.index");
+        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $data=[];
+        foreach($res as $key=>$value)
+        {
+            $value->suv=$this->gettypesbypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
+    public function index()
+    {   
+        $types=$this->gettypesbypid(0);
+        // dd($types);
+        return view("Home.Home.index",['types'=>$types]);
     }
     //注册页面
     public function regist()
