@@ -36,7 +36,7 @@
 
 							<div class="am-tabs-bd">
 								<div class="am-tab-panel am-active">
-									<form action="/index/register" method="post">
+									<form action="/register" method="post">
 									{{csrf_field()}}
 								<div class="user-pass">
 								    <label for="name"><i class="am-icon-lock"></i></label>

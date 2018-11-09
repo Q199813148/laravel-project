@@ -54,6 +54,7 @@ class AdminController extends Controller
 		if($namebool) {
 //			判断密码是否正确
 			if (Hash::check($password, $namebool->password)) {
+
 //				删除密码并存入session
 				unset($namebool->password);
 				session(['admin' => $namebool]);

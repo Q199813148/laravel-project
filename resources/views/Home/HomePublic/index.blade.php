@@ -309,7 +309,7 @@ $(document).ready(function() {
 						<a href="# ">
 							<span class="setting "></span>
 						</a>
-						<div class="ibar_login_box status_login personals"style="display: block;">
+						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
 									<img src="/static/Home/images/no-img_mid_.jpg " />

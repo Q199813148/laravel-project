@@ -50,14 +50,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group row">
-                          <label class="col-sm-3 col-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手机</font></font></label>
-                          <div class="col-sm-9">
-                            <input class="form-control" disabled="disabled" value="{{$data->phone}}">
-                          </div>
-                        </div>
-                      </div>
+                      
                       
                     </div>
                     <div class="form-group">
