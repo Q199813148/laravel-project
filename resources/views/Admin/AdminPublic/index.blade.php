@@ -293,8 +293,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/advertising"> 广告列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/advertising/create"> 添加广告 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminadvertisement"> 广告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminadvertisement/create"> 添加广告 </a></li>
               </ul>
               </div>
           </li>

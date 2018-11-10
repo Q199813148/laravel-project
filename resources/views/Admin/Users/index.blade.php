@@ -45,6 +45,7 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @if(!empty($data))
                       @foreach($data as $row)
                         <tr>
                           <td>
@@ -55,9 +56,9 @@
                           </td>
                           <td>
                           @if($row->level == "非会员")
-                          <span class="badge badge-gradient-success level">{{$row->level}}</span>
+                          <span class="badge badge-gradient-success level" style="cursor:pointer;">{{$row->level}}</span>
                           @else
-                          <span class="badge badge-danger level">{{$row->level}}</span>
+                          <span class="badge badge-danger level" style="cursor:pointer;">{{$row->level}}</span>
                           @endif
                           </td>
                           <td>
@@ -65,9 +66,9 @@
                           </td>
                           <td>
                           @if($row->status == "启用")
-                          <span class="badge badge-gradient-success status">{{$row->status}}</span>
+                          <span class="badge badge-gradient-success status" style="cursor:pointer;">{{$row->status}}</span>
                           @else
-                          <span class="badge badge-danger status">{{$row->status}}</span>
+                          <span class="badge badge-danger status" style="cursor:pointer;">{{$row->status}}</span>
                           @endif
                           <input type="hidden" name="{{$row->status}}" class="starts" value="{{$row->user_id}}" />
                           </td>
@@ -79,6 +80,7 @@
                           </td>
                         </tr>
                         @endforeach
+                        @endif
 <!--ajax转换状态-->
 <script>
     $(".status").click(function(){

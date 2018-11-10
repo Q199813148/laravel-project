@@ -20,7 +20,8 @@ class HomeController extends Controller
     public function gettypesbypid($pid)
     {
 
-        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        // $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $res = DB::select("select * from types where pid = $pid AND status = 1");
         $data=[];
         foreach($res as $key=>$value)
         {
@@ -29,6 +30,8 @@ class HomeController extends Controller
         }
         return $data;
     }
+
+
     public function index()
     {
         //获取轮播图信息

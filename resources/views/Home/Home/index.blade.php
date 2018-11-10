@@ -36,7 +36,7 @@
 							<h3 class="category-name b-category-name"><i>
 							<img src="/static/Home/images/cake.png">
 							</i>
-							<a class="ml-22" title="点心">
+							<a class="ml-22" title="{{$row->name}}">
               {{$row->name}}
 							</a></h3>
 							<em>&gt;</em>
@@ -49,11 +49,11 @@
                     @foreach ($row->suv as $rows)
 											<dl class="dl-sort" style="height:150px;">
 												<dt>
-												<span title="蛋糕">{{$rows->name}}</span>
+												<span title="{{$rows->name}}">{{$rows->name}}</span>
 												</dt>
                         @foreach ($rows->suv as $rowss)
 												<dd>
-													<a title="蒸蛋糕" href="#">
+													<a title="{{$rowss->name}}" href="#">
 														<span>{{$rowss->name}}</span>
 													</a>
 												</dd>
@@ -115,8 +115,7 @@
                     </div>
 
 
-
-                    @if(!session('user'))
+                    @if(session('user'))
                         <div class="member-login" style="display: inline-block;">
                             <a href="#">
                                 <strong>0</strong>待收货

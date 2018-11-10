@@ -32,6 +32,11 @@ Route::group(["middleware"=>'login'], function(){
     //轮播图管理
     Route::resource("/adminshows","Admin\ShowsController");
     Route::get('/adminshowsajax',"Admin\ShowsController@ajax");
+    //广告管理
+    Route::resource("/adminadvertisement","Admin\AdvertisementController");
+    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
+    //广告删除
+    Route::get("/Advertisementdel","Admin\AdvertisementController@del");
 });
 
 //	后台登陆页
