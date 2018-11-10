@@ -248,7 +248,7 @@
 
 
         
-				@if(!session('user'))
+				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
 					<a href="#">
 						<strong>0</strong>待收货
@@ -268,7 +268,7 @@
 					<a class="am-btn-warning btn" href="/login">
 						登录
 					</a>
-					<a class="am-btn-warning btn" href="">
+					<a class="am-btn-warning btn" href="/regist">
 						注册
 					</a>
 				</div>

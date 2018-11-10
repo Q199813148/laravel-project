@@ -29,7 +29,7 @@
 							<a href="#" target="_top" class="h">
 								亲，请登录
 							</a>
-							<a href="#" target="_top">
+							<a href="/regist" target="_top">
 								免费注册
 							</a>
 						</div>

@@ -46,12 +46,12 @@ class AdminController extends Controller
 		$name = $request->input('name');
 		$password =  $request->input('password');
 		$namebool = DB::table('admin')->where("name", "=", $name)->first();
-//		判断是否被禁用
-    	if($namebool->status == 0) {
-        	return redirect("/admins/login")->with('error','　*您已被禁用');
-    	}
 //		判断数据是否存在
 		if($namebool) {
+	//		判断是否被禁用
+	    	if($namebool->status == 0) {
+	        	return redirect("/admins/login")->with('error','　*您已被禁用');
+	    	}
 //			判断密码是否正确
 			if (Hash::check($password, $namebool->password)) {
 
