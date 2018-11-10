@@ -35,7 +35,7 @@ class TypesController extends Controller
 	public function index(Request $request)
 	{
   		 //连贯方法结合原始表达式 防止sql语句注入
-			$types=DB::table("types")->select(DB::raw('*,concat(path,",",id) as paths'))->where('name','like',"%".$request->input('keywords')."%")->orderBy('paths')->paginate(3);
+			$types=DB::table("types")->select(DB::raw('*,concat(path,",",id) as paths'))->where('name','like',"%".$request->input('keywords')."%")->orderBy('paths')->paginate(5);
 			//遍历
 			foreach($types as $key=>$value){
 			// echo $value->path."<br>";

@@ -8,8 +8,13 @@ use Ucpaas;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Cookie;
+<<<<<<< HEAD
 use App\Http\Requests\Home\HomeRegist;
 
+=======
+//导入模型类
+use App\Model\Home\shows;
+>>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 
 class HomeController extends Controller
 {
@@ -18,9 +23,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function gettypesbypid($pid)
+    {
+
+        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $data=[];
+        foreach($res as $key=>$value)
+        {
+            $value->suv=$this->gettypesbypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
     public function index()
     {
-        return view("Home.Home.index");
+        //获取轮播图信息
+        $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
+//      $shows = DB::select("select * from shows where status = 1");
+        $i=1;
+
+        $types=$this->gettypesbypid(0);
+        // dd($types);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i]);
+
     }
     //注册页面
     public function regist()
@@ -126,6 +151,12 @@ class HomeController extends Controller
     	$name = $request->input('name');
     	$password = $request->input('password');
     	$namebool = DB::table('users')->where("name",'=',$name)->first();
+<<<<<<< HEAD
+=======
+    	//$username=$namebool['name'];
+    	//dd($username);
+    	// dd($namebool->password);
+>>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
     	if ($namebool) {
             if (Hash::check($password, $namebool->password)) {
 //              删除密码并存入session
@@ -142,6 +173,18 @@ class HomeController extends Controller
     	}
     	
     	
+    }
+
+    //退出登录
+    public function exit(Request $request)
+    { 
+    	$session = $request->session()->pull('user');
+    	//$session=$request->unset($_SESSION);
+    	if ($session) {
+    		return redirect('/');
+    	} else { 
+    		return redirect('/');
+    	}
     }
 
     /**

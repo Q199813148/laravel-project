@@ -21,7 +21,11 @@
                     <form class="forms-sample" action="/adminshop/{{$goods->id}}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>商品名称</h5></label>
-                            <input type="text" class="form-control" id="exampleInputName1" name="name" value="{{$goods->name}}" required>
+                            <input type="text" class="names form-control" id="exampleInputName1" name="name" value="{{$goods->name}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputName1"><h5>分词数据</h5></label>
+                            <input type="text" class="fenci form-control" id="exampleInputName1" name="fenci" value="{{$fenci}}">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>商品价格</h5></label>
@@ -100,5 +104,15 @@
             </div>
         </div>
     </div>
+    <script>
+        $(".names").blur(function(){
+            name = $(this).val();
+            obj = $(this);
+            $.get('/adminshopajax',{name:name},function(data){
+
+                $('.fenci').val(data);
+            })
+        })
+    </script>
 @endsection
 @section('title','添加商品')

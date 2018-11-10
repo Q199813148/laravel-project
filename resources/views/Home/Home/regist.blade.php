@@ -33,6 +33,7 @@
 				</div>
 				<div class="login-box">
 
+<<<<<<< HEAD
 					<div class="am-tabs" id="doc-my-tabs">
 						<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
 							<li class="am-active">
@@ -67,9 +68,45 @@
 									<div class="user-pass">
 										<label for="passwordRepeat"><i class="am-icon-lock"></i></label>
 										<input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+=======
+						<div class="am-tabs" id="doc-my-tabs">
+							<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+								<li class="am-active"><a href="/static/Home/">邮箱注册</a></li>
+								<li><a href="">手机号注册</a></li>
+							</ul>
+
+							<div class="am-tabs-bd">
+								<div class="am-tab-panel am-active">
+									<form action="/register" method="post">
+									{{csrf_field()}}
+
+							   <div class="user-email">
+										<label for="email"><i class="am-icon-envelope-o"></i></label>
+										<input type="email" name="email" id="email" placeholder="请输入邮箱账号">
+                 </div>										
+                 <div class="user-pass">
+								    <label for="password"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="password" id="password" placeholder="设置密码">
+                 </div>										
+                 <div class="user-pass">
+								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+								    <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码">
+                 </div>	
+
+                 </form>
+
+									<div class="login-links">
+										<label for="reader-me">
+											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+										</label>
+									</div>
+									<div class="am-cf">
+										<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+>>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 									</div>
 
 
+<<<<<<< HEAD
 								</form>
 								<div class="login-links">
 									<label for="reader-me">
@@ -78,6 +115,39 @@
 								</div>
 								<div class="am-cf">
 									<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+=======
+								<div class="am-tab-panel">
+									<form method="post">
+										<div class="user-phone">
+											<label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
+											<input type="tel" name="" id="phone" placeholder="请输入手机号">
+										</div>
+										<div class="verification">
+											<label for="code"><i class="am-icon-code-fork"></i></label>
+											<input type="tel" name="" id="code" placeholder="请输入验证码">
+											<a class="btn" href="javascript:void(0);" onClick="sendMobileCode();" id="sendMobileCode">
+												<span id="dyMobileButton">获取</span></a>
+										</div>
+										<div class="user-pass">
+											<label for="password"><i class="am-icon-lock"></i></label>
+											<input type="password" name="" id="password" placeholder="设置密码">
+										</div>
+										<div class="user-pass">
+											<label for="passwordRepeat"><i class="am-icon-lock"></i></label>
+											<input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+										</div>
+									</form>
+									<div class="login-links">
+										<label for="reader-me">
+											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
+										</label>
+									</div>
+									<div class="am-cf">
+										<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+									</div>
+
+									<hr>
+>>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 								</div>
 
 							</div>
