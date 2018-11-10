@@ -59,6 +59,10 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	Route::get("/regist","Home\HomeController@regist");
 	//前台执行注册
 	Route::post("/register","Home\HomeController@register");
+//	前台注册ajax发送手机短信验证
+	Route::get("/rephone","Home\HomeController@rephone");
+//	前台注册ajax校验手机验证码
+	Route::get("/mecode","Home\HomeController@mecode");
 	//前台登录
 	Route::get("/login","Home\HomeController@login");
 	//前台执行登录

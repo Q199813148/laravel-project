@@ -9,8 +9,8 @@
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
-
 		<link href="/static/Home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+
 
 		<link href="/static/Home/css/hmstyle.css" rel="stylesheet" type="text/css"/>
 		<link href="/static/Home/css/skin.css" rel="stylesheet" type="text/css" />
@@ -40,7 +40,7 @@
 							<a href="/login" target="_top" class="h">
 								亲，请登录
 							</a>
-							<a href="#" target="_top">
+							<a href="/regist" target="_top">
 								免费注册
 							</a>
 						</div>

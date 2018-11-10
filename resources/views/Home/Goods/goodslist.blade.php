@@ -1,4 +1,5 @@
 @extends("Home.HomePublic.index")
+
 @section('goods')
 <link href="/static/Home/css/seastyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/static/Home/js/jquery-1.7.min.js"></script>
@@ -20,8 +21,8 @@
             </div>
             <ul class="select">
                 <p class="title font-normal">
-                    <span class="fl">松子</span>
-                    <span class="total fl">搜索到<strong class="num">997</strong>件相关商品</span>
+                    <span class="fl">{{$ss}}</span>
+                    <span class="total fl">搜索到<strong class="num">{{$num}}</strong>件相关商品</span>
                 </p>
                 <div class="clear"></div>
                 <li class="select-result">
@@ -86,21 +87,22 @@
             <div class="clear"></div>
 
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-
+                @if($num == 0) <br>&emsp;暂无此商品信息,请重新搜索商品信息 @endif
+                @foreach($list as $val)
                 <li>
                     <div class="i-pic limit">
-                        <img src="/static/Home/images/imgsearch1.jpg">
-                        <p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
+                        <img src="{{$val->photo}}" width="218" height="218">
+                        <p class="title fl">{{$val->name}}</p>
                         <p class="price fl">
                             <b>¥</b>
-                            <strong>56.90</strong>
+                            <strong>{{$val->price}}</strong>
                         </p>
                         <p class="number fl">
-                            销量<span>1110</span>
+                            销量<span>{{$val->sales}}</span>
                         </p>
                     </div>
                 </li>
-
+                @endforeach
             </ul>
 
         </div>
@@ -109,59 +111,34 @@
             <div class="side-title">
                 经典搭配
             </div>
-
+            @foreach($match as $value)
             <li>
+                <a href=""></a>
                 <div class="i-pic check">
-                    <img src="/static/Home/images/cp.jpg">
-                    <p class="check-title">萨拉米 1+1小鸡腿</p>
+                    <img src="{{$value->photo}}" width="218" height="218">
+                    <p class="check-title">{{$value->descr}}</p>
                     <p class="price fl">
                         <b>¥</b>
-                        <strong>29.90</strong>
+                        <strong>{{$value->price}}</strong>
                     </p>
                     <p class="number fl">
-                        销量<span>1110</span>
+                        销量<span>{{$value->sales}}</span>
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="i-pic check">
-                    <img src="/static/Home/images/cp2.jpg">
-                    <p class="check-title">ZEK 原味海苔</p>
-                    <p class="price fl">
-                        <b>¥</b>
-                        <strong>8.90</strong>
-                    </p>
-                    <p class="number fl">
-                        销量<span>1110</span>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="i-pic check">
-                    <img src="/static/Home/images/cp.jpg">
-                    <p class="check-title">萨拉米 1+1小鸡腿</p>
-                    <p class="price fl">
-                        <b>¥</b>
-                        <strong>29.90</strong>
-                    </p>
-                    <p class="number fl">
-                        销量<span>1110</span>
-                    </p>
-                </div>
-            </li>
+            @endforeach
 
         </div>
         <div class="clear"></div>
         <!--分页 -->
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">«</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>
-        </ul>
+        <div id="pull_right">
+            <div class="pull-right">
+                {!! $list->appends($request)->render() !!}
+            </div>
+        </div>
+
+
+
 
     </div>
 </div>

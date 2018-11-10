@@ -35,22 +35,22 @@
                       <thead>
                         <tr>
                           <th>
-                            id
+                            Id
                           </th>
                           <th>
-                            名称
+                            Name
                           </th>
                           <th>
-                            展示图
+                            Picture
                           </th>
                           <th>
-                            跳转地址
+                            Url
                           </th>
                           <th>
-                            是否展示
+                            Status
                           </th>
                           <th>
-                            operate
+                            Operate
                           </th>
                         </tr>
                       </thead>
@@ -102,12 +102,7 @@
               		<br />
 					<div class="btn-group" role="group" aria-label="Basic example">
 					{{$data->appends($request)->render()}}
-					<script type="text/javascript">
-						$(".pagination>li>a").attr('class','badge badge-danger').css('margin-left','10px').css('color','#fff');
-						
-						
-						$(".pagination>li>span").attr('class','badge badge-danger').css('margin-left','10px').css('color','#555');
-					</script>
+
                         </div>
 		          	<br />
               	</center>
