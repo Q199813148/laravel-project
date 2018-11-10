@@ -21,6 +21,8 @@ Route::group(["middleware"=>'login'], function(){
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
 		Route::resource("/adminshop","Admin\ShopController");
+		//后台商品分词
+		Route::get("/adminshopajax","Admin\ShopController@ajax");
 		//后台商品删除
         Route::get("/adminshopdel","Admin\ShopController@del");
 		//后台用户管理
@@ -37,8 +39,6 @@ Route::group(["middleware"=>'login'], function(){
         Route::resource("adminlinks","Admin\LinksController");
         //ajax修改状态
         Route::get("/adminlinkss","Admin\LinksController@ajax");
-        Route::get('/adminshowsajax',"Admin\ShowsController@ajax");
-
 	});
 	
 

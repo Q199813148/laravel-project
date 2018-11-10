@@ -86,6 +86,7 @@
             <div class="clear"></div>
 
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
+
                 <li>
                     <div class="i-pic limit">
                         <img src="/static/Home/images/imgsearch1.jpg">
@@ -101,6 +102,7 @@
                 </li>
 
             </ul>
+
         </div>
         <div class="search-side">
 

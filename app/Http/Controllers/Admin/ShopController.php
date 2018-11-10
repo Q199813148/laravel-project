@@ -22,7 +22,7 @@ class ShopController extends Controller
         //获取搜索关键词
         $k=$request->input('keywords');
         //获取列表数据
-        $data=Shops::where('name',"like","%".$k."%")->orderBy("id")->paginate(3);
+        $data=Shops::where('name',"like","%".$k."%")->orderBy("id")->paginate(5);
         //查询分类中文名称
         foreach ($data as $value){
             $typeid = $value->type_id;

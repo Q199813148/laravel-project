@@ -19,6 +19,7 @@ class LinksController extends Controller
         $k = $request->input('keywords');
         //获取数据库数据
         $data = DB::table("links")->where('name','like','%'.$k.'%')->paginate(3);
+        
         return view("Admin.Links.index",['data'=>$data,'request'=>$request->all()]);
     }
 
