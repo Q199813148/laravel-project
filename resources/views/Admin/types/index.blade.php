@@ -114,12 +114,12 @@
                   <br />
           <div class="btn-group" role="group" aria-label="Basic example">
           {{$types->render()}}
-          <script type="text/javascript">
-            $(".pagination>li>a").attr('class','btn btn-primary').css('margin-left','10px').css('color','#fff');
-            
-            
-            $(".pagination>li>span").attr('class','btn btn-primary').css('margin-left','10px').css('color','#555');
-          </script>
+         <script type="text/javascript">
+						$(".pagination>li>a").attr('class','badge badge-info').css('margin-left','10px').css('color','#fff');
+						
+						
+						$(".pagination>li>span").attr('class','badge badge-info').css('margin-left','10px').css('color','#555');
+					</script>
                         </div>
                 <br />
                 </center>

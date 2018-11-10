@@ -91,7 +91,11 @@ class LinksController extends Controller
      */
     public function edit($id)
     {
-        //
+        //获取需要修改的数据
+        $links=DB::table('links')->where('id','=',$id)->first();
+        //dd($links);
+        //加载修改模版 分配数据
+        return view("Admin.Links.edit",['links'=>$links]);
     }
 
     /**
@@ -103,7 +107,14 @@ class LinksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=$request->only('name','url','status');
+        //dd($data);
+        if (DB::table('links')->where('id','=',$id)->update($data)) {
+        	return redirect('/adminlinks')->with('success','修改成功');
+        } else {
+        	return redirect('/adminlinks/{id}/edit')->with('error','修改失败');
+        }
+        
     }
 
     /**
@@ -114,6 +125,11 @@ class LinksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (DB::table('links')->where('id','=',$id)->delete()) {
+        	return redirect("/adminlinks")->with('success','修改成功');
+        } else {
+        	return redirect("/adminlinks")->with('error','修改失败');
+        }
+        
     }
 }

@@ -9,15 +9,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-	//后台
-	//modifier:Memory
+//后台
+//modifier:Memory
 //	后台各种页
-	Route::group(["middleware"=>'login'], function(){
-		Route::resource("/admin", "Admin\AdminController");
-		//后台管理信息
-		Route::resource("/adminusers", "Admin\AdminuserController");
+Route::group(["middleware"=>'login'], function(){
+    Route::resource("/admin", "Admin\AdminController");
+    //后台管理信息
+    Route::resource("/adminusers", "Admin\AdminuserController");
 //		ajax更改状态
+
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
 		Route::resource("/adminshop","Admin\ShopController");
@@ -41,11 +41,14 @@
 
 	});
 	
+
+
 //	后台登陆页
-	Route::get("/admins/login", "Admin\AdminController@login");
+Route::get("/admins/login", "Admin\AdminController@login");
 //	后台执行登陆
-	Route::post("/admins/dologin", "Admin\AdminController@dologin");
+Route::post("/admins/dologin", "Admin\AdminController@dologin");
 //	退出登陆
+
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
 	//end Memory

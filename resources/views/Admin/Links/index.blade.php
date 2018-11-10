@@ -78,8 +78,8 @@
   		status = $(this).next().attr('name');
 		obj = $(this);
   		$.get("/adminlinkss/ajax",{id:id,s:status},function(data) {
-			if(data['msg'] == 1) {
-				if(status == 0) {
+			if(data['msg'] == 0) {
+				if(status == 1) {
   					obj.html("启用").attr('class',"badge badge-gradient-success start").next().attr('name',1);
 				}else{
   					obj.html("禁用").attr('class',"badge badge-danger start").next().attr('name',0);

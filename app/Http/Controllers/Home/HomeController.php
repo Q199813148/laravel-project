@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Cookie;
+//导入模型类
+use App\Model\Home\shows;
 
 class HomeController extends Controller
 {
@@ -15,9 +17,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function gettypesbypid($pid)
+    {
+
+        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $data=[];
+        foreach($res as $key=>$value)
+        {
+            $value->suv=$this->gettypesbypid($value->id);
+            $data[]=$value;
+        }
+        return $data;
+    }
     public function index()
     {
-        return view("Home.Home.index");
+        //获取轮播图信息
+        $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
+//      $shows = DB::select("select * from shows where status = 1");
+        $i=1;
+
+        $types=$this->gettypesbypid(0);
+        // dd($types);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i]);
+
     }
     //注册页面
     public function regist()
