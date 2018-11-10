@@ -35,25 +35,25 @@
                       <thead>
                         <tr>
                           <th>
-                            id
+                            Id
                           </th>
                           <th>
-                            商品名
+                            Name
                           </th>
                           <th>
-                            分类名
+                            Type
                           </th>
                           <th>
-                            价格
+                            Price
                           </th>
                           <th>
-                            库存
+                            Store
                           </th>
                           <th>
-                            销售量
+                            Sales
                           </th>
                           <th>
-                            状态
+                            Status
                           </th>
                           <th>
                             operate
