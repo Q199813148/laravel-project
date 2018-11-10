@@ -22,6 +22,8 @@ Route::group(["middleware"=>'login'], function(){
     Route::resource("/adminshop","Admin\ShopController");
     //后台商品删除
     Route::get("/adminshopdel","Admin\ShopController@del");
+    //后台商品分词
+    Route::get("/adminshopajax","Admin\ShopController@ajax");
     //后台用户管理
     Route::resource("/adminuser", "Admin\UsersController");
     Route::get("/adminuse/ajax", "Admin\UsersController@ajax");
@@ -51,3 +53,8 @@ Route::post("/register","Home\HomeController@register");
 Route::get("/login","Home\HomeController@login");
 //前台执行登录
 Route::post("/dologin","Home\HomeController@dologin");
+//分词测试
+Route::get('/scws', 'WordCutController@scwsCut');
+//商品列表
+Route::get('/goodslist',"Home\GoodslistController@index");
+

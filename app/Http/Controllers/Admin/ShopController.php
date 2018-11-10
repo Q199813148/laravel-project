@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Shops;
+use App\Help\scws\PSCWS4;//中文分词
 
 class ShopController extends Controller
 {
@@ -14,6 +15,8 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public $pscws;
+
     public function index(Request $request)
     {
         //获取搜索关键词
@@ -63,6 +66,31 @@ class ShopController extends Controller
         return $types;
     }
 
+    public $name;
+    //中文分词
+    public function scwsCut($str){
+        $this->pscws = new PSCWS4('utf8');
+        $this->pscws->set_charset('utf-8');
+        $this->pscws->set_dict(public_path().'/dict.utf8.xdb');
+        $this->pscws->set_rule(public_path().'/rules.ini');
+        //忽略标点符号
+        $this->pscws->set_ignore(true);
+        //传递字符串
+        $this->pscws->send_text($str);
+        //获取5个的分词结果
+        $this->name = $this->pscws->get_tops(5);
+
+//        $this->name=$this->pscws->get_result();
+
+        //打印
+        //echo "<pre>";
+//        var_dump($data);
+        //关闭
+        $this->pscws->close();
+
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,6 +99,7 @@ class ShopController extends Controller
     //添加商品
     public function create()
     {
+
         //获取分类信息
         $types=$this->gettypes();
 //        dd($types);
@@ -86,7 +115,8 @@ class ShopController extends Controller
     //处理添加
     public function store(Request $request)
     {
-        //主图上传
+        $fenci = $request->input('fenci');
+        $arr = explode(',',$fenci);
 
         if($request->hasFile('photo')){
         //初始化名字
@@ -99,15 +129,37 @@ class ShopController extends Controller
             $request->file("photo")->move("./uploads/shops/".$date,$name.".".$ext);
         }
 
-        $data = $request->except("_token");
+        $data = $request->except("_token","fenci");
         //拼接商品主图路径
         $data['photo'] = "/uploads/shops/".$date."/".$name.'.'.$ext;
-//        dd($data);
-        if(DB::table("goods")->insert($data)){
+
+        $id = DB::table("goods")->insertGetId($data);
+        if($id){
+            for ($i=0;$i<count($arr);$i++){
+                if(!DB::insert("insert into goods_words(`word`,`goods_id`) values('$arr[$i]',$id)")){
+                    return back()->with("error",'添加失败');
+                }
+            }
             return redirect('/adminshop')->with("success","添加成功");
         }else{
-            return back()->with("error",'添加失败');;
+            return back()->with("error",'添加失败');
         }
+
+    }
+
+    //处理分词
+    public function ajax(Request $request) {
+        $name = $request->input('name');
+        $this->scwsCut($name);
+        //dd($this->name);
+        $text = '';
+        foreach ($this->name as $val){
+            $text .= $val['word'].',';
+        }
+        //删除最后一个,
+        $text = rtrim($text, ",") ;
+
+        echo $text;
     }
 
     /**
@@ -129,12 +181,20 @@ class ShopController extends Controller
      */
     public function edit($id)
     {
-        //
+        //获取分词数据
+//        $data = DB::select("select word from goods_words where goods_id = $id");
+        $data = DB::table('goods_words')->select('word')->where("goods_id","=",$id)->orderBy('id')->get();
+        $fenci = '';
+        foreach ($data as $key=>$value){
+            $fenci .= ($value->word).',';
+        }
+        $fenci = rtrim($fenci, ",") ;
+
 //        dd($id);
         //获取分类
         $types=$this->gettypes();
         $goods = DB::table('goods')->where("id","=",$id)->first();
-        return view("Admin.Shops.edit",['goods'=>$goods,'types'=>$types]);
+        return view("Admin.Shops.edit",['goods'=>$goods,'types'=>$types,'fenci'=>$fenci]);
     }
 
     /**
@@ -146,7 +206,10 @@ class ShopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //获取分词数据
+        $fenci = $request->input('fenci');
+        $arr = explode(',',$fenci);
+
         //主图上传
         //dd($request->all());
         if($request->hasFile('photo')){
@@ -160,7 +223,7 @@ class ShopController extends Controller
             $request->file("photo")->move("./uploads/shops/".$date,$name.".".$ext);
         }
 
-        $data = $request->except("_token","_method");
+        $data = $request->except("_token","_method","fenci");
         //判断是否有主图修改
         if(isset($data['photo'])){
             //拼接商品主图路径
@@ -171,10 +234,38 @@ class ShopController extends Controller
         }
 
 //        dd($data);
-        if(DB::table("goods")->where("id","=",$id)->update($data)){
+
+        //添加分词数据
+
+        //获取分词数据
+//        $data1 = DB::select("select word from goods_words where goods_id = $id");
+        $data1 = DB::table('goods_words')->select('word')->where("goods_id","=",$id)->orderBy('id')->get();
+        $fenci1 = '';
+        $bool = false;
+
+        foreach ($data1 as $key=>$value){
+            $fenci1 .= ($value->word).',';
+        }
+        $fenci1 = rtrim($fenci1, ",");
+
+        //判断是否需要修改分词
+        if($fenci != $fenci1){
+            DB::table("goods_words")->where("goods_id","=",$id)->delete();
+            for ($i=0;$i<count($arr);$i++){
+                if(!DB::insert("insert into goods_words(`word`,`goods_id`) values('$arr[$i]',$id)")){
+                    return back()->with("error",'添加失败');
+                }else{
+                    $bool = true;
+                }
+            }
+        }
+
+
+        //修改数据
+        if(DB::table("goods")->where("id","=",$id)->update($data) || $bool){
             return redirect('/adminshop')->with("success","修改成功");
         }else{
-            return back()->with("error",'修改失败');;
+            return back()->with("error",'修改失败');
         }
     }
 

@@ -73,7 +73,7 @@ dl#select3 .dd-conent{ left:-200%; right:0px;}
 .price.fl{padding: 5px;}
 /*分页*/	
 .am-pagination li{ float:none;}
-.footer {margin-left: 0px;}
+.footer {}
 
 .search-side{display: none;}
 .search-content{margin:0px 5px ;}

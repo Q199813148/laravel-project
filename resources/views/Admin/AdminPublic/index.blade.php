@@ -15,6 +15,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="/static/Admin/images/favicon.png" />
   <script src="/static/js/jquery-1.8.3.min.js"></script>
+  <script src="/static/Home/js/jquery-1.7.2.min.js"></script>
 </head>
 <body>
   <div class="container-scroller">
