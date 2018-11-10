@@ -1,5 +1,9 @@
 @extends("Home.HomePublic.index")
-
+<style>
+    .pagination{
+        width: 166px;
+    }
+</style>
 @section('goods')
 <link href="/static/Home/css/seastyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/static/Home/js/jquery-1.7.min.js"></script>
@@ -131,11 +135,9 @@
         </div>
         <div class="clear"></div>
         <!--分页 -->
-        <div id="pull_right">
-            <div class="pull-right">
-                {!! $list->appends($request)->render() !!}
-            </div>
-        </div>
+        <center>{!! $list->appends($request)->render() !!}</center>
+
+
 
 
 

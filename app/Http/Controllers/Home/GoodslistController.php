@@ -20,7 +20,7 @@ class GoodslistController extends Controller
             $arr[$key] = $value->goods_id;
         }
         //查询对应的商品信息
-        $list = DB::table('goods')->whereIn("id",$arr)->paginate(1);
+        $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->paginate(12);
         //获取总条数
         $num = count($list);
 
