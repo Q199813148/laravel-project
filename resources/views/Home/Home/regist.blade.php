@@ -12,13 +12,58 @@
 
 		<link rel="stylesheet" href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
 		<link href="/static/Home/css/dlstyle.css" rel="stylesheet" type="text/css">
+		<link href="/static/Home/basic/css/demo.css" rel="stylesheet" type="text/css" />
 		<script src="/static/Home/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
 		<script src="/static/Home/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 
 	</head>
 
 	<body>
-
+<div class="am-container header">
+				<ul class="message-l">
+					<div class="topMessage">
+												<div class="menu-hd">
+							<a href="/login" target="_top" class="h">
+								亲，请登录
+							</a>
+							<a href="/regist" target="_top">
+								免费注册
+							</a>
+						</div>
+											</div>
+				</ul>
+				<ul class="message-r">
+					<div class="topMessage home">
+						<div class="menu-hd">
+							<a href="#" target="_top" class="h">
+								商城首页
+							</a>
+						</div>
+					</div>
+					<div class="topMessage my-shangcheng">
+						<div class="menu-hd MyShangcheng">
+							<a href="#" target="_top">
+								<i class="am-icon-user am-icon-fw"></i>个人中心
+							</a>
+						</div>
+					</div>
+					<div class="topMessage mini-cart">
+						<div class="menu-hd">
+							<a id="mc-menu-hd" href="#" target="_top">
+								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
+							</a>
+						</div>
+					</div>
+					<div class="topMessage favorite">
+						<div class="menu-hd">
+							<a href="#" target="_top">
+								<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
+							</a>
+						</div>
+				</div></ul>
+			</div>
+			
+			
 		<div class="login-boxtitle">
 			<a href="home/demo.html">
 				<img alt="" src="/static/Home/images/logobig.png" />
@@ -33,7 +78,6 @@
 				</div>
 				<div class="login-box">
 
-<<<<<<< HEAD
 					<div class="am-tabs" id="doc-my-tabs">
 						<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
 							<li class="am-active">
@@ -68,45 +112,9 @@
 									<div class="user-pass">
 										<label for="passwordRepeat"><i class="am-icon-lock"></i></label>
 										<input type="password" name="" id="passwordRepeat" placeholder="确认密码">
-=======
-						<div class="am-tabs" id="doc-my-tabs">
-							<ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-								<li class="am-active"><a href="/static/Home/">邮箱注册</a></li>
-								<li><a href="">手机号注册</a></li>
-							</ul>
-
-							<div class="am-tabs-bd">
-								<div class="am-tab-panel am-active">
-									<form action="/register" method="post">
-									{{csrf_field()}}
-
-							   <div class="user-email">
-										<label for="email"><i class="am-icon-envelope-o"></i></label>
-										<input type="email" name="email" id="email" placeholder="请输入邮箱账号">
-                 </div>										
-                 <div class="user-pass">
-								    <label for="password"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="password" id="password" placeholder="设置密码">
-                 </div>										
-                 <div class="user-pass">
-								    <label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-								    <input type="password" name="passwordRepeat" id="passwordRepeat" placeholder="确认密码">
-                 </div>	
-
-                 </form>
-
-									<div class="login-links">
-										<label for="reader-me">
-											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
-										</label>
-									</div>
-									<div class="am-cf">
-										<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
->>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 									</div>
 
 
-<<<<<<< HEAD
 								</form>
 								<div class="login-links">
 									<label for="reader-me">
@@ -115,39 +123,6 @@
 								</div>
 								<div class="am-cf">
 									<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
-=======
-								<div class="am-tab-panel">
-									<form method="post">
-										<div class="user-phone">
-											<label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
-											<input type="tel" name="" id="phone" placeholder="请输入手机号">
-										</div>
-										<div class="verification">
-											<label for="code"><i class="am-icon-code-fork"></i></label>
-											<input type="tel" name="" id="code" placeholder="请输入验证码">
-											<a class="btn" href="javascript:void(0);" onClick="sendMobileCode();" id="sendMobileCode">
-												<span id="dyMobileButton">获取</span></a>
-										</div>
-										<div class="user-pass">
-											<label for="password"><i class="am-icon-lock"></i></label>
-											<input type="password" name="" id="password" placeholder="设置密码">
-										</div>
-										<div class="user-pass">
-											<label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-											<input type="password" name="" id="passwordRepeat" placeholder="确认密码">
-										</div>
-									</form>
-									<div class="login-links">
-										<label for="reader-me">
-											<input id="reader-me" type="checkbox"> 点击表示您同意商城《服务协议》
-										</label>
-									</div>
-									<div class="am-cf">
-										<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
-									</div>
-
-									<hr>
->>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 								</div>
 
 							</div>

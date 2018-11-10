@@ -8,13 +8,10 @@ use Ucpaas;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Cookie;
-<<<<<<< HEAD
+//用户注册校验类
 use App\Http\Requests\Home\HomeRegist;
-
-=======
 //导入模型类
 use App\Model\Home\shows;
->>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
 
 class HomeController extends Controller
 {
@@ -151,12 +148,9 @@ class HomeController extends Controller
     	$name = $request->input('name');
     	$password = $request->input('password');
     	$namebool = DB::table('users')->where("name",'=',$name)->first();
-<<<<<<< HEAD
-=======
     	//$username=$namebool['name'];
     	//dd($username);
     	// dd($namebool->password);
->>>>>>> 8d903dfa2528caa7ec1eb345e18a9e7e2a65f079
     	if ($namebool) {
             if (Hash::check($password, $namebool->password)) {
 //              删除密码并存入session

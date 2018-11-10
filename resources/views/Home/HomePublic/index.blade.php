@@ -9,8 +9,8 @@
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
-
 		<link href="/static/Home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+
 
 		<link href="/static/Home/css/hmstyle.css" rel="stylesheet" type="text/css"/>
 		<link href="/static/Home/css/skin.css" rel="stylesheet" type="text/css" />
