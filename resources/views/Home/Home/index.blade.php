@@ -113,7 +113,7 @@
                  退出
               </a>
 					<p>
-						@if(session('admin')->level == 0)
+						@if(session('user')->level == 0)
 						普通用户
 						@else
 						VIP会员
