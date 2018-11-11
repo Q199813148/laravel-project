@@ -50,7 +50,7 @@
 				<ul class="message-r">
 					<div class="topMessage home">
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">
+							<a href="/" target="_top" class="h">
 								商城首页
 							</a>
 						</div>
@@ -113,7 +113,7 @@
 				<div class="nav-cont">
 					<ul>
 						<li class="index">
-							<a href="#">
+							<a href="/">
 								首页
 							</a>
 						</li>

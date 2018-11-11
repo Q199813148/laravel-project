@@ -68,7 +68,7 @@ dl#select3 .dd-conent{ left:-200%; right:0px;}
 .theme-popover{width: 100%;}
  
 /*搜索结果*/
-.i-pic.limit {margin:5px;border: 1px #e8e8e8 solid;overflow: hidden;position: relative;cursor: pointer;}
+.i-pic.limit {margin:5px;border: 1px #e8e8e8 solid;overflow: hidden;position: relative;}
 .number.fl{position: absolute;bottom:5px;right:5px ;}
 .price.fl{padding: 5px;}
 /*分页*/	
@@ -160,9 +160,9 @@ span.am-icon-th-list{color:orangered;margin-right:1px ;}
 .search-side{display: block;float: left;width:20%;padding:0px 10px ;}
 .side-title{height: 35px;line-height: 35px;padding: 0px 20px;border-radius: 0px 0px 4px 4px;margin: 10px 0px;box-shadow: 0px 0px 2px #999;text-align: center ;color: #e4393c;font-size:14px ;background:#fff;}
 .search-side li{width: 100%;overflow: hidden;}
-.i-pic.check{border:1px solid #ddd ;margin:10px auto;overflow: hidden;cursor: pointer;background:#fff ;position: relative;}
+.i-pic.check{border:1px solid #ddd ;margin:10px auto;overflow: hidden;background:#fff ;position: relative;}
 .i-pic.check p.check-title{text-align: center;}
-.i-pic.check p.check-title{height:36px;font-size:20px ;margin:5px 10px;}
+.i-pic.check p.check-title{height:36px;margin:5px 10px;}
 }	
 	
 	

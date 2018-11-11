@@ -1,4 +1,9 @@
 @extends("Home.HomePublic.index")
+<style>
+    .pagination{
+        width: 166px;
+    }
+</style>
 @section('goods')
 <link href="/static/Home/css/seastyle.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="/static/Home/js/jquery-1.7.min.js"></script>
@@ -20,8 +25,8 @@
             </div>
             <ul class="select">
                 <p class="title font-normal">
-                    <span class="fl">松子</span>
-                    <span class="total fl">搜索到<strong class="num">997</strong>件相关商品</span>
+                    <span class="fl">{{$ss}}</span>
+                    <span class="total fl">搜索到<strong class="num">{{$num}}</strong>件相关商品</span>
                 </p>
                 <div class="clear"></div>
                 <li class="select-result">
@@ -78,29 +83,35 @@
         </div>
         <div class="search-content">
             <div class="sort">
-                <li class="first"><a title="综合">综合排序</a></li>
-                <li><a title="销量">销量排序</a></li>
+                @if(empty($request['order']))
+                <li class="first"><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
+                <li><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
                 <li><a title="价格">价格优先</a></li>
-                <li class="big"><a title="评价" href="#">评价为主</a></li>
+                @else
+                <li><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
+                <li class="@if($request['order']=='sales') first @endif"><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
+                <li class="@if($request['order']=='price') first @endif"><a href="/goodslist?order=price&ss={{$ss}}" title="价格">价格优先</a></li>
+                @endif
             </div>
             <div class="clear"></div>
 
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-
+                @if($num == 0) <br>&emsp;暂无此商品信息,请重新搜索商品信息 @endif
+                @foreach($list as $val)
                 <li>
                     <div class="i-pic limit">
-                        <img src="/static/Home/images/imgsearch1.jpg">
-                        <p class="title fl">【良品铺子旗舰店】手剥松子218g 坚果炒货零食新货巴西松子包邮</p>
+                        <a href="/goodsdetail?id={{$val->id}}"><img src="{{$val->photo}}" width="218" height="218"></a>
+                        <a href="/goodsdetail?id={{$val->id}}"><p class="title fl">{{$val->name}}</p></a>
                         <p class="price fl">
                             <b>¥</b>
-                            <strong>56.90</strong>
+                            <strong>{{$val->price}}</strong>
                         </p>
                         <p class="number fl">
-                            销量<span>1110</span>
+                            销量<span>{{$val->sales}}</span>
                         </p>
                     </div>
                 </li>
-
+                @endforeach
             </ul>
 
         </div>
@@ -109,59 +120,32 @@
             <div class="side-title">
                 经典搭配
             </div>
-
+            @foreach($match as $value)
             <li>
+                <a href=""></a>
                 <div class="i-pic check">
-                    <img src="/static/Home/images/cp.jpg">
-                    <p class="check-title">萨拉米 1+1小鸡腿</p>
+                    <a href="/goodsdetail?id={{$value->id}}"><img src="{{$value->photo}}" width="218" height="218"></a>
+                    <a href="/goodsdetail?id={{$value->id}}"><p class="check-title">{{$value->descr}}</p></a>
                     <p class="price fl">
                         <b>¥</b>
-                        <strong>29.90</strong>
+                        <strong>{{$value->price}}</strong>
                     </p>
                     <p class="number fl">
-                        销量<span>1110</span>
+                        销量<span>{{$value->sales}}</span>
                     </p>
                 </div>
             </li>
-            <li>
-                <div class="i-pic check">
-                    <img src="/static/Home/images/cp2.jpg">
-                    <p class="check-title">ZEK 原味海苔</p>
-                    <p class="price fl">
-                        <b>¥</b>
-                        <strong>8.90</strong>
-                    </p>
-                    <p class="number fl">
-                        销量<span>1110</span>
-                    </p>
-                </div>
-            </li>
-            <li>
-                <div class="i-pic check">
-                    <img src="/static/Home/images/cp.jpg">
-                    <p class="check-title">萨拉米 1+1小鸡腿</p>
-                    <p class="price fl">
-                        <b>¥</b>
-                        <strong>29.90</strong>
-                    </p>
-                    <p class="number fl">
-                        销量<span>1110</span>
-                    </p>
-                </div>
-            </li>
+            @endforeach
 
         </div>
         <div class="clear"></div>
         <!--分页 -->
-        <ul class="am-pagination am-pagination-right">
-            <li class="am-disabled"><a href="#">«</a></li>
-            <li class="am-active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">»</a></li>
-        </ul>
+        <center>{!! $list->appends($request)->render() !!}</center>
+
+
+
+
+
 
     </div>
 </div>
