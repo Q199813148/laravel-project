@@ -37,22 +37,41 @@ Route::group(["middleware"=>'login'], function(){
     Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
     //广告删除
     Route::get("/Advertisementdel","Admin\AdvertisementController@del");
-});
+    //友情链接管理
+    Route::resource("adminlinks","Admin\LinksController");
+    //ajax修改状态
+    Route::get("/adminlinkss","Admin\LinksController@ajax");
+	});
+
 
 //	后台登陆页
 Route::get("/admins/login", "Admin\AdminController@login");
 //	后台执行登陆
 Route::post("/admins/dologin", "Admin\AdminController@dologin");
 //	退出登陆
-Route::get("/admins/exit", "Admin\AdminController@exit");
-//end Memory
-//前台首页
-Route::resource("/", "Home\HomeController");
-//前台注册页
-Route::get("/regist","Home\HomeController@regist");
-//前台执行注册
-Route::post("/register","Home\HomeController@register");
-//前台登录
-Route::get("/login","Home\HomeController@login");
-//前台执行登录
-Route::post("/dologin","Home\HomeController@dologin");
+	Route::get("/admins/exit", "Admin\AdminController@exit");
+
+
+	//end Memory
+	//前台首页
+	Route::resource("/", "Home\HomeController");
+	//前台注册页
+	Route::get("/regist","Home\HomeController@regist");
+	//前台执行注册
+	Route::post("/register","Home\HomeController@register");
+//	前台注册ajax发送手机短信验证
+	Route::get("/rephone","Home\HomeController@rephone");
+//	前台注册ajax校验手机验证码
+	Route::get("/mecode","Home\HomeController@mecode");
+	//前台登录
+	Route::get("/login","Home\HomeController@login");
+	//前台执行登录
+	Route::post("/dologin","Home\HomeController@dologin");
+	//退出登录
+	Route::get("/exit","Home\HomeController@exit");
+	//分词测试
+	Route::get('/scws', 'WordCutController@scwsCut');
+	//商品列表
+	Route::get('/goodslist',"Home\GoodslistController@index");
+
+

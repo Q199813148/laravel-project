@@ -6,16 +6,15 @@
         <!--轮播 -->
         <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
             <ul class="am-slides">
-
+                @if(!empty($shows->all()))
                 @foreach($shows as $value)
                 <li class="banner{{$i++}}">
                     <a href="{{$value->url}}">
                         <img id="shows" src="{{$value->pic}}" alt="{{$value->name}}"/>
                     </a>
                 </li>
-
                 @endforeach
-
+                @endif
             </ul>
         </div>
         <div class="clear"></div>
@@ -83,38 +82,56 @@
         <span class="marqueen-title">商城头条</span>
         <div class="demo">
 
-            <ul>
-                <li class="title-first">
-                    <a target="_blank" href="#">
-                        <img src="/static/Home/images/TJ2.jpg">
-                        </img>
-                        <span>[特惠]</span>商城爆品1分秒
-                    </a>
-                </li>
-                <li class="title-first">
-                    <a target="_blank" href="#">
-                        <span>[公告]</span>商城与广州市签署战略合作协议
-                        <img src="/static/Home/images/TJ.jpg">
-                        </img>
-                        <p>
-                            XXXXXXXXXXXXXXXXXX
-                        </p>
-                    </a>
-                </li>
-                <!--登录-->
-                <div class="mod-vip">
-                    <div class="m-baseinfo">
-                        <a href="person/index.html">
-                            <!-- 头像 -->
-                            <img src="/static/Home/images/getAvatar.do.jpg">
-                        </a>
-                        <em> Hi,<span class="s-name">登录后更精彩</span>
-                            <p>
-                                level
-                            </p> </em>
-                    </div>
-
-
+		<ul>
+			<li class="title-first">
+				<a target="_blank" href="#">
+					<img src="/static/Home/images/TJ2.jpg">
+					</img>
+					<span>[特惠]</span>商城爆品1分秒
+				</a>
+			</li>
+			<li class="title-first">
+				<a target="_blank" href="#">
+					<span>[公告]</span>商城与广州市签署战略合作协议
+					<img src="/static/Home/images/TJ.jpg">
+					</img>
+					<p>
+						XXXXXXXXXXXXXXXXXX
+					</p>
+				</a>
+			</li>
+			<!--登录-->
+			<div class="mod-vip">
+				@if(session('user'))
+				<div class="m-baseinfo">
+					<a href="person/index.html">
+          <!-- 头像 -->
+						<img src="/static/Home/images/getAvatar.do.jpg">
+					</a>
+					<em> Hi,<span class="s-name">{{session('user')->name}}</span><a class="dropdown-item" href="/exit">
+                <i class="mdi mdi-logout mr-2 text-primary"></i>
+                 退出
+              </a>
+					<p>
+						@if(session('admin')->level == 0)
+						普通用户
+						@else
+						VIP会员
+						@endif
+					</p> </em>
+				</div>
+				@else
+				<div class="m-baseinfo">
+					<a href="person/index.html">
+          <!-- 头像 -->
+						<img src="/static/Home/images/getAvatar.do.jpg">
+					</a>
+					<em> Hi,<span class="s-name">登录后更精彩</span>
+					<p>
+						level
+					</p> </em>
+				</div>
+				@endif
                     @if(session('user'))
                         <div class="member-login" style="display: inline-block;">
                             <a href="#">
@@ -159,6 +176,7 @@
                 </li>
 
             </ul>
+
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>
             </div>
@@ -168,37 +186,19 @@
 <!--今日推荐-->
 @section('recommend')
     <div class="am-g am-g-fixed recommendation">
-        <div class="clock am-u-sm-3" ">
-        <img src="/static/Home/images/2016.png "></img>
-        <p>今日<br>推荐</p>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>真的有鱼</h3>
-            <h4>开年福利篇</h4>
+        @if(!empty($advertisements))
+        @foreach ($advertisements as $value)
+        <div class="am-u-sm-4 am-u-lg-3 ">
+            <div class="info ">
+                <h3>{{$value->title}}</h3>
+                <h4>{{$value->descr}}</h4>
+            </div>
+            <div class="recommendationMain one">
+                <a href="{{$value->url}}"><img src="{{$value->pic}} "></img></a>
+            </div>
         </div>
-        <div class="recommendationMain one">
-            <a href="introduction.html"><img src="/static/Home/images/tj.png "></img></a>
-        </div>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>囤货过冬</h3>
-            <h4>让爱早回家</h4>
-        </div>
-        <div class="recommendationMain two">
-            <img src="/static/Home/images/tj1.png "></img>
-        </div>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>浪漫情人节</h3>
-            <h4>甜甜蜜蜜</h4>
-        </div>
-        <div class="recommendationMain three">
-            <img src="/static/Home/images/tj2.png "></img>
-        </div>
-    </div>
+        @endforeach
+        @endif
     </div>
 @endsection
 <!--热门活动-->

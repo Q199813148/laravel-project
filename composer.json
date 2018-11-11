@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "laravel/project",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
@@ -20,7 +20,8 @@
     "autoload": {
         "classmap": [
             "database/seeds",
-            "database/factories"
+            "database/factories",
+            "app/Library/Ucpaas.php"
         ],
         "psr-4": {
             "App\\": "app/"

@@ -9,8 +9,8 @@
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
-
 		<link href="/static/Home/basic/css/demo.css" rel="stylesheet" type="text/css" />
+
 
 		<link href="/static/Home/css/hmstyle.css" rel="stylesheet" type="text/css"/>
 		<link href="/static/Home/css/skin.css" rel="stylesheet" type="text/css" />
@@ -25,20 +25,32 @@
 			<div class="am-container header">
 				<ul class="message-l">
 					<div class="topMessage">
+						@if(session('user'))
 						<div class="menu-hd">
 							<a href="#" target="_top" class="h">
+								{{session('user')->name}}
+							</a>
+							<a class="dropdown-item" href="/exit">
+                <i class="mdi mdi-logout mr-2 text-primary"></i>
+                 退出
+              </a>
+						</div>
+						@else
+						<div class="menu-hd">
+							<a href="/login" target="_top" class="h">
 								亲，请登录
 							</a>
-							<a href="#" target="_top">
+							<a href="/regist" target="_top">
 								免费注册
 							</a>
 						</div>
+						@endif
 					</div>
 				</ul>
 				<ul class="message-r">
 					<div class="topMessage home">
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">
+							<a href="/" target="_top" class="h">
 								商城首页
 							</a>
 						</div>
@@ -80,8 +92,8 @@
 
 				<div class="search-bar pr">
 					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+					<form action="/goodslist" method="get">
+						<input id="searchInput" name="ss" type="text" placeholder="搜索" autocomplete="off">
 						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
 					</form>
 				</div>
@@ -101,7 +113,7 @@
 				<div class="nav-cont">
 					<ul>
 						<li class="index">
-							<a href="#">
+							<a href="/">
 								首页
 							</a>
 						</li>
@@ -309,6 +321,38 @@ $(document).ready(function() {
 						<a href="# ">
 							<span class="setting "></span>
 						</a>
+						@if(session('user'))
+						<div class="ibar_login_box status_login personals">
+							<div class="avatar_box ">
+								<p class="avatar_imgbox ">
+									<img src="/static/Home/images/no-img_mid_.jpg " />
+								</p>
+								<ul class="user_info ">
+									<li>
+										用户名:{{session('user')->name}}
+									</li>
+									@if(session('user')->level == 1)
+									<li>
+										级&nbsp;别:VIP会员
+									</li>
+									@else
+									<li>
+										级&nbsp;别:普通会员
+									</li>
+									@endif
+								</ul>
+							</div>
+							<div class="login_btnbox ">
+								<a href="# " class="login_order ">
+									我的订单
+								</a>
+								<a href="# " class="login_favorite ">
+									我的收藏
+								</a>
+							</div>
+							<i class="icon_arrow_white "></i>
+						</div>
+						@else
 						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
@@ -319,7 +363,7 @@ $(document).ready(function() {
 										用户名sl1903
 									</li>
 									<li>
-										级&nbsp;别普通会员
+										级&nbsp;别:普通会员
 									</li>
 								</ul>
 							</div>
@@ -333,7 +377,7 @@ $(document).ready(function() {
 							</div>
 							<i class="icon_arrow_white "></i>
 						</div>
-
+						@endif
 					</div>
 					<div id="shopCart " class="item ">
 						<a href="# ">
