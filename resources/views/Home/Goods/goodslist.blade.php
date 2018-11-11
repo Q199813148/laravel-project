@@ -83,10 +83,15 @@
         </div>
         <div class="search-content">
             <div class="sort">
-                <li class="first"><a title="综合">综合排序</a></li>
-                <li><a title="销量">销量排序</a></li>
+                @if(empty($request['order']))
+                <li class="first"><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
+                <li><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
                 <li><a title="价格">价格优先</a></li>
-                <li class="big"><a title="评价" href="#">评价为主</a></li>
+                @else
+                <li><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
+                <li class="@if($request['order']=='sales') first @endif"><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
+                <li class="@if($request['order']=='price') first @endif"><a href="/goodslist?order=price&ss={{$ss}}" title="价格">价格优先</a></li>
+                @endif
             </div>
             <div class="clear"></div>
 
@@ -95,8 +100,8 @@
                 @foreach($list as $val)
                 <li>
                     <div class="i-pic limit">
-                        <img src="{{$val->photo}}" width="218" height="218">
-                        <p class="title fl">{{$val->name}}</p>
+                        <a href="/goodsdetail?id={{$val->id}}"><img src="{{$val->photo}}" width="218" height="218"></a>
+                        <a href="/goodsdetail?id={{$val->id}}"><p class="title fl">{{$val->name}}</p></a>
                         <p class="price fl">
                             <b>¥</b>
                             <strong>{{$val->price}}</strong>
@@ -119,8 +124,8 @@
             <li>
                 <a href=""></a>
                 <div class="i-pic check">
-                    <img src="{{$value->photo}}" width="218" height="218">
-                    <p class="check-title">{{$value->descr}}</p>
+                    <a href="/goodsdetail?id={{$value->id}}"><img src="{{$value->photo}}" width="218" height="218"></a>
+                    <a href="/goodsdetail?id={{$value->id}}"><p class="check-title">{{$value->descr}}</p></a>
                     <p class="price fl">
                         <b>¥</b>
                         <strong>{{$value->price}}</strong>
