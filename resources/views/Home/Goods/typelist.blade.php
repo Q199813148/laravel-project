@@ -25,8 +25,8 @@
             </div>
             <ul class="select">
                 <p class="title font-normal">
-                    <span class="fl">{{$ss}}</span>
-                    <span class="total fl">搜索到<strong class="num">{{$num}}</strong>件相关商品</span>
+                    <span class="fl">{{$name}}</span>
+                    <span class="total fl">分类下一共有<strong class="num">{{$num}}</strong>件相关商品</span>
                 </p>
                 <div class="clear"></div>
                 <li class="select-result">
@@ -84,13 +84,13 @@
         <div class="search-content">
             <div class="sort">
                 @if(empty($request['order']))
-                <li class="first"><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
-                <li><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
-                <li><a title="价格">价格优先</a></li>
+                <li class="first"><a href="/typelist?typeid={{$id}}" title="综合">综合排序</a></li>
+                <li><a href="/typelist?order=sales&typeid={{$id}}" title="销量">销量排序</a></li>
+                <li><a href="/typelist?order=price&typeid={{$id}} title="价格">价格优先</a></li>
                 @else
-                <li><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
-                <li class="@if($request['order']=='sales') first @endif"><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
-                <li class="@if($request['order']=='price') first @endif"><a href="/goodslist?order=price&ss={{$ss}}" title="价格">价格优先</a></li>
+                <li><a href="/typelist?typeid={{$id}}" title="综合">综合排序</a></li>
+                <li class="@if($request['order']=='sales') first @endif"><a href="/typelist?order=sales&typeid={{$id}}" title="销量">销量排序</a></li>
+                <li class="@if($request['order']=='price') first @endif"><a href="/typelist?order=price&typeid={{$id}}" title="价格">价格优先</a></li>
                 @endif
             </div>
             <div class="clear"></div>
