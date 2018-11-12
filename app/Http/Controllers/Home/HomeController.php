@@ -49,9 +49,64 @@ class HomeController extends Controller
         //获取广告信息
         $advertisements = DB::table("advertisement")->where("status",'=','1')->orderBy('id')->get();
         // dd($advertisements);
-        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements]);
+        
+        //查询分类
+        $type = DB::table("types")->where("status",'=','1')->where("pid",'=',"0")->offset(0)->limit(10)->get();
+        // dd($type);
+        //首页商品
+        $goods = DB::table("goods")->where("status",'=','1')->orderBy('id')->get();
+        // dd($goods);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'type'=>$type]);
 
     }
+
+    //ajax首页商品列表
+    public function goodslist(Request $request)
+    {
+        $data = $request->all();
+        // dd($data['id']);
+        $types = DB::table('types')->where("status",'=','1')->where('pid','=',$data['id'])->offset(0   )->limit(1)->first();
+        $oneid = $types->id;
+        $typess = DB::table('types')->where("status",'=','1')->where('pid','=',$oneid)->offset(0)->limit(1)->first();
+        $twoid = $typess->id;
+        if($goods = DB::table('goods')->where("status",'=','1')->where("type_id",'=',$twoid)->offset(0)->limit(5)->get()) {
+        // dd(count($goods));
+        if(count($goods)) {
+            foreach( $goods as $row) {
+        echo '
+            <div class="am-u-sm-3 am-u-md-2 text-three" style="height:300px;" >
+                <div class="outer-con ">
+                    <div class="title ">
+                        '.$row->name.'
+                    </div>
+                    <div class="sub-title ">
+                        '.$row->price.'
+                    </div>
+                </div>
+                    <a href="#">
+                        <img  src='.$row->photo.'/>
+                    </a>
+            </div>
+            ';
+        }
+        }else{
+        echo '
+        <center>
+            <div class="am-u-sm-3 am-u-md-2 text-three" style="height:0px;" >
+                <div class="outer-con ">
+                    <div class="title ">
+                    </div>
+                </div>
+                    <a href="#">
+                        <img  src="/static/Home/images/zanwu.png"/>
+                    </a>
+            </div>
+        </center>
+            ';
+            }
+        }
+    }
+
     //注册页面
     public function regist()
     { 

@@ -73,5 +73,7 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	Route::get('/scws', 'WordCutController@scwsCut');
 	//商品列表
 	Route::get('/goodslist',"Home\GoodslistController@index");
+    //首页商品列表ajax
+    Route::get("/homegoodslist","Home\HomeController@goodslist");
 
 
