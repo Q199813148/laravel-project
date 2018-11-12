@@ -12,10 +12,10 @@
 //后台
 //modifier:Memory
 //	后台各种页
-Route::group(["middleware"=>'login'], function(){
-    Route::resource("/admin", "Admin\AdminController");
-    //后台管理信息
-    Route::resource("/adminusers", "Admin\AdminuserController");
+	Route::group(["middleware"=>'login'], function(){
+	    Route::resource("/admin", "Admin\AdminController");
+	    //后台管理信息
+	    Route::resource("/adminusers", "Admin\AdminuserController");
 //		ajax更改状态
 
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
@@ -40,6 +40,7 @@ Route::group(["middleware"=>'login'], function(){
         //ajax修改状态
         Route::get("/adminlinkss", "Admin\LinksController@ajax");
 	});
+	
     Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
     //后台商品信息
     Route::resource("/adminshop","Admin\ShopController");
@@ -48,27 +49,27 @@ Route::group(["middleware"=>'login'], function(){
     //后台用户管理
     Route::resource("/adminuser", "Admin\UsersController");
     Route::get("/adminuse/ajax", "Admin\UsersController@ajax");
-    Route::get("/adminuserss","Admin\UsersController@edits");
+    Route::get("/adminuserss", "Admin\UsersController@edits");
     //后台分类管理
     Route::resource("/admintypes", "Admin\TypesController");
-    Route::get("/admintypess","Admin\TypesController@edits");
+    Route::get("/admintypess", "Admin\TypesController@edits");
     //轮播图管理
-    Route::resource("/adminshows","Admin\ShowsController");
-    Route::get('/adminshowsajax',"Admin\ShowsController@ajax");
+    Route::resource("/adminshows", "Admin\ShowsController");
+    Route::get('/adminshowsajax', "Admin\ShowsController@ajax");
     //广告管理
-    Route::resource("/adminadvertisement","Admin\AdvertisementController");
+    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
     Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
     //广告删除
-    Route::get("/Advertisementdel","Admin\AdvertisementController@del");
+    Route::get("/Advertisementdel", "Admin\AdvertisementController@del");
     //友情链接管理
-    Route::resource("adminlinks","Admin\LinksController");
+    Route::resource("adminlinks", "Admin\LinksController");
     //ajax修改状态
-    Route::get("/adminlinkss","Admin\LinksController@ajax");
+    Route::get("/adminlinkss", "Admin\LinksController@ajax");
 	
 //	后台登陆页
-Route::get("/admins/login", "Admin\AdminController@login");
-//	后台执行登陆
-Route::post("/admins/dologin", "Admin\AdminController@dologin");
+	Route::get("/admins/login", "Admin\AdminController@login");
+	//	后台执行登陆
+	Route::post("/admins/dologin", "Admin\AdminController@dologin");
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
@@ -78,10 +79,10 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	
 	
 //	前台各种页
-Route::group(["middleware"=>'home'], function(){
+	Route::group(["middleware"=>'home'], function(){
 		Route::resource("/personal", "Home\PersonalController");
 		Route::get("/personaldata", "Home\PersonalController@data");
-});
+	});
 	
 	//前台首页
 	Route::resource("/", "Home\HomeController");
