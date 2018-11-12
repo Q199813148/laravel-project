@@ -70,7 +70,7 @@ Route::group(["middleware"=>'home'], function(){
     Route::resource("adminlinks","Admin\LinksController");
     //ajax修改状态
     Route::get("/adminlinkss","Admin\LinksController@ajax");
-	});
+	
 //	后台登陆页
 Route::get("/admins/login", "Admin\AdminController@login");
 //	后台执行登陆
