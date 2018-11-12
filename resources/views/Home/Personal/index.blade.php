@@ -567,7 +567,7 @@
 		</span>
 		<ul>
 			<li>
-				<a href="/personaldata">
+				<a href="/personal/{{session('user')->user_id}}/edit">
 					个人信息
 				</a>
 			</li>
