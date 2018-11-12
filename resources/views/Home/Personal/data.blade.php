@@ -210,7 +210,7 @@
 <!--左侧列表-->
 <ul>
 	<li class="person">
-		<a href="/personal" style="color: #f00;">
+		<a href="/personal">
 			个人中心
 		</a>
 	</li>
@@ -220,7 +220,7 @@
 		</span>
 		<ul>
 			<li>
-				<a href="/personaldata">
+				<a href="/personaldata"  style="color: #f00;">
 					个人信息
 				</a>
 			</li>
@@ -230,7 +230,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="address.html">
+				<a href="/address">
 					收货地址
 				</a>
 			</li>

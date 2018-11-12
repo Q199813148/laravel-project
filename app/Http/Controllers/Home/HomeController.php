@@ -60,7 +60,13 @@ class HomeController extends Controller
     //执行注册
     public function register(HomeRegist $request)
     {
-    	$data = $request->except(['repassword','_token']); 
+    	$data = $request->except(['repassword','_token','lists','err','code']); 
+		if(!$request->input('code') == Cookie::get('smsid')) {
+            return back()->with("error",'验证码不合法或过期');
+		}
+		if(!$request->input('lists') == 111111) {
+            return back()->with("error",'数据异常');
+		}
 //		$data['name'] = 'yj用户'.rand(99999999,1000000000);
 		$data['password'] = Hash::make($data['password']);
 		$data['token'] = '1';

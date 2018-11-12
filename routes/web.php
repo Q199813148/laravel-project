@@ -82,8 +82,8 @@
 	Route::group(["middleware"=>'home'], function(){
 //		前台个人中心页
 		Route::resource("/personal", "Home\PersonalController");
-//		个人中心-个人信息ajax修改头像
-		Route::get("/personalimg", "Home\PersonalController@personalimg");
+
+
 	});
 	
 	//前台首页

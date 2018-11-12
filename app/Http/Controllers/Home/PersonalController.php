@@ -25,9 +25,7 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function data()
-    {
-    }
+    
 	
 	
 	
@@ -83,9 +81,6 @@ class PersonalController extends Controller
 		dd($birthday);
     }
 	
-	public function personalimg(Request $request)
-	{
-	}
 	
     /**
      * Update the specified resource in storage.
