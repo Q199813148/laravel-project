@@ -102,5 +102,7 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	Route::get('/goodslist', "Home\GoodslistController@index");
     //商品详情
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
+    //分类列表
+    Route::get('/typelist', "Home\TypelistController@index");
 
 
