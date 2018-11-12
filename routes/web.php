@@ -40,12 +40,6 @@ Route::group(["middleware"=>'login'], function(){
         //ajax修改状态
         Route::get("/adminlinkss", "Admin\LinksController@ajax");
 	});
-//	前台各种页
-Route::group(["middleware"=>'home'], function(){
-		Route::resource("/personal", "Home\PersonalController");
-		Route::get("/personaldata", "Home\PersonalController@data");
-});
-	
     Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
     //后台商品信息
     Route::resource("/adminshop","Admin\ShopController");
@@ -80,6 +74,15 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 
 
 	//end Memory
+	
+	
+	
+//	前台各种页
+Route::group(["middleware"=>'home'], function(){
+		Route::resource("/personal", "Home\PersonalController");
+		Route::get("/personaldata", "Home\PersonalController@data");
+});
+	
 	//前台首页
 	Route::resource("/", "Home\HomeController");
 	//前台注册页
@@ -100,5 +103,7 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	Route::get('/scws', 'WordCutController@scwsCut');
 	//商品列表
 	Route::get('/goodslist', "Home\GoodslistController@index");
+    //商品详情
+    Route::get('/goodsdetail', "Home\GoodsdetailController@index");
 
 
