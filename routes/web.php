@@ -36,11 +36,23 @@
         Route::resource("/adminshows", "Admin\ShowsController");
         Route::get('/adminshowsajax', "Admin\ShowsController@ajax");
         //友情链接管理
-        Route::resource("adminlinks", "Admin\LinksController");
+        Route::resource("adminlinks","Admin\LinksController");
+        //链接申请列表
+        Route::get("/linkreq","Admin\LinksController@linkreq");
+        //执行表单申请
+		Route::post('/dolinkreq',"Admin\LinksController@dolinkreq");
         //ajax修改状态
-        Route::get("/adminlinkss", "Admin\LinksController@ajax");
+        Route::get("/adminlinkss","Admin\LinksController@ajax");
+        //公告管理
+        Route::resource("/adminnotice","Admin\NoticeController");
+        //ajax修改状态
+        Route::get("/adminnotices","Admin\NoticeController@ajax");
+        //后台公告删除
+        Route::get("/adminnoticedel","Admin\NoticeController@del");
+
 	});
 
+<<<<<<< HEAD
     Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
     //后台商品信息
     Route::resource("/adminshop","Admin\ShopController");
@@ -66,6 +78,9 @@
     //ajax修改状态
     Route::get("/adminlinkss", "Admin\LinksController@ajax");
 
+=======
+	
+>>>>>>> 19a7c6d5d7f24356ff559c2a4b5e4a2c0e03349f
 //	后台登陆页
 	Route::get("/admins/login", "Admin\AdminController@login");
 	//	后台执行登陆
@@ -80,7 +95,9 @@
 
 //	前台各种页
 	Route::group(["middleware"=>'home'], function(){
+//		前台个人中心页
 		Route::resource("/personal", "Home\PersonalController");
+<<<<<<< HEAD
 		Route::get("/personaldata", "Home\PersonalController@data");
         //购物车
         Route::post('/cart', 'Home\CartController@index');
@@ -89,6 +106,10 @@
         Route::get('/cart/ajaxadd', 'Home\CartController@ajaxadd');
         Route::get('/cart/del', 'Home\CartController@del');
         Route::get('/cart/change', 'Home\CartController@change');
+=======
+
+
+>>>>>>> 19a7c6d5d7f24356ff559c2a4b5e4a2c0e03349f
 	});
 
 	//前台首页
@@ -110,7 +131,15 @@
 	//分词测试
 	Route::get('/scws', 'WordCutController@scwsCut');
 	//商品列表
-	Route::get('/goodslist', "Home\GoodslistController@index");
+	Route::get('/goodslist',"Home\GoodslistController@index");
+	//公告列表
+	Route::get('/notice',"Home\HomeController@notice");
+	//链接申请
+	Route::get('/relinks',"Home\HomeController@relinks");
+	//执行表单申请
+	Route::post('/dorelinks',"Home\HomeController@dorelinks");
+	//ajajx遍历
+	Route::get('/links',"Home\HomeController@links");
     //商品详情
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
     //分类列表

@@ -91,12 +91,6 @@
 								</a>
 							</li>
 						</ul>
-									@if(session('error'))
-									<div style="font-size: 12px; color: #f00; ">　　　　　　　 　　　{{session('error')}}</div>
-									@endif
-									@if(session('success'))
-									<div style="font-size: 12px; color: #0f0; ">　　　　　　　 　　　{{sesstion('success')}}</div>
-									@endif
 						<div class="am-tabs-bd">
 							<div class="am-tab-panel am-active">
 								<form method="post">
@@ -141,9 +135,10 @@
 										<input type="tel" name="phone" value="{{old('phone')}}" id="phone" class="phone" placeholder="请输入手机号">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('phone')}}</span>
+									<input type="hidden" name="lists" id="" class="feis" value="0" />
 									<div class="user-phone">
 										<label for="code"><i class="am-icon-code-fork"></i></label>
-										<input type="tel" name="" class="mecode" style="width: 180px;" placeholder="请输入验证码">
+										<input type="tel" name="code" class="mecode" style="width: 180px;" placeholder="请输入验证码">
 										<input id="dyMobileButton" class="dycode" type="button" style="width: 100px; display: inline;" value="获取验证码">
 									</div>
 									<span style="font-size: 12px; color: #f00; "></span>
@@ -157,6 +152,7 @@
 										<input type="password" name="repassword" class="repassword" id="passwordRepeat" placeholder="确认密码">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('repassword')}}</span>
+									<input type="hidden" name="err" id="" class="err" value="{{session('error')}}" />
                					 {{csrf_field()}}
 								</form>
 								<div class="login-links">
@@ -170,6 +166,14 @@
 
 								<hr>
 							</div>
+
+<script type="text/javascript">
+@if(session('error'))
+err = $('.err').val();
+alert(err);
+@endif
+</script>
+
 <script>
       $('#submit').click(function() {
         $('#formt').submit();
@@ -308,41 +312,46 @@
 	$(".mecode").blur(function() {
 		obj1 = $(this);
 		yzm =  obj1.val();
-//		获取当前手机号码
-		ph = $('.phone').val();
 		bool4 = false;
-//		判断手机号码是否被更改
-		if(ph == phones) {
 //			执行验证码校验
 			$.get("/mecode", { yzm: yzm }, function(result) {
-				switch(result){
-					case '1':
-						bool4 = true;
-						obj1.parent('div').next().html('验证码正确').css('color','green');
-						break;
-					case '2':
-						obj1.parent('div').next().html('*验证码错误').css('color','red');
-						break;
-					case '3':
-						obj1.parent('div').next().html('*验证码不能为空').css('color','red');
-						break;
-					default:
-						obj1.parent('div').next().html('*验证码发送失败或过期').css('color','red');
-						break;
-				}
-				reg();
+			switch(result){
+				case '1':
+					bool4 = true;
+					reg();
+					obj1.parent('div').next().html('验证码正确').css('color','green');
+					break;
+				case '2':
+					obj1.parent('div').next().html('*验证码错误').css('color','red');
+					break;
+				case '3':
+					obj1.parent('div').next().html('*验证码不能为空').css('color','red');
+					break;
+				default:
+					obj1.parent('div').next().html('*验证码发送失败或过期').css('color','red');
+					break;
+			}
+
 			});
-		} else {
-			obj1.parent('div').next().html('发送验证码的手机号码被更改').css('color','red');
-		}
 	});
 	
-	
 	function reg() {
-		if(bool && bool1 && bool2 && bool3 && bool4 && bool5) {
-			$(".button").removeAttr('disabled');
-		} else {			
-			$(".button").attr('disabled','true');
+//		判断手机号码是否被更改
+		if(phones != '') {
+//			获取当前手机号码
+			ph = $('.phone').val();
+			if(ph == phones) {
+				obj1.parent('div').next().html('');
+				if(bool && bool1 && bool2 && bool3 && bool4 && bool5) {
+					$(".feis").val('111111');
+					$(".button").removeAttr('disabled');
+				} else {			
+					$(".button").attr('disabled','true');
+					$(".feis").val('112211');
+				}
+			}else{
+				obj1.parent('div').next().html('*发送验证码手机被修改').css('color','red');
+			}
 		}
 	}
 </script>	
