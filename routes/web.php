@@ -40,7 +40,7 @@
         //ajax修改状态
         Route::get("/adminlinkss", "Admin\LinksController@ajax");
 	});
-	
+
     Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
     //后台商品信息
     Route::resource("/adminshop","Admin\ShopController");
@@ -65,7 +65,7 @@
     Route::resource("adminlinks", "Admin\LinksController");
     //ajax修改状态
     Route::get("/adminlinkss", "Admin\LinksController@ajax");
-	
+
 //	后台登陆页
 	Route::get("/admins/login", "Admin\AdminController@login");
 	//	后台执行登陆
@@ -75,15 +75,22 @@
 
 
 	//end Memory
-	
-	
-	
+
+
+
 //	前台各种页
 	Route::group(["middleware"=>'home'], function(){
 		Route::resource("/personal", "Home\PersonalController");
 		Route::get("/personaldata", "Home\PersonalController@data");
+        //购物车
+        Route::post('/cart', 'Home\CartController@index');
+        Route::get('/cart', 'Home\CartController@index');
+        Route::get('/cart/minus', 'Home\CartController@minus');
+        Route::get('/cart/ajaxadd', 'Home\CartController@ajaxadd');
+        Route::get('/cart/del', 'Home\CartController@del');
+        Route::get('/cart/change', 'Home\CartController@change');
 	});
-	
+
 	//前台首页
 	Route::resource("/", "Home\HomeController");
 	//前台注册页
@@ -108,5 +115,6 @@
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
     //分类列表
     Route::get('/typelist', "Home\TypelistController@index");
+
 
 

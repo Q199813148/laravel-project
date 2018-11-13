@@ -86,7 +86,7 @@
                 @if(empty($request['order']))
                 <li class="first"><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
                 <li><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
-                <li><a title="价格">价格优先</a></li>
+                <li><a href="/goodslist?order=price&ss={{$ss}}" title="价格">价格优先</a></li>
                 @else
                 <li><a href="/goodslist?ss={{$ss}}" title="综合">综合排序</a></li>
                 <li class="@if($request['order']=='sales') first @endif"><a href="/goodslist?order=sales&ss={{$ss}}" title="销量">销量排序</a></li>
