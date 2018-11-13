@@ -38,12 +38,58 @@ class HomeController extends Controller
         $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
-
+        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,5");
+        //dd($notice);
         $types=$this->gettypesbypid(0);
         // dd($types);
-        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i]);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'notice'=>$notice]);
 
     }
+
+    //公告列表
+    public function notice(Request $request)
+    { 
+    	//dd($_GET['id']);
+    	$id=$_GET['id'];
+    	$data = DB::select("select * from notice where status = 1 and id = $id ");
+    	$info = DB::select("select * from notice where status = 1");
+    	return view("Home.Home.notice",['data'=>$data,'info'=>$info]);
+    }
+
+    //遍历链接
+    public function links()
+    { 
+    	$links = DB::select("select * from links where status = 1 order by id asc limit 0,5");
+    	//dd($links);
+    	foreach ($links as $value) {
+	    	echo '
+				<b>|</b>
+				<a href='.$value->url.'>'.$value->name.'</a>
+    		';
+    	}
+    }
+
+    //链接申请
+    public function relinks(Request $request)
+    { 
+    	return view("Home.Home.links");
+    }
+
+    //执行申请表单
+    public function dorelinks(Request $request)
+    { 
+    	$data = $request->input();
+    	$data['addtime']=date('Y-m-d:H:i:s');
+    	$data['status']= 0;
+    	unset($data['_token']);
+    	//dd($data);
+    	if(DB::table("relinks")->insert($data)){ 
+        	return redirect("/")->with('success','添加成功');
+        } else { 
+        	return back()->with('error','添加失败');
+        }
+    }
+
     //注册页面
     public function regist()
     { 
@@ -180,6 +226,8 @@ class HomeController extends Controller
     		return redirect('/');
     	}
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

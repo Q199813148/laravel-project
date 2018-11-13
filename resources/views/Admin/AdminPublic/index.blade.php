@@ -281,8 +281,8 @@
             </a>
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="/affiche"> 公告列表 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="/affiche/create"> 添加公告 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminnotice"> 公告列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminnotice/create"> 添加公告 </a></li>
               </ul>
               </div>
           </li>

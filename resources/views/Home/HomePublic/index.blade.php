@@ -246,25 +246,10 @@ $(document).ready(function() {
 					<div class="footer-hd ">
 						<p>
 							<b>|</b>
-							<a href="# ">恒望科技</a>
-							<b>|</b>
-							<a href="# ">商城首页</a>
-							<b>|</b>
-							<a href="# ">支付宝</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
-							<b>|</b>
-							<a href="# ">友情链接</a>
+							<a href="/relinks">链接申请</a>
+							<span class="links">
+								
+							</span>
 							<b>|</b>
 						</p>
 					</div>
@@ -545,5 +530,13 @@ $(document).ready(function() {
 		</div>
 		<script>window.jQuery || document.write('<script src="/static/Home/basic/js/jquery.min.js "><\/script>');</script>
 		<script type="text/javascript " src="/static/Home/basic/js/quick_links.js "></script>
+		<script type="text/javascript">
+
+		$.get("/links",function(links){ 
+			//alert(links);
+			$('.links').html(links);
+		});
+
+		</script>
 	</body>
 </html>

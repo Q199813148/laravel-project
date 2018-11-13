@@ -18,9 +18,44 @@ class LinksController extends Controller
         //获取搜索内容
         $k = $request->input('keywords');
         //获取数据库数据
-        $data = DB::table("links")->where('name','like','%'.$k.'%')->paginate(3);
+
+        $data = DB::table("links")->where('name','like','%'.$k.'%')->orderBy('id','asc')->paginate(3);
         
         return view("Admin.Links.index",['data'=>$data,'request'=>$request->all()]);
+    }
+
+    //友情链接申请
+    public function linkreq(Request $request)
+    { 
+    	 $k = $request->input('keywords');
+        //获取数据库数据
+        $data = DB::table("relinks")->where('name','like','%'.$k.'%')->orderBy('id','asc')->paginate(3);
+        
+        return view("Admin.Links.linkreq",['data'=>$data,'request'=>$request->all()]);
+    }
+
+    //执行申请
+    public function dolinkreq(Request $request)
+    { 
+    	$id=$request->input("id");
+    	$req =  DB::table("relinks")->select('name','status','url')->where('id','=',$id)->first();
+    	$req->status = 0;
+    	//dd($req);
+    	$links=array();
+    	foreach ($req as $key => $value) {
+    		$links[$key]=$value;
+    	}
+    	//dd($links);
+    	if (DB::table("links")->insert($links)) {
+    		if (DB::table("relinks")->where('id','=',$id)->delete()) {
+    			return redirect('/linkreq')->with('success','同意申请');
+    		}
+    		return redirect('/linkreq')->with('success','同意申请');
+    	} else {
+    		return redirect('/linkreq')->wiht('error','未同意申请');
+    	}
+    	
+
     }
 
 

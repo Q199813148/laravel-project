@@ -37,8 +37,18 @@ Route::group(["middleware"=>'login'], function(){
         Route::get('/adminshowsajax',"Admin\ShowsController@ajax");
         //友情链接管理
         Route::resource("adminlinks","Admin\LinksController");
+        //链接申请列表
+        Route::get("/linkreq","Admin\LinksController@linkreq");
+        //执行表单申请
+		Route::post('/dolinkreq',"Admin\LinksController@dolinkreq");
         //ajax修改状态
         Route::get("/adminlinkss","Admin\LinksController@ajax");
+        //公告管理
+        Route::resource("/adminnotice","Admin\NoticeController");
+        //ajax修改状态
+        Route::get("/adminnotices","Admin\NoticeController@ajax");
+        //后台公告删除
+        Route::get("/adminnoticedel","Admin\NoticeController@del");
 	});
 	
 
@@ -73,5 +83,13 @@ Route::post("/admins/dologin", "Admin\AdminController@dologin");
 	Route::get('/scws', 'WordCutController@scwsCut');
 	//商品列表
 	Route::get('/goodslist',"Home\GoodslistController@index");
+	//公告列表
+	Route::get('/notice',"Home\HomeController@notice");
+	//链接申请
+	Route::get('/relinks',"Home\HomeController@relinks");
+	//执行表单申请
+	Route::post('/dorelinks',"Home\HomeController@dorelinks");
+	//ajajx遍历
+	Route::get('/links',"Home\HomeController@links");
 
 
