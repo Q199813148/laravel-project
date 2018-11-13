@@ -62,7 +62,28 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
-
+        
+//	    'local' => [
+//	        'driver' => 'local',
+//	        'root' => base_path(''),
+//	    ],
+//	
+//	    'public' => [
+//	        'driver' => 'local',
+//	        'root' => base_path(),
+//	        'url' => env('APP_URL').'/uploads',
+//	        'visibility' => 'uploads',
+//	    ],
+//	
+//	    's3' => [
+//	        'driver' => 's3',
+//	        'key' => env('AWS_KEY'),
+//	        'secret' => env('AWS_SECRET'),
+//	        'region' => env('AWS_REGION'),
+//	        'bucket' => env('AWS_BUCKET'),
+//	    ],
+    
+	
     ],
 
 ];

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Cookie;
 use App\Http\Requests\Home\HomeRegist;
 //导入模型类
 use App\Model\Home\shows;
-
 class HomeController extends Controller
 {
     /**
@@ -22,9 +21,11 @@ class HomeController extends Controller
      */
     public function gettypesbypid($pid)
     {
-
-        $res=DB::table('types')->where("pid",'=',$pid)->get();
+        //获取分类信息
+        // $res=DB::table('types')->where("pid",'=',$pid)->get();
+        $res = DB::select("select * from types where pid = $pid AND status = 1");
         $data=[];
+        //分类遍历
         foreach($res as $key=>$value)
         {
             $value->suv=$this->gettypesbypid($value->id);
@@ -32,17 +33,27 @@ class HomeController extends Controller
         }
         return $data;
     }
+
+
     public function index()
     {
         //获取轮播图信息
         $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
+        //公告
         $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,5");
         //dd($notice);
         $types=$this->gettypesbypid(0);
         // dd($types);
-        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'notice'=>$notice]);
+        //分类
+        $types=$this->gettypesbypid(0);
+        // dd($types);
+        
+        //获取广告信息
+        $advertisements = DB::table("advertisement")->where("status",'=','1')->orderBy('id')->get();
+        // dd($advertisements);
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice]);
 
     }
 
@@ -98,7 +109,13 @@ class HomeController extends Controller
     //执行注册
     public function register(HomeRegist $request)
     {
-    	$data = $request->except(['repassword','_token']); 
+    	$data = $request->except(['repassword','_token','lists','err','code']); 
+		if(!$request->input('code') == Cookie::get('smsid')) {
+            return back()->with("error",'验证码不合法或过期');
+		}
+		if(!$request->input('lists') == 111111) {
+            return back()->with("error",'数据异常');
+		}
 //		$data['name'] = 'yj用户'.rand(99999999,1000000000);
 		$data['password'] = Hash::make($data['password']);
 		$data['token'] = '1';

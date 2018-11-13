@@ -15,7 +15,7 @@ class Shops extends Model
     protected $fillable = ['status'];
 
     public function getStatusAttribute($value){
-        $status=[1=>"上架",0=>"下架"];
+        $status=[0=>"上架",1=>"下架"];
         return $status[$value];
     }
 }

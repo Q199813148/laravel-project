@@ -27,7 +27,7 @@
 					<div class="topMessage">
 						@if(session('user'))
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">
+							<a href="/personal" target="_top" class="h">
 								{{session('user')->name}}
 							</a>
 							<a class="dropdown-item" href="/exit">
@@ -50,14 +50,14 @@
 				<ul class="message-r">
 					<div class="topMessage home">
 						<div class="menu-hd">
-							<a href="#" target="_top" class="h">
+							<a href="/" target="_top" class="h">
 								商城首页
 							</a>
 						</div>
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng">
-							<a href="#" target="_top">
+							<a href="/personal" target="_top">
 								<i class="am-icon-user am-icon-fw"></i>个人中心
 							</a>
 						</div>
@@ -86,7 +86,7 @@
 				</div>
 				<div class="logoBig">
 					<li>
-						<img src="/static/Home/images/logobig.png" />
+						<a href="/"><img src="/static/Home/images/logobig.png" /></a>
 					</li>
 				</div>
 
@@ -113,7 +113,7 @@
 				<div class="nav-cont">
 					<ul>
 						<li class="index">
-							<a href="#">
+							<a href="/">
 								首页
 							</a>
 						</li>
@@ -184,7 +184,7 @@ $(document).ready(function() {
 						</a>
 					</div>
 					<div class="am-u-sm-3">
-						<a href="#">
+						<a href="/personal">
 							<img src="/static/Home/images/mansmall.jpg" />
 							<div class="title">
 								个人中心
@@ -303,7 +303,7 @@ $(document).ready(function() {
 			<div id="sidebar">
 				<div id="wrap">
 					<div id="prof" class="item personal">
-						<a href="# ">
+						<a href="/personal">
 							<span class="setting "></span>
 						</a>
 						@if(session('user'))
@@ -341,14 +341,13 @@ $(document).ready(function() {
 						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
-									<img src="/static/Home/images/no-img_mid_.jpg " />
+									<a href="/personal"><img src="/static/Home/images/no-img_mid_.jpg " /></a>
 								</p>
 								<ul class="user_info ">
 									<li>
-										用户名sl1903
+										登陆后更精彩
 									</li>
 									<li>
-										级&nbsp;别:普通会员
 									</li>
 								</ul>
 							</div>

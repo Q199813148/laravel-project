@@ -35,7 +35,7 @@
 							<h3 class="category-name b-category-name"><i>
 							<img src="/static/Home/images/cake.png">
 							</i>
-							<a class="ml-22" title="点心">
+							<a class="ml-22" title="{{$row->name}}">
               {{$row->name}}
 							</a></h3>
 							<em>&gt;</em>
@@ -48,11 +48,11 @@
                     @foreach ($row->suv as $rows)
 											<dl class="dl-sort" style="height:150px;">
 												<dt>
-												<span title="蛋糕">{{$rows->name}}</span>
+												<span title="{{$rows->name}}">{{$rows->name}}</span>
 												</dt>
                         @foreach ($rows->suv as $rowss)
 												<dd>
-													<a title="蒸蛋糕" href="#">
+													<a title="{{$rowss->name}}" href="/typelist?typeid={{$rowss->id}}">
 														<span>{{$rowss->name}}</span>
 													</a>
 												</dd>
@@ -122,7 +122,50 @@
 					</p> </em>
 				</div>
 				@endif
+                    @if(session('user'))
+                        <div class="member-login" style="display: inline-block;">
+                            <a href="#">
+                                <strong>0</strong>待收货
+                            </a>
+                            <a href="#">
+                                <strong>0</strong>待发货
+                            </a>
+                            <a href="#">
+                                <strong>0</strong>待付款
+                            </a>
+                            <a href="#">
+                                <strong>0</strong>待评价
+                            </a>
+                        </div>
+                    @else
+                        <div class="member-logout">
+                            <a class="am-btn-warning btn" href="/login">
+                                登录
+                            </a>
+                            <a class="am-btn-warning btn" href="">
+                                注册
+                            </a>
+                        </div>
+                    @endif
+                    <div class="clear"></div>
+                </div>
+                <li>
+                    <a target="_blank" href="#">
+                        <span>[特惠]</span>洋河年末大促，低至两件五折
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <span>[公告]</span>华北、华中部分地区配送延迟
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="#">
+                        <span>[特惠]</span>家电狂欢千亿礼券 买1送1！
+                    </a>
+                </li>
 
+<<<<<<< HEAD
         
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
@@ -152,8 +195,10 @@
 				<div class="clear"></div>
 			</div>
 		
+=======
+            </ul>
+>>>>>>> 54d2f397589d47ecd11573dcd7fff5a28ff93d15
 
-                   
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>
             </div>
@@ -163,37 +208,19 @@
 <!--今日推荐-->
 @section('recommend')
     <div class="am-g am-g-fixed recommendation">
-        <div class="clock am-u-sm-3" ">
-        <img src="/static/Home/images/2016.png "></img>
-        <p>今日<br>推荐</p>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>真的有鱼</h3>
-            <h4>开年福利篇</h4>
+        @if(!empty($advertisements))
+        @foreach ($advertisements as $value)
+        <div class="am-u-sm-4 am-u-lg-3 ">
+            <div class="info ">
+                <h3>{{$value->title}}</h3>
+                <h4>{{$value->descr}}</h4>
+            </div>
+            <div class="recommendationMain one">
+                <a href="{{$value->url}}"><img src="{{$value->pic}} "></img></a>
+            </div>
         </div>
-        <div class="recommendationMain one">
-            <a href="introduction.html"><img src="/static/Home/images/tj.png "></img></a>
-        </div>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>囤货过冬</h3>
-            <h4>让爱早回家</h4>
-        </div>
-        <div class="recommendationMain two">
-            <img src="/static/Home/images/tj1.png "></img>
-        </div>
-    </div>
-    <div class="am-u-sm-4 am-u-lg-3 ">
-        <div class="info ">
-            <h3>浪漫情人节</h3>
-            <h4>甜甜蜜蜜</h4>
-        </div>
-        <div class="recommendationMain three">
-            <img src="/static/Home/images/tj2.png "></img>
-        </div>
-    </div>
+        @endforeach
+        @endif
     </div>
 @endsection
 <!--热门活动-->
