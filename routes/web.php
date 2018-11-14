@@ -43,6 +43,8 @@
 		Route::post('/dolinkreq',"Admin\LinksController@dolinkreq");
         //ajax修改状态
         Route::get("/adminlinkss","Admin\LinksController@ajax");
+        //申请链接ajax删除
+        Route::get("/adminlinksreqdel","Admin\LinksController@del");
         //公告管理
         Route::resource("/adminnotice","Admin\NoticeController");
         //ajax修改状态
