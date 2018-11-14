@@ -21,9 +21,9 @@ class GoodslistController extends Controller
         }
         //查询对应的商品信息(判断以什么排序)
         if($request->input('order') == 'sales'){
-            $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->orderBy('sales','esc')->paginate(12);
+            $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->orderBy('sales','desc')->paginate(12);
         }elseif($request->input('order') == 'price'){
-            $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->orderBy('price','esc')->paginate(12);
+            $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->orderBy('price','asc')->paginate(12);
         }else{
             $list = DB::table('goods')->where("status","=",'0')->whereIn("id",$arr)->paginate(12);
         }
@@ -31,7 +31,7 @@ class GoodslistController extends Controller
         //获取总条数
         $num = count($list);
         //经典搭配(随机获取数据)
-        $match = DB::select("SELECT * FROM goods WHERE id >= ((SELECT MAX(id) FROM goods)-(SELECT MIN(id) FROM goods)) * RAND() + (SELECT MIN(id) FROM goods) LIMIT 3");
+        $match = DB::select("SELECT * FROM goods WHERE id >= ((SELECT MAX(id) FROM goods)-(SELECT MIN(id) FROM goods)) * RAND() + (SELECT MIN(id) FROM goods) AND status=0 LIMIT 3");
 //        dd($list);
         return view("Home.Goods.goodslist",['list'=>$list,'num'=>$num,'ss'=>$ss,'match'=>$match,'request'=>$request->all()]);
     }

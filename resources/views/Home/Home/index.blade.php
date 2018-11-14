@@ -52,7 +52,7 @@
 												</dt>
                         @foreach ($rows->suv as $rowss)
 												<dd>
-													<a title="{{$rowss->name}}" href="#">
+													<a title="{{$rowss->name}}" href="/typelist?typeid={{$rowss->id}}">
 														<span>{{$rowss->name}}</span>
 													</a>
 												</dd>
