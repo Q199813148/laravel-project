@@ -58,17 +58,17 @@
                     <ul class="tb-thumb" id="thumblist">
                         <li class="tb-selected">
                             <div class="tb-pic tb-s40">
-                                <a href="{{$data->photo}}"><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
+                                <a><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
                             </div>
                         </li>
                         <li>
                             <div class="tb-pic tb-s40">
-                                <a href="{{$data->photo}}"><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
+                                <a><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
                             </div>
                         </li>
                         <li>
                             <div class="tb-pic tb-s40">
-                                <a href="{{$data->photo}}"><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
+                                <a><img src="{{$data->photo}}" mid="{{$data->photo}}" big="{{$data->photo}}"></a>
                             </div>
                         </li>
                     </ul>
@@ -156,15 +156,18 @@
                                                 <div class="cart-title">口味</div>
                                                 <ul>
                                                     @foreach($taste as $v)
-                                                    <li class="sku-line">{{$v}}<i></i></li>
+                                                    <li class="sku-line">{{$v}}</li>
                                                     @endforeach
                                                 </ul>
                                             </div>
                                             <div class="theme-options">
                                                 <div class="cart-title number">数量</div>
+                                                <input type="hidden" name="goods_id" value="{{$id}}">
+                                                <input type="hidden" name="taste" value="">
+
                         <dd>
                             <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" disabled/>
-                            <input id="text_box" name="" type="text" value="1" style="width:40px;" />
+                            <input id="text_box" name="num" type="text" value="1" style="width:40px;" />
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
                             <span id="Stock" class="tb-hidden">库存<span class="stock">{{$data->store}}</span>件</span>
                         </dd>
@@ -884,14 +887,24 @@
     <script>
         $('.slideall').css('height','0px');
         $('.introduce').css("min-height",'1400px')
+        //立即购买
         $('#LikBuy').click(function(){
-            if($('.sku-line').attr('class') != 'sku-line selected'){
+            var taste = $(".theme-options li[class='sku-line selected']").html();
+            if(taste == undefined){
                 alert('至少选择一种口味');exit;
             }
+            $("#order_form").attr('action','/confirm_order');
+            $('input[name="taste"]').val(taste);
             $('#order_form').submit();
         })
+        //加入购物车
         $('#LikBasket').click(function () {
+            var taste = $(".theme-options li[class='sku-line selected']").html();
+            if(taste == undefined){
+                alert('至少选择一种口味');exit;
+            }
             $("#order_form").attr('action','/cart');
+            $('input[name="taste"]').val(taste);
             $('#order_form').submit();
         })
 
