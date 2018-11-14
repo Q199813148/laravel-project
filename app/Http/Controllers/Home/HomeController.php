@@ -8,10 +8,19 @@ use Ucpaas;
 use DB;
 use Hash;
 use Illuminate\Support\Facades\Cookie;
-//用户注册校验类
+//用户手机注册校验类
 use App\Http\Requests\Home\HomeRegist;
+//用户邮箱注册校验类
+use App\Http\Requests\Home\HomeEmailRegist;
+//忘记密码校验类
+use App\Http\Requests\Home\ForgetPass;
+//忘记密码执行修改密码校验类
+use App\Http\Requests\Home\Forget;
 //导入模型类
 use App\Model\Home\shows;
+//导入发送邮箱类
+use Mail;
+
 class HomeController extends Controller
 {
     /**
@@ -90,8 +99,6 @@ class HomeController extends Controller
     			return redirect('/regist')->with('error',"操作过于频繁，请稍后重试");
 			}
 		}
-		
-
     }
 	//发送手机验证码
 	public function rephone(Request $request)
@@ -162,9 +169,6 @@ class HomeController extends Controller
     	$name = $request->input('name');
     	$password = $request->input('password');
     	$namebool = DB::table('users')->where("name",'=',$name)->first();
-    	//$username=$namebool['name'];
-    	//dd($username);
-    	// dd($namebool->password);
     	if ($namebool) {
             if (Hash::check($password, $namebool->password)) {
 //              删除密码并存入session
@@ -187,7 +191,6 @@ class HomeController extends Controller
     public function exit(Request $request)
     { 
     	$session = $request->session()->pull('user');
-    	//$session=$request->unset($_SESSION);
     	if ($session) {
     		return redirect('/');
     	} else { 
@@ -195,6 +198,109 @@ class HomeController extends Controller
     	}
     }
 
+
+//	忘记密码
+	public function forgetpass()
+	{
+		return view("Home.Home.forgetpass");
+	}
+//	验证账号
+	public function doforgetpass(ForgetPass $request)
+	{
+		session_start();
+//		将name存入闪存
+		$request -> flashOnly('name');
+//		验证验证码
+		if($_SESSION['code'] != $request->input('code')) {
+            return redirect('/forgetpass')->with('error','　*验证码错误');
+		}
+//		获取数据并且判断验证方式
+		$data = $request->input('name');
+		if(Preg_match("/@/",$data)) {
+			$bool = 'email';
+		} elseif(Preg_match("/\d{11}/",$data)) {
+			$bool = 'phone';
+		}else{
+			$bool = 'name';
+		}
+//		获取数据库数据
+		$datb = DB::table('users')->where($bool,'=',$data)->first();
+		if($datb) {
+//			拼接保密手机
+			if($datb->phone) {
+				$phone = substr($datb->phone,0,3)."****".substr($datb->phone,7,4);
+			}else{
+				$phone = '未绑定手机';
+			}
+//			插入页面
+			return view("Home.Home.doforgetpass",['phone'=>$phone,'data'=>$datb->phone,'email'=>$datb->email,'name'=>$data,'bool'=>$bool]);
+		}else{
+            return back()->with("error",'账号不存在');
+		}
+	}
+//	验证短信
+	public function reforgetpass(Request $request)
+	{
+//		获取传输数据
+		$data = $request->except("_token");
+//		获取数据库数据
+		$user = DB::table('users')->where($data['bool'],'=',$data['name'])->first();
+//		判断是否存在手机号码
+		if($user->phone) {
+//			判断发送验证码手机与数据库手机号码是否一致
+			if($data['phone'] == $user->phone) {
+		//  	获取存储的手机验证码
+		    	$smsid = Cookie::get('smsid');
+//				dd($smsid);
+		//		获取传过来的手机验证码
+				$yzm = $request->input('phcode');
+
+		//		判断
+		
+				if($yzm == $smsid) {
+//					设置并修改随机token值
+					$update['token'] = rand(1,99999999);
+					DB::table('users')->where($data['bool'],'=',$data['name'])->update($update);
+//					引入页面
+					return view("Home.Home.reforgetpass",['id'=>$user->user_id,'token'=>$update['token']]);
+				} else {
+		            return back()->with("error",'验证码错误');
+				}
+			}else{
+	            return back()->with("error",'未发送验证码');
+			}
+		}else{
+	            return back()->with("error",'未绑定手机，请选择其他验证方式');
+		}
+	}
+//	执行修改密码
+	public function endforgetpass(Request $request)
+	{
+//		获取数据
+		$data = $request->except('_token');
+//		判断两次密码是否一致
+		if($data['password'] == $data['repassword']) {
+//			获取token值
+			$user = DB::table('users')->where('user_id','=',$data['id'])->value('token');
+//			判断token值是否被修改
+			if($user == $data['token']) {
+//				获取并加密密码
+				$update['password'] = Hash::make($request->input('password'));
+				if(DB::table('users')->where('user_id','=',$data['id'])->update($update)) {
+//					设置并修改随机token值
+					$update['token'] = rand(1,99999999);
+					DB::table('users')->where('user_id','=',$data['id'])->update($update);
+//					引入页面
+					return view("Home.Home.endforgetpass");
+				}
+			}else{
+	            return redirect('/forgetpass')->with("error",'操作过于频繁，请稍后再试');
+			}
+		}else{
+	            return redirect('/forgetpass')->with("error",'两次密码不一致，请重新申请');
+		}
+	}
+	
     /**
      * Show the form for creating a new resource.
      *
@@ -260,4 +366,64 @@ class HomeController extends Controller
     {
         //
     }
+//邮箱注册
+	public function registemail(HomeEmailRegist $request)
+	{
+		$data = $request->except('_token','repassword');
+		$data['status'] = 2;
+		$data['token'] = rand(1,99999999);
+		$data['addtime'] = date('Y-m-d H:i:s');
+		$data['level'] = 0;
+		$data['password'] = Hash::make($data['password']);
+		$name = $data['name'];
+		$email = $data['email'];
+		if($id = DB::table('users')->insertGetId($data)) {
+			$datb['user_id'] = $id;
+			$datb['u_name'] = $data['name'];
+			$datb['sex'] = 2;
+			if(DB::table('user_info')->insert($datb)) {
+		        $ddis = $this->emails($email,$id,$data['token']);
+				if($ddis) {
+					return view('Home.Home.sendemail');
+				}else{
+					return back()->with("error",'验证邮箱发送失败');
+				}
+
+			}else{
+				return back()->with("error",'验证邮箱发送失败');
+			}
+		}else{
+			return back()->with("error",'验证邮箱发送失败');
+		}
+	}
+	public function emails($email,$id,$token)
+	{
+		try {
+        	 Mail::send('Home.Home.registemail', ['id'=>$id, 'token'=>$token], function($message)use($email) {
+			//发送主题
+			$message->subject('[悦桔拉拉]激活用户');
+			//接收方
+			$message->to($email);
+			});
+			return true;
+	    } catch (Exception $e){
+	    	 	echo $e->getMessage('12');
+	    }
+	}
+	public function doregistemail(Request $request)
+	{
+		$data = $request->only('id','token');
+		$token = DB::table('users')->where('user_id','=',$data['id'])->value('token');
+		$update['token'] = rand(1,99999999);
+		$update['status'] = 1;
+		if($token == $data['token']) {
+			if(DB::table('users')->where('user_id','=',$data['id'])->update($update)) {
+				return view('Home.Home.registtrue');
+			}else{
+				return redirect('/regist')->with("error",'激活信息已失效，请再次激活');
+			}
+		}else{
+			return redirect('/regist')->with("error",'验证信息被修改');
+		}
+	}
 }

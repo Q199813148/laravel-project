@@ -78,7 +78,6 @@ class PersonalController extends Controller
 		$data->month = empty($birthday[1])?'':$birthday[1];
 		$data->day = empty($birthday[2])?'':$birthday[2];
         return view('Home.Personal.data',['data'=>$data]);
-		dd($birthday);
     }
 	
 	

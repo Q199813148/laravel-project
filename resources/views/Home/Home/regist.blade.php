@@ -42,7 +42,7 @@
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng">
-							<a href="#" target="_top">
+							<a href="/login" target="_top">
 								<i class="am-icon-user am-icon-fw"></i>个人中心
 							</a>
 						</div>
@@ -93,30 +93,37 @@
 						</ul>
 						<div class="am-tabs-bd">
 							<div class="am-tab-panel am-active">
-								<form method="post">
+								<form action="/registemail" method="post" id="emform">
 
+									<div class="user-phone">
+										<label for="phone"><i class="am-icon-user am-icon-fw"></i></label>
+										<input type="text" name="name" placeholder="@if(old('name')) {{old('name')}} @else 请输入用户名 @endif" id="name" class="emname">
+									</div>
+									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('name')}}</span>
 									<div class="user-email">
 										<label for="email"><i class="am-icon-envelope-o"></i></label>
-										<input type="email" name="" class="email" id="email" placeholder="请输入邮箱账号">
+										<input type="email" name="email" class="email" placeholder="@if(old('email')) {{old('email')}} @else 请输入邮箱 @endif" id="email">
 									</div>
+									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('email')}}</span>
 									<div class="user-pass">
 										<label for="password"><i class="am-icon-lock"></i></label>
-										<input type="password" name="" id="password" placeholder="设置密码">
+										<input type="password" name="password" class="empassword" id="password" placeholder="设置密码">
 									</div>
+									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('password')}}</span>
 									<div class="user-pass">
 										<label for="passwordRepeat"><i class="am-icon-lock"></i></label>
-										<input type="password" name="" id="passwordRepeat" placeholder="确认密码">
+										<input type="password" name="repassword" class="emrepassword" id="passwordRepeat" placeholder="确认密码">
 									</div>
-
-
+									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('repassword')}}</span>
+               					 {{csrf_field()}}
 								</form>
 								<div class="login-links">
 									<label for="reader-me">
-									<input id="reader-me" type="checkbox">
+								<input id="reader-me" class="l~1 pact" type="checkbox">
 									点击表示您同意商城《服务协议》 </label>
 								</div>
 								<div class="am-cf">
-									<input type="submit" name="" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+									<input type="submit" form="emform" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl embutton">
 								</div>
 
 							</div>
@@ -127,12 +134,12 @@
 
 									<div class="user-phone">
 										<label for="phone"><i class="am-icon-user am-icon-fw"></i></label>
-										<input type="text" name="name" value="{{old('name')}}" id="name" class="name" placeholder="请输入用户名">
+										<input type="text" name="name" placeholder="@if(old('name')) {{old('name')}} @else 请输入邮箱 @endif" id="name" class="name" placeholder="请输入用户名">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('name')}}</span>
 									<div class="user-phone">
 										<label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
-										<input type="tel" name="phone" value="{{old('phone')}}" id="phone" class="phone" placeholder="请输入手机号">
+										<input type="tel" name="phone"  placeholder="@if(old('phone')) {{old('phone')}} @else 请输入邮箱 @endif" id="phone" class="phone" placeholder="请输入手机号">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('phone')}}</span>
 									<input type="hidden" name="lists" id="" class="feis" value="0" />
@@ -184,6 +191,112 @@ alert(err);
 	$('#doc-my-tabs').tabs();
 	})
 </script>
+
+
+<!--执行邮箱注册-->
+<script type="text/javascript">
+//	协议验证
+	var bool = false;
+//	邮箱验证
+	var bool1 = false;
+//	用户名验证
+	var bool2 = false;
+//	密码验证
+	var bool3 = false;
+//	确认密码验证
+	var bool4 = false;
+//	用于进行协议判断	
+	var a = 0;
+	
+	$(".embutton").attr('disabled','true');
+//	协议验证
+	$('.pact').click(function() {
+		if(a%2 == 0) {
+			bool = true;
+		} else {
+			bool = false;
+		}
+		a++;
+		reh();
+	});
+	
+//	执行邮箱验证
+	$(".email").blur(function() {
+//		获取邮箱
+		var str = $(this).val();
+		bool1 = false;
+//		进行判断
+		if($(this).val() == '') {
+			$(this).parent('div').next().html('*邮箱不能为空');
+		}else if(str.match(/\w+@\w+\.\w+/) == null) {
+			$(this).parent('div').next().html('*邮箱格式错误');
+		} else {
+			bool1 = true;
+			$(this).parent('div').next().html('');
+		}
+		reh();
+	});
+	
+//	执行用户名验证
+	$(".emname").blur(function() {
+//		获取用户名
+		var str = $(this).val();
+		bool2 = false;
+//		进行判断
+		if($(this).val() == '') {
+			$(this).parent('div').next().html('*用户名不能为空');
+		}else if(str.match(/\w{5,10}/) == null) {
+			$(this).parent('div').next().html('*用户名为5-10位的数字字母下划线');
+		} else {
+			bool2 = true;
+			$(this).parent('div').next().html('');
+		}
+		reh();
+	});
+//	执行密码验证
+	$(".empassword").blur(function() {
+//		获取用户名
+		var str = $(this).val();
+		bool3 = false;
+//		进行判断
+		if($(this).val() == '') {
+			$(this).parent('div').next().html('*密码不能为空');
+		}else if(str.match(/\w{6,18}/) == null) {
+			$(this).parent('div').next().html('*密码为6-18位的数字字母下划线');
+		} else {
+			bool3 = true;
+			$(this).parent('div').next().html('');
+		}
+		reh();
+	});
+	
+//	执行确认密码验证
+	$(".emrepassword").blur(function() {
+//		获取确认密码
+		var str = $(this).val();
+		var pass = $(".empassword").val();
+		bool4 = false;
+//		判断
+		if($(this).val() == '') {
+			$(this).parent('div').next().html('*确认密码不能为空');
+		}else if(pass != str) {
+			$(this).parent('div').next().html('*两次密码不一致');
+		}else {
+			bool4 = true;
+			$(this).parent('div').next().html('');
+		}
+		reh();
+	});
+	function reh() {
+		if(bool && bool1 && bool2 && bool3 && bool4) {
+			$(".embutton").removeAttr('disabled');
+		} else {			
+			$(".embutton").attr('disabled','true');
+		}
+	}
+</script>
+
+
 <!--执行手机注册-->
 <script type="text/javascript">
 //	手机号码验证
@@ -278,6 +391,7 @@ alert(err);
 		}
 		reg();
 	});
+	
 //	发送手机验证码
 	$(".dycode").click(function() {
 		
