@@ -79,27 +79,17 @@
 @section('personal')
 
     <div class="marqueen">
-        <span class="marqueen-title">商城头条</span>
+        <span class="marqueen-title">商城公告</span>
         <div class="demo">
 
 		<ul>
+			@foreach ($notice as $vel)
 			<li class="title-first">
-				<a target="_blank" href="#">
-					<img src="/static/Home/images/TJ2.jpg">
-					</img>
-					<span>[特惠]</span>商城爆品1分秒
+				<a target="_blank" href="/notice?id={{$vel->id}}">
+					<span>[公告]</span>{{$vel->title}}
 				</a>
 			</li>
-			<li class="title-first">
-				<a target="_blank" href="#">
-					<span>[公告]</span>商城与广州市签署战略合作协议
-					<img src="/static/Home/images/TJ.jpg">
-					</img>
-					<p>
-						XXXXXXXXXXXXXXXXXX
-					</p>
-				</a>
-			</li>
+			@endforeach
 			<!--登录-->
 			<div class="mod-vip">
 				@if(session('user'))
@@ -175,7 +165,38 @@
                     </a>
                 </li>
 
-            </ul>
+
+        
+				@if(session('user'))
+				<div class="member-login" style="display: inline-block;">
+					<a href="#">
+						<strong>0</strong>待收货
+					</a>
+					<a href="#">
+						<strong>0</strong>待发货
+					</a>
+					<a href="#">
+						<strong>0</strong>待付款
+					</a>
+					<a href="#">
+						<strong>0</strong>待评价
+					</a>
+				</div>
+				@else
+				<div class="member-logout">
+					<a class="am-btn-warning btn" href="/login">
+						登录
+					</a>
+					<a class="am-btn-warning btn" href="/regist">
+						注册
+					</a>
+				</div>
+				@endif
+				<div class="clear"></div>
+			</div>
+		
+
+        </ul>
 
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-//修改收货信息校验类
+//添加收货信息校验类
 use App\Http\Requests\Home\HomePersonaleditinsert;
+use Illuminate\Support\Facades\Storage;
+
 class PersonalController extends Controller
 {
     /**
@@ -25,24 +27,7 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function data()
-    {
-    	$fens = 0;
-    	if(session('user')->email) {
-    		$fens += 50;
-    	}elseif(session('user')->phone){
-    		$fens += 50;
-    	}
-        $data = DB::table('user_info')->where('user_id','=',session('user')->user_id)->first();	
-		$data->fens = $fens;
-		$data->dates = date('Y'); 
-		$birthday = explode('-', $data->birthday);
-		$data->years = empty($birthday[0])?'':$birthday[0];
-		$data->month = empty($birthday[1])?'':$birthday[1];
-		$data->day = empty($birthday[2])?'':$birthday[2];
-        return view('Home.Personal.data',['data'=>$data]);
-		dd($birthday);
-    }
+    
 	
 	
 	
@@ -183,14 +168,19 @@ class PersonalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
-        // 查询信息
-        $data = DB::table('address')->where('id','=',$id)->first();
-        // dd($address);
-        //加载模板
-        return view("Home.Personal.addressedit",['data'=>$data]);
-    }
 
+    {
+//        获取数据
+        $data = DB::table('user_info')->where('user_id','=',$id)->first();	
+		$data->dates = date('Y'); 
+		$birthday = explode('-', $data->birthday);
+		$data->years = empty($birthday[0])?'':$birthday[0];
+		$data->month = empty($birthday[1])?'':$birthday[1];
+		$data->day = empty($birthday[2])?'':$birthday[2];
+        return view('Home.Personal.data',['data'=>$data]);
+    }
+	
+	
     /**
      * Update the specified resource in storage.
      *
@@ -200,19 +190,60 @@ class PersonalController extends Controller
      */
     public function update(HomePersonaleditinsert $request, $id)
     {
-        //获取数据
-        $data = $request->only(['name','phone']);
-        if($request->input('city') == "--请选择--"){
-            return back()->with('error','修改失败');
-        }else{
-            $data['address'] = join(explode(',',$request->input('city')),' ').' '.$request->input('detailed');
-            // dd($data);
-            if(DB::table('address')->where('id','=',$id)->update($data)){
-                return redirect('/personaladdress')->with('success','修改成功');
-            }else{
-                return back()->with('error','修改失败');
-            }
-        }
+
+        //获取用户详情数据
+		$data = $request->except('_token','_method','userimg','years','month','day','email');
+		$data['birthday'] = $request->only('years')['years'].'-'.$request->only('month')['month'].'-'.$request->only('day')['day'];
+//		获取用户数据
+		$datb = $request->only('email','phone');
+//		检查是否有文件上传
+		if($request->hasFile('userimg')){
+			$pic = DB::table('user_info')->where('user_id','=',$id)->value('pic');
+			//初始化名字
+			$fname=time().rand(1,10000);
+			//获取上传文件后缀
+			$ext=$request->file("userimg")->getClientOriginalExtension();
+//			拼接文件路径
+			$dirname = './uploads/usersimg/'.date("Y-m-d");
+//			拼接文件名
+			$filename = $fname.'.'.$ext;
+//			获取存入数据库的pic值
+			$data['pic'] = trim($dirname,'.').'/'.$filename;
+//			上传文件
+			$request->file("userimg")->move($dirname,$filename);
+		}
+		foreach($data as $key=>$val) {
+			if(empty($val)) {
+				unset($data[$key]);
+			}
+		}
+		foreach($datb as $key=>$val) {
+			if(empty($val)) {
+				unset($datb[$key]);
+			}
+		}
+		if(count($data)) {
+//		插入用户详情表数据
+			if(DB::table('user_info')->where('user_id','=',$id)->update($data)) {
+	//			插入用户表数据
+				if(count($datb)) {
+					if(DB::table('users')->where('user_id','=',$id)->update($datb)) {}
+					return redirect('/personal/'.$id.'/edit')->with('success',"修改成功");
+				}
+//			删除数据库头像
+			unlink('.'.$pic);
+			return redirect('/personal/'.$id.'/edit')->with('success',"修改成功");
+	//		插入数据详情失败
+			} else {
+	//			删除上传文件
+				if($request->hasFile('userimg')){
+				unlink('.'.$data['pic']);
+				}
+				return redirect('/personal/'.$id.'/edit')->with('success',"修改失败");
+			}
+		}else{
+			return redirect('/personal/'.$id.'/edit')->with('success',"修改失败");
+		}
     }
 
     /**

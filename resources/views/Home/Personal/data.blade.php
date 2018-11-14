@@ -18,10 +18,10 @@
 		<!--头像 -->
 		<div class="user-infoPic">
 			<div class="filePic">
-				<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
-				<img class="am-circle am-img-thumbnail userimg" src="{{$data->pic}}" alt="">
+				<input type="file" name="userimg" class="inputPic" form="tf" onchange="preview(this)" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+				<img class="am-circle am-img-thumbnail userimg" id="fileimg" src="{{$data->pic}}" alt="">
 			</div>
-
+				{{csrf_field()}}
 			<p class="am-form-help">
 				头像
 			</p>
@@ -42,37 +42,39 @@
 					</a> </span>
 				</div>
 				<div class="u-safety">
-					<a href="safety.html">
-						账户安全
-						<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">{{$data->fens}}分</i></span>
+					<a href="#">
+						<span style="font-size: 12px;">个性签名:</span>
+						<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0"><input type="" style="border:0px" name="summary"form="tf" placeholder="{{$data->summary or '懒到没个性'}}" /></i></span>
 					</a>
 				</div>
 			</div>
 		</div>
-
 		<!--个人信息 -->
 		<div class="info-main">
-			<form class="am-form am-form-horizontal">
-				<div class="am-form-group uimg" style="display: none;">
-					<label for="user-name2" class="am-form-label">昵称</label>
-					<div class="am-form-content">
-						<input type="text" name="nickname" id="user-name2" placeholder="{{$data->nickname or '起个昵称,让世界认识你'}}">
-
-					</div>
-				</div>
+			<form  id="tf" action="/personal/{{$data->user_id}}" method="post" enctype="multipart/form-data" class="am-form am-form-horizontal">
 				<div class="am-form-group">
 					<label for="user-name2" class="am-form-label">昵称</label>
 					<div class="am-form-content">
-						<input type="text" name="nickname" id="user-name2" placeholder="{{$data->nickname or '起个昵称,让世界认识你'}}">
+						<input type="text" name="nickname" id="user-name2"  placeholder="{{$data->nickname or '起个昵称,让世界认识你'}}">
 
 					</div>
 				</div>
 
 				<div class="am-form-group">
-					<label for="user-name" class="am-form-label">真实姓名</label>
+					<label for="user-name" class="am-form-label">年龄</label>
 					<div class="am-form-content">
-						<input type="text" name="realname" id="user-name2" placeholder="{{$data->realname or '展示最真实的自己'}}">
-
+						<div class="birth-select">
+							<select name="years" >
+								@for($i = 1; $i < 150; $i++)
+									@if($i == $data->age) 
+										<option value="{{$i}}" selected>{{$i}}</option>
+									@else
+										<option value="{{$i}}">{{$i}}</option>
+									@endif
+								@endfor
+							</select>
+							<em>岁</em>
+						</div>
 					</div>
 				</div>
 
@@ -86,7 +88,7 @@
 						<input type="radio" name="sex" value="0" data-am-ucheck="" class="am-ucheck-radio" @if($data->sex == 0) checked @endif >
 						<span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 女 </label>
 						<label class="am-radio-inline">
-						<input type="radio" name="sex" value="2" data-am-ucheck="" class="am-ucheck-radio"  @if($data->sex == 0) checked @endif >
+						<input type="radio" name="sex" value="2" data-am-ucheck="" class="am-ucheck-radio"  @if($data->sex == 2) checked @endif >
 						<span class="am-ucheck-icons"><i class="am-icon-unchecked"></i><i class="am-icon-checked"></i></span> 保密 </label>
 					</div>
 				</div>
@@ -136,6 +138,9 @@
 					</div>
 
 				</div>
+				
+          		{{method_field("PUT")}}
+				{{csrf_field()}}
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label">电话</label>
 					<div class="am-form-content">
@@ -174,9 +179,7 @@
 					</div>
 				</div>
 				<div class="info-btn">
-					<div class="am-btn am-btn-danger">
-						保存修改
-					</div>
+						<button  class="am-btn am-btn-danger" type="submit">保存修改</button>
 				</div>
 
 			</form>
@@ -186,8 +189,20 @@
 
 </div>
 
-<script>
-	
+<script type="text/javascript">
+    function preview(file) {
+        var prevImg = $('.userimg');
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevImg.attr('src', evt.target.result);
+            }
+//          
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            prevImg.attr('src', '{{$data->pic}}');
+        }
+    }
 </script>
 @endsection
 
@@ -195,7 +210,7 @@
 <!--左侧列表-->
 <ul>
 	<li class="person">
-		<a href="/personal" style="color: #f00;">
+		<a href="/personal">
 			个人中心
 		</a>
 	</li>
@@ -205,7 +220,7 @@
 		</span>
 		<ul>
 			<li>
-				<a href="/personaldata">
+				<a href="/personaldata"  style="color: #f00;">
 					个人信息
 				</a>
 			</li>
@@ -215,7 +230,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="address.html">
+				<a href="/address">
 					收货地址
 				</a>
 			</li>

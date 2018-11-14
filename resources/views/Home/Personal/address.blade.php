@@ -39,7 +39,7 @@
 										<span class="street">{{$row->address}}</span></p>
 								</div>
 								<div class="new-addr-btn">
-									<a href="/personal/{{$row->id}}/edit"><i class="am-icon-edit"></i>编辑</a>
+									<a href="/addressedit/{{$row->id}}/edit"><i class="am-icon-edit"></i>编辑</a>
 									<span class="new-addr-bar">|</span>
 									<a href="javascript:void(0);" onclick="delClick(this);" class="del"><i class="am-icon-trash"></i>删除</a>
 								</div>
