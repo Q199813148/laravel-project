@@ -16,8 +16,7 @@
 	    Route::resource("/admin", "Admin\AdminController");
 	    //后台管理信息
 	    Route::resource("/adminusers", "Admin\AdminuserController");
-//		ajax更改状态
-
+		//ajax更改状态
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
 		Route::resource("/adminshop", "Admin\ShopController");
@@ -49,7 +48,15 @@
         Route::get("/adminnotices","Admin\NoticeController@ajax");
         //后台公告删除
         Route::get("/adminnoticedel","Admin\NoticeController@del");
-
+        //广告管理
+	    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
+	    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
+        //后台商品管理
+        Route::resource("/adminorders","Admin\OrdersController");
+        //后台商品管理 订单状态
+        Route::get("/adminordersstatus","Admin\OrdersController@status");
+        //后台商品管理 退款状态
+        Route::get("/adminordersrefund","Admin\OrdersController@refund");
 	});
 
 

@@ -77,11 +77,11 @@ class HomeController extends Controller
     {
         $data = $request->all();
         // dd($data['id']);
-        $types = DB::table('types')->where("status",'=','1')->where('pid','=',$data['id'])->offset(0   )->limit(1)->first();
+        $types = DB::table('types')->where("status",'=','1')->where('pid','=',$data['id'])->offset(0)->limit(1)->first();
         $oneid = $types->id;
         $typess = DB::table('types')->where("status",'=','1')->where('pid','=',$oneid)->offset(0)->limit(1)->first();
         $twoid = $typess->id;
-        if($goods = DB::table('goods')->where("status",'=','1')->where("type_id",'=',$twoid)->offset(0)->limit(5)->get()) {
+        if($goods = DB::table('goods')->where("status",'=','0')->where("type_id",'=',$twoid)->offset(0)->limit(5)->get()) {
         // dd(count($goods));
             if(count($goods)) {
                 foreach( $goods as $row) {
