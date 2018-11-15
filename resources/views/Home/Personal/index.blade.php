@@ -32,7 +32,7 @@
 							</a>
 						</div>
 						<div class="m-address">
-							<a href="/address" class="i-trigger">
+							<a href="/personaladdress" class="i-trigger">
 								我的收货地址
 							</a>
 						</div>
@@ -412,7 +412,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="address.html">
+				<a href="/personaladdress">
 					收货地址
 				</a>
 			</li>

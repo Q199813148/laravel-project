@@ -107,7 +107,7 @@ class UsersController extends Controller
         // echo $id;
         // 查询level
         $status = DB::table("users")->where("user_id","=",$id)->value("status");
-        // 判断level
+        // 判断status
         if($status == 0){
 
             if(DB::table("users")->where("user_id","=",$id)->update(['status'=>1])){

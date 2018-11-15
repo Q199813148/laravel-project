@@ -79,27 +79,17 @@
 @section('personal')
 
     <div class="marqueen">
-        <span class="marqueen-title">商城头条</span>
+        <span class="marqueen-title">商城公告</span>
         <div class="demo">
 
 		<ul>
+			@foreach ($notice as $vel)
 			<li class="title-first">
-				<a target="_blank" href="#">
-					<img src="/static/Home/images/TJ2.jpg">
-					</img>
-					<span>[特惠]</span>商城爆品1分秒
+				<a target="_blank" href="/notice?id={{$vel->id}}">
+					<span>[公告]</span>{{$vel->title}}
 				</a>
 			</li>
-			<li class="title-first">
-				<a target="_blank" href="#">
-					<span>[公告]</span>商城与广州市签署战略合作协议
-					<img src="/static/Home/images/TJ.jpg">
-					</img>
-					<p>
-						XXXXXXXXXXXXXXXXXX
-					</p>
-				</a>
-			</li>
+			@endforeach
 			<!--登录-->
 			<div class="mod-vip">
 				@if(session('user'))
@@ -175,7 +165,38 @@
                     </a>
                 </li>
 
-            </ul>
+
+        
+				@if(session('user'))
+				<div class="member-login" style="display: inline-block;">
+					<a href="#">
+						<strong>0</strong>待收货
+					</a>
+					<a href="#">
+						<strong>0</strong>待发货
+					</a>
+					<a href="#">
+						<strong>0</strong>待付款
+					</a>
+					<a href="#">
+						<strong>0</strong>待评价
+					</a>
+				</div>
+				@else
+				<div class="member-logout">
+					<a class="am-btn-warning btn" href="/login">
+						登录
+					</a>
+					<a class="am-btn-warning btn" href="/regist">
+						注册
+					</a>
+				</div>
+				@endif
+				<div class="clear"></div>
+			</div>
+		
+
+        </ul>
 
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>
@@ -257,129 +278,28 @@
 @endsection
 <!--商品列表-->
 @section('goods')
-    <div id="f1">
+    @foreach($type as $key=>$val)
+    <div id="f1" style="height:300px;">
         <!--甜点-->
         <div class="am-container ">
             <div class="shopTitle ">
-                <h4>甜品</h4>
-                <h3>每一道甜品都有一个故事</h3>
-                <div class="today-brands ">
-                    <a href="# ">桂花糕</a>
-                    <a href="# ">奶皮酥</a>
-                    <a href="# ">栗子糕 </a>
-                    <a href="# ">马卡龙</a>
-                    <a href="# ">铜锣烧</a>
-                    <a href="# ">豌豆黄</a>
-                </div>
+                <h4>{{$val->name}}</h4>
                 <span class="more ">
 	<a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
 	</span>
             </div>
         </div>
         <div class="am-g am-g-fixed floodFour">
-            <div class="am-u-sm-5 am-u-md-4 text-one list ">
-                <div class="word">
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                    <a class="outer" href="#"><span class="inner"><b class="text">核桃</b></span></a>
-                </div>
-                <a href="# ">
-                    <div class="outer-con ">
-                        <div class="title ">
-                            开抢啦！
-                        </div>
-                        <div class="sub-title ">
-                            零食大礼包
-                        </div>
-                    </div>
-                    <img src="/static/Home/images/act1.png " />
-                </a>
-                <div class="triangle-topright"></div>
-            </div>
-            <div class="am-u-sm-7 am-u-md-4 text-two sug">
-                <div class="outer-con ">
-                    <div class="title ">
-                        雪之恋和风大福
-                    </div>
-                    <div class="sub-title ">
-                        ¥13.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="/static/Home/images/2.jpg" /></a>
-            </div>
-            <div class="am-u-sm-7 am-u-md-4 text-two">
-                <div class="outer-con ">
-                    <div class="title ">
-                        雪之恋和风大福
-                    </div>
-                    <div class="sub-title ">
-                        ¥13.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# "><img src="/static/Home/images/1.jpg" /></a>
-            </div>
-            <div class="am-u-sm-3 am-u-md-2 text-three big">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# ">
-                    <img src="/static/Home/images/5.jpg" />
-                </a>
-            </div>
-            <div class="am-u-sm-3 am-u-md-2 text-three sug">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# ">
-                    <img src="/static/Home/images/3.jpg" />
-                </a>
-            </div>
-            <div class="am-u-sm-3 am-u-md-2 text-three ">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# ">
-                    <img src="/static/Home/images/4.jpg" />
-                </a>
-            </div>
-            <div class="am-u-sm-3 am-u-md-2 text-three last big ">
-                <div class="outer-con ">
-                    <div class="title ">
-                        小优布丁
-                    </div>
-                    <div class="sub-title ">
-                        ¥4.8
-                    </div>
-                    <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
-                </div>
-                <a href="# ">
-                    <img src="/static/Home/images/5.jpg" />
-                </a>
+            <div class="goodslist{{$key}}">
             </div>
         </div>
         <div class="clear "></div>
     </div>
+    <script>
+        $.get('/homegoodslist',{id:{{$val->id}}},function(data) {
+            // alert(data);
+            $('.goodslist{{$key}}').html(data);
+        });
+    </script>
+    @endforeach
 @endsection

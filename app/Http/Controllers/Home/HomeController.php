@@ -50,7 +50,11 @@ class HomeController extends Controller
         $shows = \App\Model\Shows::where('status','=','1')->orderBy('id')->get();
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
-
+        //公告
+        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,5");
+        //dd($notice);
+        $types=$this->gettypesbypid(0);
+        // dd($types);
         //分类
         $types=$this->gettypesbypid(0);
         // dd($types);
@@ -58,9 +62,106 @@ class HomeController extends Controller
         //获取广告信息
         $advertisements = DB::table("advertisement")->where("status",'=','1')->orderBy('id')->get();
         // dd($advertisements);
-        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements]);
+        //查询分类
+        $type = DB::table("types")->where("status",'=','1')->where("pid",'=',"0")->offset(0)->limit(10)->get();
+        // dd($type);
+        //首页商品
+        $goods = DB::table("goods")->where("status",'=','1')->orderBy('id')->get();
+        // dd($goods);
 
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type]);
     }
+
+    //ajax首页商品列表
+    public function goodslist(Request $request)
+    {
+        $data = $request->all();
+        // dd($data['id']);
+        $types = DB::table('types')->where("status",'=','1')->where('pid','=',$data['id'])->offset(0   )->limit(1)->first();
+        $oneid = $types->id;
+        $typess = DB::table('types')->where("status",'=','1')->where('pid','=',$oneid)->offset(0)->limit(1)->first();
+        $twoid = $typess->id;
+        if($goods = DB::table('goods')->where("status",'=','1')->where("type_id",'=',$twoid)->offset(0)->limit(5)->get()) {
+        // dd(count($goods));
+            if(count($goods)) {
+                foreach( $goods as $row) {
+            echo '
+                <div class="am-u-sm-3 am-u-md-2 text-three" style="height:300px;" >
+                    <div class="outer-con ">
+                        <div class="title ">
+                            '.$row->name.'
+                        </div>
+                        <div class="sub-title ">
+                            '.$row->price.'
+                        </div>
+                    </div>
+                        <a href="#">
+                            <img  src='.$row->photo.'/>
+                        </a>
+                </div>
+                ';
+            }
+            }else{
+            echo '
+            <center>
+                <div class="am-u-sm-3 am-u-md-2 text-three" style="height:0px;" >
+                    <div class="outer-con ">
+                        <div class="title ">
+                        </div>
+                    </div>
+                        <a href="#">
+                            <img  src="/static/Home/images/zanwu.png"/>
+                        </a>
+                </div>
+            </center>
+                ';
+            }
+        }
+    }
+    //公告列表
+    public function notice(Request $request)
+    { 
+    	//dd($_GET['id']);
+    	$id=$_GET['id'];
+    	$data = DB::select("select * from notice where status = 1 and id = $id ");
+    	$info = DB::select("select * from notice where status = 1");
+    	return view("Home.Home.notice",['data'=>$data,'info'=>$info]);
+    }
+
+    //遍历链接
+    public function links()
+    { 
+    	$links = DB::select("select * from links where status = 1 order by id asc limit 0,5");
+    	//dd($links);
+    	foreach ($links as $value) {
+	    	echo '
+				<b>|</b>
+				<a href='.$value->url.'>'.$value->name.'</a>
+    		';
+    	}
+    }
+
+    //链接申请
+    public function relinks(Request $request)
+    { 
+    	return view("Home.Home.links");
+    }
+
+    //执行申请表单
+    public function dorelinks(Request $request)
+    { 
+    	$data = $request->input();
+    	$data['addtime']=date('Y-m-d:H:i:s');
+    	$data['status']= 0;
+    	unset($data['_token']);
+    	//dd($data);
+    	if(DB::table("relinks")->insert($data)){ 
+        	return redirect("/")->with('success','添加成功');
+        } else { 
+        	return back()->with('error','添加失败');
+        }
+    }
+
     //注册页面
     public function regist()
     { 
