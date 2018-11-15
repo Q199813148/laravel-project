@@ -241,12 +241,12 @@
 		</span>
 		<ul>
 			<li>
-				<a href="/personaldata">
+				<a href="/personal/{{session('user')->user_id}}/edit">
 					个人信息
 				</a>
 			</li>
 			<li>
-				<a href="safety.html">
+				<a href="/personalsafety">
 					安全设置
 				</a>
 			</li>
@@ -324,6 +324,5 @@
 			</li>
 		</ul>
 	</li>
-
 </ul>
 @endsection

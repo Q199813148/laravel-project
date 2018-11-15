@@ -74,14 +74,14 @@
 						</a>
 					</li>
 					<li>
-						<a href="order.html">
+						<a href="#">
 							<i>
 							<img src="/static/Home/images/comment.png">
 							</i><span>待评价<em class="m-num">{{$data['discuss']}}</em></span>
 						</a>
 					</li>
 					<li>
-						<a href="change.html">
+						<a href="#">
 							<i>
 							<img src="/static/Home/images/refund.png">
 							</i><span>售后</span>
@@ -277,12 +277,12 @@
 					</a>
 				</div>
 				<div class="s-content">
-					@if(!empty($goods))
 					@foreach($goods as $val)
+					@if(!empty($val))
 					<div class="s-item-wrap">
 						<div class="s-item">
 							<div class="s-pic">
-								<a href="#" @if($val->status == 0) onclick="alert('商品已下架');return false" @endif class="s-pic-link">
+								<a href="/goodsdetail?id={{$val->id}}" @if($val->status == 0) onclick="alert('商品已下架');return false" @endif class="s-pic-link">
 									<img src="{{$val->photo}}" alt="{{$val->name}}" class="s-pic-img s-guess-item-img">
 								</a>
 							</div>
@@ -299,8 +299,8 @@
 							</div>
 						</div>
 					</div>
-					@endforeach
 					@endif
+					@endforeach
 				</div>
 
 				<div class="s-more-btn i-load-more-item" data-screen="0">
@@ -355,7 +355,7 @@
 				</a>
 			</div>
 			<div class="new-goods-info">
-				<a class="shop-info" href="#" target="_blank">
+				<a class="shop-info" href="/goodsdetail?id={{$new->id}}" target="_blank">
 					<div class="face-img-panel">
 						<img src="{{$new->photo}}" alt="">
 					</div>
@@ -374,9 +374,9 @@
 				<i class="s-icon"></i>热卖推荐
 			</div>
 			<div class="new-goods-info">
-				<a class="shop-info" href="#" target="_blank">
+				<a class="shop-info" href="/goodsdetail?id={{$sales->id}}" target="_blank">
 					<div>
-						<img src="{{$sales->photo}}" alt="{{$sales->name}}">
+						<img src="{{$sales->photo}}"" alt="{{$sales->name}}">
 					</div>
 					<span class="one-hot-goods">￥{{$sales->price}}</span>
 				</a>
@@ -407,7 +407,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="safety.html">
+				<a href="/personalsafety">
 					安全设置
 				</a>
 			</li>

@@ -25,10 +25,10 @@ class PersonalController extends Controller
 		foreach($collect as $key=>$val) {
 			$goods[] = DB::table('goods')->where('id','=',$val->goods_id)->first();
 		}
-		$sales = DB::table('goods')->where('status','=',1)->orderBy("sales",'desc')->first();
-		$new = DB::table('goods')->where('status','=',1)->orderBy("id",'desc')->first();
-//		dd($sales);
-//		dd($orders);
+		$sales = DB::table('goods')->where('status','=',0)->orderBy("sales",'desc')->first();
+		$new = DB::table('goods')->where('status','=',0)->orderBy("id",'desc')->first();
+//		dd($new);
+//		dd($collect);
 //		付
 		$data['hand'] = 0;
 //		发
@@ -223,14 +223,15 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(HomePersonaleditinsert $request, $id)
+    public function update(Request $request, $id)
     {
 
         //获取用户详情数据
-		$data = $request->except('_token','_method','userimg','years','month','day','email');
+		$data = $request->except('_token','_method','userimg','years','month','day','email','phone','status');
+//      dd($data);
 		$data['birthday'] = $request->only('years')['years'].'-'.$request->only('month')['month'].'-'.$request->only('day')['day'];
 //		获取用户数据
-		$datb = $request->only('email','phone');
+
 //		检查是否有文件上传
 		if($request->hasFile('userimg')){
 			$pic = DB::table('user_info')->where('user_id','=',$id)->value('pic');
@@ -252,19 +253,9 @@ class PersonalController extends Controller
 				unset($data[$key]);
 			}
 		}
-		foreach($datb as $key=>$val) {
-			if(empty($val)) {
-				unset($datb[$key]);
-			}
-		}
 		if(count($data)) {
 //		插入用户详情表数据
 			if(DB::table('user_info')->where('user_id','=',$id)->update($data)) {
-	//			插入用户表数据
-				if(count($datb)) {
-					if(DB::table('users')->where('user_id','=',$id)->update($datb)) {}
-					return redirect('/personal/'.$id.'/edit')->with('success',"修改成功");
-				}
 //			删除数据库头像
 			if(!empty($pic)) {
 				unlink('.'.$pic);

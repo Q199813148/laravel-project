@@ -75,8 +75,25 @@
 		Route::resource("/personal", "Home\PersonalController");
 		//收货地址修改
 		Route::resource("/addressedit", "Home\AddressController");
-		Route::get("/personaldata", "Home\PersonalController@data");
-
+//		前台个人中心安全设置
+		Route::resource("/personalsafety",'Home\PersonalsafetyController');
+//		安全设置修改密码
+		Route::get("/safetypass",'Home\PersonalsafetyController@safetypass');
+//		执行修改密码
+		Route::post("/dosafetypass",'Home\PersonalsafetyController@dosafetypass');
+//		安全设置修改手机
+		Route::get("/safetyphone",'Home\PersonalsafetyController@safetyphone');
+//		执行修改手机
+		Route::post("/dosafetyphone",'Home\PersonalsafetyController@dosafetyphone');
+//		调用密保检验
+		Route::get("/verifyencrypted",'Home\PersonalsafetyController@verifyencrypted');
+//		执行密保验证
+		Route::post("/doverifyencrypted",'Home\PersonalsafetyController@doverifyencrypted');
+//		修改密保
+		Route::get("/safetyencrypted",'Home\PersonalsafetyController@safetyencrypted');
+//		执行修改密保
+		Route::post("/dosafetyencrypted",'Home\PersonalsafetyController@dosafetyencrypted');
+	
         //收货地址
         Route::get("/personaladdress","Home\PersonalController@address");
         //收货地址默认ajax
@@ -92,7 +109,6 @@
         Route::get('/cart/ajaxadd', 'Home\CartController@ajaxadd');
         Route::get('/cart/del', 'Home\CartController@del');
         Route::get('/cart/change', 'Home\CartController@change');
-
 	});
 
 	//前台首页
