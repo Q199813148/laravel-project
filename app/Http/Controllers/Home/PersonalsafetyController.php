@@ -128,7 +128,7 @@ class PersonalsafetyController extends Controller
 		if($data['result1'] == $result->result1 && $data['result2'] == $result->result2) {
 			$token = rand(1,99999999);
 			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
-			dd($data);
+			$url = $request->input('url');
 			return redirect('/'.$url.'?token='.$token);
 		}else{
 			return back()->with('error','答案错误');
@@ -183,7 +183,7 @@ class PersonalsafetyController extends Controller
 		if(!$token == $dbtoken) {
 			$token = rand(1,99999999);
 			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
-			return redirect('/verifyencrypted?token='.$token);
+			return redirect('/verifyencrypted?url=safetyencrypted&token='.$token);
 		}
 		$data = DB::table('encrypted')->where('user_id','=',$id)->first();
 		return view('Home.Personal.safetyencryptededit',['data'=>$data]);
