@@ -14,11 +14,15 @@
 				<div class="m-userinfo">
 					<div class="m-baseinfo">
 						<a href="information.html">
-							<img src="/static/Home/images/getAvatar.do.jpg">
+							<img src="{{$user->pic}}">
 						</a>
-						<em class="s-name">(小叮当)<span class="vip1"></span></em>
+						<em class="s-name">{{session('user')->name}}<span class="vip1"></span></em>
 						<div class="s-prestige am-btn am-round">
-							会员福利
+							@if(session('user')->level == 1) 
+							<span style="color: #f00;">VIP</span>
+							@else
+							普通用户
+							@endif
 						</div>
 					</div>
 					<div class="m-right">
@@ -36,54 +40,6 @@
 				</div>
 
 				<!--个人资产-->
-				<div class="m-userproperty">
-					<div class="s-bar">
-						<i class="s-icon"></i>个人资产
-					</div>
-					<p class="m-bonus">
-						<a href="bonus.html">
-							<i>
-							<img src="/static/Home/images/bonus.png">
-							</i>
-							<span class="m-title">红包</span>
-							<em class="m-num">2</em>
-						</a>
-					</p>
-					<p class="m-coupon">
-						<a href="coupon.html">
-							<i>
-							<img src="/static/Home/images/coupon.png">
-							</i>
-							<span class="m-title">优惠券</span>
-							<em class="m-num">2</em>
-						</a>
-					</p>
-					<p class="m-bill">
-						<a href="bill.html">
-							<i>
-							<img src="/static/Home/images/wallet.png">
-							</i>
-							<span class="m-title">钱包</span>
-							<em class="m-num">2</em>
-						</a>
-					</p>
-					<p class="m-big">
-						<a href="#">
-							<i>
-							<img src="/static/Home/images/day-to.png">
-							</i>
-							<span class="m-title">签到有礼</span>
-						</a>
-					</p>
-					<p class="m-big">
-						<a href="#">
-							<i>
-							<img src="/static/Home/images/72h.png">
-							</i>
-							<span class="m-title">72小时发货</span>
-						</a>
-					</p>
-				</div>
 			</div>
 			<div class="box-container-bottom"></div>
 
@@ -91,44 +47,44 @@
 			<div class="m-order">
 				<div class="s-bar">
 					<i class="s-icon"></i>我的订单
-					<a class="i-load-more-item-shadow" href="order.html">
+					<a class="i-load-more-item-shadow" href="#">
 						全部订单
 					</a>
 				</div>
 				<ul>
 					<li>
-						<a href="order.html">
+						<a href="#">
 							<i>
 							<img src="/static/Home/images/pay.png">
-							</i><span>待付款</span>
+							</i><span>待付款<em class="m-num">{{$data['hand']}}</em></span>
 						</a>
 					</li>
 					<li>
 						<a href="order.html">
 							<i>
 							<img src="/static/Home/images/send.png">
-							</i><span>待发货<em class="m-num">1</em></span>
+							</i><span>待发货<em class="m-num">{{$data['issue']}}</em></span>
 						</a>
 					</li>
 					<li>
 						<a href="order.html">
 							<i>
 							<img src="/static/Home/images/receive.png">
-							</i><span>待收货</span>
+							</i><span>待收货<em class="m-num">{{$data['receipts']}}</em></span>
 						</a>
 					</li>
 					<li>
 						<a href="order.html">
 							<i>
 							<img src="/static/Home/images/comment.png">
-							</i><span>待评价<em class="m-num">3</em></span>
+							</i><span>待评价<em class="m-num">{{$data['discuss']}}</em></span>
 						</a>
 					</li>
 					<li>
 						<a href="change.html">
 							<i>
 							<img src="/static/Home/images/refund.png">
-							</i><span>退换货</span>
+							</i><span>售后</span>
 						</a>
 					</li>
 				</ul>
@@ -188,7 +144,7 @@
 				</ul>
 			</div>
 			<!--物流 -->
-			<div class="m-logistics">
+			<!--<div class="m-logistics">
 
 				<div class="s-bar">
 					<i class="s-icon"></i>我的物流
@@ -310,183 +266,45 @@
 
 				</div>
 
-			</div>
+			</div>-->
 
 			<!--收藏夹 -->
 			<div class="you-like">
 				<div class="s-bar">
 					我的收藏
-					<a class="am-badge am-badge-danger am-round">
-						降价
-					</a>
-					<a class="am-badge am-badge-danger am-round">
-						下架
-					</a>
 					<a class="i-load-more-item-shadow" href="#">
-						<i class="am-icon-refresh am-icon-fw"></i>换一组
+						查看全部
 					</a>
 				</div>
 				<div class="s-content">
+					@if(!empty($goods))
+					@foreach($goods as $val)
 					<div class="s-item-wrap">
 						<div class="s-item">
-
 							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
+								<a href="#" @if($val->status == 0) onclick="alert('商品已下架');return false" @endif class="s-pic-link">
+									<img src="{{$val->photo}}" alt="{{$val->name}}" class="s-pic-img s-guess-item-img">
 								</a>
 							</div>
 							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">42.50</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
+								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">{{$val->price}}</em></span>
+								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">{{$val->price+10}}</em></span>
+								<span class="s-history-price"><em class="s-price-sign">@if($val->status == 0) 已下架 @endif</em></span>
 
 							</div>
 							<div class="s-title">
-								<a href="#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">
-									包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰
+								<a href="#" title="{{$val->name}}">
+									{{$val->name}}
 								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 98.03%</span>
-								<span class="s-sales">月销: 219</span>
-
 							</div>
 						</div>
 					</div>
-
-					<div class="s-item-wrap">
-						<div class="s-item">
-
-							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
-								</a>
-							</div>
-							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">49.90</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-
-							</div>
-							<div class="s-title">
-								<a href="#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">
-									s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰
-								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 99.74%</span>
-								<span class="s-sales">月销: 69</span>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="s-item-wrap">
-						<div class="s-item">
-
-							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
-								</a>
-							</div>
-							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">378.00</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-
-							</div>
-							<div class="s-title">
-								<a href="#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">
-									4折抢购!十二生肖925银女戒指,时尚开口女戒
-								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 99.93%</span>
-								<span class="s-sales">月销: 278</span>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="s-item-wrap">
-						<div class="s-item">
-
-							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/0-item_pic.jpg_220x220.jpg" alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰" class="s-pic-img s-guess-item-img">
-								</a>
-							</div>
-							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">42.50</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
-
-							</div>
-							<div class="s-title">
-								<a href="#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">
-									包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰
-								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 98.03%</span>
-								<span class="s-sales">月销: 219</span>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="s-item-wrap">
-						<div class="s-item">
-
-							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/1-item_pic.jpg_220x220.jpg" alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰" class="s-pic-img s-guess-item-img">
-								</a>
-							</div>
-							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">49.90</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-
-							</div>
-							<div class="s-title">
-								<a href="#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">
-									s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰
-								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 99.74%</span>
-								<span class="s-sales">月销: 69</span>
-
-							</div>
-						</div>
-					</div>
-
-					<div class="s-item-wrap">
-						<div class="s-item">
-
-							<div class="s-pic">
-								<a href="#" class="s-pic-link">
-									<img src="/static/Home/images/-0-saturn_solar.jpg_220x220.jpg" alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒" class="s-pic-img s-guess-item-img">
-								</a>
-							</div>
-							<div class="s-price-box">
-								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">378.00</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-
-							</div>
-							<div class="s-title">
-								<a href="#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">
-									4折抢购!十二生肖925银女戒指,时尚开口女戒
-								</a>
-							</div>
-							<div class="s-extra-box">
-								<span class="s-comment">好评: 99.93%</span>
-								<span class="s-sales">月销: 278</span>
-
-							</div>
-						</div>
-					</div>
-
+					@endforeach
+					@endif
 				</div>
 
 				<div class="s-more-btn i-load-more-item" data-screen="0">
-					<i class="am-icon-refresh am-icon-fw"></i>更多
+					<a href="/">再去逛逛</a>
 				</div>
 
 			</div>
@@ -505,35 +323,52 @@
 			</div>
 			<div class="s-care s-care-noweather">
 				<div class="s-date">
-					<em>21</em>
-					<span>星期一</span>
-					<span>2015.12</span>
+					<em>{{date('d')}}</em>
+					<span>
+						@if(date('w') == 1)
+						星期一
+						@elseif(date('w') == 2)
+						星期二
+						@elseif(date('w') == 3)
+						星期三
+						@elseif(date('w') == 4)
+						星期四
+						@elseif(date('w') == 5)
+						星期五
+						@elseif(date('w') == 6)
+						星期六
+						@elseif(date('w') == 0)
+						星期日
+						@endif
+					</span>
+					<span>{{date('Y.m')}}</span>
 				</div>
 			</div>
 		</div>
 		<!--新品 -->
+		@if(!empty($new))
 		<div class="new-goods">
 			<div class="s-bar">
 				<i class="s-icon"></i>今日新品
 				<a class="i-load-more-item-shadow">
-					15款新品
+					
 				</a>
 			</div>
 			<div class="new-goods-info">
 				<a class="shop-info" href="#" target="_blank">
 					<div class="face-img-panel">
-						<img src="/static/Home/images/imgsearch1.jpg" alt="">
+						<img src="{{$new->photo}}" alt="">
 					</div>
-					<span class="new-goods-num ">4</span>
-					<span class="shop-title">剥壳松子</span>
+					<span class="shop-title">{{$new->name}}</span>
 				</a>
 				<a class="follow " target="_blank">
 					关注
 				</a>
 			</div>
 		</div>
-
+		@endif
 		<!--热卖推荐 -->
+		@if(!empty($sales))
 		<div class="new-goods">
 			<div class="s-bar">
 				<i class="s-icon"></i>热卖推荐
@@ -541,13 +376,13 @@
 			<div class="new-goods-info">
 				<a class="shop-info" href="#" target="_blank">
 					<div>
-						<img src="/static/Home/images/imgsearch1.jpg" alt="">
+						<img src="{{$sales->photo}}" alt="{{$sales->name}}">
 					</div>
-					<span class="one-hot-goods">￥9.20</span>
+					<span class="one-hot-goods">￥{{$sales->price}}</span>
 				</a>
 			</div>
 		</div>
-
+		@endif
 	</div>
 </div>
 
@@ -650,6 +485,5 @@
 			</li>
 		</ul>
 	</li>
-
 </ul>
 @endsection

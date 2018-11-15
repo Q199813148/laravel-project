@@ -18,8 +18,43 @@ class PersonalController extends Controller
      */
     public function index()
     {
-        //
-        return view('Home.Personal.index');
+        $id = session('user')->user_id; 
+        $orders = DB::table('orders')->where('user_id','=',$id)->get();
+        $user = DB::table('user_info')->where('user_id','=',$id)->first();
+		$collect = DB::table('collect')->where('user_id','=',$id)->offset(0)->limit(8)->select('goods_id')->get();
+		foreach($collect as $key=>$val) {
+			$goods[] = DB::table('goods')->where('id','=',$val->goods_id)->first();
+		}
+		$sales = DB::table('goods')->where('status','=',1)->orderBy("sales",'desc')->first();
+		$new = DB::table('goods')->where('status','=',1)->orderBy("id",'desc')->first();
+//		dd($sales);
+//		dd($orders);
+//		付
+		$data['hand'] = 0;
+//		发
+		$data['issue'] = 0;
+//		收
+		$data['receipts'] = 0;
+//		评
+		$data['discuss'] = 0;
+		foreach($orders as $val) {
+			switch($val->status) {
+				case 0:
+					$data['hand'] += 1;
+					break;
+				case 1:
+					$data['issue'] += 1;
+					break;
+				case 2:
+					$data['receipts'] += 1;
+					break;
+				case 3:
+					$data['discuss'] += 1;
+					break;
+			}
+		}
+//		dd($data);
+        return view('Home.Personal.index',['data'=>$data,'user'=>$user,'goods'=>$goods,'sales'=>$sales,'new'=>$new]);
     }
 	
     /**
@@ -231,7 +266,9 @@ class PersonalController extends Controller
 					return redirect('/personal/'.$id.'/edit')->with('success',"修改成功");
 				}
 //			删除数据库头像
-			unlink('.'.$pic);
+			if(!empty($pic)) {
+				unlink('.'.$pic);
+			}
 			return redirect('/personal/'.$id.'/edit')->with('success',"修改成功");
 	//		插入数据详情失败
 			} else {

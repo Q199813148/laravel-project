@@ -67,6 +67,10 @@
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
+    //广告管理
+    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
+    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
+
 
 	//end Memory
 
@@ -108,6 +112,18 @@
 	Route::get("/rephone", "Home\HomeController@rephone");
 //	前台注册ajax校验手机验证码
 	Route::get("/mecode", "Home\HomeController@mecode");
+//	邮箱注册
+	Route::post("/registemail", "Home\HomeController@registemail");
+//	执行邮箱验证
+	Route::get("/doregistemail", "Home\HomeController@doregistemail");
+//	找回密码
+	Route::get("/forgetpass", "Home\HomeController@forgetpass");
+//	找回密码检测账号
+	Route::get("/doforgetpass", "Home\HomeController@doforgetpass");
+//	找回密码检测短信验证
+	Route::post("/reforgetpass", "Home\HomeController@reforgetpass");
+//	找回密码修改密码
+	Route::post("/endforgetpass", "Home\HomeController@endforgetpass");
 	//前台登录
 	Route::get("/login", "Home\HomeController@login");
 	//前台执行登录

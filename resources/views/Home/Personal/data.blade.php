@@ -64,7 +64,7 @@
 					<label for="user-name" class="am-form-label">年龄</label>
 					<div class="am-form-content">
 						<div class="birth-select">
-							<select name="years" >
+							<select name="age" >
 								@for($i = 1; $i < 150; $i++)
 									@if($i == $data->age) 
 										<option value="{{$i}}" selected>{{$i}}</option>

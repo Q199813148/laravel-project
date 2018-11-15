@@ -38,6 +38,7 @@ class AdminController extends Controller
 	{
 		session_start();
 //		验证验证码
+//		将name存入闪存
 		$request -> flashOnly('name');
 		if($_SESSION['code'] != $request->input('code')) {
             return redirect('/admins/login')->with('error','　*验证码错误');
