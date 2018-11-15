@@ -334,7 +334,7 @@ alert(err);
 //		进行判断
 		if($(this).val() == '') {
 			$(this).parent('div').next().html('*手机号码不能为空');
-		}else if(str.match(/\d{11}/) == null) {
+		}else if(str.match(/^\d{11}$/) == null) {
 			$(this).parent('div').next().html('*手机格式错误');
 		} else {
 			bool = true;

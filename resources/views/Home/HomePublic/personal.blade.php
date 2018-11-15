@@ -40,6 +40,8 @@
 									<a href="/personal" target="_top" style="color: #f00;">
 										{{session('user')->name}}
 									</a>
+									
+									<a href="/exit">退出</a>
 								</div>
 								@else
 								

@@ -401,7 +401,7 @@ class HomeController extends Controller
 		try {
         	 Mail::send('Home.Home.registemail', ['id'=>$id, 'token'=>$token], function($message)use($email) {
 			//发送主题
-			$message->subject('[悦桔拉拉]激活用户');
+			$message->subject('激活用户');
 			//接收方
 			$message->to($email);
 			});
@@ -418,6 +418,7 @@ class HomeController extends Controller
 		$update['status'] = 1;
 		if($token == $data['token']) {
 			if(DB::table('users')->where('user_id','=',$data['id'])->update($update)) {
+				dd('成功');
 				return view('Home.Home.registtrue');
 			}else{
 				return redirect('/regist')->with("error",'激活信息已失效，请再次激活');
