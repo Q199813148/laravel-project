@@ -18,17 +18,25 @@ class PersonalController extends Controller
      */
     public function index()
     {
+//  	获取id
         $id = session('user')->user_id; 
+//		获取订单数据
         $orders = DB::table('orders')->where('user_id','=',$id)->get();
+//		获取用户数据
         $user = DB::table('user_info')->where('user_id','=',$id)->first();
+//		获取收藏数据
 		$collect = DB::table('collect')->where('user_id','=',$id)->offset(0)->limit(8)->select('goods_id')->get();
+//		获取收藏的商品
 		foreach($collect as $key=>$val) {
 			$goods[] = DB::table('goods')->where('id','=',$val->goods_id)->first();
 		}
+//		获取销量最多商品
 		$sales = DB::table('goods')->where('status','=',0)->orderBy("sales",'desc')->first();
+//		获取最近添加商品
 		$new = DB::table('goods')->where('status','=',0)->orderBy("id",'desc')->first();
 //		dd($new);
 //		dd($collect);
+//		获取订单信息
 //		付
 		$data['hand'] = 0;
 //		发
@@ -57,12 +65,6 @@ class PersonalController extends Controller
         return view('Home.Personal.index',['data'=>$data,'user'=>$user,'goods'=>$goods,'sales'=>$sales,'new'=>$new]);
     }
 	
-    /**
-     * 个人资料
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
 	
 	
 	
@@ -197,7 +199,7 @@ class PersonalController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 修改用户信息
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -217,7 +219,7 @@ class PersonalController extends Controller
 	
 	
     /**
-     * Update the specified resource in storage.
+     * 执行用户信息修改
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
