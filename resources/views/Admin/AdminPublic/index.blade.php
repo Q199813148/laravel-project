@@ -254,11 +254,17 @@
               </ul>
               </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/order">
-              <span class="menu-title">商品订单</span>
+          <li class="nav-item suibian">
+            <a class="nav-link" aria-expanded="false" >
+              <span class="menu-title">订单管理</span>
+              <i class="menu-arrow"></i>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
+            <div class="collapse" id="general-pages">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/adminorders"> 订单列表 </a></li>
+              </ul>
+              </div>
           </li>
           <li class="nav-item suibian">
             <a class="nav-link" aria-expanded="false" >
