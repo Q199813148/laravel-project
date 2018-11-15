@@ -18,9 +18,13 @@ class PersonalsafetyController extends Controller
      */
     public function index()
     {
+//  	获取id
     	$id = session('user')->user_id;
+//		获取用户表
     	$data = DB::table('users')->where('user_id','=',$id)->first();
+//		获取用户详情表
     	$user = DB::table('user_info')->where('user_id','=',$id)->first();
+//		获取密保信息
     	$encrypted = DB::table('encrypted')->where('user_id','=',$id)->first();
 //		dd($encrypted);
         return view('Home.Personal.safety',['data'=>$data,'user'=>$user,'encrypted'=>$encrypted]);
