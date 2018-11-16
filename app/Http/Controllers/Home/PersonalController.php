@@ -190,7 +190,7 @@ class PersonalController extends Controller
         	//return back()->with('error','收藏失败');
         } else {
         	if (DB::table("collect")->insert($collect)) {
-        		return redirect("/collectlist")->with('success','收藏成功');
+        		return back()->with('success','收藏成功');
         	} else {
         		return back()->with('error','收藏失败');
         	}

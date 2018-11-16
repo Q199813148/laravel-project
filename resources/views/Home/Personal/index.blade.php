@@ -272,7 +272,7 @@
 			<div class="you-like">
 				<div class="s-bar">
 					我的收藏
-					<a class="i-load-more-item-shadow" href="#">
+					<a class="i-load-more-item-shadow" href="/collectlist">
 						查看全部
 					</a>
 				</div>
