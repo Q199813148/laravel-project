@@ -25,6 +25,8 @@ class SubmitOrderController extends Controller
         $order['orderno'] = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
         //用户id
         $order['user_id'] = session('user')->user_id;
+        //商品id
+        $gid = $data['goods_id'];
         //判断是否和提交订单的用户id是同一个id
         if ($order['user_id'] != $data['user_id']) {
             exit;
@@ -72,6 +74,8 @@ class SubmitOrderController extends Controller
             DB::table('details')->insert(['order_id' => $id, 'good_id' => $val->goods_id, 'num' => $val->num, 'taste' => $val->taste]);
             //计算销量
             $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
+            //计算剩余库存
+            $store = DB::table('goods')->where('id', $gid)->first()->store - $num;
             //更新库存
             DB::table('goods')->where('id', $gid)->update(['store' => $store,'sales'=>$sales]);
         }
