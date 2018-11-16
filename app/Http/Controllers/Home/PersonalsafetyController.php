@@ -8,6 +8,10 @@ use DB;
 use Hash;
 //修改密码校验类
 use App\Http\Requests\Personal\SafetyPass;
+//修改手机校验类
+use App\Http\Requests\Personal\SafetyPhone;
+//修改邮箱校验类
+use App\Http\Requests\Personal\SafetyEmail;
 
 class PersonalsafetyController extends Controller
 {
@@ -176,30 +180,37 @@ class PersonalsafetyController extends Controller
 //			跳转
 			return redirect('/verifyencrypted?url=safetyphone&token='.$token);
 		}
+//		token同步 引入修改页面
 		return view('Home.personal.safetyphone');
 	}
 	
 //	执行修改手机
     public function dosafetyphone(SafetyPhone $request)
 	{
-		$data['password'] = $request->all();
-		dd($data);
-		$pass = $request->input('plpassword');
+//		获取传输数据
 		$id = session('user')->user_id;
-		$password = DB::table('users')->where('user_id','=',$id)->value('password');
-        if (Hash::check($pass, $password)) {
-			if(DB::table('users')->where('user_id','=',$id)->update($data)) {
-				$data['title1'] = '修改密码';
-				$data['title2'] = 'Password';
-				$data['name'] = '重置密码';
-				return view('Home.Personal.endsafetypass',['data'=>$data]);
-			}else{
-				return back()->with('error','修改失败，请稍后再试');
-			}
-		}else{
-			return back()->with('error','密码错误');
+		$data = $request->only("phone",'phcode');
+//		dd($data);
+	//  获取存储的手机验证码
+    	$smsid = \Cookie::get('smsid');
+//		获取传过来的手机验证码
+		$yzm = $request->input('phcode');
+//		判断
+		if($yzm == $smsid) {
+//			设置并修改随机token值
+			$update['token'] = rand(1,99999999);
+			$update['phone'] = $data['phone'];
+			$up['phone'] = $data['phone'];
+			DB::table('users')->where("user_id",'=',$id)->update($update);
+			DB::table('user_info')->where("user_id",'=',$id)->update($up);
+//			引入页面
+			$datb['title1'] = '修改手机';
+			$datb['title2'] = '';
+			$datb['name'] = '修改手机';
+			return view('Home.Personal.endsafetyedit',['data'=>$datb]);
+		} else {
+            return back()->with("error",'验证码错误');
 		}
-		
 	}
 	
 //	修改密保
@@ -240,6 +251,44 @@ class PersonalsafetyController extends Controller
 		}
     }
 
+
+//	修改邮箱
+    public function safetyemail(Request $request)
+    {
+//  	获取值
+		$id = session('user')->user_id;
+		$token = $request->input('token');
+		$dbtoken = DB::table('encrypted')->where('user_id','=',$id)->value('token');
+//		判断token是否同步
+		if(!$token == $dbtoken) {
+//			token不同步 跳转至密保检验
+//			重置token
+			$token = rand(1,99999999);
+			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
+//			跳转
+			return redirect('/verifyencrypted?url=safetyemail&token='.$token);
+		}
+//		token同步 引入修改页面
+		return view('Home.Personal.safetyemail');
+    }
+//	执行修改邮箱
+    public function dosafetyemail(SafetyEmail $request)
+    {
+//        获取id
+		$id = session('user')->user_id;
+		dd($id);
+//		获取密保问题及答案
+        $data = $request->only('issue1','issue2','result1','result2');
+//		执行修改
+		if(DB::table('encrypted')->where('user_id','=',$id)->update($data)) {
+			$datb['title1'] = '修改密保';
+			$datb['title2'] = '';
+			$datb['name'] = '修改密保';
+			return view('Home.Personal.endsafetyedit',['data'=>$datb]);
+		}else{
+			return back()->with('error','修改失败');
+		}
+    }
     /**
      * Remove the specified resource from storage.
      *

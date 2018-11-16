@@ -27,7 +27,7 @@ class HomeRegist extends FormRequest
             //
             //required 数据不能为空规则  regex 正则规则  unique唯一规则 users 操作的数据表  same一致规则
             'name'=>'required|regex:/\w{5,10}/|unique:users',
-            'phone'=>'required|regex:/\d{11}/|unique:users',
+            'phone'=>'required|regex:/^\d{11}$/|unique:users',
 //          'email'=>'required|regex:/\w+@\w+\.\w+/|unique:users',
             'password'=>'required|regex:/\w{6,18}/',
             'repassword'=>'required|same:password',

@@ -88,9 +88,13 @@
 		Route::get("/safetypass",'Home\PersonalsafetyController@safetypass');
 //		执行修改密码
 		Route::post("/dosafetypass",'Home\PersonalsafetyController@dosafetypass');
+//		安全设置修改邮箱
+		Route::get("/safetyemail",'Home\PersonalsafetyController@safetyemail');
+//		执行修改邮箱
+		Route::post("/dosafetyemail",'Home\PersonalsafetyController@dosafetyemail');
 //		安全设置修改手机
 		Route::get("/safetyphone",'Home\PersonalsafetyController@safetyphone');
-//		执行修改手机
+//		执行修改手机safetyemail
 		Route::post("/dosafetyphone",'Home\PersonalsafetyController@dosafetyphone');
 //		调用密保检验
 		Route::get("/verifyencrypted",'Home\PersonalsafetyController@verifyencrypted');

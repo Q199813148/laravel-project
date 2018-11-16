@@ -25,10 +25,10 @@ class PersonalController extends Controller
 //		获取用户数据
         $user = DB::table('user_info')->where('user_id','=',$id)->first();
 //		获取收藏数据
-		$collect = DB::table('collect')->where('user_id','=',$id)->offset(0)->limit(8)->select('goods_id')->get();
+		$collect = DB::table('collect')->where('user_id','=',$id)->offset(0)->limit(8)->select('good_id')->get();
 //		获取收藏的商品
 		foreach($collect as $key=>$val) {
-			$goods[] = DB::table('goods')->where('id','=',$val->goods_id)->first();
+			$goods[] = DB::table('goods')->where('id','=',$val->good_id)->first();
 		}
 //		获取销量最多商品
 		$sales = DB::table('goods')->where('status','=',0)->orderBy("sales",'desc')->first();
