@@ -61,7 +61,7 @@ class AdvertisementController extends Controller
        if(DB::table("advertisement")->insert($data)){
             return redirect('/adminadvertisement')->with("success","添加成功");
         }else{
-            return back()->with("error",'添加失败');;
+            return back()->with("error",'添加失败');
         }
     }
 

@@ -13,8 +13,7 @@
 		<link href="/static/Home/css/personal.css" rel="stylesheet" type="text/css">
 			
 
-		<link href="AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		
 
 
 		@section('static')
@@ -40,6 +39,8 @@
 									<a href="/personal" target="_top" style="color: #f00;">
 										{{session('user')->name}}
 									</a>
+									
+									<a href="/exit">退出</a>
 								</div>
 								@else
 								
