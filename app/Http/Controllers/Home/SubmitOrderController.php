@@ -70,10 +70,10 @@ class SubmitOrderController extends Controller
         foreach ($cart as $val) {
             //将商品详情写入 details表
             DB::table('details')->insert(['order_id' => $id, 'good_id' => $val->goods_id, 'num' => $val->num, 'taste' => $val->taste]);
-            //计算剩余库存
-            $store = DB::table('goods')->where('id', $val->goods_id)->first()->store - $val->num;
+            //计算销量
+            $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
             //更新库存
-            DB::table('goods')->where('id', $val->goods_id)->update(['store' => $store]);
+            DB::table('goods')->where('id', $gid)->update(['store' => $store,'sales'=>$sales]);
         }
 
 
@@ -138,8 +138,10 @@ class SubmitOrderController extends Controller
         DB::table('details')->insert(['order_id' => $id, 'good_id' => $gid, 'num' => $num, 'taste' => $data['taste']]);
         //计算剩余库存
         $store = DB::table('goods')->where('id', $gid)->first()->store - $num;
+        //计算销量
+        $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
         //更新库存
-        DB::table('goods')->where('id', $gid)->update(['store' => $store]);
+        DB::table('goods')->where('id', $gid)->update(['store' => $store,'sales'=>$sales]);
 
 
 

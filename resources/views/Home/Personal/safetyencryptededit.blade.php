@@ -15,7 +15,7 @@
 						<div class="m-progress-list">
 							<span class="step-2 step">
                                 <em class="u-progress-stage-bg"></em>
-                                <i class="u-stage-icon-inner"  style="background: #23C279; border-radius: 50%; color: #fff;">1<em class="bg"></em></i>
+                                <i class="u-stage-icon-inner" style="background: #23C279; border-radius: 50%; color: #fff;">1<em class="bg"></em></i>
                                 <p class="stage-name">验证</p>
                             </span>
 							<span class="step-1 step">
