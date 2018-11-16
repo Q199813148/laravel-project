@@ -282,14 +282,13 @@
 					<div class="s-item-wrap">
 						<div class="s-item">
 							<div class="s-pic">
-								<a href="/goodsdetail?id={{$val->id}}" @if($val->status == 0) onclick="alert('商品已下架');return false" @endif class="s-pic-link">
+								<a href="/goodsdetail?id={{$val->id}}" @if($val->status == 1) onclick="alert('商品已下架');return false" @endif class="s-pic-link">
 									<img src="{{$val->photo}}" alt="{{$val->name}}" class="s-pic-img s-guess-item-img">
 								</a>
 							</div>
 							<div class="s-price-box">
 								<span class="s-price"><em class="s-price-sign">¥</em><em class="s-value">{{$val->price}}</em></span>
-								<span class="s-history-price"><em class="s-price-sign">¥</em><em class="s-value">{{$val->price+10}}</em></span>
-								<span class="s-history-price"><em class="s-price-sign">@if($val->status == 0) 已下架 @endif</em></span>
+								<span class="s-history-price"><em class="s-price-sign">　　　@if($val->status == 1) 已下架 @endif</em><em class="s-value"></em></span>
 
 							</div>
 							<div class="s-title">

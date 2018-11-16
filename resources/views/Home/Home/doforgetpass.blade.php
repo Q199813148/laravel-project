@@ -70,16 +70,31 @@
 
 					</form>
 					
-					<form action="/resforgetpass" method="post" class="am-form am-form-horizontal verify22" style="display: none;">
+					<form action="/reemforgetpass" method="post" class="am-form am-form-horizontal verify22" style="display: none;">
+						
 						<div class="am-form-group bind">
 							<label for="user-phone" class="am-form-label">验证邮箱</label>
 							<div class="am-form-content">
 								<span id="user-phone">{{$email or '未绑定邮箱'}}</span> <span class="error" style="color: #f00;">　　　　　　　　　@if(session('error')) {{session('error')}} @endif</span>
 							</div>
 						</div>
+						<div class="am-form-group code">
+							<label for="user-code" class="am-form-label">验证码</label>
+							<div class="am-form-content">
+								<input type="tel" name="emcode" id="user-code" placeholder="短信验证码" style="width: 380px;">
+							</div>
+							<a class="btn" href="javascript:void(0);"  id="sendMobileCode">
+								<input type="button" class="am-btn am-btn-danger emcode" style=" width:120px;display: block;" value="获取验证码"></input>
+							</a>
+						</div>
+						<div style="text-align: center;" class="error"></div>
+						<br />
+						<input type="hidden" name="email" value="{{$email}}" class="email"  />
+						<input type="hidden" name="name" value="{{$name}}" class="name"  />
+						<input type="hidden" name="bool" value="{{$bool}}" class="bool"  />
             			{{csrf_field()}}
 						<div class="info-btn">
-							<button type="submit" class="am-btn am-btn-danger">提交认证</button>
+							<button type="submit" class="am-btn am-btn-danger">提交修改</button>
 						</div>
 
 					</form>
@@ -124,6 +139,33 @@
 //				获取发送验证码的手机
 				$('.phone').val(result.mobile);
 				$('.error').html('');
+			} else {
+				$('.error').html('*发送失败');
+			}
+		}, 'json');
+	});
+</script>
+<script>
+//	发送邮箱
+	$(".emcode").click(function() {
+	obj = $(this);
+//	按钮倒计时
+	num = 120;
+		time = setInterval(function() {
+			obj.val("(" + num + ")重新发送");
+			obj.attr('disabled', true);
+			if(num == 0) {
+				clearInterval(time);
+				obj.val("重新发送");
+				obj.removeAttr('disabled');
+			}
+			num--;
+		}, 1000);
+//		判断是否发送成功
+		email = $('.email').val();
+		$.get("/sendemail", { email:email }, function(result) {
+			if(result == 1) {
+				$('.success').html('发送成功');
 			} else {
 				$('.error').html('*发送失败');
 			}

@@ -12,6 +12,7 @@
 
 		<link rel="stylesheet" href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" />
 		<link href="/static/Home/css/dlstyle.css" rel="stylesheet" type="text/css">
+		<script src="/static/Home/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -97,7 +98,12 @@
 						</div>
 					</div>
 	</body>
-	@if(session('success'))
-	<script>alert({{session('success')}})</script>
-	@endif
+@if(session('success'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #1CCFB4; line-height: 80px;text-align: center; color: #fff;">{{session('success')}}</div>
+@endif
+<script type="text/javascript">
+	$('.baocuo').click(function() {
+		$(this).css('display','none');
+	});
+</script>
 </html>

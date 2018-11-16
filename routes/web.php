@@ -94,9 +94,11 @@
 		Route::get("/safetyemail",'Home\PersonalsafetyController@safetyemail');
 //		执行修改邮箱
 		Route::post("/dosafetyemail",'Home\PersonalsafetyController@dosafetyemail');
+//		ajax发送邮箱
+		Route::get("/sendemail",'Home\PersonalsafetyController@sendemail');
 //		安全设置修改手机
 		Route::get("/safetyphone",'Home\PersonalsafetyController@safetyphone');
-//		执行修改手机safetyemail
+//		执行修改手机
 		Route::post("/dosafetyphone",'Home\PersonalsafetyController@dosafetyphone');
 //		调用密保检验
 		Route::get("/verifyencrypted",'Home\PersonalsafetyController@verifyencrypted');
@@ -157,6 +159,8 @@
 	Route::get("/mecode", "Home\HomeController@mecode");
 //	邮箱注册
 	Route::post("/registemail", "Home\HomeController@registemail");
+//	成功发送邮箱
+	Route::post("/endemregist", "Home\HomeController@endemregist");
 //	执行邮箱验证
 	Route::get("/doregistemail", "Home\HomeController@doregistemail");
 //	找回密码
@@ -165,6 +169,8 @@
 	Route::get("/doforgetpass", "Home\HomeController@doforgetpass");
 //	找回密码检测短信验证
 	Route::post("/reforgetpass", "Home\HomeController@reforgetpass");
+//	找回密码检测邮箱验证
+	Route::post("/reemforgetpass", "Home\HomeController@reemforgetpass");
 //	找回密码修改密码
 	Route::post("/endforgetpass", "Home\HomeController@endforgetpass");
 	//前台登录

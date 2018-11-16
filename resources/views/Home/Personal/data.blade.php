@@ -155,7 +155,7 @@
 				<div class="am-form-group">
 					<label for="user-email" class="am-form-label">电子邮件</label>
 					<div class="am-form-content">
-						<input id="user-email" disabled placeholder="{{session('user')->email}}" type="email">
+						<input id="user-email" disabled placeholder="{{$user->email}}" type="email">
 
 					</div>
 				</div>

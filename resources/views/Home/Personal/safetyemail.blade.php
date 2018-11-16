@@ -33,24 +33,27 @@
 							<div class="u-progress-bar-inner"></div>
 						</div>
 					</div>
-					<form class="am-form am-form-horizontal">
+					<form action="/dosafetyemail" style="display: block;" method="post" class="am-form am-form-horizontal verify11">
 						<div class="am-form-group">
-							<label for="user-email" class="am-form-label">验证邮箱</label>
+							<label for="user-email" class="am-form-label">验证密保</label>
 							<div class="am-form-content">
-								<input type="email" id="user-email" placeholder="请输入邮箱地址">
+								<input type="email" name="email" class="email" value="{{old('email')}}" id="user-email" placeholder="请输入邮箱地址">
 							</div>
 						</div>
 						<div class="am-form-group code">
 							<label for="user-code" class="am-form-label">验证码</label>
 							<div class="am-form-content">
-								<input type="tel" id="user-code" placeholder="验证码">
+								<input type="tel" name="emcode" id="user-code" placeholder="短信验证码" style="width: 380px;">
 							</div>
-							<a class="btn" href="javascript:void(0);" onclick="sendMobileCode();" id="sendMobileCode">
-								<div class="am-btn am-btn-danger">验证码</div>
+							<a class="btn" href="javascript:void(0);"  id="sendMobileCode">
+								<input type="button" class="am-btn am-btn-danger dycode" style=" width:120px;display: block;" value="获取验证码"></input>
 							</a>
 						</div>
+						<div style="text-align: center;" class="error"></div>
+						<br />
+            			{{csrf_field()}}
 						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
+							<button type="submit" class="am-btn am-btn-danger">提交修改</button>
 						</div>
 
 					</form>
@@ -62,13 +65,16 @@
 @if(session('error'))
 <div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{session('error')}}</div>
 @endif
+@if(session('success'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #1CCFB4; line-height: 80px;text-align: center; color: #fff;">{{session('success')}}</div>
+@endif
 <script type="text/javascript">
 	$('.baocuo').click(function() {
 		$(this).css('display','none');
 	});
 </script>
 <script>
-//	发送手机验证码
+//	发送邮箱
 	$(".dycode").click(function() {
 	obj = $(this);
 //	按钮倒计时
@@ -84,12 +90,10 @@
 			num--;
 		}, 1000);
 //		判断是否发送成功
-		phone = $('.phone').val();
-		$.get("/rephone", { phone: phone }, function(result) {
-			if(result.code == '000000') {
-//				获取发送验证码的手机
-				$('.phone').val(result.mobile);
-				$('.error').html('');
+		email = $('.email').val();
+		$.get("/sendemail", { email:email }, function(result) {
+			if(result == 1) {
+				$('.success').html('发送成功');
 			} else {
 				$('.error').html('*发送失败');
 			}

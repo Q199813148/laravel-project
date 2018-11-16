@@ -272,12 +272,13 @@ class PersonalController extends Controller
     {
 //        获取数据
         $data = DB::table('user_info')->where('user_id','=',$id)->first();	
+        $user = DB::table('users')->where('user_id','=',$id)->first();	
 		$data->dates = date('Y'); 
 		$birthday = explode('-', $data->birthday);
 		$data->years = empty($birthday[0])?'':$birthday[0];
 		$data->month = empty($birthday[1])?'':$birthday[1];
 		$data->day = empty($birthday[2])?'':$birthday[2];
-        return view('Home.Personal.data',['data'=>$data]);
+        return view('Home.Personal.data',['data'=>$data,'user'=>$user]);
     }
 	
 	

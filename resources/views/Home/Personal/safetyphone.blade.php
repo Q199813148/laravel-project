@@ -38,7 +38,7 @@
 						<div class="am-form-group code">
 							<label for="user-phone" class="am-form-label">新号码</label>
 							<div class="am-form-content">
-								<input type="text" name="phone" class="phone" placeholder="请输入手机" />
+								<input type="text" name="phone" value="{{old('phone')}}" class="phone" placeholder="请输入手机" />
 							</div>
 						</div>
             			{{csrf_field()}}

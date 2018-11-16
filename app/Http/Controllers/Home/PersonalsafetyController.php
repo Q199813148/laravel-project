@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Hash;
+use Mail;
 //修改密码校验类
 use App\Http\Requests\Personal\SafetyPass;
 //修改手机校验类
@@ -276,17 +277,25 @@ class PersonalsafetyController extends Controller
     {
 //        获取id
 		$id = session('user')->user_id;
-		dd($id);
-//		获取密保问题及答案
-        $data = $request->only('issue1','issue2','result1','result2');
-//		执行修改
-		if(DB::table('encrypted')->where('user_id','=',$id)->update($data)) {
-			$datb['title1'] = '修改密保';
-			$datb['title2'] = '';
-			$datb['name'] = '修改密保';
-			return view('Home.Personal.endsafetyedit',['data'=>$datb]);
+        $data = $request->only('email','emcode');
+    	$cemail = \Cookie::get('email');
+    	$cemcode = \Cookie::get('emcode');
+		if($data['email'] == $cemail) {
+			if($data['emcode'] == $cemcode) {
+				$update = $request->only('email');
+				if(DB::table('users')->where('user_id','=',$id)->update($update)) {
+					$datb['title1'] = '修改邮箱';
+					$datb['title2'] = '';
+					$datb['name'] = '修改密保';
+					return view('Home.Personal.endsafetyedit',['data'=>$datb]);
+				}else{
+					return back()->with('error','修改失败');
+				}
+			}else{
+				return back()->with('error','验证码不正确');
+			}
 		}else{
-			return back()->with('error','修改失败');
+			return back()->with('error','提交邮箱与发送邮箱不符');
 		}
     }
     /**
@@ -299,4 +308,30 @@ class PersonalsafetyController extends Controller
     {
         //
     }
+
+//	发送邮箱
+	public function sendemail(Request $request)
+	{
+		$email = $request->input('email');
+		$code = rand(1,9999);
+		\Cookie::queue("emcode",$code,122);
+		\Cookie::queue("email",$email,212);
+        $ddis = $this->emails($email,$code);
+		if($ddis) {
+			echo 1;
+		}else{
+			echo 2;
+		}
+	}
+	public function emails($email,$code)
+	{
+    	Mail::send('Home.Personal.sendemail', ['code'=>$code], function($message)use($email) {
+		//发送主题
+		$message->subject('[悦桔拉拉]你正在修改邮箱绑定');
+		//接收方
+		$message->to($email);
+		$message->cc('fate_silver@163.com');
+		});
+		return true;
+	}	
 }
