@@ -122,51 +122,8 @@
 					</p> </em>
 				</div>
 				@endif
-                    @if(session('user'))
-                        <div class="member-login" style="display: inline-block;">
-                            <a href="#">
-                                <strong>0</strong>待收货
-                            </a>
-                            <a href="#">
-                                <strong>0</strong>待发货
-                            </a>
-                            <a href="#">
-                                <strong>0</strong>待付款
-                            </a>
-                            <a href="#">
-                                <strong>0</strong>待评价
-                            </a>
-                        </div>
-                    @else
-                        <div class="member-logout">
-                            <a class="am-btn-warning btn" href="/login">
-                                登录
-                            </a>
-                            <a class="am-btn-warning btn" href="">
-                                注册
-                            </a>
-                        </div>
-                    @endif
-                    <div class="clear"></div>
-                </div>
-                <li>
-                    <a target="_blank" href="#">
-                        <span>[特惠]</span>洋河年末大促，低至两件五折
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="#">
-                        <span>[公告]</span>华北、华中部分地区配送延迟
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="#">
-                        <span>[特惠]</span>家电狂欢千亿礼券 买1送1！
-                    </a>
-                </li>
 
 
-        
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
 					<a href="#">
@@ -193,10 +150,12 @@
 				</div>
 				@endif
 				<div class="clear"></div>
-			</div>
-		
+
+
+            </div>
 
         </ul>
+
 
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>

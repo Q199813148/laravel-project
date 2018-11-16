@@ -61,17 +61,20 @@ class LinksController extends Controller
 
     public function ajax(Request $request)
     {
+        //获取ID
         $id=$request->input("id");
         // echo $id;
         $status = DB::table("links")->where("id","=",$id)->value("status");
+        // 判断status
         if($status == 0){
-
             if(DB::table("links")->where("id","=",$id)->update(['status'=>1])){
+                //返回
                 return response()->json(['status'=>1]);
             }
 
         }else{
             if(DB::table("links")->where("id","=",$id)->update(['status'=>0])){
+                //返回
                 return response()->json(['status'=>1]);
             }
         }
@@ -167,5 +170,20 @@ class LinksController extends Controller
         	return redirect("/adminlinks")->with('error','修改失败');
         }
         
+    }
+
+    //申请列表ajax删除
+    public function del(Request $request)
+    {
+        $id = $request->input('id');
+        //dd($id);
+        if(DB::table('relinks')->where("id","=",$id)->delete()){
+            //删除成功
+            echo '1';
+        }else{
+            //删除失败
+            echo '2';
+        }
+
     }
 }

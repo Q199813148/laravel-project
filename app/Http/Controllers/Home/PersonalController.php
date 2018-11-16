@@ -8,6 +8,8 @@ use DB;
 //添加收货信息校验类
 use App\Http\Requests\Home\HomePersonaleditinsert;
 use Illuminate\Support\Facades\Storage;
+use Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class PersonalController extends Controller
 {
@@ -148,6 +150,67 @@ class PersonalController extends Controller
     public function create(Request $request)
     {
         //
+    }
+    //收藏列表
+    public function collectlist(Request $request)
+    { 
+    	$user_id=session('user')->user_id;
+    	//$good_id=$request->input('good_id');
+    	$info = DB::table("collect")->select('good_id')->where('user_id','=',$user_id)->get();
+    	$arr = array();
+    	//$num = array();
+    	foreach ($info as $key => $value) {
+    		$arr[]=$value->good_id;
+    		//$num[] = DB::table("collect")->where('good_id','=',$value->good_id)->count();
+    	}
+    	//dd($num);
+    	//DB::table("collect")->update()
+    	$data = DB::table("goods")->whereIn('id',$arr)->get();
+    	//dd($data);
+    	//dd($info);
+    	//dd($num);
+    	return view("Home.Personal.collectlist",['info'=>$info,'data'=>$data]);
+    }
+
+    //添加收藏商品
+    public function collect(Request $request)
+    {
+        //session_start();
+        //dd(session('user'));
+        $user_id=session('user')->user_id;
+        $good_id=$request->input('id');
+        //dd($id);
+        $collect['user_id']=$user_id;
+        $collect['good_id']=$good_id;
+        //dd($collect);
+        if (DB::table("collect")->where('user_id','=',$user_id)->where('good_id','=',$good_id)->first()) {
+        	//取消收藏
+        	//$this->collectdel($good_id);
+        	return redirect("/collectdel?good_id=$good_id");
+        	//return back()->with('error','收藏失败');
+        } else {
+        	if (DB::table("collect")->insert($collect)) {
+        		return redirect("/collectlist")->with('success','收藏成功');
+        	} else {
+        		return back()->with('error','收藏失败');
+        	}
+
+        }     
+    }
+
+    //取消收藏
+    public function collectdel(Request $request)
+    { 
+    	$good_id=$request->input('good_id');
+    	$user_id=session('user')->user_id;
+    	//$req = DB::table("collect")->where('good_id','=',$good_id)->where('user_id','=',$user_id)->delete();
+    	//dd($good_id);
+    	if (DB::table("collect")->where('good_id','=',$good_id)->where('user_id','=',$user_id)->delete()) {
+    		return back()->with('success','取消收藏');
+    	} else {
+    		return back()->with('error','取消收藏失败');
+    	}
+    	
     }
 
     /**

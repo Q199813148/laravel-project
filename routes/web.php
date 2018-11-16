@@ -42,6 +42,8 @@
 		Route::post('/dolinkreq',"Admin\LinksController@dolinkreq");
         //ajax修改状态
         Route::get("/adminlinkss","Admin\LinksController@ajax");
+        //申请链接ajax删除
+        Route::get("/adminlinksreqdel","Admin\LinksController@del");
         //公告管理
         Route::resource("/adminnotice","Admin\NoticeController");
         //ajax修改状态
@@ -122,6 +124,24 @@
         Route::get('/cart/ajaxadd', 'Home\CartController@ajaxadd');
         Route::get('/cart/del', 'Home\CartController@del');
         Route::get('/cart/change', 'Home\CartController@change');
+        //确认订单
+        Route::post('/confirm_order', 'Home\ConfirmOrderController@index');
+        //提交订单
+        Route::post('/submit_order', 'Home\SubmitOrderController@index');
+        //直接购买提交订单
+        Route::post('/submitorder', 'Home\SubmitOrderController@immediately');
+        //服务器异步通知页面路径
+        Route::any('notify','Home\SubmitOrderController@AliPayNotify');
+        //页面跳转同步通知页面路径
+        Route::any('return','Home\SubmitOrderController@AliPayReturn');
+
+        //添加收藏
+		Route::get("/collectadd","Home\PersonalController@collect");
+		//收藏列表
+		Route::get("/collectlist","Home\PersonalController@collectlist");
+		//取消收藏
+		Route::get("/collectdel","Home\PersonalController@collectdel");
+
 	});
 
 	//前台首页

@@ -79,7 +79,7 @@
 							</div>
 							<div class="topMessage favorite">
 								<div class="menu-hd">
-									<a href="#" target="_top">
+									<a href="/collectlist" target="_top">
 										<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
 									</a>
 								</div>
@@ -135,6 +135,12 @@
 							<a href="#">
 								物流
 							</a>
+							<b>|</b>
+							<a href="/relinks">链接申请</a>
+							<span class="links">
+								
+							</span>
+							<b>|</b>
 						</p>
 					</div>
 					<div class="footer-bd">
@@ -164,5 +170,13 @@
 		</div>
 
 	</body>
+	<script type="text/javascript">
 
+		$.get("/links",function(links){ 
+			//alert(links);
+			$('.links').html(links);
+		});
+
+		</script>
+	</body>
 </html>
