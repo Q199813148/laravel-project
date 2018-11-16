@@ -71,7 +71,7 @@
 					</div>
 					<div class="topMessage favorite">
 						<div class="menu-hd">
-							<a href="#" target="_top">
+							<a href="/collectlist" target="_top">
 								<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
 							</a>
 						</div>
@@ -331,7 +331,7 @@ $(document).ready(function() {
 								<a href="# " class="login_order ">
 									我的订单
 								</a>
-								<a href="# " class="login_favorite ">
+								<a href="/collectlist " class="login_favorite ">
 									我的收藏
 								</a>
 							</div>
@@ -355,7 +355,7 @@ $(document).ready(function() {
 								<a href="# " class="login_order ">
 									我的订单
 								</a>
-								<a href="# " class="login_favorite ">
+								<a href="/collectlist " class="login_favorite ">
 									我的收藏
 								</a>
 							</div>
@@ -395,7 +395,7 @@ $(document).ready(function() {
 					</div>
 
 					<div id="brand " class="item ">
-						<a href="#">
+						<a href="/collectlist">
 							<span class="wdsc ">
 							<img src="/static/Home/images/wdsc.png " />
 							</span>

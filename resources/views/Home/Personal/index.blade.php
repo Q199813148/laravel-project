@@ -149,7 +149,7 @@
 							</p>
 						</li>
 					</a>
-					<a href="collection.html">
+					<a href="/collectlist">
 						<li class="am-u-sm-4">
 							<i class="am-icon-heart am-icon-md"></i>
 							<img src="/static/Home/images/iconsmall1.png">
@@ -629,7 +629,7 @@
 		</span>
 		<ul>
 			<li>
-				<a href="collection.html">
+				<a href="/collectlist">
 					收藏
 				</a>
 			</li>

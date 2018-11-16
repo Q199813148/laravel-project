@@ -80,7 +80,12 @@
         Route::get('/cart/ajaxadd', 'Home\CartController@ajaxadd');
         Route::get('/cart/del', 'Home\CartController@del');
         Route::get('/cart/change', 'Home\CartController@change');
-
+        //添加收藏
+		Route::get("/collectadd","Home\PersonalController@collect");
+		//收藏列表
+		Route::get("/collectlist","Home\PersonalController@collectlist");
+		//取消收藏
+		Route::get("/collectdel","Home\PersonalController@collectdel");
 	});
 
 	//前台首页

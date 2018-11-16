@@ -24,7 +24,15 @@ class GoodsdetailController extends Controller
         $match = DB::select("SELECT * FROM goods WHERE id >= ((SELECT MAX(id) FROM goods)-(SELECT MIN(id) FROM goods)) * RAND() + (SELECT MIN(id) FROM goods) AND status=0 LIMIT 5");
         //猜你喜欢
         $guess = DB::select("SELECT * FROM goods WHERE status=0 order by sales DESC LIMIT 12");
-
-        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess]);
+        //查询收藏数
+        $collect = DB::table('collect')->where('good_id','=',$id)->count();
+        //dd($collect);
+        //上传收藏数  num
+        DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
+        //获取session('user')
+        $user_id=session('user')->user_id;
+        $dd = DB::table('collect')->where('user_id','=',$user_id)->where('good_id','=',$id)->count();
+        //dd($dd);
+        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd]);
     }
 }
