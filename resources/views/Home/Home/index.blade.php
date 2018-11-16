@@ -165,8 +165,6 @@
                     </a>
                 </li>
 
-<<<<<<< HEAD
-        
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
 					<a href="#">
@@ -193,11 +191,8 @@
 				</div>
 				@endif
 				<div class="clear"></div>
-			</div>
-		
-=======
+
             </ul>
->>>>>>> 54d2f397589d47ecd11573dcd7fff5a28ff93d15
 
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>

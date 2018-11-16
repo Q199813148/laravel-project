@@ -47,6 +47,7 @@
                     </div>
                 </div>
                 <div class="clear"></div>
+                <form action="/confirm_order" method="post" id="ConfirmOrder">
                 <div class="bundle-main">
                     @foreach($data as $v)
                         <ul class="item-content clearfix">
@@ -94,7 +95,7 @@
                                 <div class="amount-wrapper ">
                                     <div class="item-amount">
                                         <div class="sl">
-                                            <input type="hidden" value="{{$v->id}}" name="cart_id">
+                                            <input type="hidden" value="{{$v->id}}" name="cart_id[]">
                                             <input class="min am-btn" name="" type="button" value="-">
                                             <input class="text_box" name="" type="text" value="{{$v->num}}"
                                                    style="width:30px;">
@@ -116,12 +117,14 @@
                                         移入收藏夹</a>
                                     <a data-point-url="#" class="delete">
                                         删除</a>
-                                    <input type="hidden" value="{{$v->id}}" name="cart_id">
+                                    <input type="hidden" value="{{$v->id}}">
                                 </div>
                             </li>
                         </ul>
                     @endforeach
                 </div>
+                    {{csrf_field()}}
+                </form>
             </div>
 
             <div class="clear"></div>
@@ -154,7 +157,7 @@
                     <strong class="price">¥<em id="J_Total">0.00</em></strong>
                 </div>
                 <div class="btn-area">
-                    <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+                    <a id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                         <span>结&nbsp;算</span></a>
                 </div>
             </div>
@@ -164,4 +167,5 @@
 
     </div>
     <script src="/static/Home/cart/cart.js"></script>
+
 @endsection

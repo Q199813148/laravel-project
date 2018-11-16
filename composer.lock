@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb380fa184fd72089344d33d8a91750e",
+    "content-hash": "09c21c1c562a9035f83e2762f2f42d6a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -604,6 +604,52 @@
                 "psysh"
             ],
             "time": "2018-10-12T19:39:35+00:00"
+        },
+        {
+            "name": "latrell/alipay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/latrell/Alipay.git",
+                "reference": "12fc43888410afddcd155d036bc4be0e7ea78b53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/latrell/Alipay/zipball/12fc43888410afddcd155d036bc4be0e7ea78b53",
+                "reference": "12fc43888410afddcd155d036bc4be0e7ea78b53",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.*",
+                "illuminate/events": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Latrell\\Alipay\\": "src/Latrell/Alipay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Latrell Chan",
+                    "email": "i@latrell.me"
+                }
+            ],
+            "description": "支付宝SDK在Laravel5封装包。",
+            "keywords": [
+                "Alipay SDK",
+                "alipay",
+                "l5",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2017-07-27T07:24:57+00:00"
         },
         {
             "name": "league/flysystem",
@@ -4003,7 +4049,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "latrell/alipay": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

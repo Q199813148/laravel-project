@@ -893,7 +893,7 @@
             if(taste == undefined){
                 alert('至少选择一种口味');exit;
             }
-            $("#order_form").attr('action','/confirm_order');
+            $("#order_form").attr('action','/confirm_order?msg=immediately');
             $('input[name="taste"]').val(taste);
             $('#order_form').submit();
         })
