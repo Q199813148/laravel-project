@@ -25,19 +25,19 @@ class SafetyEmail extends FormRequest
     {
         return [
             //
-            'phone'=>'required|regex:/^\w{11}$/|unique:users',
-            'phcode'=>'required',
+            'email'=>'required|regex:/\w+@\w+\.\w+/|unique:users',
+            'emcode'=>'required',
         ];
     }
 //	自定义错误信息
     public function messages(){
     	return [
 
-	    	'phone.required'=>'*手机不能为空',
-	        'phone.regex'=>'*手机格式不正确',
-	        'phone.unique'=>'*该手机号已注册',
+            'email.required'=>'*邮箱不能为空',
+	        'email.regex'=>'*邮箱不符合格式',
+	        'email.unique'=>'*该邮箱已注册',
 	        
-	    	'phcode.required'=>'*验证码不能为空',
+	    	'emcode.required'=>'*验证码不能为空',
     	];
     }
 }

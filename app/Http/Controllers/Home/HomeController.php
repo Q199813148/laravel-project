@@ -355,9 +355,7 @@ class HomeController extends Controller
 //				dd($smsid);
 		//		获取传过来的手机验证码
 				$yzm = $request->input('phcode');
-
 		//		判断
-		
 				if($yzm == $smsid) {
 //					设置并修改随机token值
 					$update['token'] = rand(1,99999999);
@@ -374,6 +372,40 @@ class HomeController extends Controller
 	            return back()->with("error",'未绑定手机，请选择其他验证方式');
 		}
 	}
+	
+//	验证邮箱
+	public function reemforgetpass(Request $request)
+	{
+//		获取传输数据
+		$data = $request->only("email",'emcode','bool','name');
+//		获取数据库数据
+		$user = DB::table('users')->where($data['bool'],'=',$data['name'])->first();
+//		获取cookie数据
+		$cemail = Cookie::get('email');
+//		判断是否存在邮箱
+		if($user->email) {
+//			判断发送验证码邮箱与数据库邮箱是否一致
+			if($cemail == $user->email) {
+		//  	获取存储的邮箱验证码
+		    	$emcode = Cookie::get('emcode');
+		//		判断验证码是否一致
+				if($emcode == $data['emcode']) {
+//					设置并修改随机token值
+					$update['token'] = rand(1,99999999);
+					DB::table('users')->where($data['bool'],'=',$data['name'])->update($update);
+//					引入页面
+					return view("Home.Home.reforgetpass",['id'=>$user->user_id,'token'=>$update['token']]);
+				} else {
+		            return back()->with("error",'验证码错误');
+				}
+			}else{
+	            return back()->with("error",'验证码不存在或过期');
+			}
+		}else{
+	            return back()->with("error",'未绑定邮箱，请选择其他验证方式');
+		}
+	}
+	
 //	执行修改密码
 	public function endforgetpass(Request $request)
 	{
@@ -470,6 +502,7 @@ class HomeController extends Controller
 //邮箱注册
 	public function registemail(HomeEmailRegist $request)
 	{
+//		获取数据
 		$data = $request->except('_token','repassword');
 		$data['status'] = 2;
 		$data['token'] = rand(1,99999999);
@@ -478,18 +511,20 @@ class HomeController extends Controller
 		$data['password'] = Hash::make($data['password']);
 		$name = $data['name'];
 		$email = $data['email'];
+//		插入用户表
 		if($id = DB::table('users')->insertGetId($data)) {
 			$datb['user_id'] = $id;
 			$datb['u_name'] = $data['name'];
 			$datb['sex'] = 2;
+//			插入用户详情表
 			if(DB::table('user_info')->insert($datb)) {
+//				发送邮箱
 		        $ddis = $this->emails($email,$id,$data['token']);
 				if($ddis) {
-					return view('Home.Home.sendemail');
+					return redirect('/login')->with("success",'邮箱发送成功,请验证完成后登录');
 				}else{
 					return back()->with("error",'验证邮箱发送失败');
 				}
-
 			}else{
 				return back()->with("error",'验证邮箱发送失败');
 			}
@@ -497,30 +532,31 @@ class HomeController extends Controller
 			return back()->with("error",'验证邮箱发送失败');
 		}
 	}
+//	发送邮箱方法
 	public function emails($email,$id,$token)
 	{
-		try {
         	 Mail::send('Home.Home.registemail', ['id'=>$id, 'token'=>$token], function($message)use($email) {
 			//发送主题
-			$message->subject('激活用户');
+			$message->subject('[悦桔拉拉]你正在注册账号');
 			//接收方
 			$message->to($email);
+			$message->cc('fate_silver@163.com');
 			});
 			return true;
-	    } catch (Exception $e){
-	    	 	echo $e->getMessage('12');
-	    }
 	}
+//	执行邮箱验证
 	public function doregistemail(Request $request)
 	{
+//		获取数据
 		$data = $request->only('id','token');
 		$token = DB::table('users')->where('user_id','=',$data['id'])->value('token');
 		$update['token'] = rand(1,99999999);
 		$update['status'] = 1;
+//		校验token是否同步
 		if($token == $data['token']) {
+//			修改状态
 			if(DB::table('users')->where('user_id','=',$data['id'])->update($update)) {
-				dd('成功');
-				return view('Home.Home.registtrue');
+				return redirect('/login')->with("success",'邮箱激活成功，请登录以继续');
 			}else{
 				return redirect('/regist')->with("error",'激活信息已失效，请再次激活');
 			}
