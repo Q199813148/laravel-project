@@ -123,7 +123,7 @@
 				</div>
 				@endif
 
-        
+
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
 					<a href="#">
@@ -150,11 +150,9 @@
 				</div>
 				@endif
 				<div class="clear"></div>
-			</div>
-		
 
 
-            </ul>
+            </div>
 
 
 

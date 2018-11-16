@@ -48,7 +48,7 @@ $('.add').click(function () {
     //获取现有数量
     var num = $(this).prev().val();
     //获取数据库对应id
-    var id = $(this).parent('div').find('input[name="cart_id"]').val();
+    var id = $(this).parent('div').find('input[name="cart_id[]"]').val();
     //获取最大库存数
     var store = $(this).parent('div').find('input[name="store"]').val();
     if(num >= store){
@@ -93,7 +93,7 @@ $('.text_box').change(function () {
     //获取现有数量
     var num = $(this).val();
     //获取数据库对应id
-    var id = $(this).parent('div').find('input[name="cart_id"]').val();
+    var id = $(this).parent('div').find('input[name="cart_id[]"]').val();
     //获取最大库存数
     var store = $(this).parent('div').find('input[name="store"]').val();
     //减
@@ -150,4 +150,12 @@ $('.deleteAll').click(function () {
         id = $(this).parentsUntil('.bundle-main').find('.delete').click();
         $(this).parentsUntil('.bundle-main').remove();
     })
+})
+//获取选中的id信息,提交表单
+$('#J_Go').click(function () {
+    $('input[name="items[]"]:checked').each(function(){
+        id = $(this).parentsUntil('.bundle-main').find('input[name="cart_id[]"]').val();
+        $(this).append("<input type='hidden' name='checked_id[]' value='"+id+"'>");
+    })
+    $('#ConfirmOrder').submit();
 })

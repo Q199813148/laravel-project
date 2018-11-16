@@ -129,7 +129,7 @@ color: #FFF;}
 .td.td-amount .amount-wrapper, .td.td-oplist{padding:0px ; border: none;}
 
  /*留言*/ 
-.pay-total{border:#f5f5f5 1px solid; overflow: hidden;padding: 10px;}
+.pay-total{border:#f5f5f5 1px solid;padding: 10px;}
 .order-extra{border: none;float: left;width: 60%;}
 .memo label{position: static;}
 .memo-close{border: 1px solid #f5f5f5;padding-left:10px;min-width:280px ;width:80% ;}

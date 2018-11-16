@@ -130,7 +130,7 @@
                          @endif   
                         </li>
                         <li class="tm-ind-item tm-ind-sumCount canClick">
-                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$data->sales+123}}</span></div>
+                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$data->sales}}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
                             <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">0</span></div>
@@ -897,7 +897,7 @@
             if(taste == undefined){
                 alert('至少选择一种口味');exit;
             }
-            $("#order_form").attr('action','/confirm_order');
+            $("#order_form").attr('action','/confirm_order?msg=immediately');
             $('input[name="taste"]').val(taste);
             $('#order_form').submit();
         })
