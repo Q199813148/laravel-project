@@ -92,7 +92,7 @@
 										<div class="fore2"><small>您验证的邮箱：{{$data->email}} 可用于快速找回登录密码</small></div>
 									</div>
 									<div class="fore3">
-										<a href="email.html">
+										<a href="/safetyemail">
 											<div class="am-btn am-btn-secondary">换绑</div>
 										</a>
 									</div>
@@ -120,6 +120,14 @@
 
 					</div>
 				</div>
+@if(session('error'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{session('error')}}</div>
+@endif
+<script type="text/javascript">
+	$('.baocuo').click(function() {
+		$(this).css('display','none');
+	});
+</script>
 @endsection
 
 @section('list')
