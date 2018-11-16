@@ -123,10 +123,14 @@
                     <!--销量-->
                     <ul class="tm-ind-panel">
                         <li class="tm-ind-item tm-ind-sellCount canClick">
-                            <div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">{{$data->sales}}</span></div>
+                        @if($dd)
+                            <div class="tm-indcon"><span class="tm-label"><a href="/collectadd?id={{$data->id}}">取消收藏</a></span><span class="tm-count">{{$data->num}}</span></div>
+                         @else
+                         	<div class="tm-indcon"><span class="tm-label"><a href="/collectadd?id={{$data->id}}">收藏</a></span><span class="tm-count">{{$data->num}}</span></div>
+                         @endif   
                         </li>
                         <li class="tm-ind-item tm-ind-sumCount canClick">
-                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$data->sales+123}}</span></div>
+                            <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$data->sales}}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
                             <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">0</span></div>

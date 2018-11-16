@@ -16,8 +16,7 @@
 	    Route::resource("/admin", "Admin\AdminController");
 	    //后台管理信息
 	    Route::resource("/adminusers", "Admin\AdminuserController");
-//		ajax更改状态
-
+		//ajax更改状态
 		Route::get("/adminuser/ajax", "Admin\AdminuserController@ajax");
 		//后台商品信息
 		Route::resource("/adminshop", "Admin\ShopController");
@@ -43,13 +42,23 @@
 		Route::post('/dolinkreq',"Admin\LinksController@dolinkreq");
         //ajax修改状态
         Route::get("/adminlinkss","Admin\LinksController@ajax");
+        //申请链接ajax删除
+        Route::get("/adminlinksreqdel","Admin\LinksController@del");
         //公告管理
         Route::resource("/adminnotice","Admin\NoticeController");
         //ajax修改状态
         Route::get("/adminnotices","Admin\NoticeController@ajax");
         //后台公告删除
         Route::get("/adminnoticedel","Admin\NoticeController@del");
-
+        //广告管理
+	    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
+	    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
+        //后台商品管理
+        Route::resource("/adminorders","Admin\OrdersController");
+        //后台商品管理 订单状态
+        Route::get("/adminordersstatus","Admin\OrdersController@status");
+        //后台商品管理 退款状态
+        Route::get("/adminordersrefund","Admin\OrdersController@refund");
 	});
 
 
@@ -60,6 +69,10 @@
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
+    //广告管理
+    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
+    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
+
 
 	//end Memory
 
@@ -69,8 +82,39 @@
 	Route::group(["middleware"=>'home'], function(){
 //		前台个人中心页
 		Route::resource("/personal", "Home\PersonalController");
-
-		Route::get("/personaldata", "Home\PersonalController@data");
+		//收货地址修改
+		Route::resource("/addressedit", "Home\AddressController");
+//		前台个人中心安全设置
+		Route::resource("/personalsafety",'Home\PersonalsafetyController');
+//		安全设置修改密码
+		Route::get("/safetypass",'Home\PersonalsafetyController@safetypass');
+//		执行修改密码
+		Route::post("/dosafetypass",'Home\PersonalsafetyController@dosafetypass');
+//		安全设置修改邮箱
+		Route::get("/safetyemail",'Home\PersonalsafetyController@safetyemail');
+//		执行修改邮箱
+		Route::post("/dosafetyemail",'Home\PersonalsafetyController@dosafetyemail');
+//		安全设置修改手机
+		Route::get("/safetyphone",'Home\PersonalsafetyController@safetyphone');
+//		执行修改手机safetyemail
+		Route::post("/dosafetyphone",'Home\PersonalsafetyController@dosafetyphone');
+//		调用密保检验
+		Route::get("/verifyencrypted",'Home\PersonalsafetyController@verifyencrypted');
+//		执行密保验证
+		Route::post("/doverifyencrypted",'Home\PersonalsafetyController@doverifyencrypted');
+//		修改密保
+		Route::get("/safetyencrypted",'Home\PersonalsafetyController@safetyencrypted');
+//		执行修改密保
+		Route::post("/dosafetyencrypted",'Home\PersonalsafetyController@dosafetyencrypted');
+	
+        //收货地址
+        Route::get("/personaladdress","Home\PersonalController@address");
+        //收货地址默认ajax
+        Route::get("/personaladdress/default","Home\PersonalController@default");
+        //收货地址地区
+        Route::get("/personaladdress/district","Home\PersonalController@district");
+        //收货地址删除ajax
+        Route::get("/personaladdress/del","Home\PersonalController@del");
         //购物车
         Route::post('/cart', 'Home\CartController@index');
         Route::get('/cart', 'Home\CartController@index');
@@ -89,6 +133,13 @@
         //页面跳转同步通知页面路径
         Route::any('return','Home\SubmitOrderController@AliPayReturn');
 
+        //添加收藏
+		Route::get("/collectadd","Home\PersonalController@collect");
+		//收藏列表
+		Route::get("/collectlist","Home\PersonalController@collectlist");
+		//取消收藏
+		Route::get("/collectdel","Home\PersonalController@collectdel");
+
 	});
 
 	//前台首页
@@ -101,6 +152,18 @@
 	Route::get("/rephone", "Home\HomeController@rephone");
 //	前台注册ajax校验手机验证码
 	Route::get("/mecode", "Home\HomeController@mecode");
+//	邮箱注册
+	Route::post("/registemail", "Home\HomeController@registemail");
+//	执行邮箱验证
+	Route::get("/doregistemail", "Home\HomeController@doregistemail");
+//	找回密码
+	Route::get("/forgetpass", "Home\HomeController@forgetpass");
+//	找回密码检测账号
+	Route::get("/doforgetpass", "Home\HomeController@doforgetpass");
+//	找回密码检测短信验证
+	Route::post("/reforgetpass", "Home\HomeController@reforgetpass");
+//	找回密码修改密码
+	Route::post("/endforgetpass", "Home\HomeController@endforgetpass");
 	//前台登录
 	Route::get("/login", "Home\HomeController@login");
 	//前台执行登录
@@ -111,6 +174,8 @@
 	Route::get('/scws', 'WordCutController@scwsCut');
 	//商品列表
 	Route::get('/goodslist',"Home\GoodslistController@index");
+    //首页商品列表ajax
+    Route::get("/homegoodslist","Home\HomeController@goodslist");
 	//公告列表
 	Route::get('/notice',"Home\HomeController@notice");
 	//链接申请
@@ -123,6 +188,3 @@
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
     //分类列表
     Route::get('/typelist', "Home\TypelistController@index");
-
-
-

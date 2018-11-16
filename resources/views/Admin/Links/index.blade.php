@@ -51,12 +51,12 @@
                           	{{$val->url}}
                           </td>
                           <td>
-                            @if($val->status == 1)
-                            <span class="badge badge-gradient-success start">启用</span>
-                            @else
-                            <span class="badge badge-danger start">禁用</span>
-                            @endif
-                            <input type="hidden" name="{{$val->status}}" class="starts" value="{{$val->id}}" />
+                          @if($val->status == "1")
+                          <span class="badge badge-gradient-success status">启用</span>
+                          @else
+                          <span class="badge badge-danger status">禁用</span>
+                          @endif
+                          <input type="hidden" name="{{$val->status}}" class="starts" value="{{$val->id}}" />
                           </td>
                           
                           
@@ -73,20 +73,24 @@
           
 <!--ajax转换状态-->     	
 <script>
-  	$(".start").click(function() {
-  		id = $(this).next().val();
-  		status = $(this).next().attr('name');
-		obj = $(this);
-  		$.get("/adminlinkss/ajax",{id:id,s:status},function(data) {
-			if(data['msg'] == 0) {
-				if(status == 1) {
-  					obj.html("启用").attr('class',"badge badge-gradient-success start").next().attr('name',1);
-				}else{
-  					obj.html("禁用").attr('class',"badge badge-danger start").next().attr('name',0);
-				}
-			}
-  		},"json");
-  	});
+  	$(".status").click(function(){
+    	obj = $(this);
+       //alert('ss');
+      id=$(this).parents("tr").find("td:first").html();
+       //alert(id);
+      $.get("/adminlinkss",{id:id},function(data){
+        if(data['status'] == 1){
+         alert(data['status']);
+          if(obj.html() == "启用" ){
+            obj.html("禁用").attr('class',"badge badge-danger start");
+          }else{
+            obj.html("启用").attr('class',"badge badge-gradient-success start");
+            
+          }
+          
+        }
+      },"json");
+    });
 </script>
                       </tbody>
                     </table>

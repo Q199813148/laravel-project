@@ -108,7 +108,7 @@
       if(confirm('确定删除吗')){
           id = $(this).parents('tr').find('td:first').html();
           td = $(this);
-          $.get('/adminlinkreqdel',{id:id},function(data){
+          $.get('/adminlinksreqdel',{id:id},function(data){
               if(data == 1){
                   // alert("删除成功");
                   td.parents('tr').remove();

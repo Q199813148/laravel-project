@@ -19,7 +19,11 @@
 		<div class="user-infoPic">
 			<div class="filePic">
 				<input type="file" name="userimg" class="inputPic" form="tf" onchange="preview(this)" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+				@if($data->pic)
 				<img class="am-circle am-img-thumbnail userimg" id="fileimg" src="{{$data->pic}}" alt="">
+				@else
+				<img class="am-circle am-img-thumbnail userimg" id="fileimg" src="/static/Home/images/getAvatar.do.jpg" alt="">
+				@endif
 			</div>
 				{{csrf_field()}}
 			<p class="am-form-help">
@@ -37,7 +41,7 @@
 						@if(session('user')->level == 0)
 						普通会员
 						@else
-						<span style="color: #f00;">VIP用户</span>
+						<span style="color: #f00;">VIP</span>
 						@endif
 					</a> </span>
 				</div>
@@ -64,7 +68,7 @@
 					<label for="user-name" class="am-form-label">年龄</label>
 					<div class="am-form-content">
 						<div class="birth-select">
-							<select name="years" >
+							<select name="age" >
 								@for($i = 1; $i < 150; $i++)
 									@if($i == $data->age) 
 										<option value="{{$i}}" selected>{{$i}}</option>
@@ -142,39 +146,16 @@
           		{{method_field("PUT")}}
 				{{csrf_field()}}
 				<div class="am-form-group">
-					<label for="user-phone" class="am-form-label">电话</label>
+					<label for="user-phone" class="am-form-label">手机号码</label>
 					<div class="am-form-content">
-						<input id="user-phone" name="phone" placeholder="{{$data->phone}}" type="tel">
+						<input id="user-phone" disabled placeholder="{{$data->phone}}" type="tel">
 
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="user-email" class="am-form-label">电子邮件</label>
 					<div class="am-form-content">
-						<input id="user-email" name="email" placeholder="{{session('user')->email}}" type="email">
-
-					</div>
-				</div>
-				<div class="am-form-group address">
-					<label for="user-address" class="am-form-label">收货地址</label>
-					<div class="am-form-content address">
-						<a href="address.html">
-							<p class="new-mu_l2cw">
-								<span class="province">湖北</span>省 <span class="city">武汉</span>市 <span class="dist">洪山</span>区 <span class="street">雄楚大道666号(中南财经政法大学)</span>
-								<span class="am-icon-angle-right"></span>
-							</p>
-						</a>
-
-					</div>
-				</div>
-				<div class="am-form-group safety">
-					<label for="user-safety" class="am-form-label">账号安全</label>
-					<div class="am-form-content safety">
-						<a href="safety.html">
-
-							<span class="am-icon-angle-right"></span>
-
-						</a>
+						<input id="user-email" disabled placeholder="{{session('user')->email}}" type="email">
 
 					</div>
 				</div>
@@ -220,17 +201,17 @@
 		</span>
 		<ul>
 			<li>
-				<a href="/personaldata"  style="color: #f00;">
+				<a href="/personal/{{session('user')->user_id}}/edit" style="color: #f00;">
 					个人信息
 				</a>
 			</li>
 			<li>
-				<a href="safety.html">
+				<a href="/personalsafety">
 					安全设置
 				</a>
 			</li>
 			<li>
-				<a href="/address">
+				<a href="/personaladdress">
 					收货地址
 				</a>
 			</li>

@@ -31,7 +31,7 @@ class NoticeController extends Controller
         // echo $id;
         // 查询level
         $status = DB::table("notice")->where("id","=",$id)->value("status");
-        // 判断level
+        // 判断status
         if($status == 0){
             if(DB::table("notice")->where("id","=",$id)->update(['status'=>1])){
                 //返回

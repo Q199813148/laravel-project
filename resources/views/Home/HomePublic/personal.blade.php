@@ -13,8 +13,7 @@
 		<link href="/static/Home/css/personal.css" rel="stylesheet" type="text/css">
 			
 
-		<link href="AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-		<link href="AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+		
 
 
 		@section('static')
@@ -40,6 +39,8 @@
 									<a href="/personal" target="_top" style="color: #f00;">
 										{{session('user')->name}}
 									</a>
+									
+									<a href="/exit">退出</a>
 								</div>
 								@else
 								
@@ -78,7 +79,7 @@
 							</div>
 							<div class="topMessage favorite">
 								<div class="menu-hd">
-									<a href="#" target="_top">
+									<a href="/collectlist" target="_top">
 										<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
 									</a>
 								</div>
@@ -134,6 +135,12 @@
 							<a href="#">
 								物流
 							</a>
+							<b>|</b>
+							<a href="/relinks">链接申请</a>
+							<span class="links">
+								
+							</span>
+							<b>|</b>
 						</p>
 					</div>
 					<div class="footer-bd">
@@ -163,5 +170,13 @@
 		</div>
 
 	</body>
+	<script type="text/javascript">
 
+		$.get("/links",function(links){ 
+			//alert(links);
+			$('.links').html(links);
+		});
+
+		</script>
+	</body>
 </html>

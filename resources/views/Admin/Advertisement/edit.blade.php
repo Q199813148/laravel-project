@@ -16,7 +16,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">广告添加</h4>
+                    <h4 class="card-title">广告修改</h4>
                     <br>
                     <form class="forms-sample" action="/adminadvertisement/{{$advertisement->id}}" method="post" enctype="multipart/form-data">
                         <div class="form-group">
