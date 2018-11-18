@@ -268,19 +268,37 @@ class HomeController extends Controller
 
     	//获取输出信息并加密密码
     	$name = $request->input('name');
+    	if(Preg_match("/@/",$name)) {
+			$bool = 'email';
+		} elseif(Preg_match("/^\d{11}$/",$name)) {
+			$bool = 'phone';
+		}else{
+			$bool = 'name';
+		}
+		//dd($bool);
+		//dd($name);
+		$info = DB::table('users')->where($bool,'=',$name)->first();
+		//dd($info);
+    	//$phone = $request->input('phone');
     	$password = $request->input('password');
-    	$namebool = DB::table('users')->where("name",'=',$name)->first();
-    	if ($namebool) {
-            if (Hash::check($password, $namebool->password)) {
+    	//$namebool = DB::table('users')->where("name",'=',$name)->first();
+    	if (!$info) {
+    		 return redirect('/login')->with('error',"该用户不存在");   	
+    		}
+    	if ($info->status==0) { 
+    		return redirect('/login')->with('error',"该用户已被禁用");
+    	}
+    	if ($info) {
+            if (Hash::check($password, $info->password)) {
 //              删除密码并存入session
-                unset($namebool->password);
-                session(['user' => $namebool]);
-
+                unset($info->password);
+                session(['user' => $info]);
+                //dd(session('user'));
                 return redirect('/')->with('success','登录成功');
 
     		} else {
-            return redirect('/login')->with('error',"用户名或密码不正确");
-        }
+            	return redirect('/login')->with('error',"用户名或密码不正确");
+        	}
     	} else {
     		return redirect('/login')->with('error',"用户名或密码不正确");
     	}
@@ -319,7 +337,7 @@ class HomeController extends Controller
 		$data = $request->input('name');
 		if(Preg_match("/@/",$data)) {
 			$bool = 'email';
-		} elseif(Preg_match("/\d{11}/",$data)) {
+		} elseif(Preg_match("/^\d{11}$/",$data)) {
 			$bool = 'phone';
 		}else{
 			$bool = 'name';

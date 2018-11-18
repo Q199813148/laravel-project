@@ -28,9 +28,10 @@ class GoodsdetailController extends Controller
         $collect = DB::table('collect')->where('good_id','=',$id)->count();
         //dd($collect);
         //上传收藏数  num
-        DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
+        
         //获取session('user')
         if (!session('user')) {
+        	DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
         	return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess]);	
         }
         $user_id=session('user')->user_id;
