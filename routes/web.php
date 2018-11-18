@@ -144,6 +144,9 @@
 		//评论中心
 		Route::resource("/comment","Home\CommentController");
 
+		//个人中心-订单管理
+        Route::resource("/order_management", "Home\ManagementController");
+
 	});
 
 	//前台首页

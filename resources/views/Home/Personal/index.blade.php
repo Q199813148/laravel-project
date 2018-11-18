@@ -423,7 +423,7 @@
 		</span>
 		<ul>
 			<li>
-				<a href="order.html">
+				<a href="/order_management">
 					订单管理
 				</a>
 			</li>

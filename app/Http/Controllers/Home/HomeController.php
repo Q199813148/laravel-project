@@ -89,13 +89,13 @@ class HomeController extends Controller
                 <div class="am-u-sm-3 am-u-md-2 text-three" style="height:300px;" >
                     <div class="outer-con ">
                         <div class="title ">
-                            '.$row->name.'
+                           <a href="/goodsdetail?id='.$row->id.'"> '.$row->name.'</a>
                         </div>
                         <div class="sub-title ">
                             '.$row->price.'
                         </div>
                     </div>
-                        <a href="#">
+                        <a href="/goodsdetail?id='.$row->id.'">
                             <img  src='.$row->photo.'/>
                         </a>
                 </div>
