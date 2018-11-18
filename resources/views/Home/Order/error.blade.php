@@ -21,7 +21,12 @@
         <div class="status">
             <img src="/static/home/images/19B58PICXF5.png" alt="付款失败" style="display: inline;">
             <h2>付款失败</h2>
-
+            <div class="option">
+                <span class="info">您可以</span>
+                <a href="/order_management" class="J_MakePoint">查看<span>未付款的宝贝</span></a>
+            </div>
         </div>
     </div>
+@endsection
+@section('list')
 @endsection

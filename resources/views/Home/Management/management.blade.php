@@ -124,45 +124,45 @@
                                                         @if($value->status == 0)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">等待买家付款</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
                                                             </div>
                                                         @elseif($value->status == 1)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">买家已付款</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
                                                             </div>
                                                         @elseif($value->status == 2)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">卖家已发货</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         @elseif($value->status == 3)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">交易成功</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         @elseif($value->status == 4)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">评价完成</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         @elseif($value->status == 5)
                                                             <div class="item-status">
                                                                 <p class="Mystatus">退款中</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         @endif
@@ -171,13 +171,13 @@
                                                     <li class="td td-change">
                                                         {{--订单操作开始--}}
                                                         @if($value->status == 0)
-                                                            <a href="">
+                                                            <a href="/orderpay?id={{$value->id}}">
                                                                 <div class="am-btn am-btn-danger anniu">立即支付</div>
                                                             </a>
                                                         @elseif($value->status == 1)
                                                             <div class="am-btn am-btn-danger anniu">等待发货</div>
                                                         @elseif($value->status == 2)
-                                                            <a href="">
+                                                            <a href="/order_management/{{$value->id}}/edit" onClick="return confirm('确定收货?');">
                                                                 <div class="am-btn am-btn-danger anniu">确认收货</div>
                                                             </a>
                                                             <a href="">
@@ -191,14 +191,14 @@
                                                                 退货申请
                                                             </a>
                                                         @elseif($value->status == 4)
-                                                            <a href="">
+                                                            <a href="/order_management/{{$value->id}}" onClick="return confirm('确定删除?');">
                                                                 <div class="am-btn am-btn-danger anniu">删除订单</div>
                                                             </a>
                                                             <a href="">
                                                                 退货申请
                                                             </a>
                                                         @elseif($value->status == 5)
-                                                            <a href="">
+                                                            <a href="/order_management/{{$value->id}}" onClick="return confirm('确定删除?');">
                                                                 <div class="am-btn am-btn-danger anniu">删除订单</div>
                                                             </a>
                                                             <a href="">
@@ -214,7 +214,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{$data->render()}}
+                                {{--{{$data->render()}}--}}
                             </div>
 
                         </div>
@@ -313,7 +313,7 @@
 
                                                             <div class="item-status">
                                                                 <p class="Mystatus">等待买家付款</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
                                                             </div>
                                                         {{--订单状态结束--}}
@@ -321,7 +321,7 @@
                                                     <li class="td td-change">
                                                         {{--订单操作开始--}}
 
-                                                            <a href="">
+                                                            <a href="/orderpay?id={{$value->id}}">
                                                                 <div class="am-btn am-btn-danger anniu">立即支付</div>
                                                             </a>
                                                         {{--订单操作结束--}}
@@ -332,7 +332,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{$df_data->render()}}
+                                {{--{{$df_data->render()}}--}}
                             </div>
 
                         </div>
@@ -427,7 +427,7 @@
                                                         {{--订单状态开始--}}
                                                             <div class="item-status">
                                                                 <p class="Mystatus">买家已付款</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
                                                             </div>
                                                         {{--订单状态结束--}}
@@ -443,7 +443,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{$dfh_data->render()}}
+                                {{--{{$dfh_data->render()}}--}}
                             </div>
                         </div>
                     </div>
@@ -537,16 +537,16 @@
                                                         {{--订单状态开始--}}
                                                             <div class="item-status">
                                                                 <p class="Mystatus">卖家已发货</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         {{--订单状态结束--}}
                                                     </li>
                                                     <li class="td td-change">
                                                         {{--订单操作开始--}}
-                                                            <a href="">
+                                                            <a href="/order_management/{{$value->id}}/edit" onClick="return confirm('确定收货?');">
                                                                 <div class="am-btn am-btn-danger anniu">确认收货</div>
                                                             </a>
                                                             <a href="">
@@ -560,7 +560,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{$dsh_data->render()}}
+                                {{--{{$dsh_data->render()}}--}}
                             </div>
                         </div>
                     </div>
@@ -655,9 +655,9 @@
                                                         {{--订单状态开始--}}
                                                             <div class="item-status">
                                                                 <p class="Mystatus">交易成功</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">订单详情</a>
                                                                 </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
+                                                                <p class="order-info"><a href="/order_info?id={{$value->id}}">查看物流</a>
                                                                 </p>
                                                             </div>
                                                         {{--订单状态结束--}}
@@ -669,8 +669,7 @@
                                                             </a>
                                                             <a href="">
                                                                 退货申请
-                                                            </a>
-                                                        {{--订单操作结束--}}
+                                                            </a>                                                        {{--订单操作结束--}}
                                                     </li>
                                                 </div>
                                             </div>
@@ -678,7 +677,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{$dpj_data->render()}}
+{{--                                {{$dpj_data->render()}}--}}
                             </div>
 
                         </div>

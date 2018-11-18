@@ -98,6 +98,7 @@ class ManagementController extends Controller
             ]);
     }
 
+
     /**
      * Show the form for creating a new resource.
      *
@@ -116,18 +117,31 @@ class ManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
-     * Display the specified resource.
+     * 删除订单
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $data = DB::table('orders')->where('id',$id)->first();
+        //判断是否和提交订单的用户id是同一个id
+        $userid = session('user')->user_id;
+        if ($userid != $data->user_id) {
+            exit;
+        }
+        //判断是否是完成
+        if($data->status < 4){
+            return redirect("/order_management");
+        }
+        //删除订单
+        DB::table('orders')->where('id',$id)->delete();
+        DB::table('details')->where('order_id',$id)->delete();
+        return redirect("/order_management");
     }
 
     /**
@@ -139,6 +153,45 @@ class ManagementController extends Controller
     public function edit($id)
     {
         //
+        $data = DB::table('orders')->where('id',$id)->first();
+        //判断是否和提交订单的用户id是同一个id
+        $userid = session('user')->user_id;
+        if ($userid != $data->user_id) {
+            exit;
+        }
+        //判断是否是发货
+        if($data->status != 2){
+            return redirect("/order_management")->with('errore','未发货,请勿做尝试');
+        }
+        //确认收货
+        if(DB::table('orders')->where('id',$id)->update(['status'=>3])){
+            return redirect("/order_management")->with('success','收货成功');;
+        }
+
+    }
+
+    //订单详情
+    public function info(Request $request)
+    {
+        $id = $request->input('id');
+        //查询订单信息
+        $data = DB::table('orders')->where('id',$id)->first();
+        //隐藏手机号
+        $data->phone = substr_replace($data->phone,'****',3,4);
+        //判断是否和查看详情的用户id是同一个id
+        $userid = session('user')->user_id;
+        if ($userid != $data->user_id) {
+            return back()->with('error','非法请求');
+        }
+        //查询订单详情
+        $info = DB::table('details')
+            ->join('goods','details.good_id','goods.id')
+            ->select('goods.*','details.*','details.num as dnum')
+            ->where('order_id',$id)
+            ->get();
+
+        $express = json_decode(curlGet("http://www.kuaidi100.com/query?type=$data->company&postid=$data->express",'get'));
+        return view("Home.Order.info",['data'=>$data,'info'=>$info,'express'=>$express]);
     }
 
     /**
