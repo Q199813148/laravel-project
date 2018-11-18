@@ -185,7 +185,7 @@
 				</a>
 			</li>
 			<li>
-				<a href="comment.html">
+				<a href="/comment">
 					评价
 				</a>
 			</li>

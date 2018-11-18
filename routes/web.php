@@ -141,6 +141,8 @@
 		Route::get("/collectlist","Home\PersonalController@collectlist");
 		//取消收藏
 		Route::get("/collectdel","Home\PersonalController@collectdel");
+		//评论中心
+		Route::resource("/comment","Home\CommentController");
 
 		//个人中心-订单管理
         Route::resource("/order_management", "Home\ManagementController");
