@@ -1,4 +1,5 @@
 <?php
+
 function curlGet($url, $method, $post_data = 0)
 {
     //初始化curl

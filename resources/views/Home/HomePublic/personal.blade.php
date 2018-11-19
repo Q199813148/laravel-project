@@ -244,7 +244,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="foot.html">
+                            <a href="/history">
                                 足迹
                             </a>
                         </li>

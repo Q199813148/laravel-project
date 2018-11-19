@@ -39,7 +39,7 @@ class LoginMiddleware
 			//和权限列表做对比
 //			dd($nodelist);
 			if(empty($nodelist[$controller]) || !in_array($action,$nodelist[$controller])){
-//				return redirect("/admin")->with('error',"您没有权限访问该模块,请联系超级管理员");
+				return redirect("/admin")->with('error',"您没有权限访问该模块,请联系超级管理员");
 			}
              //经过中间件过滤 执行下一个请求
             return $next($request);

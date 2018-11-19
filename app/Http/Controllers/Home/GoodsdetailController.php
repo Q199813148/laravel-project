@@ -28,15 +28,35 @@ class GoodsdetailController extends Controller
         $collect = DB::table('collect')->where('good_id','=',$id)->count();
         //dd($collect);
         //上传收藏数  num
-        
+        DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
         //获取session('user')
-        if (!session('user')) {
-        	DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
-        	return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess]);	
-        }
+        //if (session('user')) {}
         $user_id=session('user')->user_id;
         $dd = DB::table('collect')->where('user_id','=',$user_id)->where('good_id','=',$id)->count();
         //dd($dd);
+        //如果用户存在就进行添加
+        if (session('user')) {
+        	if ($aa=DB::table('history')->where('user_id','=',$user_id)->where('goods_id','=',$id)->first()) {
+        		//先删除
+        		//dd($aa);
+        		DB::table('history')->where('id','=',$aa->id)->delete();	
+        		//再添加
+        		$cc = array();
+        		$cc['user_id'] = $user_id;
+        		$cc['goods_id'] = $id;
+        		$cc['addtime'] = date('Y-m-d H:i:s');
+        		//dd($cc);
+        		DB::table('history')->insert($cc);
+        	} else {
+        		//没有浏览记录则直接添加
+        		$cc = array();
+        		$cc['user_id'] = $user_id;
+        		$cc['goods_id'] = $id;
+        		$cc['addtime'] = date('Y-m-d H:i:s');
+        		DB::table('history')->insert($cc);
+        	}
+        	
+        }
         return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd]);
     }
 }
