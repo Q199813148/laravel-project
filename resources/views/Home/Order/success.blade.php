@@ -22,10 +22,12 @@
                 </ul>
                 <div class="option">
                     <span class="info">您可以</span>
-                    <a href="person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
-                    <a href="person/orderinfo.html" class="J_MakePoint">查看<span>交易详情</span></a>
+                    <a href="/order_management" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
+                    <a href="/order_management" class="J_MakePoint">查看<span>交易详情</span></a>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('list')
 @endsection

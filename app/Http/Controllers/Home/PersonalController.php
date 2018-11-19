@@ -29,6 +29,7 @@ class PersonalController extends Controller
 //		获取收藏数据
 		$collect = DB::table('collect')->where('user_id','=',$id)->offset(0)->limit(8)->select('good_id')->get();
 //		获取收藏的商品
+		$goods = [];
 		foreach($collect as $key=>$val) {
 			$goods[] = DB::table('goods')->where('id','=',$val->good_id)->first();
 		}
@@ -335,10 +336,10 @@ class PersonalController extends Controller
 				if($request->hasFile('userimg')){
 				unlink('.'.$data['pic']);
 				}
-				return redirect('/personal/'.$id.'/edit')->with('success',"修改失败");
+				return redirect('/personal/'.$id.'/edit')->with('error',"修改失败");
 			}
 		}else{
-			return redirect('/personal/'.$id.'/edit')->with('success',"修改失败");
+			return redirect('/personal/'.$id.'/edit')->with('error',"修改失败");
 		}
     }
 

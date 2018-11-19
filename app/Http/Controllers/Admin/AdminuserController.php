@@ -24,7 +24,8 @@ class AdminuserController extends Controller
         $seek = $request->input('seek');
 //		会员列表
 		$data = DB::table("admin")->where('name', 'like', '%'.$seek.'%')->paginate(5);
-        return view("Admin.Adminusers.index", ['data'=>$data, 'request'=>$request->all()]);
+		$role = DB::table("role")->where('status','=',1)->get();
+        return view("Admin.Adminusers.index", ['data'=>$data, 'role'=>$role, 'request'=>$request->all()]);
     }
 
     /**
@@ -34,7 +35,8 @@ class AdminuserController extends Controller
      */
     public function create()
     {
-        return view("Admin.Adminusers.add");
+    	$role = DB::table('role')->where('status','=',1)->get();
+        return view("Admin.Adminusers.add",['role'=>$role]);
     }
 
     /**
@@ -79,7 +81,8 @@ class AdminuserController extends Controller
     {
 //		获取修改数据插入模板
     	$data = DB::table('admin')->where('id', '=', $id)->first();
-		return view('Admin.Adminusers.edit', ['data'=>$data]);
+    	$role = DB::table('role')->where('status','=',1)->get();
+		return view('Admin.Adminusers.edit', ['data'=>$data,'role'=>$role]);
     }
 
     /**
@@ -122,8 +125,9 @@ class AdminuserController extends Controller
     public function destroy($id)
     {
         //执行删除
-        if($id == 1){
-        	
+        $level = DB::table('admin')->where('id','=',$id)->value('level');
+        if($level == 1){
+            return redirect("/adminusers")->with('error', '无法删除超级管理员');
         }
         if(DB::table("admin")->where("id", '=', $id)->delete()) {
             return redirect("/adminusers")->with('success', '删除成功');

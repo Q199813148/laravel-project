@@ -12,6 +12,7 @@ class ConfirmOrderController extends Controller
     public function index(Request $request)
     {
         if($request->input('msg')=='immediately'){
+            //直接下单
             $data = $request->except('_token');
             //获取用户id
             $user_id = session('user')->user_id;
@@ -27,6 +28,9 @@ class ConfirmOrderController extends Controller
             ])->get();
             //获取商品信息
             $goods = DB::table('goods')->where('id',$data['goods_id'])->first();
+            if($goods->store <= 0 || $data['num'] > $goods->store){
+                return back()->with('error',"库存不足");
+            }
             return view("Home.Order.confirm_order", ['data' => $data, 'default' => $default, 'address' => $address,'goods'=>$goods]);
         }else{
             //购物车选中的id
@@ -38,6 +42,14 @@ class ConfirmOrderController extends Controller
                 ->whereIn('cart.id', $id)
                 ->where('goods.status', 0)
                 ->get();
+        }
+        //获取库存
+        foreach ($data as $value){
+            $num = $value->num;
+            $goods_id = $value->goods_id;
+            if($num > DB::table('goods')->select('store')->where('id',$goods_id)->first()->store){
+                return back()->with('error',"库存不足");
+            }
         }
 
         //获取用户id
@@ -52,7 +64,6 @@ class ConfirmOrderController extends Controller
             ['user_id', $user_id],
             ['default', 1],
         ])->get();
-
         return view("Home.Order.confirmorder", ['data' => $data, 'default' => $default, 'address' => $address]);
     }
 }

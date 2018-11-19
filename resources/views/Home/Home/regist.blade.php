@@ -139,7 +139,7 @@
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('name')}}</span>
 									<div class="user-phone">
 										<label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
-										<input type="tel" name="phone"  placeholder="@if(old('phone')) {{old('phone')}} @else 请输入邮箱 @endif" id="phone" class="phone" placeholder="请输入手机号">
+										<input type="tel" name="phone"  placeholder="@if(old('phone')) {{old('phone')}} @else 请输入手机号 @endif" id="phone" class="phone">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('phone')}}</span>
 									<input type="hidden" name="lists" id="" class="feis" value="0" />

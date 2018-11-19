@@ -67,11 +67,14 @@
                           	{{$val->phone}}
                           </td>
                           <td>
-                          	@if($val->level == 1)
-                          		超级管理员
-                            @else
-                            	管理员
+                          	@foreach($role as $value)
+                          	@if($val->level == $value->id)
+                          		{{$value->name}}
                             @endif
+                            @if($val->level == 0)
+                            	未分配角色
+                            @endif
+                            @endforeach
                           </td>
                           <td>
                             {{$val->email}}

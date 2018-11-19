@@ -10,7 +10,6 @@
 |
 */
 //后台
-//modifier:Memory
 //	后台各种页
 	Route::group(["middleware"=>'login'], function(){
 	    Route::resource("/admin", "Admin\AdminController");
@@ -53,12 +52,16 @@
         //广告管理
 	    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
 	    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
-        //后台商品管理
+        //后台商品订单管理
         Route::resource("/adminorders","Admin\OrdersController");
-        //后台商品管理 订单状态
+        //后台商品订单管理 订单状态
         Route::get("/adminordersstatus","Admin\OrdersController@status");
-        //后台商品管理 退款状态
+        //后台商品订单管理 退款状态
         Route::get("/adminordersrefund","Admin\OrdersController@refund");
+//      后台角色管理
+        Route::resource("/adminrole","Admin\AdminRoleController");
+//      后台角色权限管理
+        Route::resource("/adminnode","Admin\AdminNodeController");
 	});
 
 
@@ -69,12 +72,9 @@
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
-    //广告管理
-    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
-    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
 
 
-	//end Memory
+
 
 
 
@@ -141,11 +141,17 @@
 		Route::get("/collectlist","Home\PersonalController@collectlist");
 		//取消收藏
 		Route::get("/collectdel","Home\PersonalController@collectdel");
-		//评论中心
+		//立即评价
 		Route::resource("/comment","Home\CommentController");
+		//查看评价
+        Route::get("/myRate", "Home\CommentController@myRate");
 
 		//个人中心-订单管理
         Route::resource("/order_management", "Home\ManagementController");
+        //订单详情
+        Route::get("/order_info", "Home\ManagementController@info");
+        //订单支付
+        Route::get("/orderpay", "Home\SubmitOrderController@orderpay");
 
         //足迹
 		Route::resource("/history","Home\historyController");

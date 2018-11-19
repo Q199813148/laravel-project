@@ -56,7 +56,7 @@
                       	自动登录
                     </label>
                   </div>
-                  <a href="#" class="auth-link text-black">忘记密码</a>
+                  <a href="#" class="auth-link text-black"></a>
                 </div>
               </form>
             </div>

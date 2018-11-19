@@ -108,6 +108,8 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminusers"> 管理列表 </a></li>
                 <li class="nav-item"> <a class="nav-link" href="/adminusers/create"> 添加管理 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminrole"> 角色列表</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminrole/create"> 添加角色 </a></li>
               </ul>
               </div>
           </li> 
@@ -264,7 +266,21 @@
   <!-- Custom js for this page-->
   <script src="/static/Admin/js/dashboard.js"></script>
   <script src="/static/Admin/js/chart.js"></script>
-  <!-- End custom js for this page-->
+  <!-- End custom js for this pageFE7C96-->
+@if(session('error'))
+<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list show baocuo" style="position: fixed; top: 12%; left: 35%; width: 30%; " >
+	<h6 class="p-3 mb-0" style="text-align: center;">哔~~</h6>
+	<div class="dropdown-divider"></div>	
+	<br /><br />
+	<h6 class="p-3 mb-0 text-center" style="color: #f00;">{{session('error')}}</h6>
+	<br /><br />
+</div>
+@endif
+<script type="text/javascript">
+	$('.baocuo').click(function() {
+		$(this).css('display','none');
+	});
+</script>
 </body>
 
 </html>

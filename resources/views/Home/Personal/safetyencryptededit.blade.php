@@ -57,9 +57,9 @@
 							<label for="user-question2" class="am-form-label">问题二</label>
 							<div class="am-form-content">
 								<select name="issue2" >
-									<option value="0" @if($data->issue2 == 0) selected @endif>您最喜欢的人是?</option>
-									<option value="1" @if($data->issue2 == 1) selected @endif>您最讨厌的人是?</option>
-									<option value="2" @if($data->issue2 == 2) selected @endif>你最尊敬的人是?</option>
+									<option value="0" @if($data->issue2 == 0) selected @endif>您做过最愚蠢的事是?</option>
+									<option value="1" @if($data->issue2 == 1) selected @endif>您干过最傻的事是?</option>
+									<option value="2" @if($data->issue2 == 2) selected @endif>你认为自己做过最蠢的事是?</option>
 								</select>
 							</div>
 						</div>
@@ -77,113 +77,4 @@
 					</form>
 
 				</div>
-@if(session('error'))
-<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{session('error')}}</div>
-@endif
-<script type="text/javascript">
-	$('.baocuo').click(function() {
-		$(this).css('display','none');
-	});
-</script>
-@endsection
-
-@section('list')
-<!--左侧列表-->
-<ul>
-	<li class="person">
-		<a href="/personal">
-			个人中心
-		</a>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			个人资料
-		</span>
-		<ul>
-			<li>
-				<a href="/personal/{{session('user')->user_id}}/edit">
-					个人信息
-				</a>
-			</li>
-			<li>
-				<a href="/personalsafety"  style="color: #f00;">
-					安全设置
-				</a>
-			</li>
-			<li>
-				<a href="/personaladdress">
-					收货地址
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的交易
-		</span>
-		<ul>
-			<li>
-				<a href="order.html">
-					订单管理
-				</a>
-			</li>
-			<li>
-				<a href="change.html">
-					退款售后
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的资产
-		</span>
-		<ul>
-			<li>
-				<a href="coupon.html">
-					优惠券
-				</a>
-			</li>
-			<li>
-				<a href="bonus.html">
-					红包
-				</a>
-			</li>
-			<li>
-				<a href="bill.html">
-					账单明细
-				</a>
-			</li>
-		</ul>
-	</li>
-
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的小窝
-		</span>
-		<ul>
-			<li>
-				<a href="collection.html">
-					收藏
-				</a>
-			</li>
-			<li>
-				<a href="foot.html">
-					足迹
-				</a>
-			</li>
-			<li>
-				<a href="comment.html">
-					评价
-				</a>
-			</li>
-			<li>
-				<a href="news.html">
-					消息
-				</a>
-			</li>
-		</ul>
-	</li>
-
-</ul>
 @endsection

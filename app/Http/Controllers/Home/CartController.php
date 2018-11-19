@@ -24,7 +24,11 @@ class CartController extends Controller
         //获取用户id
         $user_id = session('user')->user_id;
         //获取用户购物车数据
-        $data = DB::table('cart')->join('goods', 'cart.goods_id', '=', 'goods.id')->select('cart.id', 'cart.num', 'cart.taste', 'goods.id as goods_id', 'goods.name', 'goods.price', 'goods.store', 'goods.photo')->where('cart.user_id', '=', $user_id)->where('goods.status', '=', 0)->get();
+        $data = DB::table('cart')
+            ->join('goods', 'cart.goods_id', '=', 'goods.id')
+            ->select('cart.id', 'cart.num', 'cart.taste', 'goods.id as goods_id', 'goods.name', 'goods.price', 'goods.store', 'goods.photo')
+            ->where([['cart.user_id', $user_id],['goods.status', 0],['goods.store','>','0']])
+            ->get();
 
         return view("Home.Cart.index", ['data' => $data]);
 
