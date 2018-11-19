@@ -152,7 +152,7 @@
                                     <a href="static/Home/javascript:;" title="关闭" class="close">×</a>
                                 </div>
                                 <div class="theme-popbod dform">
-                                    <form id="order_form" class="theme-signin" name="loginform" action="/confirm_order" method="post">
+                                    <form id="order_form" class="theme-signin" name="loginform" >
                                         {{csrf_field()}}
                                         <div class="theme-signin-left">
 

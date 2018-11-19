@@ -41,6 +41,15 @@
                       <label for="exampleInputName1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手机号码<span class="text-danger" style="font-size: 12px;">{{$errors->first('phone')}}</span></font></font></label>
                       <input type="text" name="phone" value="{{old('phone')}}" class="form-control" id="exampleInputName1" placeholder="Phone">
                     </div>
+					<div class="form-group">
+		                <label for="exampleFormControlSelect2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理类型</font></font></label>
+		                <select class="form-control" name="level" id="exampleFormControlSelect2">
+		                  <option value="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font>-- 请选择 --</font></option>
+		                	@foreach($role as $val)
+		                  <option value="{{$val->id}}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font>{{$val->name}}</font></option>
+		                  	@endforeach
+		                </select>
+		              </div>
                		{{csrf_field()}}
                     <button type="submit" class="btn btn-gradient-primary mr-2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
                     <button type="reset" class="btn btn-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重置</font></font></button>

@@ -170,6 +170,21 @@
 		</div>
 
 	</body>
+	
+@foreach ($errors->all() as $error)
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{$error}}</div>
+@endforeach
+@if(session('error'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{session('error')}}</div>
+@endif
+@if(session('success'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #1CCFB4; line-height: 80px;text-align: center; color: #fff;">{{session('success')}}</div>
+@endif
+<script type="text/javascript">
+	$('.baocuo').click(function() {
+		$(this).css('display','none');
+	});
+</script>
 	<script type="text/javascript">
 
 		$.get("/links",function(links){ 
@@ -178,5 +193,6 @@
 		});
 
 		</script>
+		
 	</body>
 </html>

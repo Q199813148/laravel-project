@@ -115,7 +115,7 @@ class UsersController extends Controller
                 return response()->json(['status'=>1]);
             }
 
-        }else{
+        }elseif( $status == 1){
             if(DB::table("users")->where("user_id","=",$id)->update(['status'=>0])){
                 //返回
                 return response()->json(['status'=>1]);

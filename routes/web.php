@@ -10,7 +10,6 @@
 |
 */
 //后台
-//modifier:Memory
 //	后台各种页
 	Route::group(["middleware"=>'login'], function(){
 	    Route::resource("/admin", "Admin\AdminController");
@@ -53,12 +52,16 @@
         //广告管理
 	    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
 	    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
-        //后台商品管理
+        //后台商品订单管理
         Route::resource("/adminorders","Admin\OrdersController");
-        //后台商品管理 订单状态
+        //后台商品订单管理 订单状态
         Route::get("/adminordersstatus","Admin\OrdersController@status");
-        //后台商品管理 退款状态
+        //后台商品订单管理 退款状态
         Route::get("/adminordersrefund","Admin\OrdersController@refund");
+//      后台角色管理
+        Route::resource("/adminrole","Admin\AdminRoleController");
+//      后台角色权限管理
+        Route::resource("/adminnode","Admin\AdminNodeController");
 	});
 
 
@@ -69,12 +72,9 @@
 //	退出登陆
 	Route::get("/admins/exit", "Admin\AdminController@exit");
 
-    //广告管理
-    Route::resource("/adminadvertisement", "Admin\AdvertisementController");
-    Route::get("/Advertisement/ajax", "Admin\AdvertisementController@ajax");
 
 
-	//end Memory
+
 
 
 

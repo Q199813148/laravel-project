@@ -30,7 +30,7 @@ class AdminuserUserinsert extends FormRequest
             'repassword'=>'required|same:password',
             // email邮箱格式规则
             'email'=>'required|regex:/\w+@\w+\.\w+/|email|unique:admin',
-            'phone'=>'required|regex:/\d{11}/|unique:admin',
+            'phone'=>'required|regex:/^\d{11}$/|unique:admin',
         ];
     }
 //	自定义错误信息

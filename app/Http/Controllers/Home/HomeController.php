@@ -319,7 +319,7 @@ class HomeController extends Controller
 		$data = $request->input('name');
 		if(Preg_match("/@/",$data)) {
 			$bool = 'email';
-		} elseif(Preg_match("/\d{11}/",$data)) {
+		} elseif(Preg_match("/^\d{11}$/",$data)) {
 			$bool = 'phone';
 		}else{
 			$bool = 'name';
