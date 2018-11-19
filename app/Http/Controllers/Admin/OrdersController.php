@@ -95,8 +95,12 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        //查询数据
+        $data = DB::table('orders')->where('id','=',$id)->first();
+        // dd($data);
+        //加载模板
+        return view('Admin.Orders.info',['data'=>$data]);
     }
 
     /**
@@ -107,7 +111,11 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        //查询信息
+        $data = DB::table('orders')->where('id','=',$id)->first();
+        // dd($data);
+        //加载模板
+        return view("Admin.Orders.edit",['data'=>$data]);
     }
 
     /**
@@ -119,7 +127,17 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //获取数据
+        // dd($request->all());
+        $data = $request->only(['express','company','status']);
+        // dd($data);
+        if(DB::table('orders')->where('id','=',$id)->update($data)){
+            return redirect('adminorders')->with("success","修改成功");
+            
+        }else{
+            return back()->with("error",'修改失败');
+        }
+        
     }
 
     /**

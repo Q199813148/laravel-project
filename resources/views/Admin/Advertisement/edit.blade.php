@@ -61,4 +61,4 @@
         </div>
     </div>
 @endsection
-@section('title','添加广告')
+@section('title','修改广告')

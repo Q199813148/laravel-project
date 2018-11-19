@@ -151,5 +151,5 @@
   });
 </script>
 @endsection
-@section('title','商品列表')
+@section('title','广告列表')
 
