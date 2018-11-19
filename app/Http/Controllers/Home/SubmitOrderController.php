@@ -25,6 +25,8 @@ class SubmitOrderController extends Controller
         $order['orderno'] = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
         //用户id
         $order['user_id'] = session('user')->user_id;
+        //商品id
+        $gid = $data['goods_id'];
         //判断是否和提交订单的用户id是同一个id
         if ($order['user_id'] != $data['user_id']) {
             exit;
@@ -72,8 +74,10 @@ class SubmitOrderController extends Controller
             DB::table('details')->insert(['order_id' => $id, 'good_id' => $val->goods_id, 'num' => $val->num, 'taste' => $val->taste]);
             //计算销量
             $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
+            //计算剩余库存
+            $store = DB::table('goods')->where('id', $gid)->first()->store - $num;
             //更新库存
-            DB::table('goods')->where('id', $gid)->update(['store' => $store,'sales'=>$sales]);
+            DB::table('goods')->where('id', $gid)->update(['store' => $store, 'sales' => $sales]);
         }
 
 
@@ -81,8 +85,8 @@ class SubmitOrderController extends Controller
         $alipay = app('alipay.web');
         $alipay->setOutTradeNo($order['orderno']);
         $alipay->setTotalFee($order['goods_money']);
-        $alipay->setSubject('悦桔拉拉商城购物');
-        $alipay->setBody('测试');
+        $alipay->setSubject('悦桔拉拉商城');
+        $alipay->setBody('悦桔拉拉商城购物');
 
         $alipay->setQrPayMode('5'); //该设置为可选，添加该参数设置，支持二维码支付。
 
@@ -122,12 +126,12 @@ class SubmitOrderController extends Controller
         //数量
         $num = $request->input('num');
         //计算总价
-        $order['goods_money'] = DB::table('goods')->where('id',$gid)->first()->price * $num;
+        $order['goods_money'] = DB::table('goods')->where('id', $gid)->first()->price * $num;
 
         //查询商品表库存是否足够
         $store = DB::table('goods')->where('id', $gid)->first()->store;
 
-        if($store < $num){
+        if ($store < $num) {
             return redirect("/goodsdetail?id=$gid")->with('error', '商品库存不足');
         }
 
@@ -141,16 +145,15 @@ class SubmitOrderController extends Controller
         //计算销量
         $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
         //更新库存
-        DB::table('goods')->where('id', $gid)->update(['store' => $store,'sales'=>$sales]);
-
+        DB::table('goods')->where('id', $gid)->update(['store' => $store, 'sales' => $sales]);
 
 
         //调用支付方法
         $alipay = app('alipay.web');
         $alipay->setOutTradeNo($order['orderno']);
         $alipay->setTotalFee($order['goods_money']);
-        $alipay->setSubject('悦桔拉拉商城购物');
-        $alipay->setBody('测试');
+        $alipay->setSubject('悦桔拉拉商城');
+        $alipay->setBody('悦桔拉拉商城购物');
 
         $alipay->setQrPayMode('5'); //该设置为可选，添加该参数设置，支持二维码支付。
 
@@ -216,6 +219,33 @@ class SubmitOrderController extends Controller
 
 
         return view("Home.Order.success", ['data' => $data]);
+    }
+
+    //从订单里支付
+    public function orderpay(Request $request)
+    {
+        $id = $request->input('id');
+        $data = DB::table('orders')->where('id',$id)->first();
+        //判断是否和提交订单的用户id是同一个id
+        $userid = session('user')->user_id;
+        if ($userid != $data->user_id) {
+            exit;
+        }
+        //判断是否是未支付
+        if($data->status != 0){
+            return redirect("/order_management");
+        }
+        //调用支付方法
+        $alipay = app('alipay.web');
+        $alipay->setOutTradeNo($data->orderno);
+        $alipay->setTotalFee($data->goods_money);
+        $alipay->setSubject('悦桔拉拉商城');
+        $alipay->setBody('悦桔拉拉商城购物');
+
+        $alipay->setQrPayMode('5'); //该设置为可选，添加该参数设置，支持二维码支付。
+
+        // 跳转到支付页面。
+        return redirect()->to($alipay->getPayLink());
     }
 
 }

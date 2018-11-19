@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-    	echo '错错错';
+    	//echo '错错错';
         return parent::render($request, $exception);
     }
 }

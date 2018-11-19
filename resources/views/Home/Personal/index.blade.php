@@ -276,7 +276,7 @@
 			<div class="you-like">
 				<div class="s-bar">
 					我的收藏
-					<a class="i-load-more-item-shadow" href="#">
+					<a class="i-load-more-item-shadow" href="/collectlist">
 						查看全部
 					</a>
 				</div>
@@ -388,105 +388,5 @@
 		@endif
 	</div>
 </div>
-
 @endsection
 
-@section('list')
-<!--左侧列表-->
-<ul>
-	<li class="person">
-		<a href="/personal" style="color: #f00;">
-			个人中心
-		</a>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			个人资料
-		</span>
-		<ul>
-			<li>
-				<a href="/personal/{{session('user')->user_id}}/edit">
-					个人信息
-				</a>
-			</li>
-			<li>
-				<a href="/personalsafety">
-					安全设置
-				</a>
-			</li>
-			<li>
-				<a href="/personaladdress">
-					收货地址
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的交易
-		</span>
-		<ul>
-			<li>
-				<a href="order.html">
-					订单管理
-				</a>
-			</li>
-			<li>
-				<a href="change.html">
-					退款售后
-				</a>
-			</li>
-		</ul>
-	</li>
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的资产
-		</span>
-		<ul>
-			<li>
-				<a href="coupon.html">
-					优惠券
-				</a>
-			</li>
-			<li>
-				<a href="bonus.html">
-					红包
-				</a>
-			</li>
-			<li>
-				<a href="bill.html">
-					账单明细
-				</a>
-			</li>
-		</ul>
-	</li>
-
-	<li class="person">
-		<span  style="font-size: 18px;"	>
-			我的小窝
-		</span>
-		<ul>
-			<li>
-				<a href="/collectlist">
-					收藏
-				</a>
-			</li>
-			<li>
-				<a href="foot.html">
-					足迹
-				</a>
-			</li>
-			<li>
-				<a href="comment.html">
-					评价
-				</a>
-			</li>
-			<li>
-				<a href="news.html">
-					消息
-				</a>
-			</li>
-		</ul>
-	</li>
-</ul>
-@endsection

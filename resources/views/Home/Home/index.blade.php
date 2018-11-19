@@ -154,8 +154,7 @@
 
             </div>
 
-        </ul>
-
+            </ul>
 
             <div class="advTip">
                 <img src="/static/Home/images/advTip.jpg"/>
