@@ -60,9 +60,9 @@
                             </div>
                             @endif
                         <div class="inquire">
-                                <span class="package-detail">物流：{{$data->company}}</span>
+                                <span class="package-detail">物流：{{$data->company or '未发货'}}</span>
                                 <span class="package-detail">快递单号: </span>
-                                <span class="package-number">{{$data->express}}</span>
+                                <span class="package-number">{{$data->express or '未发货'}}</span>
                                 <a
                                         class="am-btn am-btn-link"
                                         data-am-modal="{target: '#my-popup'}">
@@ -237,7 +237,7 @@
                                                 退货申请
                                             </a>
                                         @elseif($data->status == 3)
-                                            <a href="">
+                                            <a href="/comment?id={{$data->id}}">
                                                 <div class="am-btn am-btn-danger anniu">立即评价</div>
                                             </a>
                                             <a href="">

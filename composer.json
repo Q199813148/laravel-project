@@ -32,6 +32,17 @@
             "app/Library/helper.php"
         ]
     },
+    "autoload": {
+		"classmap": [
+			"database"
+		],
+		"psr-4": {
+			"App\\": "app/"
+		},
+		"files":[
+			"app/Library/helper.php"
+		]
+	},
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"

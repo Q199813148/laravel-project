@@ -20,25 +20,16 @@
 			<p class="card-description">
 				<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> </font></font>
 			</p>
-			<form class="forms-sample" action="/adminusers/{{$data->id}}" method="post">
+			<form class="forms-sample" action="/adminrole/{{$data->id}}" method="post">
 				<div class="form-group">
 					<label for="exampleInputName1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名称<span class="text-danger" style="font-size: 12px;">{{$errors->first('name')}}</span></font></font></label>
 					<input type="text" name="name" value="{{$data->name}}" class="form-control" id="exampleInputName1" placeholder="Name">
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">电子邮件地址<span class="text-danger" style="font-size: 12px;">{{$errors->first('email')}}</span></font></font></label>
-					<input type="email" name="email" value="{{$data->email}}" class="form-control" id="exampleInputEmail3" placeholder="Email">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputName1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手机号码<span class="text-danger" style="font-size: 12px;">{{$errors->first('phone')}}</span></font></font></label>
-					<input type="text" name="phone" value="{{$data->phone}}" class="form-control" id="exampleInputName1" placeholder="Phone">
-				</div>
-				<div class="form-group">
                     <label for="exampleFormControlSelect2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">管理类型</font></font></label>
-                    <select class="form-control" name="level" id="exampleFormControlSelect2">
-                    	@foreach($role as $val)
-                      <option value="{{$val->id}}" @if($data->level == $val->id)selected @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{$val->name}}</font></font></option>
-                      	@endforeach
+                    <select class="form-control" name="status" id="exampleFormControlSelect2">
+                      <option value="1" @if($data->status == 1) selected @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">启用</font></font></option>
+                      <option value="0" @if($data->status == 0) selected @endif><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">禁用</font></font></option>
                     </select>
                   </div>
 				{{csrf_field()}}

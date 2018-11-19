@@ -18,7 +18,6 @@ $('.min').click(function () {
     obj = $(this);
     //获取现有数量
     var num = $(this).next().val();
-
     //获取数据库对应id
     var id = $(this).prev().val();
     //禁用
@@ -53,7 +52,8 @@ $('.add').click(function () {
     var store = $(this).parent('div').find('input[name="store"]').val();
     if(num >= store){
         obj.attr('disabled', 'true');
-        return false;
+        num = $(this).prev().val(store);
+
     }
     //禁用
     obj.attr('disabled', 'true');

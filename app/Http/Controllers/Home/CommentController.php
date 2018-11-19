@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use Hash;
-use Illuminate\Support\Facades\Cookie;
 
 class CommentController extends Controller
 {
@@ -15,9 +13,26 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Home.Personal.comment');
+        //获取订单id
+        $id = $request->input('id');
+        //获取用户id
+        $userid = session('user')->user_id;
+        //获取订单数据
+        $data = DB::table("orders")->where([['id',$id],['status',3],['user_id',$userid]])->first();
+        //判断是否有值
+        if(empty($data)){
+            return redirect('/order_management');
+        }
+        //获取子订单
+        $info = DB::table('details')
+            ->join('goods','details.good_id','goods.id')
+            ->select('goods.name','details.good_id','goods.photo','goods.price','details.taste','details.id')
+            ->where('order_id',$id)
+            ->get();
+
+        return view('Home.Order.comment',['info'=>$info,'order_id'=>$id,'i'=>0]);
     }
 
     /**
@@ -38,7 +53,67 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //获取表单数据
+        $data = $request->except('_token','order_id');
+        //判断是否已经评价
+        $order_id = $request->input('order_id');
+        if(DB::table('orders')->select('status')->where("id",$order_id)->first()->status != 3){
+            return redirect("/order_management")->with('error','非法操作,请勿重试');
+        }
+        //获取用户id
+        $user_id = session('user')->user_id;
+        //获取当前时间
+        $addtime = date('Y-m-d H:i:s');
+        //遍历表单数据插入数据库
+        $i=0;
+        foreach ($data as $key=>$value){
+            //初始化数组
+            $put = array();
+            //评价内容
+            $put['content'] = $value['content'];
+            //评价星级
+            $put['level'] = $value['level'];
+            //上传时间
+            $put['addtime'] = $addtime;
+            //用户id
+            $put['user_id'] = $user_id;
+            //详情表id
+            $put['detail_id'] = $value['detail_id'];
+            //判断是否有文件上传
+            if(array_key_exists('pic',$value)){
+                //上传的文件
+                $file[$i] = $value['pic'];
+                //初始化数组
+                $pic = array();
+                foreach ($file[$i] as $val){
+                    //初始化名字
+                    $name=time()+rand(1,10000);
+                    //获取上传文件后缀
+                    $ext = $val->getClientOriginalExtension();
+                    $date = date("Y-m-d");
+                    $val->move("./uploads/comment/".$date,$name.".".$ext);
+                    //拼接图片路径
+                    $pic[] = "/uploads/comment/".$date."/".$name.'.'.$ext;
+                }
+                $i++;
+                //切割数组成字符串
+                $put['pic'] = join(',',$pic);
+            }
+            //写入数据库
+            if(DB::table('comment')->insert($put)){
+                DB::table('orders')->where('id',$order_id)->update(['status'=>4]);
+                return redirect("/myRate")->with('success','评价成功');
+            }else{
+                return back()->with('error','评价失败,请重试');
+            }
+
+
+        }
+    }
+
+    public function myRate()
+    {
+        dd('1');
     }
 
     /**
@@ -49,7 +124,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

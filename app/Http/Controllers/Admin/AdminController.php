@@ -17,8 +17,51 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-		return view("Admin.Admin.index");
+    	$time = date('Y-m-d H-i-s',time()-86400*7);
+    	$times = date('Y-m-d H-i-s',time()-86400*14);
+    	$timey = date('Y-m-d H-i-s',time()-86400*30);
+		$orders = DB::table('orders')
+		->where('time','>',$time)
+		->count();
+		$orderss = DB::table('orders')
+		->where('time','>',$times)
+		->where('time','<',$time)
+		->count();
+		$ordersy = DB::table('orders')
+		->where('time','>',$timey)
+		->count();
+		$orderer = round(($orders-$orderss)/$orders*100);
+		$num = round(DB::table('orders')
+		->where('time','>',$time)
+		->where('status','>=',1)
+		->sum('goods_money'));
+		$numy = round(DB::table('orders')
+		->where('time','>',$timey)
+		->where('status','>=',1)
+		->sum('goods_money'));
+		$nums = DB::table('orders')
+		->where('time','>',$times)
+		->where('time','<',$time)
+		->where('status','>=',1)
+		->sum('goods_money');
+		$numer = round(($num-$nums)/$num*100);
+		$endorders = DB::table('orders')
+		->where('time','>',$time)
+		->where('status','>=',3)
+		->count();
+		$endordersy = DB::table('orders')
+		->where('time','>',$timey)
+		->where('status','>=',3)
+		->count();
+		$endorderss = DB::table('orders')
+		->where('time','<',$time)
+		->where('time','>',$times)
+		->where('status','>=',3)
+		->count();
+		$endorderer = round(($endorders-$endorderss)/$endorders*100);
+//		dd($numer);
+//		dd($orderer);
+		return view("Admin.Admin.index",['orders'=>$orders,'ordersy'=>$ordersy,'orderer'=>$orderer,'endorders'=>$endorders,'endordersy'=>$endordersy,'endorderer'=>$endorderer,'num'=>$num,'numy'=>$numy,'numer'=>$numer]);
     }
     /**
      * 登陆界面
@@ -59,6 +102,32 @@ class AdminController extends Controller
 //				删除密码并存入session
 				unset($namebool->password);
 				session(['admin' => $namebool]);
+				
+				//获取用户的所有权限列表信息
+				$list = DB::table('role_node')
+				->where('role_id','=',$namebool->level)
+				->join('node','node.id','=','role_node.node_id')
+				->where('node.status','=',1)
+				->get();
+//				 dd($list);
+				//2.初始化权限信息
+				//把后台首页权限写入到权限信息列表里
+				$nodelist['AdminController'][]="index";
+				//遍历写入其他权限
+				foreach($list as $v){
+					$nodelist[$v->m_name][]=$v->a_name;
+						//如果有create 添加store方法
+					if($v->a_name=="create"){
+						$nodelist[$v->m_name][]="store";
+					}
+					//如果有edit 方法 添加update方法
+					if($v->a_name=="edit"){
+						$nodelist[$v->m_name][]="update";
+					}
+				}
+				//将权限信息存入session
+				session(['nodelist'=>$nodelist]);
+				
 //				存储七天自动登陆
 				if(!empty($request->input('keep'))) {
 					Cookie::queue('admin', $name, 10080);	
