@@ -97,6 +97,7 @@ class PersonalsafetyController extends Controller
         $data = $request->only('issue1','issue2','result1','result2');
 //		获取id
     	$data['user_id'] = session('user')->user_id;
+    	$data['token'] = rand(1,9999);
 //		查询并判断用户是否存在密保
 		$bool = DB::table('encrypted')->where('user_id','=',$data['user_id'])->first();
 		if(!$bool) {
@@ -172,17 +173,23 @@ class PersonalsafetyController extends Controller
 		$id = session('user')->user_id;
 		$token = $request->input('token');
 		$dbtoken = DB::table('encrypted')->where('user_id','=',$id)->value('token');
-//		判断token是否同步
-		if(!$token == $dbtoken) {
-//			token不同步 跳转至密保检验
-//			重置token
-			$token = rand(1,99999999);
-			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
-//			跳转
-			return redirect('/verifyencrypted?url=safetyphone&token='.$token);
+//		判断是否存在密保
+		if(!empty($dbtoken)) {
+//			判断token是否同步
+			if($token != $dbtoken) {
+	//			token不同步 跳转至密保检验
+	//			重置token
+				$token = rand(1,99999999);
+				$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
+	//			跳转
+
+				return redirect('/verifyencrypted?url=safetyphone&token='.$token);
+			}
+	//		token同步 引入修改页面
+			return view('Home.personal.safetyphone');
+		}else{
+			return redirect('personalsafety')->with('error','请设置密保');
 		}
-//		token同步 引入修改页面
-		return view('Home.personal.safetyphone');
 	}
 	
 //	执行修改手机
@@ -222,17 +229,22 @@ class PersonalsafetyController extends Controller
 		$token = $request->input('token');
 		$dbtoken = DB::table('encrypted')->where('user_id','=',$id)->value('token');
 //		判断token是否同步
-		if(!$token == $dbtoken) {
-//			token不同步 跳转至密保检验
-//			重置token
-			$token = rand(1,99999999);
-			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
-//			跳转
-			return redirect('/verifyencrypted?url=safetyencrypted&token='.$token);
+//		判断是否存在密保
+		if(!empty($dbtoken)) {
+			if($token != $dbtoken) {
+	//			token不同步 跳转至密保检验
+	//			重置token
+				$token = rand(1,99999999);
+				$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
+	//			跳转
+				return redirect('/verifyencrypted?url=safetyencrypted&token='.$token);
+			}
+	//		token同步 引入修改页面
+			$data = DB::table('encrypted')->where('user_id','=',$id)->first();
+			return view('Home.Personal.safetyencryptededit',['data'=>$data]);
+		}else{
+			return redirect('personalsafety')->with('error','请设置密保');
 		}
-//		token同步 引入修改页面
-		$data = DB::table('encrypted')->where('user_id','=',$id)->first();
-		return view('Home.Personal.safetyencryptededit',['data'=>$data]);
     }
 //	执行修改密保
     public function dosafetyencrypted(Request $request)
@@ -260,17 +272,21 @@ class PersonalsafetyController extends Controller
 		$id = session('user')->user_id;
 		$token = $request->input('token');
 		$dbtoken = DB::table('encrypted')->where('user_id','=',$id)->value('token');
-//		判断token是否同步
-		if(!$token == $dbtoken) {
-//			token不同步 跳转至密保检验
-//			重置token
-			$token = rand(1,99999999);
-			$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
-//			跳转
-			return redirect('/verifyencrypted?url=safetyemail&token='.$token);
+		if(!empty($dbtoken)) {
+	//		判断token是否同步
+			if($token != $dbtoken) {
+	//			token不同步 跳转至密保检验
+	//			重置token
+				$token = rand(1,99999999);
+				$data= DB::table('encrypted')->where('user_id','=',$id)->update(['token'=>$token]);
+	//			跳转
+				return redirect('/verifyencrypted?url=safetyemail&token='.$token);
+			}
+	//		token同步 引入修改页面
+			return view('Home.Personal.safetyemail');
+		}else{
+			return redirect('personalsafety')->with('error','请设置密保');
 		}
-//		token同步 引入修改页面
-		return view('Home.Personal.safetyemail');
     }
 //	执行修改邮箱
     public function dosafetyemail(SafetyEmail $request)

@@ -14,7 +14,7 @@ class Users extends Model
     //修改器方法 status 数据表字段 getAttribute() 获取字段值
     public function getStatusAttribute($value){
     	//自动处理
-    	$status=[0=>'禁用',1=>'启用'];
+    	$status=[0=>'禁用',1=>'启用',2=>'未激活'];
     	//返回数据
     	return $status[$value];
     }

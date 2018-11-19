@@ -14,7 +14,11 @@
 				<div class="m-userinfo">
 					<div class="m-baseinfo">
 						<a href="information.html">
+						@if($user->pic)
 							<img src="{{$user->pic}}">
+						@else
+							<img src="/static/Home/images/getAvatar.do.jpg">
+						@endif
 						</a>
 						<em class="s-name">{{session('user')->name}}<span class="vip1"></span></em>
 						<div class="s-prestige am-btn am-round">
@@ -384,6 +388,5 @@
 		@endif
 	</div>
 </div>
-
 @endsection
 
