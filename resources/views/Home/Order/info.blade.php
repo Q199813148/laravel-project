@@ -237,7 +237,7 @@
                                                 退货申请
                                             </a>
                                         @elseif($data->status == 3)
-                                            <a href="">
+                                            <a href="/comment?id={{$data->id}}">
                                                 <div class="am-btn am-btn-danger anniu">立即评价</div>
                                             </a>
                                             <a href="">

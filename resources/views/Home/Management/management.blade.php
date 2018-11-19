@@ -227,7 +227,7 @@
                                     </div>
                                     {{--订单结束--}}
                                 @endforeach
-                                {{--{{$data->render()}}--}}
+                                {{$data->render()}}
                             </div>
 
                         </div>

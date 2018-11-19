@@ -156,7 +156,7 @@
                                     <a href="static/Home/javascript:;" title="关闭" class="close">×</a>
                                 </div>
                                 <div class="theme-popbod dform">
-                                    <form id="order_form" class="theme-signin" name="loginform" >
+                                    <form id="order_form" class="theme-signin" name="loginform" method="post">
                                         {{csrf_field()}}
                                         <div class="theme-signin-left">
 
@@ -175,7 +175,7 @@
 
                         <dd>
                             <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" disabled/>
-                            <input id="text_box" name="num" type="text" value="1" style="width:40px;" />
+                            <input id="text_box" name="num" type="text" value="{{$data->store==0 ? '0':'1'}}" style="width:40px;" />
                             <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
                             <span id="Stock" class="tb-hidden">库存<span class="stock">{{$data->store}}</span>件</span>
                         </dd>
@@ -868,10 +868,15 @@
         $('#min').click(function(){
             var num = parseInt($('#text_box').val()) - 1;
             $('#text_box').val(num);
-            if(num <= 1){
+            console.log(num);
+            if(num <= 1 && num >= 0){
                 $('#text_box').val('1');
                 $('#add').removeAttr('disabled');
                 $('#min').attr('disabled','true');
+            }else if(num <= -1){
+                $('#text_box').val('0');
+                $('#add').removeAttr('disabled');
+                $('#min').removeAttr('disabled')
             }else{
                 $('#add').removeAttr('disabled');
                 $('#min').removeAttr('disabled');
@@ -903,7 +908,13 @@
             }
             $("#order_form").attr('action','/confirm_order?msg=immediately');
             $('input[name="taste"]').val(taste);
-            $('#order_form').submit();
+            var num = $("#text_box").val();
+            if(num <= 0){
+                alert("请输入正确的数量");
+            }else{
+                $('#order_form').submit();
+            }
+
         })
         //加入购物车
         $('#LikBasket').click(function () {
@@ -913,7 +924,12 @@
             }
             $("#order_form").attr('action','/cart');
             $('input[name="taste"]').val(taste);
-            $('#order_form').submit();
+            var num = $("#text_box").val();
+            if(num <= 0){
+                alert("请输入正确的数量");
+            }else{
+                $('#order_form').submit();
+            }
         })
 
     </script>

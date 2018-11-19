@@ -102,7 +102,7 @@ class CommentController extends Controller
             //写入数据库
             if(DB::table('comment')->insert($put)){
                 DB::table('orders')->where('id',$order_id)->update(['status'=>4]);
-                return redirect("/comment/$order_id");
+                return redirect("/myRate")->with('success','评价成功');
             }else{
                 return back()->with('error','评价失败,请重试');
             }
@@ -111,9 +111,9 @@ class CommentController extends Controller
         }
     }
 
-    public function updatepic($request)
+    public function myRate()
     {
-
+        dd('1');
     }
 
     /**
@@ -124,7 +124,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

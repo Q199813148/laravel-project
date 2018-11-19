@@ -23,7 +23,7 @@ class ManagementController extends Controller
         $data = DB::table('orders')
             ->where('user_id',$user_id)
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->paginate(10);
         $details = array();
         foreach ($data as $value){
             $details[$value->id]=DB::table('details')
@@ -37,7 +37,7 @@ class ManagementController extends Controller
         $df_data = DB::table('orders')
             ->where([['user_id',$user_id],['status','0']])
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->get();
         $df_details = array();
         foreach ($df_data as $value){
             $df_details[$value->id]=DB::table('details')
@@ -51,7 +51,7 @@ class ManagementController extends Controller
         $dfh_data = DB::table('orders')
             ->where([['user_id',$user_id],['status','1']])
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->get();
         $dfh_details = array();
         foreach ($dfh_data as $value){
             $dfh_details[$value->id]=DB::table('details')
@@ -65,7 +65,7 @@ class ManagementController extends Controller
         $dsh_data = DB::table('orders')
             ->where([['user_id',$user_id],['status','2']])
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->get();
         $dsh_details = array();
         foreach ($dsh_data as $value){
             $dsh_details[$value->id]=DB::table('details')
@@ -77,9 +77,9 @@ class ManagementController extends Controller
 
         //待评价订单
         $dpj_data = DB::table('orders')
-            ->where([['user_id',$user_id],['status','2']])
+            ->where([['user_id',$user_id],['status','3']])
             ->orderBy('id','desc')
-            ->paginate(5);
+            ->get();
         $dpj_details = array();
         foreach ($dpj_data as $value){
             $dpj_details[$value->id]=DB::table('details')
