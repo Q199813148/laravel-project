@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Home;
-
+use helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Ucpaas;
@@ -51,7 +51,7 @@ class HomeController extends Controller
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
         //公告
-        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,5");
+        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,4");
         //dd($notice);
         $types=$this->gettypesbypid(0);
         // dd($types);
@@ -68,8 +68,9 @@ class HomeController extends Controller
         //首页商品
         $goods = DB::table("goods")->where("status",'=','1')->orderBy('id')->get();
         // dd($goods);
-
-        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type]);
+        $data2=$this->curl();
+        //dd($this->curl());
+        return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type,'data2'=>$data2]);
     }
 
     //ajax首页商品列表
@@ -253,6 +254,9 @@ class HomeController extends Controller
     //登录界面
     public function login()
     { 
+    	if (session('user')) {
+    		return redirect("/")->with('success','已经存在用户');
+    	}
     	return view("Home.Home.login");
     }
 
@@ -581,5 +585,20 @@ class HomeController extends Controller
 		}else{
 			return redirect('/regist')->with("error",'验证信息被修改');
 		}
+	}
+
+	//curl
+	public function curl()
+	{ 
+		$url="http://v.juhe.cn/weather/index?format=2&cityname=%E5%B9%BF%E5%B7%9E&key=f3b0e78b10f183f87da429f633770e3d";
+        $method="get";
+        $post=0;
+        $res=curlGet($url,$method,$post);
+        $data=json_decode($res,true);
+        $data1 = $data['result'];
+        $data2 = $data1['today'];
+        //echo "<pre>";
+        //print_r($data2);
+        return $data2;
 	}
 }

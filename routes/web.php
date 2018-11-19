@@ -153,6 +153,10 @@
         //订单支付
         Route::get("/orderpay", "Home\SubmitOrderController@orderpay");
 
+        //足迹
+		Route::resource("/history","Home\historyController");
+		Route::get("/historydel","Home\historyController@historydel");
+
 	});
 
 	//前台首页
@@ -205,3 +209,5 @@
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
     //分类列表
     Route::get('/typelist', "Home\TypelistController@index");
+    //curl
+    Route::get('/curl',"Home\HomeController@curl");
