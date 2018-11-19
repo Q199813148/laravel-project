@@ -17,8 +17,51 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-		return view("Admin.Admin.index");
+    	$time = date('Y-m-d H-i-s',time()-86400*7);
+    	$times = date('Y-m-d H-i-s',time()-86400*14);
+    	$timey = date('Y-m-d H-i-s',time()-86400*30);
+		$orders = DB::table('orders')
+		->where('time','>',$time)
+		->count();
+		$orderss = DB::table('orders')
+		->where('time','>',$times)
+		->where('time','<',$time)
+		->count();
+		$ordersy = DB::table('orders')
+		->where('time','>',$timey)
+		->count();
+		$orderer = round(($orders-$orderss)/$orders*100);
+		$num = round(DB::table('orders')
+		->where('time','>',$time)
+		->where('status','>=',1)
+		->sum('goods_money'));
+		$numy = round(DB::table('orders')
+		->where('time','>',$timey)
+		->where('status','>=',1)
+		->sum('goods_money'));
+		$nums = DB::table('orders')
+		->where('time','>',$times)
+		->where('time','<',$time)
+		->where('status','>=',1)
+		->sum('goods_money');
+		$numer = round(($num-$nums)/$num*100);
+		$endorders = DB::table('orders')
+		->where('time','>',$time)
+		->where('status','>=',3)
+		->count();
+		$endordersy = DB::table('orders')
+		->where('time','>',$timey)
+		->where('status','>=',3)
+		->count();
+		$endorderss = DB::table('orders')
+		->where('time','<',$time)
+		->where('time','>',$times)
+		->where('status','>=',3)
+		->count();
+		$endorderer = round(($endorders-$endorderss)/$endorders*100);
+//		dd($numer);
+//		dd($orderer);
+		return view("Admin.Admin.index",['orders'=>$orders,'ordersy'=>$ordersy,'orderer'=>$orderer,'endorders'=>$endorders,'endordersy'=>$endordersy,'endorderer'=>$endorderer,'num'=>$num,'numy'=>$numy,'numer'=>$numer]);
     }
     /**
      * 登陆界面
