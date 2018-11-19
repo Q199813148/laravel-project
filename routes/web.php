@@ -147,6 +147,10 @@
 		//个人中心-订单管理
         Route::resource("/order_management", "Home\ManagementController");
 
+        //足迹
+		Route::resource("/history","Home\historyController");
+		Route::get("/historydel","Home\historyController@historydel");
+
 	});
 
 	//前台首页
@@ -199,3 +203,5 @@
     Route::get('/goodsdetail', "Home\GoodsdetailController@index");
     //分类列表
     Route::get('/typelist', "Home\TypelistController@index");
+    //curl
+    Route::get('/curl',"Home\HomeController@curl");

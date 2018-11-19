@@ -83,6 +83,11 @@
         <div class="demo">
 
 		<ul>
+		<li class="title-first">
+				<a  href="#">
+					<span>[{{$data2['city']}}]</span>{{$data2['temperature']}}&nbsp;{{$data2['weather']}}&nbsp;{{$data2['week']}}
+				</a>
+			</li>
 			@foreach ($notice as $vel)
 			<li class="title-first">
 				<a target="_blank" href="/notice?id={{$vel->id}}">
