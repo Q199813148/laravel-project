@@ -64,7 +64,7 @@
 					</div>
 					<div class="topMessage mini-cart">
 						<div class="menu-hd">
-							<a id="mc-menu-hd" href="#" target="_top">
+							<a id="mc-menu-hd" href="/cart" target="_top">
 								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
 							</a>
 						</div>
@@ -277,22 +277,22 @@ $(document).ready(function() {
 		<!--引导 -->
 		<div class="navCir">
 			<li class="active">
-				<a href="home.html">
+				<a href="/">
 					<i class="am-icon-home "></i>首页
 				</a>
 			</li>
 			<li>
-				<a href="sort.html">
+				<a href="#">
 					<i class="am-icon-list"></i>分类
 				</a>
 			</li>
 			<li>
-				<a href="shopcart.html">
+				<a href="/cart">
 					<i class="am-icon-shopping-basket"></i>购物车
 				</a>
 			</li>
 			<li>
-				<a href="person/index.html">
+				<a href="#">
 					<i class="am-icon-user"></i>我的
 				</a>
 			</li>
@@ -364,7 +364,7 @@ $(document).ready(function() {
 						@endif
 					</div>
 					<div id="shopCart " class="item ">
-						<a href="# ">
+						<a href="/cart">
 							<span class="message "></span>
 						</a>
 						<p>

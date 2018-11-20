@@ -62,6 +62,8 @@
         Route::resource("/adminrole","Admin\AdminRoleController");
 //      后台角色权限管理
         Route::resource("/adminnode","Admin\AdminNodeController");
+//      后台退款管理
+		Route::resource('/adminrefundx', 'Admin\RefundxController');
 	});
 
 
@@ -156,7 +158,9 @@
         //足迹
 		Route::resource("/history","Home\historyController");
 		Route::get("/historydel","Home\historyController@historydel");
-
+//		退款
+		Route::resource('/refundx','Home\RefundxController');
+		Route::get("/dorefundx","Home\RefundxController@doRefundx");
 	});
 
 	//前台首页

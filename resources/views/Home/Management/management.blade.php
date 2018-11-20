@@ -191,23 +191,14 @@
                                                                onClick="return confirm('确定收货?');">
                                                                 <div class="am-btn am-btn-danger anniu">确认收货</div>
                                                             </a>
-                                                            <a href="">
-                                                                退货申请
-                                                            </a>
                                                         @elseif($value->status == 3)
                                                             <a href="/comment?id={{$value->id}}">
                                                                 <div class="am-btn am-btn-danger anniu">立即评价</div>
-                                                            </a>
-                                                            <a href="">
-                                                                退货申请
                                                             </a>
                                                         @elseif($value->status == 4)
                                                             <a href="/order_management/{{$value->id}}"
                                                                onClick="return confirm('确定删除?');">
                                                                 <div class="am-btn am-btn-danger anniu">删除订单</div>
-                                                            </a>
-                                                            <a href="">
-                                                                退货申请
                                                             </a>
                                                         @elseif($value->status == 5)
                                                             <a href="/order_management/{{$value->id}}"
@@ -379,6 +370,7 @@
                         <div class="order-main">
                             <div class="order-list">
                                 <!--待发货-->
+
                                 @foreach($dfh_data as $value)
                                     {{--订单开始--}}
                                     <div class="order-status1">
@@ -421,9 +413,15 @@
                                                             </div>
                                                         </li>
                                                         <li class="td td-operation">
+                                                        	@if(!empty($val->r_status) && $val->r_status == 1)
+                                                            <p class="Mystatus">已申请退款</p>
+                                                            @elseif(!empty($val->r_status) && $val->r_status == 2)
+                                                            <p class="Mystatus">以退款成功</p>
+                                                            @else
                                                             <div class="item-operation">
-                                                                <a href="refund.html">退款</a>
+                                                                <a href="/refundx/{{$val->id}}/edit">退款/售后</a>
                                                             </div>
+                                                            @endif
                                                         </li>
                                                     </ul>
                                                 @endforeach
@@ -441,6 +439,7 @@
                                                         {{--订单状态开始--}}
                                                         <div class="item-status">
                                                             <p class="Mystatus">买家已付款</p>
+
                                                             <p class="order-info"><a
                                                                         href="/order_info?id={{$value->id}}">订单详情</a>
                                                             </p>
@@ -532,9 +531,15 @@
                                                             </div>
                                                         </li>
                                                         <li class="td td-operation">
+                                                        	@if(!empty($val->r_status) && $val->r_status == 1)
+                                                            <p class="Mystatus">已申请退款</p>
+                                                            @elseif(!empty($val->r_status) && $val->r_status == 2)
+                                                            <p class="Mystatus">以退款成功</p>
+                                                            @else
                                                             <div class="item-operation">
-                                                                <a href="refund.html">退款/退货</a>
+                                                                <a href="/refundx/{{$val->id}}/edit">退款/退货</a>
                                                             </div>
+                                                            @endif
                                                         </li>
                                                     </ul>
                                                 @endforeach
@@ -566,9 +571,6 @@
                                                         <a href="/order_management/{{$value->id}}/edit"
                                                            onClick="return confirm('确定收货?');">
                                                             <div class="am-btn am-btn-danger anniu">确认收货</div>
-                                                        </a>
-                                                        <a href="">
-                                                            退货申请
                                                         </a>
                                                         {{--订单操作结束--}}
                                                     </li>
@@ -653,9 +655,15 @@
                                                             </div>
                                                         </li>
                                                         <li class="td td-operation">
+                                                        	@if(!empty($val->r_status) && $val->r_status == 1)
+                                                            <p class="Mystatus">已申请退款</p>
+                                                            @elseif(!empty($val->r_status) && $val->r_status == 2)
+                                                            <p class="Mystatus">以退款成功</p>
+                                                            @else
                                                             <div class="item-operation">
-                                                                <a href="refund.html">退款/退货</a>
+                                                                <a href="/refundx/{{$val->id}}/edit">退款/退货</a>
                                                             </div>
+                                                            @endif
                                                         </li>
                                                     </ul>
                                                 @endforeach
@@ -687,9 +695,7 @@
                                                         <a href="/comment?id={{$value->id}}">
                                                             <div class="am-btn am-btn-danger anniu">立即评价</div>
                                                         </a>
-                                                        <a href="">
-                                                            退货申请
-                                                        </a> {{--订单操作结束--}}
+                                                         {{--订单操作结束--}}
                                                     </li>
                                                 </div>
                                             </div>
