@@ -88,9 +88,9 @@
             <!--悬浮搜索框-->
 
             <div class="nav white">
-                <div class="logoBig">
+                <div class="logoBig" style="margin-top: 8px;">
                     <li>
-                        <a href="/"><img src="/static/Home/images/logobig.png"/></a>
+                        <a href="/"><img src="/static/Home/images/logo2.png" /></a>
                     </li>
                 </div>
 
