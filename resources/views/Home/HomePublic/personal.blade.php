@@ -72,7 +72,7 @@
                         <div class="menu-hd">
                             <a id="mc-menu-hd" href="/cart" target="_top">
                                 <i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
-                                        id="J_MiniCartNum" class="h">0</strong>
+                                        id="J_MiniCartNum" class="h"></strong>
                             </a>
                         </div>
                     </div>
@@ -283,7 +283,10 @@
         //alert(links);
         $('.links').html(links);
     });
-
+    {{--获取购物车数量--}}
+    $.get('/cartnum',{},function (data) {
+        $('#J_MiniCartNum').html(data);
+    })
 </script>
 </body>
 </html>
