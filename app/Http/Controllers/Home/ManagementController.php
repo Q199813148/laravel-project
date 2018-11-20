@@ -59,6 +59,13 @@ class ManagementController extends Controller
                 ->select('goods.photo','goods.price','goods.name','details.*')
                 ->where('order_id',$value->id)
                 ->get();
+        	$refundx = DB::table('refundxs')
+				->where('details_id',$dfh_details[$value->id][0]->id)
+				->first();
+			if($refundx) {
+				$dfh_details[$value->id][0]->r_status = $refundx->status;
+			}
+//			dd($dfh_details[$value->id]);
         }
 
         //待收货订单
@@ -73,6 +80,12 @@ class ManagementController extends Controller
                 ->select('goods.photo','goods.price','goods.name','details.*')
                 ->where('order_id',$value->id)
                 ->get();
+        	$refundx = DB::table('refundxs')
+				->where('details_id',$dsh_details[$value->id][0]->id)
+				->first();
+			if($refundx) {
+				$dsh_details[$value->id][0]->r_status = $refundx->status;
+			}
         }
 
         //待评价订单
@@ -87,6 +100,12 @@ class ManagementController extends Controller
                 ->select('goods.photo','goods.price','goods.name','details.*')
                 ->where('order_id',$value->id)
                 ->get();
+        	$refundx = DB::table('refundxs')
+				->where('details_id',$dpj_details[$value->id][0]->id)
+				->first();
+			if($refundx) {
+				$dpj_details[$value->id][0]->r_status = $refundx->status;
+			}
         }
 
         return view("Home.Management.management", [

@@ -66,7 +66,7 @@
 					<div class="topMessage mini-cart">
 						<div class="menu-hd">
 							<a id="mc-menu-hd" href="/cart" target="_top">
-								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h"></strong>
+								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
 							</a>
 						</div>
 					</div>
@@ -258,12 +258,12 @@ $(document).ready(function() {
 		<!--引导 -->
 		<div class="navCir">
 			<li class="active">
-				<a href="home.html">
+				<a href="/">
 					<i class="am-icon-home "></i>首页
 				</a>
 			</li>
 			<li>
-				<a href="sort.html">
+				<a href="#">
 					<i class="am-icon-list"></i>分类
 				</a>
 			</li>
