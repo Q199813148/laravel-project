@@ -612,4 +612,8 @@ class HomeController extends Controller
         //print_r($data2);
         return $data2;
 	}
+	public function map()
+	{ 
+		return view("Home.Home.map");
+	}
 }

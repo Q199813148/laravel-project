@@ -38,11 +38,10 @@ class historyController extends Controller
     	//dd($db);
     	//dd(\Request::getRequestUri());
     	if (DB::table('history')->where('id','=',$id)->delete()) {
-    		return redirect(\Request::getRequestUri())->with('success','删除成功');
+    		return back()->with('success','删除成功');
     	} else {
     		return back()->with('error','删除失败');
     	}
-    	
     }
 
     /**

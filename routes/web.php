@@ -210,4 +210,6 @@
     //分类列表
     Route::get('/typelist', "Home\TypelistController@index");
     //curl
-    Route::get('/curl',"Home\HomeController@curl");
+    //Route::get('/curl',"Home\HomeController@curl");
+    //地图  map
+    Route::get('/map',"Home\HomeController@map");
