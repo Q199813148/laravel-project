@@ -65,8 +65,8 @@
 					</div>
 					<div class="topMessage mini-cart">
 						<div class="menu-hd">
-							<a id="mc-menu-hd" href="#" target="_top">
-								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
+							<a id="mc-menu-hd" href="/cart" target="_top">
+								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h"></strong>
 							</a>
 						</div>
 					</div>
@@ -257,7 +257,7 @@ $(document).ready(function() {
 					<div class="footer-bd ">
 						<p>
 							<a href="# ">
-								关于恒望
+								关于我们
 							</a>
 							<a href="# ">
 								合作伙伴
@@ -268,7 +268,7 @@ $(document).ready(function() {
 							<a href="# ">
 								网站地图
 							</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
+							<em>© 2018-2025 www.laravel.com 版权所有</em>
 						</p>
 					</div>
 				</div>
@@ -288,7 +288,7 @@ $(document).ready(function() {
 				</a>
 			</li>
 			<li>
-				<a href="shopcart.html">
+				<a href="/cart">
 					<i class="am-icon-shopping-basket"></i>购物车
 				</a>
 			</li>
@@ -329,7 +329,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -353,7 +353,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -365,7 +365,7 @@ $(document).ready(function() {
 						@endif
 					</div>
 					<div id="shopCart " class="item ">
-						<a href="# ">
+						<a href="/cart ">
 							<span class="message "></span>
 						</a>
 						<p>
@@ -386,7 +386,7 @@ $(document).ready(function() {
 					</div>
 
 					<div id="foot " class="item ">
-						<a href="# ">
+						<a href="/history ">
 							<span class="zuji "></span>
 						</a>
 						<div class="mp_tooltip ">
