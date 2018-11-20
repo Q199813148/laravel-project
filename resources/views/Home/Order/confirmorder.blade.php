@@ -1,5 +1,4 @@
 @extends("Home.HomePublic.index")
-@section('title','确认订单-零食么')
 <link href="static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
 
 <link href="static/Home/basic/css/demo.css" rel="stylesheet" type="text/css"/>
@@ -18,12 +17,15 @@
         <div class="paycont">
             <div class="address">
                 <h3>确认收货地址 </h3>
+                <a href="/personaladdress">
                 <div class="control">
                     <div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
                 </div>
+                </a>
                 <div class="clear"></div>
                 <ul>
                     <div class="per-border"></div>
+                    @if(!empty($default))
                     {{--默认地址--}}
                     <li class="user-addresslist defaultAddr">
                         <input type="hidden" name="address_id" value="{{$default->id}}">
@@ -96,6 +98,7 @@
                         </li>
                     @endforeach
                     {{--其他地址结束--}}
+                        @endif
                 </ul>
 
                 <div class="clear"></div>
@@ -166,7 +169,9 @@
                             <input type="hidden" name="cart_id[]" value="{{$val->cart_id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">
                             <input type="hidden" name="goods_id[]" value="{{$val->goods_id}}">
+                            @if(!empty($default))
                             <input type="hidden" name="address" value="{{$default->id}}">
+                            @endif
 
                         <div class="bundle  bundle-last">
 
@@ -301,13 +306,15 @@
                                     <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
 											</span>
                                 </div>
-
+                                @if(!empty($default))
                                 <div id="holyshit268" class="pay-address">
 
                                     <p class="buy-footer-address">
                                         <span class="buy-line-title buy-line-title-type">寄送至：</span>
                                         <span class="buy--address-detail">
+
 								   <span class="province">{{$default->address}}</span>
+
                                         </span>
 
                                     </p>
@@ -319,14 +326,23 @@
 												</span>
                                     </p>
                                 </div>
+                                @endif
                             </div>
-
+                            @if(!empty($default))
                             <div id="holyshit269" class="submitOrder">
                                 <div class="go-btn-wrap">
                                     <a id="J_Go" class="btn-go" tabindex="0"
                                        title="点击此按钮，提交订单">提交订单</a>
                                 </div>
                             </div>
+                            @else
+                                <div id="holyshit269" class="submitOrder">
+                                    <div class="go-btn-wrap">
+                                        <a href="/personaladdress" class="btn-go" tabindex="0"
+                                           title="请添加地址">请添加地址</a>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="clear"></div>
                         </div>
                     </div>

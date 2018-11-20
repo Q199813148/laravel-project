@@ -120,7 +120,7 @@
 				</div>
 				@else
 				<div class="m-baseinfo">
-					<a href="person/index.html">
+					<a href="/personal">
           <!-- 头像 -->
 						<img src="/static/Home/images/getAvatar.do.jpg">
 					</a>
@@ -135,16 +135,16 @@
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
 					<a href="#">
-						<strong>0</strong>待收货
+						<strong>{{$orderInfo['dsh']}}</strong>待收货
 					</a>
 					<a href="#">
-						<strong>0</strong>待发货
+						<strong>{{$orderInfo['dfh']}}</strong>待发货
 					</a>
 					<a href="#">
-						<strong>0</strong>待付款
+						<strong>{{$orderInfo['dfk']}}</strong>待付款
 					</a>
 					<a href="#">
-						<strong>0</strong>待评价
+						<strong>{{$orderInfo['dpj']}}</strong>待评价
 					</a>
 				</div>
 				@else

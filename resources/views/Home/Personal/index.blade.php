@@ -13,7 +13,7 @@
 				<div class="m-bg"></div>
 				<div class="m-userinfo">
 					<div class="m-baseinfo">
-						<a href="information.html">
+						<a href="/personal/{{session('user')->user_id}}/edit">
 						@if($user->pic)
 							<img src="{{$user->pic}}">
 						@else
@@ -51,41 +51,41 @@
 			<div class="m-order">
 				<div class="s-bar">
 					<i class="s-icon"></i>我的订单
-					<a class="i-load-more-item-shadow" href="#">
+					<a class="i-load-more-item-shadow" href="/order_management">
 						全部订单
 					</a>
 				</div>
 				<ul>
 					<li>
-						<a href="#">
+						<a href="/order_management">
 							<i>
 							<img src="/static/Home/images/pay.png">
 							</i><span>待付款<em class="m-num">{{$data['hand']}}</em></span>
 						</a>
 					</li>
 					<li>
-						<a href="order.html">
+						<a href="/order_management">
 							<i>
 							<img src="/static/Home/images/send.png">
 							</i><span>待发货<em class="m-num">{{$data['issue']}}</em></span>
 						</a>
 					</li>
 					<li>
-						<a href="order.html">
+						<a href="/order_management">
 							<i>
 							<img src="/static/Home/images/receive.png">
 							</i><span>待收货<em class="m-num">{{$data['receipts']}}</em></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="/order_management">
 							<i>
 							<img src="/static/Home/images/comment.png">
 							</i><span>待评价<em class="m-num">{{$data['discuss']}}</em></span>
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="/order_management">
 							<i>
 							<img src="/static/Home/images/refund.png">
 							</i><span>售后</span>
