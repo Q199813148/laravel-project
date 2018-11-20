@@ -161,6 +161,7 @@ class TypesController extends Controller
     public function update(Request $request, $id)
     {
     	$data=$request->only('name');
+    	//dd($data);
     	if (DB::table("types")->where('id','=',$id)->update($data)) {
     		return redirect("/admintypes")->with('success',"修改成功");
     	} else {
