@@ -85,8 +85,11 @@
 		<ul>
 		<li class="title-first">
 				<a  href="#">
-					<span>[{{$data2['city']}}]</span>{{$data2['temperature']}}&nbsp;{{$data2['weather']}}&nbsp;{{$data2['week']}}
+					<span>{{$data2['city']}}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{$data2['week']}}
 				</a>
+			</li>
+			<li class="title-first">
+				<a href="#">{{$data2['temperature']}}&nbsp;&nbsp;{{$data2['weather']}}</a>
 			</li>
 			@foreach ($notice as $vel)
 			<li class="title-first">

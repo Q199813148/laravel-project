@@ -128,9 +128,11 @@ class NoticeController extends Controller
     {
         $data=$request->only('title','status','content');
         //dd($data);
-        //$sql=DB::table('notice')->where('id','=',$id)->update($data);
+        //$aa = $data['status'];
+        //$sql=DB::table('notice')->where('id','=',$id);
         //dd($sql);
-        if (DB::table('notice')->where('id','=',$id)->update($data)) {
+        if (DB::table('notice')->where('id','=',$id)) {
+        	DB::table('notice')->where('id','=',$id)->update($data);
         	return redirect('/adminnotice')->with('success','修改成功');
         } else {
         	return redirect('/adminnotice/{id}/edit')->with('error','修改失败');
