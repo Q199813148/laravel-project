@@ -1,4 +1,5 @@
 @extends("Home.HomePublic.index")
+@section('title','确认订单-零食么')
 <link href="static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
 
 <link href="static/Home/basic/css/demo.css" rel="stylesheet" type="text/css"/>
@@ -52,7 +53,7 @@
                         <div class="clear"></div>
 
                         <div class="new-addr-btn">
-                            <a href="#" class="hidden">设为默认</a>
+                            <a href="javascript:void(0);" class="hidden set-default">设为默认</a>
                             <span class="new-addr-bar hidden">|</span>
                             <a href="#">编辑</a>
                             <span class="new-addr-bar">|</span>
@@ -88,7 +89,7 @@
                             <div class="clear"></div>
 
                             <div class="new-addr-btn">
-                                <a href="#">设为默认</a>
+                                <a href="javascript:void(0);" class="set-default">设为默认</a>
                                 <span class="new-addr-bar">|</span>
                                 <a href="#">编辑</a>
                                 <span class="new-addr-bar">|</span>
@@ -352,33 +353,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $('.user-addresslist').click(function () {
-            //点击更换地址
-            $(this).addClass('defaultAddr');
-            address = $(this).find('.province').html();
-            name = $(this).find('.buy-user').html();
-            phone = $(this).find('.buy-phone').html();
-            $('#holyshit268').find('.province').html(address);
-            $('#holyshit268').find('.buy-user').html(name);
-            $('#holyshit268').find('.buy-phone').html(phone);
-            address_id = $(this).find('input[name="address_id"]').val();
-            $('input[name="address"]').val(address_id);
-        })
-        //计算总金额
-        var price = 0;
-        $('.bundle-last').each(function(){
-            price += parseFloat($(this).find('.J_ItemSum').html());
-
-        })
-        $('.pay-sum').html(price.toFixed(2));
-        $('#J_ActualFee').html(price.toFixed(2));
-
-        //提交订单
-        $('#J_Go').bind('click',function(){
-            $('form').submit();
-            //防止重复提交
-            $(this).unbind('click');
-        })
-    </script>
+    <script src="static/Home/order/confirm_order.js"></script>
 @endsection

@@ -612,4 +612,16 @@ class HomeController extends Controller
         //print_r($data2);
         return $data2;
 	}
+
+	public function cartnum(){
+        if(session('user')){
+            //获取用户id
+            $user_id = session("user")->user_id;
+            //查询购物车数量
+            $num = DB::table('cart')->where('user_id',$user_id)->get()->count();
+            echo $num;
+        }else{
+            echo '';
+        }
+    }
 }
