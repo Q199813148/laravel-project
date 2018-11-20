@@ -161,8 +161,10 @@ class TypesController extends Controller
     public function update(Request $request, $id)
     {
     	$data=$request->only('name');
-    	//dd($data);
-    	if (DB::table("types")->where('id','=',$id)->update($data)) {
+    	//$aa=$data['name'];
+    	//dd($aa);
+    	if (DB::table("types")->where('id','=',$id)) {
+    		DB::table("types")->where('id','=',$id)->update($data);
     		return redirect("/admintypes")->with('success',"修改成功");
     	} else {
     		return redirect("/admintypes/{id}/edit")->with('error',"修改失败");
