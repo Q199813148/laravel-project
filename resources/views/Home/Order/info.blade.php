@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.personal")
-@section('title','订单详情')
+@section('title','订单详情-零食么')
 <link href="static/home/css/orstyle.css" rel="stylesheet" type="text/css">
 
 @section('content')

@@ -1,4 +1,5 @@
 @extends("Home.HomePublic.index")
+@section('title','确认订单-零食么')
 <link href="static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
 
 <link href="static/Home/basic/css/demo.css" rel="stylesheet" type="text/css"/>

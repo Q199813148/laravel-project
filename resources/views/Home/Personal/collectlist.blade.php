@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.Personal")
-@section('title','悦桔拉拉')
+@section('title','我的收藏-零食么')
 @section('static')
 	<link href="/static/Home/css/colstyle.css" rel="stylesheet" type="text/css">
 @endsection

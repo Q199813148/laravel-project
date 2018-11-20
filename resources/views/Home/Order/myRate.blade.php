@@ -1,11 +1,11 @@
 @extends("Home.HomePublic.personal")
 @section('title','我的评价')
 @section('static')
-	<link href="static/home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
-	<link href="static/home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+	<link href="static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
+	<link href="static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
-	<link href="static/home/css/personal.css" rel="stylesheet" type="text/css">
-	<link href="static/home/css/cmstyle.css" rel="stylesheet" type="text/css">
+	<link href="static/Home/css/personal.css" rel="stylesheet" type="text/css">
+	<link href="static/Home/css/cmstyle.css" rel="stylesheet" type="text/css">
 @endsection
 @section('content')
 	<div class="main-wrap">

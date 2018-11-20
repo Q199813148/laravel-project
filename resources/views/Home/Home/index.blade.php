@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.index")
-
+@section('title','零食么 - 吃!  我喜欢')
 <!--轮播图-->
 @section('adminshows')
     <div class="banner">
