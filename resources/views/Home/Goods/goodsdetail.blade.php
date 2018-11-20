@@ -329,56 +329,38 @@
 
                     <div class="am-tab-panel am-fade">
 
-                        <div class="actor-new">
-                            <div class="rate">
-                                <strong>100<span>%</span></strong><br> <span>好评度</span>
-                            </div>
-                            <dl>
-                                <dt>买家印象</dt>
-                                <dd class="p-bfc">
-                                    <q class="comm-tags"><span>味道不错</span><em>(2177)</em></q>
-                                    <q class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q>
-                                    <q class="comm-tags"><span>口感好</span><em>(1823)</em></q>
-                                    <q class="comm-tags"><span>商品不错</span><em>(1689)</em></q>
-                                    <q class="comm-tags"><span>香脆可口</span><em>(1488)</em></q>
-                                    <q class="comm-tags"><span>个个开口</span><em>(1392)</em></q>
-                                    <q class="comm-tags"><span>价格便宜</span><em>(1119)</em></q>
-                                    <q class="comm-tags"><span>特价买的</span><em>(865)</em></q>
-                                    <q class="comm-tags"><span>皮很薄</span><em>(831)</em></q>
-                                </dd>
-                            </dl>
-                        </div>
+
                         <div class="clear"></div>
                         <div class="tb-r-filter-bar">
-                            <ul class=" tb-taglist am-avg-sm-4">
-                                <li class="tb-taglist-li tb-taglist-li-current">
-                                    <div class="comment-info">
-                                        <span>全部评价</span>
-                                        <span class="tb-tbcr-num">(32)</span>
-                                    </div>
-                                </li>
+                            {{--<ul class=" tb-taglist am-avg-sm-4">--}}
+                                {{--<li class="tb-taglist-li tb-taglist-li-current">--}}
+                                    {{--<div class="comment-info">--}}
+                                        {{--<span>全部评价</span>--}}
+                                        {{--<span class="tb-tbcr-num">(32)</span>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
 
-                                <li class="tb-taglist-li tb-taglist-li-1">
-                                    <div class="comment-info">
-                                        <span>好评</span>
-                                        <span class="tb-tbcr-num">(32)</span>
-                                    </div>
-                                </li>
+                                {{--<li class="tb-taglist-li tb-taglist-li-1">--}}
+                                    {{--<div class="comment-info">--}}
+                                        {{--<span>好评</span>--}}
+                                        {{--<span class="tb-tbcr-num">(32)</span>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
 
-                                <li class="tb-taglist-li tb-taglist-li-0">
-                                    <div class="comment-info">
-                                        <span>中评</span>
-                                        <span class="tb-tbcr-num">(32)</span>
-                                    </div>
-                                </li>
+                                {{--<li class="tb-taglist-li tb-taglist-li-0">--}}
+                                    {{--<div class="comment-info">--}}
+                                        {{--<span>中评</span>--}}
+                                        {{--<span class="tb-tbcr-num">(32)</span>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
 
-                                <li class="tb-taglist-li tb-taglist-li--1">
-                                    <div class="comment-info">
-                                        <span>差评</span>
-                                        <span class="tb-tbcr-num">(32)</span>
-                                    </div>
-                                </li>
-                            </ul>
+                                {{--<li class="tb-taglist-li tb-taglist-li--1">--}}
+                                    {{--<div class="comment-info">--}}
+                                        {{--<span>差评</span>--}}
+                                        {{--<span class="tb-tbcr-num">(32)</span>--}}
+                                    {{--</div>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
                         </div>
                         <div class="clear"></div>
 
@@ -388,7 +370,7 @@
                             <li class="am-comment">
                                 <!-- 评论容器 -->
                                 <a href="static/Home/">
-                                    <img class="am-comment-avatar" src="static/Home/images/hwbn40x40.jpg" />
+                                    <img class="am-comment-avatar" src="{{$row->photo or 'static/Home/images/hwbn40x40.jpg'}}" />
                                     <!-- 评论者头像 -->
                                 </a>
 
@@ -428,13 +410,7 @@
 
                         <!--分页 -->
                         <ul class="am-pagination am-pagination-right">
-                            <li class="am-disabled"><a href="static/Home/#">&laquo;</a></li>
-                            <li class="am-active"><a href="static/Home/#">1</a></li>
-                            <li><a href="static/Home/#">2</a></li>
-                            <li><a href="static/Home/#">3</a></li>
-                            <li><a href="static/Home/#">4</a></li>
-                            <li><a href="static/Home/#">5</a></li>
-                            <li><a href="static/Home/#">&raquo;</a></li>
+                            {{$details->appends($request)->render()}}
                         </ul>
                         <div class="clear"></div>
 

@@ -164,9 +164,11 @@
                     <div class="clear"></div>
                     {{--订单商品信息--}}
                     <form action="/submitorder" method="post">
+                        <input type="hidden" name="goods_id" value="{{$goods->id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">
-                            <input type="hidden" name="goods_id" value="{{$goods->id}}">
+                            @if(!empty($default))
                             <input type="hidden" name="address" value="{{$default->id}}">
+                        @endif
                             <input type="hidden" name="num" value="{{$data['num']}}">
                             <input type="hidden" name="taste" value="{{$data['taste']}}">
 
@@ -304,7 +306,7 @@
                                 </div>
 
                                 <div id="holyshit268" class="pay-address">
-
+                                    @if(!empty($default))
                                     <p class="buy-footer-address">
                                         <span class="buy-line-title buy-line-title-type">寄送至：</span>
                                         <span class="buy--address-detail">
@@ -319,15 +321,25 @@
 												<span class="buy-phone">{{$default->phone}}</span>
 												</span>
                                     </p>
+                                        @endif
                                 </div>
                             </div>
 
-                            <div id="holyshit269" class="submitOrder">
-                                <div class="go-btn-wrap">
-                                    <a id="J_Go" class="btn-go" tabindex="0"
-                                       title="点击此按钮，提交订单">提交订单</a>
+                            @if(!empty($default))
+                                <div id="holyshit269" class="submitOrder">
+                                    <div class="go-btn-wrap">
+                                        <a id="J_Go" class="btn-go" tabindex="0"
+                                           title="点击此按钮，提交订单">提交订单</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div id="holyshit269" class="submitOrder">
+                                    <div class="go-btn-wrap">
+                                        <a href="/personaladdress" class="btn-go" tabindex="0"
+                                           title="请添加地址">请添加地址</a>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="clear"></div>
                         </div>
                     </div>

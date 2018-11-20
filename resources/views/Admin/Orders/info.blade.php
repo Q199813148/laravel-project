@@ -11,7 +11,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group row">
-                          <img src="{{$row->photo}}" alt="" style="width:200px; height:200px;">
+                          <a href="/goodsdetail?id={{$row->good_id}}"><img src="{{$row->photo}}" alt="" style="width:150px; height:150px;"></a>
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -84,6 +84,8 @@
                     </form>
                     @endforeach
                     @endif
+                    <center>{{$data->render()}}</center>
+
                           </div>
 @endsection
 @section('title','后台首页')
