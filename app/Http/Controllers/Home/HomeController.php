@@ -51,7 +51,7 @@ class HomeController extends Controller
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
         //公告
-        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,4");
+        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,3");
         //dd($notice);
         $types=$this->gettypesbypid(0);
         // dd($types);
