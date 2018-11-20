@@ -57,6 +57,18 @@ class GoodsdetailController extends Controller
         	}
         	
         }
-        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd]);
+
+
+        //商品详情页评价
+        $details = DB::table('goods')
+        ->join('details','goods.id','=','details.good_id')
+        ->join('orders','details.order_id','=','orders.id')
+        ->join('comment','orders.user_id','=','comment.user_id')
+        ->join('users','comment.user_id','=','users.user_id')
+        ->where('goods.id','=',$id)
+        ->select('users.name as name','comment.id as id','comment.addtime as addtime','comment.content as content','comment.pic as pic','details.taste as taste','details.num as num')->orderBy("id",'desc')->get();
+        // dd($details);
+
+        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details]);
     }
 }
