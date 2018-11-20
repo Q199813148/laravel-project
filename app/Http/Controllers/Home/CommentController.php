@@ -113,7 +113,27 @@ class CommentController extends Controller
 
     public function myRate()
     {
-        dd('1');
+        //获取用户id
+        $user_id = session("user")->user_id;
+        //获取所有评价数据
+        $data = DB::table('comment')
+            ->join('details','comment.detail_id','details.id')
+            ->join('goods','details.good_id','goods.id')
+            ->select("details.good_id",'goods.photo','goods.name','details.taste','comment.content','comment.level','comment.addtime')
+            ->where("user_id",$user_id)
+            ->get();
+
+        //获取有图评价数据
+        $data1 = DB::table('comment')
+            ->join('details','comment.detail_id','details.id')
+            ->join('goods','details.good_id','goods.id')
+            ->select("details.good_id",'goods.photo','goods.name','comment.pic','details.taste','comment.content','comment.level','comment.addtime')
+            ->where([["user_id",$user_id],['comment.pic','<>',null]])
+            ->get();
+        foreach ($data1 as $value){
+            $value->pic = explode(',',$value->pic);
+        }
+        return view("Home.Order.myRate",['data'=>$data,'data1'=>$data1]);
     }
 
     /**

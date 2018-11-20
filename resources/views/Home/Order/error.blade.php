@@ -1,5 +1,6 @@
 
 @extends("Home.HomePublic.personal")
+@section('title','付款失败-零食么')
 @section('content')
     <link rel="stylesheet"  type="text/css" href="static/home/AmazeUI-2.4.2/assets/css/amazeui.css"/>
 

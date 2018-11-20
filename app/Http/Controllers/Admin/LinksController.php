@@ -148,7 +148,8 @@ class LinksController extends Controller
     {
         $data=$request->only('name','url','status');
         //dd($data);
-        if (DB::table('links')->where('id','=',$id)->update($data)) {
+        if (1) {
+        	DB::table('links')->where('id','=',$id)->update($data);
         	return redirect('/adminlinks')->with('success','修改成功');
         } else {
         	return redirect('/adminlinks/{id}/edit')->with('error','修改失败');

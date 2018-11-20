@@ -478,6 +478,9 @@
 
     </div>
     <script>
+        document.title = $('h1').html();
+    </script>
+    <script>
                 {{--最大数量--}}
         var store = JSON.parse({{$data->store}});
 

@@ -51,25 +51,36 @@ class HomeController extends Controller
 //      $shows = DB::select("select * from shows where status = 1");
         $i=1;
         //公告
-        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,4");
+
+        $notice = DB::select("select * from notice where status = 1 order by id desc limit 0,3");
         //dd($notice);
-        $types=$this->gettypesbypid(0);
-        // dd($types);
+
         //分类
         $types=$this->gettypesbypid(0);
-        // dd($types);
+
         
         //获取广告信息
         $advertisements = DB::table("advertisement")->where("status",'=','1')->orderBy('id')->get();
-        // dd($advertisements);
+
         //查询分类
         $type = DB::table("types")->where("status",'=','1')->where("pid",'=',"0")->offset(0)->limit(10)->get();
-        // dd($type);
+
         //首页商品
         $goods = DB::table("goods")->where("status",'=','1')->orderBy('id')->get();
-        // dd($goods);
+
         $data2=$this->curl();
-        //dd($this->curl());
+
+        //获取收货信息
+        if(session('user')){
+            $user_id = session('user')->user_id;
+            $orderInfo['dsh'] = DB::table('orders')->where([['user_id',$user_id],['status','2']])->get()->count();
+            $orderInfo['dfh'] = DB::table('orders')->where([['user_id',$user_id],['status','1']])->get()->count();
+            $orderInfo['dfk'] = DB::table('orders')->where([['user_id',$user_id],['status','0']])->get()->count();
+            $orderInfo['dpj'] = DB::table('orders')->where([['user_id',$user_id],['status','3']])->get()->count();
+            return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type,'data2'=>$data2,'orderInfo'=>$orderInfo]);
+        }
+
+
         return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type,'data2'=>$data2]);
     }
 

@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.personal")
-@section('title','订单管理')
+@section('title','订单管理-零食么')
 @section('static')
     <link href="static/Home/css/orstyle.css" rel="stylesheet" type="text/css">
     <script src="/static/Home/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>

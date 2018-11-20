@@ -25,7 +25,7 @@
             </div>
             <ul class="select">
                 <p class="title font-normal">
-                    <span class="fl">{{$ss}}</span>
+                    <span class="fl searchTitle">{{$ss}}</span>
                     <span class="total fl">搜索到<strong class="num">{{$num}}</strong>件相关商品</span>
                 </p>
                 <div class="clear"></div>
@@ -149,4 +149,7 @@
 
     </div>
 </div>
+<script>
+    document.title = $('.searchTitle').html()+'_零食么搜索';
+</script>
 @endsection

@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+		<link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>首页</title>
+		<title>@yield('title')</title>
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -65,7 +66,7 @@
 					<div class="topMessage mini-cart">
 						<div class="menu-hd">
 							<a id="mc-menu-hd" href="/cart" target="_top">
-								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
+								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h"></strong>
 							</a>
 						</div>
 					</div>
@@ -84,9 +85,9 @@
 				<div class="logo">
 					<img src="/static/Home/images/logo.png" />
 				</div>
-				<div class="logoBig">
+				<div class="logoBig" style="line-height: 80px;">
 					<li>
-						<a href="/"><img src="/static/Home/images/logobig.png" /></a>
+						<a href="/"><img src="/static/Home/images/logo2.png" /></a>
 					</li>
 				</div>
 
@@ -115,26 +116,6 @@
 						<li class="index">
 							<a href="/">
 								首页
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								闪购
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								限时抢
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								团购
-							</a>
-						</li>
-						<li class="qc last">
-							<a href="#">
-								大包装
 							</a>
 						</li>
 					</ul>
@@ -256,7 +237,7 @@ $(document).ready(function() {
 					<div class="footer-bd ">
 						<p>
 							<a href="# ">
-								关于恒望
+								关于我们
 							</a>
 							<a href="# ">
 								合作伙伴
@@ -267,7 +248,7 @@ $(document).ready(function() {
 							<a href="# ">
 								网站地图
 							</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
+							<em>© 2018-2025 www.laravel.com 版权所有</em>
 						</p>
 					</div>
 				</div>
@@ -287,7 +268,7 @@ $(document).ready(function() {
 				</a>
 			</li>
 			<li>
-				<a href="shopcart.html">
+				<a href="/cart">
 					<i class="am-icon-shopping-basket"></i>购物车
 				</a>
 			</li>
@@ -328,7 +309,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -352,7 +333,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -364,7 +345,7 @@ $(document).ready(function() {
 						@endif
 					</div>
 					<div id="shopCart " class="item ">
-						<a href="# ">
+						<a href="/cart ">
 							<span class="message "></span>
 						</a>
 						<p>
@@ -385,7 +366,7 @@ $(document).ready(function() {
 					</div>
 
 					<div id="foot " class="item ">
-						<a href="# ">
+						<a href="/history ">
 							<span class="zuji "></span>
 						</a>
 						<div class="mp_tooltip ">

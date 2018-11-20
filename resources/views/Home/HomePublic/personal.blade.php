@@ -7,6 +7,7 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
     <link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 
@@ -69,7 +70,7 @@
                     </div>
                     <div class="topMessage mini-cart">
                         <div class="menu-hd">
-                            <a id="mc-menu-hd" href="#" target="_top">
+                            <a id="mc-menu-hd" href="/cart" target="_top">
                                 <i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
                                         id="J_MiniCartNum" class="h">0</strong>
                             </a>
@@ -118,19 +119,15 @@
         <div class="footer">
             <div class="footer-hd">
                 <p>
-                    <a href="#">
-                        恒望科技
-                    </a>
-                    <b>|</b>
-                    <a href="#">
+                    <a href="/">
                         商城首页
                     </a>
                     <b>|</b>
-                    <a href="#">
+                    <a href="https://www.alipay.com/">
                         支付宝
                     </a>
                     <b>|</b>
-                    <a href="#">
+                    <a href="http://www.kuaidi100.com">
                         物流
                     </a>
                     <b>|</b>
@@ -145,7 +142,7 @@
             <div class="footer-bd">
                 <p>
                     <a href="#">
-                        关于恒望
+                        关于我们
                     </a>
                     <a href="#">
                         合作伙伴
@@ -156,7 +153,7 @@
                     <a href="#">
                         网站地图
                     </a>
-                    <em>© 2015-2025 Hengwang.com 版权所有</em>
+                    <em>© 2018-2025 www.laravel.com 版权所有</em>
                 </p>
             </div>
         </div>
@@ -249,7 +246,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/comment">
+                            <a href="/myRate">
                                 评价
                             </a>
                         </li>

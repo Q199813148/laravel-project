@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.index")
-
+@section('title','零食么 - 我的购物车')
 @section('goods')
     <link href="static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
     <link href="static/Home/basic/css/demo.css" rel="stylesheet" type="text/css"/>

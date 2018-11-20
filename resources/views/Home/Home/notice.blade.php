@@ -2,7 +2,7 @@
 <link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 <link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 <link href="/static/Home/css/personal.css" rel="stylesheet" type="text/css">
-<title>公告列表</title>
+@section('title','零食么-公告列表')
 @section('goods')
 <div class="am-g am-g-fixed blog-g-fixed bloglist">
   <div class="am-u-md-9">

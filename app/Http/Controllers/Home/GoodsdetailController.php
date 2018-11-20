@@ -31,11 +31,9 @@ class GoodsdetailController extends Controller
         DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
         //获取session('user')
         //if (session('user')) {}
-        $user_id=session('user')->user_id;
-        $dd = DB::table('collect')->where('user_id','=',$user_id)->where('good_id','=',$id)->count();
-        //dd($dd);
-        //如果用户存在就进行添加
         if (session('user')) {
+        	$user_id=session('user')->user_id;
+        	$dd = DB::table('collect')->where('user_id','=',$user_id)->where('good_id','=',$id)->count();
         	if ($aa=DB::table('history')->where('user_id','=',$user_id)->where('goods_id','=',$id)->first()) {
         		//先删除
         		//dd($aa);
@@ -55,11 +53,8 @@ class GoodsdetailController extends Controller
         		$cc['addtime'] = date('Y-m-d H:i:s');
         		DB::table('history')->insert($cc);
         	}
-        	
         }
-
-
-        //商品详情页评价
+        	 //商品详情页评价
         $details = DB::table('goods')
         ->join('details','goods.id','=','details.good_id')
         ->join('orders','details.order_id','=','orders.id')
@@ -70,5 +65,9 @@ class GoodsdetailController extends Controller
         // dd($details);
 
         return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details]);
+        
+
+
+        
     }
 }
