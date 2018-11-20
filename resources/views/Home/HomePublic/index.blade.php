@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+		<link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>首页</title>
+		<title>@yield('title')</title>
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -75,18 +76,18 @@
 								<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
 							</a>
 						</div>
+					</div>
 				</ul>
 			</div>
-
 			<!--悬浮搜索框-->
 
 			<div class="nav white">
 				<div class="logo">
 					<img src="/static/Home/images/logo.png" />
 				</div>
-				<div class="logoBig">
+				<div class="logoBig" style="line-height: 80px;">
 					<li>
-						<a href="/"><img src="/static/Home/images/logobig.png" /></a>
+						<a href="/"><img src="/static/Home/images/logo2.png" /></a>
 					</li>
 				</div>
 
@@ -115,26 +116,6 @@
 						<li class="index">
 							<a href="/">
 								首页
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								闪购
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								限时抢
-							</a>
-						</li>
-						<li class="qc">
-							<a href="#">
-								团购
-							</a>
-						</li>
-						<li class="qc last">
-							<a href="#">
-								大包装
 							</a>
 						</li>
 					</ul>
@@ -256,7 +237,7 @@ $(document).ready(function() {
 					<div class="footer-bd ">
 						<p>
 							<a href="# ">
-								关于恒望
+								关于我们
 							</a>
 							<a href="# ">
 								合作伙伴
@@ -267,7 +248,7 @@ $(document).ready(function() {
 							<a href="# ">
 								网站地图
 							</a>
-							<em>© 2015-2025 Hengwang.com 版权所有</em>
+							<em>© 2018-2025 www.laravel.com 版权所有</em>
 						</p>
 					</div>
 				</div>
@@ -292,7 +273,7 @@ $(document).ready(function() {
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="/personal">
 					<i class="am-icon-user"></i>我的
 				</a>
 			</li>
@@ -328,7 +309,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -352,7 +333,7 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="login_btnbox ">
-								<a href="# " class="login_order ">
+								<a href="/order_management " class="login_order ">
 									我的订单
 								</a>
 								<a href="/collectlist " class="login_favorite ">
@@ -364,28 +345,28 @@ $(document).ready(function() {
 						@endif
 					</div>
 					<div id="shopCart " class="item ">
-						<a href="/cart">
+						<a href="/cart ">
 							<span class="message "></span>
 						</a>
 						<p>
 							购物车
 						</p>
-						<p class="cart_num ">
-							0
-						</p>
+						@if(session('user'))
+						<p class="cart_num">0</p>
+							@endif
 					</div>
 					<div id="asset " class="item ">
-						<a href="# ">
+						<a href="/order_management ">
 							<span class="view "></span>
 						</a>
 						<div class="mp_tooltip ">
-							我的资产
+							我的订单
 							<i class="icon_arrow_right_black "></i>
 						</div>
 					</div>
 
 					<div id="foot " class="item ">
-						<a href="# ">
+						<a href="/history ">
 							<span class="zuji "></span>
 						</a>
 						<div class="mp_tooltip ">
@@ -406,17 +387,17 @@ $(document).ready(function() {
 						</div>
 					</div>
 
-					<div id="broadcast " class="item ">
-						<a href="# ">
-							<span class="chongzhi ">
-							<img src="/static/Home/images/chongzhi.png " />
-							</span>
-						</a>
-						<div class="mp_tooltip ">
-							我要充值
-							<i class="icon_arrow_right_black "></i>
-						</div>
-					</div>
+					{{--<div id="broadcast " class="item ">--}}
+						{{--<a href="# ">--}}
+							{{--<span class="chongzhi ">--}}
+							{{--<img src="/static/Home/images/chongzhi.png " />--}}
+							{{--</span>--}}
+						{{--</a>--}}
+						{{--<div class="mp_tooltip ">--}}
+							{{--我要充值--}}
+							{{--<i class="icon_arrow_right_black "></i>--}}
+						{{--</div>--}}
+					{{--</div>--}}
 
 					<div class="quick_toggle ">
 						<li class="qtitem ">
@@ -535,7 +516,11 @@ $(document).ready(function() {
 			//alert(links);
 			$('.links').html(links);
 		});
-
+		{{--获取购物车数量--}}
+        $.get('/cartnum',{},function (data) {
+            $('#J_MiniCartNum').html(data);
+            $('.cart_num').html(data);
+        })
 		</script>
 	</body>
 	

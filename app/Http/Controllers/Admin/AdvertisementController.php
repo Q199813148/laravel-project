@@ -152,7 +152,7 @@ class AdvertisementController extends Controller
         if(DB::table("advertisement")->where("id","=",$id)->update($data)){
             return redirect('/adminadvertisement')->with("success","修改成功");
         }else{
-            return back()->with("error",'修改失败');;
+            return back()->with("error",'修改失败');
         }
     }
     

@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.Personal")
-@section('title','悦桔拉拉')
+@section('title','修改地址-零食么')
 @section('static')
 <link href="/static/Home/css/addstyle.css" rel="stylesheet" type="text/css">
 @endsection
@@ -17,7 +17,7 @@
 								<hr>
 
 								<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
-									<form class="am-form am-form-horizontal" action="/personal/{{$data->id}}" method="post">
+									<form class="am-form am-form-horizontal" action="/addressedit/{{$data->id}}" method="post">
 
 										<div class="am-form-group">
 											<label for="user-name" class="am-form-label">收货人</label>

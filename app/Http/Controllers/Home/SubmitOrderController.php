@@ -62,7 +62,6 @@ class SubmitOrderController extends Controller
             //获取购物车id 以便删除
             $arr[] = $value->id;
         }
-
         //删除购物车数据
         DB::table('cart')->whereIn('id', $arr)->delete();
 
@@ -73,13 +72,12 @@ class SubmitOrderController extends Controller
             //将商品详情写入 details表
             DB::table('details')->insert(['order_id' => $id, 'good_id' => $val->goods_id, 'num' => $val->num, 'taste' => $val->taste]);
             //计算销量
-            $sales = DB::table('goods')->where('id', $gid)->first()->sales + $num;
+            $sales = DB::table('goods')->where('id', $gid)->first()->sales + $val->num;
             //计算剩余库存
-            $store = DB::table('goods')->where('id', $gid)->first()->store - $num;
+            $store = DB::table('goods')->where('id', $gid)->first()->store - $val->num;
             //更新库存
             DB::table('goods')->where('id', $gid)->update(['store' => $store, 'sales' => $sales]);
         }
-
 
         //调用支付方法
         $alipay = app('alipay.web');

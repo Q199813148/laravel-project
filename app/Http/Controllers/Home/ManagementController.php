@@ -182,8 +182,10 @@ class ManagementController extends Controller
         if($data->status != 2){
             return redirect("/order_management")->with('errore','未发货,请勿做尝试');
         }
+        //订单完成获取时间
+        $time = date("Y-m-d H:i:s");
         //确认收货
-        if(DB::table('orders')->where('id',$id)->update(['status'=>3])){
+        if(DB::table('orders')->where('id',$id)->update(['status'=>3,'endtime'=>$time])){
             return redirect("/order_management")->with('success','收货成功');;
         }
 

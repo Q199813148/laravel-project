@@ -2,7 +2,7 @@
 <link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 <link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 <link href="/static/Home/css/personal.css" rel="stylesheet" type="text/css">
-<title>申请友情链接</title>
+@section('title','零食么-友情链接申请')
 @section('goods')
 <form class="am-form am-form-horizontal" action="/dorelinks" method="post">
 

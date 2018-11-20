@@ -1,5 +1,5 @@
 @extends("Home.HomePublic.index")
-
+@section('title','零食么 - 吃!  我喜欢')
 <!--轮播图-->
 @section('adminshows')
     <div class="banner">
@@ -85,8 +85,11 @@
 		<ul>
 		<li class="title-first">
 				<a  href="#">
-					<span>[{{$data2['city']}}]</span>{{$data2['temperature']}}&nbsp;{{$data2['weather']}}&nbsp;{{$data2['week']}}
+					<span>{{$data2['city']}}</span>&nbsp;&nbsp;&nbsp;&nbsp;{{$data2['week']}}
 				</a>
+			</li>
+			<li class="title-first">
+				<a href="#">{{$data2['temperature']}}&nbsp;&nbsp;{{$data2['weather']}}</a>
 			</li>
 			@foreach ($notice as $vel)
 			<li class="title-first">
@@ -99,7 +102,7 @@
 			<div class="mod-vip">
 				@if(session('user'))
 				<div class="m-baseinfo">
-					<a href="person/index.html">
+					<a href="/personal">
           <!-- 头像 -->
 						<img src="/static/Home/images/getAvatar.do.jpg">
 					</a>
@@ -117,7 +120,7 @@
 				</div>
 				@else
 				<div class="m-baseinfo">
-					<a href="person/index.html">
+					<a href="/personal">
           <!-- 头像 -->
 						<img src="/static/Home/images/getAvatar.do.jpg">
 					</a>
@@ -131,17 +134,17 @@
 
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
-					<a href="#">
-						<strong>0</strong>待收货
+					<a href="/order_management">
+						<strong>{{$orderInfo['dsh']}}</strong>待收货
 					</a>
-					<a href="#">
-						<strong>0</strong>待发货
+					<a href="/order_management">
+						<strong>{{$orderInfo['dfh']}}</strong>待发货
 					</a>
-					<a href="#">
-						<strong>0</strong>待付款
+					<a href="/order_management">
+						<strong>{{$orderInfo['dfk']}}</strong>待付款
 					</a>
-					<a href="#">
-						<strong>0</strong>待评价
+					<a href="/order_management">
+						<strong>{{$orderInfo['dpj']}}</strong>待评价
 					</a>
 				</div>
 				@else

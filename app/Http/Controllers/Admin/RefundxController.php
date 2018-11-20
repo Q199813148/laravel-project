@@ -16,8 +16,6 @@ class RefundxController extends Controller
     public function index()
     {
         
-//  	获取搜索参数
-//		会员列表
 		$data = DB::table("refundxs")->where('status',1)->paginate(5);	
         return view("Admin.Refundx.index", ['data'=>$data]);
     }
@@ -60,8 +58,10 @@ class RefundxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//   审核退款
     public function edit($id)
     {
+//  	获取数据
         $data = DB::table('refundxs')
 			->where('refundxs.id',$id)
 			->join('details', 'refundxs.details_id', 'details.id')
@@ -90,6 +90,7 @@ class RefundxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+//   执行审核
     public function update(Request $request, $id)
     {
         $data = $request->only('bool','content');

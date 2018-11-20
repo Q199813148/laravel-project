@@ -71,10 +71,10 @@
                           	@if($val->level == $value->id)
                           		{{$value->name}}
                             @endif
+                            @endforeach
                             @if($val->level == 0)
                             	未分配角色
                             @endif
-                            @endforeach
                           </td>
                           <td>
                             {{$val->email}}
