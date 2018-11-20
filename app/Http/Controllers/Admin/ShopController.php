@@ -40,7 +40,15 @@ class ShopController extends Controller
     public function del(Request $request)
     {
         $id = $request->input('id');
+        //获取原有图片路径
+        $photo = DB::table('goods')->select('photo')->where('id',$id)->first()->photo;
         if(DB::table('goods')->where("id","=",$id)->delete()){
+            //删除分词信息
+            DB::table("goods_words")->where("goods_id","=",$id)->delete();
+            //删除原图
+            if(is_file(public_path($photo))){
+                unlink(public_path($photo));
+            }
             //删除成功
             echo '1';
         }else{
@@ -226,6 +234,12 @@ class ShopController extends Controller
         $data = $request->except("_token","_method","fenci");
         //判断是否有主图修改
         if(isset($data['photo'])){
+            //获取原有图片路径
+            $photo = DB::table('goods')->select('photo')->where('id',$id)->first()->photo;
+            //删除原图
+            if(is_file(public_path($photo))){
+                unlink(public_path($photo));
+            }
             //拼接商品主图路径
             $data['photo'] = "/uploads/shops/".$date."/".$name.'.'.$ext;
         }else{

@@ -127,6 +127,12 @@ class ShowsController extends Controller
 
         //判断是否有图片修改
         if(isset($data['pic'])){
+            //获取原有图片路径
+            $pic = DB::table('shows')->select('pic')->where('id',$id)->first()->pic;
+            //删除原图
+            if(is_file(public_path($pic))){
+                unlink(public_path($pic));
+            }
             //拼接商品主图路径
             $data['pic'] = "/uploads/shows/".$date."/".$name.'.'.$ext;
         }else{
@@ -155,8 +161,13 @@ class ShowsController extends Controller
      */
     public function destroy($id)
     {
+        //获取原有图片路径
+        $pic = DB::table('shows')->select('pic')->where('id',$id)->first()->pic;
         //获取删除的id
         if(DB::delete("delete from shows where id = $id")){
+            if(is_file(public_path($pic))){
+                unlink(public_path($pic));
+            }
             return redirect('/adminshows')->with("success","删除成功");
         }else{
             return back()->with("error",'删除失败');;
