@@ -7,6 +7,7 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
     <link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
 

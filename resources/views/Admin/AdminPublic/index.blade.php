@@ -5,7 +5,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>悦桔拉拉后台管理系统</title>
+  <title>零食么后台管理系统</title>
+  <link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
+
   <!-- plugins:css -->
   <link rel="stylesheet" href="/static/Admin/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/static/Admin/vendors/css/vendor.bundle.base.css">
@@ -13,7 +15,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="/static/Admin/css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="/static/Admin/images/favicon.png" />
+  {{--<link rel="shortcut icon" href="/static/Admin/images/favicon.png" />--}}
   <script src="/static/js/jquery-1.8.3.min.js"></script>
   <script src="/static/Home/js/jquery-1.7.2.min.js"></script>
 </head>

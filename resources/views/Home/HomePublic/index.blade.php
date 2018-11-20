@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 	<head>
+		<link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>首页</title>
+		<title>@yield('title')</title>
 
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
 		<link href="/static/Home/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -84,9 +85,9 @@
 				<div class="logo">
 					<img src="/static/Home/images/logo.png" />
 				</div>
-				<div class="logoBig">
+				<div class="logoBig" style="line-height: 80px;">
 					<li>
-						<a href="/"><img src="/static/Home/images/logobig.png" /></a>
+						<a href="/"><img src="/static/Home/images/logo2.png" /></a>
 					</li>
 				</div>
 
