@@ -249,7 +249,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/comment">
+                            <a href="/myRate">
                                 评价
                             </a>
                         </li>

@@ -16,11 +16,6 @@ class CartController extends Controller
      */
     public function index(Request $request)
     {
-        //判断是加入购物车操作还是直接进入购物车操作
-        if ($request->isMethod('post')) {
-            //post方式
-            $this->add($request);
-        }
         //获取用户id
         $user_id = session('user')->user_id;
         //获取用户购物车数据
@@ -29,9 +24,14 @@ class CartController extends Controller
             ->select('cart.id', 'cart.num', 'cart.taste', 'goods.id as goods_id', 'goods.name', 'goods.price', 'goods.store', 'goods.photo')
             ->where([['cart.user_id', $user_id],['goods.status', 0],['goods.store','>','0']])
             ->get();
-
-        return view("Home.Cart.index", ['data' => $data]);
-
+        //判断是加入购物车操作还是直接进入购物车操作
+        if ($request->isMethod('post')) {
+            //post方式
+            $this->add($request);
+            return back()->with('success','添加成功');
+        }else{
+            return view("Home.Cart.index", ['data' => $data]);
+        }
     }
 
     public function add($request)
