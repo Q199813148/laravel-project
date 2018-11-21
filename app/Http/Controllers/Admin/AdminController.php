@@ -30,7 +30,11 @@ class AdminController extends Controller
 		$ordersy = DB::table('orders')
 		->where('time','>',$timey)
 		->count();
-		$orderer = round(($orders-$orderss)/$orders*100);
+		if($orders){
+			$orderer = round(($orders-$orderss)/$orders*100);
+		}else{
+			$orderer = 0;
+		}
 		$num = round(DB::table('orders')
 		->where('time','>',$time)
 		->where('status','>=',1)
@@ -44,7 +48,11 @@ class AdminController extends Controller
 		->where('time','<',$time)
 		->where('status','>=',1)
 		->sum('goods_money');
-		$numer = round(($num-$nums)/$num*100);
+		if($num){
+			$numer = round(($num-$nums)/$num*100);
+		}else{
+			$numer = 0;
+		}
 		$endorders = DB::table('orders')
 		->where('time','>',$time)
 		->where('status','>=',3)
@@ -58,9 +66,11 @@ class AdminController extends Controller
 		->where('time','>',$times)
 		->where('status','>=',3)
 		->count();
-		$endorderer = round(($endorders-$endorderss)/$endorders*100);
-//		dd($numer);
-//		dd($orderer);
+		if($endorders){
+			$endorderer = round(($endorders-$endorderss)/$endorders*100);
+		}else{
+			$endorderer = 0;
+		}
 		return view("Admin.Admin.index",['orders'=>$orders,'ordersy'=>$ordersy,'orderer'=>$orderer,'endorders'=>$endorders,'endordersy'=>$endordersy,'endorderer'=>$endorderer,'num'=>$num,'numy'=>$numy,'numer'=>$numer]);
     }
     /**
