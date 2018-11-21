@@ -162,6 +162,7 @@
     <aside class="menu">
     @section('list')
         <!--左侧列表-->
+        @if(session('user'))
             <ul>
                 <li class="person">
                     <a href="/personal" style="color: #f00;">
@@ -258,6 +259,7 @@
                     </ul>
                 </li>
             </ul>
+            @endif
             @show
     </aside>
 </div>

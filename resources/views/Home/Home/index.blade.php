@@ -134,14 +134,14 @@
 
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
+                    <a href="/order_management">
+                        <strong>{{$orderInfo['dfk']}}</strong>待付款
+                    </a>
 					<a href="/order_management">
 						<strong>{{$orderInfo['dsh']}}</strong>待收货
 					</a>
 					<a href="/order_management">
 						<strong>{{$orderInfo['dfh']}}</strong>待发货
-					</a>
-					<a href="/order_management">
-						<strong>{{$orderInfo['dfk']}}</strong>待付款
 					</a>
 					<a href="/order_management">
 						<strong>{{$orderInfo['dpj']}}</strong>待评价

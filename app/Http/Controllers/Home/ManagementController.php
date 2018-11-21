@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Model\Orders;
 
 class ManagementController extends Controller
 {
@@ -196,7 +197,7 @@ class ManagementController extends Controller
     {
         $id = $request->input('id');
         //查询订单信息
-        $data = DB::table('orders')->where('id',$id)->first();
+        $data = Orders::where('id',$id)->first();
         //隐藏手机号
         $data->phone = substr_replace($data->phone,'****',3,4);
         //判断是否和查看详情的用户id是同一个id
