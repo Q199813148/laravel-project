@@ -79,8 +79,13 @@
                           <td>
                             {{$val->sales}}
                           </td>
-                          <td>
-                            {{$val->status}}
+                          <td class="">
+                              @if($val->status=='上架')
+                                  <span class="status badge badge-gradient-success" href="">{{$val->status}}</span>
+                              @else
+                                  <span class="status badge badge-gradient-danger" href="">{{$val->status}}</span>
+                              @endif
+                                  <input type="hidden" value="{{$val->id}}" name="{{$val->status}}">
                           </td>
                           <td>
                             <a href="/adminshop/{{$val->id}}/edit" class="mdi mdi-settings"></a> |
