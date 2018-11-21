@@ -21,7 +21,7 @@ class AdminRoleController extends Controller
     {
 		//
         $k=$request->input('seek');
-		$data = AdminRole::where('name',"like","%".$k."%")->paginate(5);
+		$data = AdminRole::where('name',"like","%".$k."%")->where('id','!=',1)->paginate(5);
 		return view('Admin.AdminRole.index',['data'=>$data,'request'=>$request->all()]);
     }
 
