@@ -26,7 +26,7 @@ class EmailController extends Controller
 	{
     	Mail::send('Home.Personal.sendemail', ['code'=>$code], function($message)use($email) {
 		//发送主题
-		$message->subject('[悦桔拉拉]你正在修改邮箱绑定');
+		$message->subject('[零食么]你正在修改邮箱绑定');
 		//接收方
 		$message->to($email);
 		$message->cc('fate_silver@163.com');

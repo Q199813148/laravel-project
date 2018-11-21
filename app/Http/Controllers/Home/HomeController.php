@@ -100,7 +100,7 @@ class HomeController extends Controller
             if(count($goods)) {
                 foreach( $goods as $row) {
             echo '
-                <div class="am-u-sm-3 am-u-md-2 text-three" style="height:300px;" >
+                <div class="am-u-sm-3 am-u-md-2 text-three" style="height:305px;" >
                     <div class="outer-con ">
                         <div class="title ">
                            <a href="/goodsdetail?id='.$row->id.'"> '.$row->name.'</a>
@@ -572,7 +572,7 @@ class HomeController extends Controller
 	{
         	 Mail::send('Home.Home.registemail', ['id'=>$id, 'token'=>$token], function($message)use($email) {
 			//发送主题
-			$message->subject('[悦桔拉拉]你正在注册账号');
+			$message->subject('[零食么]你正在注册账号');
 			//接收方
 			$message->to($email);
 			$message->cc('fate_silver@163.com');

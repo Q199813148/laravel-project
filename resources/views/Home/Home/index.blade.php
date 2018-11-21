@@ -194,12 +194,12 @@
 @endsection
 <!--热门活动-->
 @section('activity')
-   
+
 @endsection
 <!--商品列表-->
 @section('goods')
     @foreach($type as $key=>$val)
-    <div id="f1" style="height:300px;">
+    <div id="f1" style="height:350px;">
         <!--甜点-->
         <div class="am-container ">
             <div class="shopTitle ">
