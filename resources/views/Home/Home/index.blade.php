@@ -104,7 +104,7 @@
 				<div class="m-baseinfo">
 					<a href="/personal">
           <!-- 头像 -->
-						<img src="/static/Home/images/getAvatar.do.jpg">
+						<img src="{{$pic->pic}}">
 					</a>
 					<em> Hi,<span class="s-name">{{session('user')->name}}</span><a class="dropdown-item" href="/exit">
                 <i class="mdi mdi-logout mr-2 text-primary"></i>

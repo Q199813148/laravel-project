@@ -291,7 +291,7 @@ $(document).ready(function() {
 						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
-									<img src="/static/Home/images/no-img_mid_.jpg " />
+									<img src="{{$pic->pic}}" />
 								</p>
 								<ul class="user_info ">
 									<li>

@@ -77,7 +77,9 @@ class HomeController extends Controller
             $orderInfo['dfh'] = DB::table('orders')->where([['user_id',$user_id],['status','1']])->get()->count();
             $orderInfo['dfk'] = DB::table('orders')->where([['user_id',$user_id],['status','0']])->get()->count();
             $orderInfo['dpj'] = DB::table('orders')->where([['user_id',$user_id],['status','3']])->get()->count();
-            return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type,'data2'=>$data2,'orderInfo'=>$orderInfo]);
+            $pic = DB::table('user_info')->where('user_id','=',$user_id)->select('pic')->first();
+            //dd($pic);
+            return view("Home.Home.index",['types'=>$types,'shows'=>$shows,'i'=>$i,'advertisements'=>$advertisements,'notice'=>$notice,'type'=>$type,'data2'=>$data2,'orderInfo'=>$orderInfo,'pic'=>$pic]);
         }
 
 
