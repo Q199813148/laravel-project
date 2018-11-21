@@ -36,16 +36,6 @@
 
 
             <div class="bundle  bundle-last ">
-                <div class="bundle-hd">
-                    <div class="bd-promos">
-                        <div class="bd-has-promo">已享优惠:<span class="bd-has-promo-content">省￥19.50</span>&nbsp;&nbsp;
-                        </div>
-                        <div class="act-promo">
-                            <a href="#" target="_blank">第二支半价，第三支免费<span class="gt">&gt;&gt;</span></a>
-                        </div>
-                        <span class="list-change theme-login">编辑</span>
-                    </div>
-                </div>
                 <div class="clear"></div>
                 <form action="/confirm_order" method="post" id="ConfirmOrder">
                 <div class="bundle-main">
