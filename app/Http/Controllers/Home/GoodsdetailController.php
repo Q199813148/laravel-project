@@ -31,6 +31,7 @@ class GoodsdetailController extends Controller
         DB::table('goods')->where('id','=',$id)->update(['num'=>$collect]);
         //获取session('user')
         //if (session('user')) {}
+        $dd = '';
         if (session('user')) {
         	$user_id=session('user')->user_id;
         	$dd = DB::table('collect')->where('user_id','=',$user_id)->where('good_id','=',$id)->count();

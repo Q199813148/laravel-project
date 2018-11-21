@@ -19,7 +19,7 @@
             <div class="address">
                 <h3>确认收货地址 </h3>
                 <div class="control">
-                    <div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
+                    <a href="/personaladdress"><div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div></a>
                 </div>
                 <div class="clear"></div>
                 <ul>
@@ -45,7 +45,7 @@
                             <ins class="deftip">默认地址</ins>
                         </div>
                         <div class="address-right">
-                            <a href="person/address.html">
+                            <a href="/personaladdress">
                                 <span class="am-icon-angle-right am-icon-lg"></span></a>
                         </div>
                         <div class="clear"></div>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="clear"></div>
                     {{--订单商品信息--}}
-                    <form action="/submitorder" method="post">
+                    <form action="/submitorder" method="post"  onkeydown="if(event.keyCode==13){return false;}">
                         <input type="hidden" name="goods_id" value="{{$goods->id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">
                             @if(!empty($default))

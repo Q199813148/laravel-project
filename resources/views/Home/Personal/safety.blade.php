@@ -40,7 +40,7 @@
 						            </span>
 								</div>
 								<div class="u-safety">
-									<a href="safety.html">
+									<a href="">
 									 个性签名：
 									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">{{$user->summary}}</i></span>
 									</a>

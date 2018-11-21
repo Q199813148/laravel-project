@@ -83,8 +83,8 @@ class SubmitOrderController extends Controller
         $alipay = app('alipay.web');
         $alipay->setOutTradeNo($order['orderno']);
         $alipay->setTotalFee($order['goods_money']);
-        $alipay->setSubject('悦桔拉拉商城');
-        $alipay->setBody('悦桔拉拉商城购物');
+        $alipay->setSubject('零食么商城');
+        $alipay->setBody('零食么商城购物');
 
         $alipay->setQrPayMode('5'); //该设置为可选，添加该参数设置，支持二维码支付。
 
@@ -150,8 +150,8 @@ class SubmitOrderController extends Controller
         $alipay = app('alipay.web');
         $alipay->setOutTradeNo($order['orderno']);
         $alipay->setTotalFee($order['goods_money']);
-        $alipay->setSubject('悦桔拉拉商城');
-        $alipay->setBody('悦桔拉拉商城购物');
+        $alipay->setSubject('零食么商城');
+        $alipay->setBody('零食么商城购物');
 
         $alipay->setQrPayMode('5'); //该设置为可选，添加该参数设置，支持二维码支付。
 

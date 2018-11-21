@@ -20,7 +20,7 @@
                 <h3>确认收货地址 </h3>
                 <a href="/personaladdress">
                 <div class="control">
-                    <div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
+                    <a href="/personaladdress"><div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div></a>
                 </div>
                 </a>
                 <div class="clear"></div>
@@ -47,7 +47,7 @@
                             <ins class="deftip">默认地址</ins>
                         </div>
                         <div class="address-right">
-                            <a href="person/address.html">
+                            <a href="/personaladdress">
                                 <span class="am-icon-angle-right am-icon-lg"></span></a>
                         </div>
                         <div class="clear"></div>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="clear"></div>
                     {{--订单商品信息--}}
-                    <form action="/submit_order" method="post">
+                    <form action="/submit_order" method="post" onkeydown="if(event.keyCode==13){return false;}">
                     @foreach($data as $val)
                             <input type="hidden" name="cart_id[]" value="{{$val->cart_id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">

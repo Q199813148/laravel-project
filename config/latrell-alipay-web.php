@@ -8,8 +8,8 @@ return [
 	'sign_type' => 'MD5',
 
 	// 服务器异步通知页面路径。
-	'notify_url' => 'http://www.laravel.com/notify',
+	'notify_url' => '192.168.31.58/notify',
 
 	// 页面跳转同步通知页面路径。
-	'return_url' => 'http://www.laravel.com/return'
+	'return_url' => '192.168.31.58/return'
 ];
