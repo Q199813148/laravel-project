@@ -96,8 +96,6 @@
 		Route::get("/safetyemail",'Home\PersonalsafetyController@safetyemail');
 //		执行修改邮箱
 		Route::post("/dosafetyemail",'Home\PersonalsafetyController@dosafetyemail');
-//		ajax发送邮箱
-		Route::get("/sendemail",'Home\PersonalsafetyController@sendemail');
 //		安全设置修改手机
 		Route::get("/safetyphone",'Home\PersonalsafetyController@safetyphone');
 //		执行修改手机
@@ -181,6 +179,8 @@
 	Route::get("/doregistemail", "Home\HomeController@doregistemail");
 //	找回密码
 	Route::get("/forgetpass", "Home\HomeController@forgetpass");
+//	ajax发送邮箱
+	Route::get("/sendemail",'Home\EmailController@sendemail');
 //	找回密码检测账号
 	Route::get("/doforgetpass", "Home\HomeController@doforgetpass");
 //	找回密码检测短信验证
