@@ -111,7 +111,7 @@
 
 										<div class="item-info">
 											<div>
-												<p class="info-little"><span>口味：{{$val->taste}}</span> <span>评价等级: @if($value->level==0) 好评 @elseif($value->level==1) 中评 @else 差评 @endif</span> </p>
+												<p class="info-little"><span>口味：{{$val->taste}}</span> <span>评价等级: @if($val->level==0) 好评 @elseif($val->level==1) 中评 @else 差评 @endif</span> </p>
 												<p class="info-time">{{$val->addtime}}</p>
 
 											</div>
