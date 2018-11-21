@@ -94,6 +94,7 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //订单详情
     public function show($id)
     {   
         //查询数据
@@ -101,7 +102,8 @@ class OrdersController extends Controller
         ->join('details','orders.id','=','details.order_id')
         ->join('goods','details.good_id','=','goods.id')
         ->where('orders.id','=',$id)
-        ->select('orders.name as name','orders.phone as phone','orders.address as address','orders.remarks as remarks','details.num as num','details.taste as taste','goods.name as good_name','goods.photo as photo','goods.price as price')->get();
+        ->select('orders.name as name','orders.phone as phone','orders.address as address','orders.remarks as remarks','details.num as num','details.taste as taste','goods.name as good_name','goods.photo as photo','goods.price as price','details.good_id')
+        ->paginate(1);
         // dd($data);
         
         //加载模板
@@ -118,9 +120,14 @@ class OrdersController extends Controller
     {
         //查询信息
         $data = DB::table('orders')->where('id','=',$id)->first();
-        // dd($data);
-        //加载模板
-        return view("Admin.Orders.edit",['data'=>$data]);
+
+         if($data->status == 1 || $data->status == 2 ){
+             //加载模板
+             return view("Admin.Orders.edit",['data'=>$data]);
+         }else{
+             return back();
+         }
+
     }
 
     /**
