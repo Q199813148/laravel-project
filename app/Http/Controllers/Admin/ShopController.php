@@ -293,4 +293,20 @@ class ShopController extends Controller
     {
         //
     }
+
+    //ajax修改状态
+    public function statusajax(Request $request) {
+        $id = $request->input('id');
+        $sta = $request->input('status');
+        if($sta == '下架'){
+            $data = DB::table("goods")->where("id", '=', $id)->update(['status'=>0]);
+        }else{
+            $data = DB::table("goods")->where("id", '=', $id)->update(['status'=>1]);
+        }
+        if($data){
+            return response()->json(['msg'=>1]);
+        }else{
+            return response()->json(['msg'=>0]);
+        }
+    }
 }

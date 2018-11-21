@@ -21,6 +21,8 @@
 		Route::resource("/adminshop", "Admin\ShopController");
 		//后台商品分词
 		Route::get("/adminshopajax", "Admin\ShopController@ajax");
+		//后台商品分词
+		Route::get("/adminshopsajax", "Admin\ShopController@statusajax");
 		//后台商品删除
         Route::get("/adminshopdel", "Admin\ShopController@del");
 		//后台用户管理

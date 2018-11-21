@@ -130,8 +130,21 @@
               }
           })
       }
-
-
+  })
+  $(".status").click(function () {
+      id = $(this).next('input').val();
+      status = $(this).next().attr('name');
+      obj = $(this);
+      $.get("/adminshopsajax",{id:id,status:status},function (data) {
+          if(data['msg'] == '1'){
+              console.log(status);
+              if(status == '下架') {
+                  obj.html("上架").attr('class',"status badge badge-gradient-success").next().attr('name','上架');
+              }else{
+                  obj.html("下架").attr('class',"status badge badge-gradient-danger").next().attr('name','下架');
+              }
+          }
+      },'json')
   })
 </script>
 @endsection
