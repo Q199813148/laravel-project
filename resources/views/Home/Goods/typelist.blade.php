@@ -22,7 +22,13 @@
                 <a title="零食" href="/goodslist?ss=零食">零食</a>
                 <a title="巧克力" href="/goodslist?ss=巧克力">巧克力</a>
             </div>
-
+            <ul class="select">
+                <p class="title font-normal">
+                    <span class="fl searchTitle">{{$name}}</span>
+                    <span class="total fl">分类下一共有<strong class="num">{{$num}}</strong>件相关商品</span>
+                </p>
+                <div class="clear"></div>
+            </ul>
             <div class="clear"></div>
         </div>
         <div class="search-content">
@@ -94,6 +100,6 @@
     </div>
 </div>
 <script>
-    document.title = $('.searchTitle').html()+'_零食么搜索';
+    document.title = $('.searchTitle').html()+'_零食么分类';
 </script>
 @endsection
