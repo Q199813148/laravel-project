@@ -106,7 +106,7 @@ class HomeController extends Controller
                            <a href="/goodsdetail?id='.$row->id.'"> '.$row->name.'</a>
                         </div>
                         <div class="sub-title ">
-                            '.$row->price.'
+                            ¥'.$row->price.'
                         </div>
                     </div>
                         <a href="/goodsdetail?id='.$row->id.'">

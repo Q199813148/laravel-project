@@ -15,6 +15,16 @@
 </script>
 <div class="am-g am-g-fixed">
     <div class="am-u-sm-12 am-u-md-12">
+        <div class="theme-popover">
+            <div class="searchAbout">
+                <span class="font-pale">相关搜索：</span>
+                <a title="坚果" href="/goodslist?ss=坚果">坚果</a>
+                <a title="零食" href="/goodslist?ss=零食">零食</a>
+                <a title="巧克力" href="/goodslist?ss=巧克力">巧克力</a>
+            </div>
+
+            <div class="clear"></div>
+        </div>
         <div class="search-content">
             <div class="sort">
                 @if(empty($request['order']))
