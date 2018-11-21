@@ -205,7 +205,7 @@
             <div class="shopTitle ">
                 <h4>{{$val->name}}</h4>
                 <span class="more ">
-	<a href="# ">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+	{{--<a href="/typelist?typeid={{$val->id}}">更多美味<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>--}}
 	</span>
             </div>
         </div>
