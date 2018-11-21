@@ -24,19 +24,22 @@ class RefundxController extends Controller
 			foreach($data as $key=>$val) {
 			$datb[$key] = DB::table('details')
 			->where('details.id',$val->details_id)
+			->where('orders.user_id',$uid)
 			->join('orders','orders.id','details.order_id')
 			->join('goods','goods.id','details.good_id')
 			->select('orders.user_id as user_id','details.good_id as goods_id','details.order_id as order_id','goods.name as name','details.taste as taste','orders.orderno as orderno','goods.photo as photo')
 			->first();
-			$datb[$key]->price = $val->price;
-			$datb[$key]->details_id = $val->details_id;
-			$datb[$key]->status = $val->status;
-			$datb[$key]->id = $val->id;
-			$datb[$key]->time = $val->time;
-			$datb[$key]->content = $val->content;
+			if(!empty($datb[0])) {
+				$datb[$key]->price = $val->price;
+				$datb[$key]->details_id = $val->details_id;
+				$datb[$key]->status = $val->status;
+				$datb[$key]->id = $val->id;
+				$datb[$key]->time = $val->time;
+				$datb[$key]->content = $val->content;
+			}
 			}
 		}
-		if(!empty($datb)) {
+		if(!empty($datb[0])) {
     	    return view('Home.Refundx.index',['data'=>$data,'datb'=>$datb]);
 		}else{
     	    return view('Home.Refundx.index');

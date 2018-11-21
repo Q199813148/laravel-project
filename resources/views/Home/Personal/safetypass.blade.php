@@ -31,9 +31,9 @@
 					</div>
 					<form action="/dosafetypass" method="post" class="am-form am-form-horizontal">
 						<div class="am-form-group">
-							<label for="user-old-password" class="am-form-label">原密码</label>
+							<label for="user-old-password" class="am-form-label">原始密码</label>
 							<div class="am-form-content">
-								<input type="password" name="plpassword" id="user-old-password" placeholder="请输入原登录密码">
+								<input type="password" name="plpassword" id="user-old-password" placeholder="请输入原始登录密码">
 							</div>
 							<span style="color: #f00;">{{$errors->first('plpassword')}} @if(session('error')) {{session('error')}} @endif</span>
 						</div>

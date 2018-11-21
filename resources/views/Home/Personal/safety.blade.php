@@ -63,21 +63,6 @@
 									</div>
 								</li>
 								<li>
-									<i class="i-safety-wallet"></i>
-									<div class="m-left">
-										<div class="fore1">支付密码</div>
-										<div class="fore2"><small>启用支付密码功能，为您资产账户安全加把锁。</small></div>
-									</div>
-									<div class="fore3">
-										<a href="setpay.html">
-											<div class="am-btn am-btn-secondary">
-												
-												立即启用
-												</div>
-										</a>
-									</div>
-								</li>
-								<li>
 									<i class="i-safety-iphone"></i>
 									<div class="m-left">
 										<div class="fore1">手机验证</div>

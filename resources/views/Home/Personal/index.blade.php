@@ -31,7 +31,7 @@
 					</div>
 					<div class="m-right">
 						<div class="m-new">
-							<a href="news.html">
+							<a href="#">
 								<i class="am-icon-bell-o"></i>消息
 							</a>
 						</div>
@@ -85,7 +85,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="/order_management">
+						<a href="/refundx">
 							<i>
 							<img src="/static/Home/images/refund.png">
 							</i><span>售后</span>
