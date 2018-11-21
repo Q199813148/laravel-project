@@ -4,6 +4,7 @@
 	<head lang="en">
 		<meta charset="UTF-8">
 		<title>注册-零食么</title>
+		<link rel="icon" href="/static/Home/images/logo22.png" type="image/x-icon"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="format-detection" content="telephone=no">
@@ -65,8 +66,8 @@
 			
 			
 		<div class="login-boxtitle">
-			<a href="home/demo.html">
-				<img alt="" src="/static/Home/images/logobig.png" />
+			<a href="/">
+				<img alt="" src="/static/Home/images/logo2.png" />
 			</a>
 		</div>
 
@@ -478,11 +479,7 @@ alert(err);
 			<div class="footer ">
 				<div class="footer-hd ">
 					<p>
-						<a href="# ">
-							恒望科技
-						</a>
-						<b>|</b>
-						<a href="# ">
+						<a href="/">
 							商城首页
 						</a>
 						<b>|</b>
@@ -498,7 +495,7 @@ alert(err);
 				<div class="footer-bd ">
 					<p>
 						<a href="# ">
-							关于恒望
+							关于我们
 						</a>
 						<a href="# ">
 							合作伙伴
@@ -506,10 +503,10 @@ alert(err);
 						<a href="# ">
 							联系我们
 						</a>
-						<a href="# ">
-							网站地图
+						<a href="/map">
+							公司地图
 						</a>
-						<em>© 2015-2025 Hengwang.com 版权所有</em>
+						<em>© 2018-2025 www.laravel.com 版权所有</em>
 					</p>
 				</div>
 			</div>

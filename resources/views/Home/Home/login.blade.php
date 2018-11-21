@@ -18,7 +18,7 @@
 	<body>
 
 		<div class="login-boxtitle">
-			<a href="/"><img alt="logo" src="/static/Home/images/logobig.png" /></a>
+			<a href="/"><img alt="logo" src="/static/Home/images/logo2.png" /></a>
 		</div>
 
 		<div class="login-banner">
@@ -40,17 +40,17 @@
 								    <label for="password"><i class="am-icon-lock"></i></label>
 								    <input type="password" name="password" id="password" placeholder="请输入密码">
                  </div>
-                 
-              
+
            </div>
             <div class="form-group">
-                  <img  title="点击刷新" src="/static/Admin/yzm/captcha.php" align="absbottom" onclick="this.src='/static/Admin/yzm/captcha.php?'+Math.random();"></img> 
-						      @if(session('error'))
-						      <span class="text-danger">{{session('error')}}</span>
-						      @endif 
-                  <br />
-							<input type="text" name="code"  placeholder="验证码">
-                </div>
+
+							<input type="text" name="code" class="am-form-field am-radius"  placeholder="验证码" style="width: 320px;height: 40px;font-size: 14px;">
+				<br>
+				<img  title="点击刷新" src="/static/Admin/yzm/captcha.php" align="absbottom" onclick="this.src='/static/Admin/yzm/captcha.php?'+Math.random();" style="height: 45px;	">
+				{{--@if(session('error'))--}}
+					{{--<span class="text-danger">{{session('error')}}</span>--}}
+				{{--@endif--}}
+			</div>
             <div class="login-links">
                 <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
 								<a href="/forgetpass" class="am-fr">忘记密码</a>
@@ -61,14 +61,14 @@
 								<div class="am-cf">
 									<input type="submit" name="submint" value="登 录" class="am-btn am-btn-primary am-btn-sm">
 								</div>
-						<div class="partner">		
-								<h3>合作账号</h3>
-							<div class="am-btn-group">
-								<li><a href="#"><i class="am-icon-qq am-icon-sm"></i><span>QQ登录</span></a></li>
-								<li><a href="#"><i class="am-icon-weibo am-icon-sm"></i><span>微博登录</span> </a></li>
-								<li><a href="#"><i class="am-icon-weixin am-icon-sm"></i><span>微信登录</span> </a></li>
-							</div>
-						</div>	
+						{{--<div class="partner">		--}}
+								{{--<h3>合作账号</h3>--}}
+							{{--<div class="am-btn-group">--}}
+								{{--<li><a href="#"><i class="am-icon-qq am-icon-sm"></i><span>QQ登录</span></a></li>--}}
+								{{--<li><a href="#"><i class="am-icon-weibo am-icon-sm"></i><span>微博登录</span> </a></li>--}}
+								{{--<li><a href="#"><i class="am-icon-weixin am-icon-sm"></i><span>微信登录</span> </a></li>--}}
+							{{--</div>--}}
+						{{--</div>	--}}
 						</form>
 				</div>
 			</div>
@@ -78,9 +78,7 @@
 					<div class="footer ">
 						<div class="footer-hd ">
 							<p>
-								<a href="# ">恒望科技</a>
-								<b>|</b>
-								<a href="# ">商城首页</a>
+								<a href="/">商城首页</a>
 								<b>|</b>
 								<a href="# ">支付宝</a>
 								<b>|</b>
@@ -89,11 +87,19 @@
 						</div>
 						<div class="footer-bd ">
 							<p>
-								<a href="# ">关于恒望</a>
-								<a href="# ">合作伙伴</a>
-								<a href="# ">联系我们</a>
-								<a href="/map">网站地图</a>
-								<em>© 2015-2025 Hengwang.com 版权所有</em>
+								<a href="# ">
+									关于我们
+								</a>
+								<a href="# ">
+									合作伙伴
+								</a>
+								<a href="# ">
+									联系我们
+								</a>
+								<a href="/map">
+									公司地图
+								</a>
+								<em>© 2018-2025 www.laravel.com 版权所有</em>
 							</p>
 						</div>
 					</div>
