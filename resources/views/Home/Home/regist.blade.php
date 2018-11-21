@@ -134,7 +134,7 @@
 
 									<div class="user-phone">
 										<label for="phone"><i class="am-icon-user am-icon-fw"></i></label>
-										<input type="text" name="name" placeholder="@if(old('name')) {{old('name')}} @else 请输入邮箱 @endif" id="name" class="name" placeholder="请输入用户名">
+										<input type="text" name="name" placeholder="@if(old('name')) {{old('name')}} @else 请输入用户名 @endif" id="name" class="name" placeholder="请输入用户名">
 									</div>
 									<span style="font-size: 12px; color: #f00; " class="ebool">{{$errors->first('name')}}</span>
 									<div class="user-phone">
@@ -515,4 +515,18 @@ alert(err);
 			</div>
 	</body>
 
+@foreach ($errors->all() as $error)
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{$error}}</div>
+@endforeach
+@if(session('error'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #FE7C96; line-height: 80px;text-align: center; color: #fff;">{{session('error')}}</div>
+@endif
+@if(session('success'))
+<div class="baocuo" style=" position: fixed; top: 0; left: 40%; width: 20%; height: 80px; background: #1CCFB4; line-height: 80px;text-align: center; color: #fff;">{{session('success')}}</div>
+@endif
+<script type="text/javascript">
+	$('.baocuo').click(function() {
+		$(this).css('display','none');
+	});
+</script>
 </html>
