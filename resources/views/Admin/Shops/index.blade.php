@@ -79,8 +79,13 @@
                           <td>
                             {{$val->sales}}
                           </td>
-                          <td>
-                            {{$val->status}}
+                          <td class="">
+                              @if($val->status=='上架')
+                                  <span class="status badge badge-gradient-success" href="">{{$val->status}}</span>
+                              @else
+                                  <span class="status badge badge-gradient-danger" href="">{{$val->status}}</span>
+                              @endif
+                                  <input type="hidden" value="{{$val->id}}" name="{{$val->status}}">
                           </td>
                           <td>
                             <a href="/adminshop/{{$val->id}}/edit" class="mdi mdi-settings"></a> |
@@ -125,8 +130,21 @@
               }
           })
       }
-
-
+  })
+  $(".status").click(function () {
+      id = $(this).next('input').val();
+      status = $(this).next().attr('name');
+      obj = $(this);
+      $.get("/adminshopsajax",{id:id,status:status},function (data) {
+          if(data['msg'] == '1'){
+              console.log(status);
+              if(status == '下架') {
+                  obj.html("上架").attr('class',"status badge badge-gradient-success").next().attr('name','上架');
+              }else{
+                  obj.html("下架").attr('class',"status badge badge-gradient-danger").next().attr('name','下架');
+              }
+          }
+      },'json')
   })
 </script>
 @endsection
