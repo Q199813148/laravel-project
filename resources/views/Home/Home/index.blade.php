@@ -174,7 +174,7 @@
         </div>
     </div>
 @endsection
-<!--今日推荐-->
+<!--广告-->
 @section('recommend')
     <div class="am-g am-g-fixed recommendation">
         @if(!empty($advertisements))
@@ -185,7 +185,7 @@
                 <h4>{{$value->descr}}</h4>
             </div>
             <div class="recommendationMain one">
-                <a href="{{$value->url}}"><img src="{{$value->pic}} "></img></a>
+                <a href="http://{{$value->url}}"><img src="{{$value->pic}} "></img></a>
             </div>
         </div>
         @endforeach

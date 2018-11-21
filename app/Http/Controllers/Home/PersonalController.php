@@ -274,14 +274,19 @@ class PersonalController extends Controller
 
     {
 //        获取数据
-        $data = DB::table('user_info')->where('user_id','=',$id)->first();	
-        $user = DB::table('users')->where('user_id','=',$id)->first();	
-		$data->dates = date('Y'); 
-		$birthday = explode('-', $data->birthday);
-		$data->years = empty($birthday[0])?'':$birthday[0];
-		$data->month = empty($birthday[1])?'':$birthday[1];
-		$data->day = empty($birthday[2])?'':$birthday[2];
-        return view('Home.Personal.data',['data'=>$data,'user'=>$user]);
+		$uid = session('user')->user_id;
+		if($id == $uid) {
+	        $data = DB::table('user_info')->where('user_id','=',$id)->first();	
+	        $user = DB::table('users')->where('user_id','=',$id)->first();	
+			$data->dates = date('Y'); 
+			$birthday = explode('-', $data->birthday);
+			$data->years = empty($birthday[0])?'':$birthday[0];
+			$data->month = empty($birthday[1])?'':$birthday[1];
+			$data->day = empty($birthday[2])?'':$birthday[2];
+	        return view('Home.Personal.data',['data'=>$data,'user'=>$user]);
+		}else{
+	        return redirect('/personal/'.$uid.'/edit');
+		}
     }
 	
 	
@@ -296,6 +301,7 @@ class PersonalController extends Controller
     {
 
         //获取用户详情数据
+        $id = session('user')->user_id; 
 		$data = $request->except('_token','_method','userimg','years','month','day','email','phone','status');
 //      dd($data);
 		$data['birthday'] = $request->only('years')['years'].'-'.$request->only('month')['month'].'-'.$request->only('day')['day'];
