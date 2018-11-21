@@ -150,8 +150,8 @@
                     <a href="#">
                         联系我们
                     </a>
-                    <a href="#">
-                        网站地图
+                    <a href="/map">
+                        公司地图
                     </a>
                     <em>© 2018-2025 www.laravel.com 版权所有</em>
                 </p>

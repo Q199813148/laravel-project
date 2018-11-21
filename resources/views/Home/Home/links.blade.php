@@ -7,27 +7,27 @@
 <form class="am-form am-form-horizontal" action="/dorelinks" method="post">
 
   <div class="am-form-group">
-    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">申请人</label>
+    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">申请人:&emsp;</label>
     <div class="am-u-sm-10">
-      <input type="text" name="username" id="doc-ipt-3" placeholder="输入您的姓名">
+      <input type="text" name="username" class="am-form-field am-round" style="height: 40px;width: 500px;font-size: 14px;" id="doc-ipt-3" placeholder="输入您的姓名">
     </div>
   </div>
   <div class="am-form-group">
-    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">联系电话</label>
+    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">联系电话:&emsp;</label>
     <div class="am-u-sm-10">
-      <input type="text" name="phone" id="doc-ipt-3" placeholder="输入您的电话">
+      <input type="text" name="phone" class="am-form-field am-round" style="height: 40px;width: 500px;font-size: 14px;" id="doc-ipt-3" placeholder="输入您的电话">
     </div>
   </div>
   <div class="am-form-group">
-    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">链接名称</label>
+    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">链接名称:&emsp;</label>
     <div class="am-u-sm-10">
-      <input type="text" name="name" id="doc-ipt-3" placeholder="输入您需要申请的链接名称">
+      <input type="text" name="name" class="am-form-field am-round" style="height: 40px;width: 500px;font-size: 14px;" id="doc-ipt-3" placeholder="输入您需要申请的链接名称">
     </div>
   </div>
   <div class="am-form-group">
-    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">链接地址</label>
+    <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">链接地址:&emsp;</label>
     <div class="am-u-sm-10">
-      <input type="text" name="url" id="doc-ipt-3" placeholder="输入您申请的链接地址">
+      <input type="text" name="url" class="am-form-field am-round" style="height: 40px;width: 500px;font-size: 14px;" id="doc-ipt-3" placeholder="输入您申请的链接地址">
     </div>
   </div>
 
