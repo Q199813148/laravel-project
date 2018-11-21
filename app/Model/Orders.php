@@ -9,7 +9,7 @@ class Orders extends Model
     //模型类对应数据表
     protected $table = "orders";
     //可以被批量赋值的属性字段
-    Protected $fillable = ['orderno','user_id','address','status','time','goods_money','name','phone','remarks','refund','endtime'];
+    Protected $fillable = ['orderno','user_id','address','status','time','goods_money','name','phone','remarks','refund','endtime','company'];
 
     //修改器方法 status 数据表字段getAttribute() 获取字段值
     public function getStatusAttribute($value){
