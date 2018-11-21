@@ -97,6 +97,9 @@ class AdminuserController extends Controller
         //获取数据
         $data = $request->except('_token', '_method');
 //		查询出当前数据
+		if($id == 1 && $data['level'] != 1) {
+            return redirect("/adminusers/".$id."/edit")->with('error', '无法修改超级管理员权限');
+		}
 //		如若数据未被修改则不修改该字段
         $update = DB::table('admin')->where('id','=',$id)->first();
 		if($data['name'] == $update->name) {

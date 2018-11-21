@@ -7,11 +7,6 @@
                   <i class="input-group-text border-0 mdi mdi-magnify"></i>                
               </div>
             	<input type="text" class="form-control bg-transparent border-0" name="seek" value="{{$req['seek'] or ''}}" placeholder="Search projects"> 
-		      @if(session('error'))
-          	  <span class="text-danger" style="font-size: 12px;">　　　　　　　{{session('error')}}</span>
-		      @elseif(session('success'))
-          	  <span class="text-success" style="font-size: 12px;">　　　　　　　{{session('success')}}</span>
-		      @endif 
             </div>
           </form>
         </div>
