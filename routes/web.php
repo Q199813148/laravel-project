@@ -180,7 +180,7 @@
 //	找回密码
 	Route::get("/forgetpass", "Home\HomeController@forgetpass");
 //	ajax发送邮箱
-	Route::get("/sendemail",'Home\EmailController@sendemail');
+	Route::get("/sendemail",'Email\EmailController@sendemail');
 //	找回密码检测账号
 	Route::get("/doforgetpass", "Home\HomeController@doforgetpass");
 //	找回密码检测短信验证
