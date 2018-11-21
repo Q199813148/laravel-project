@@ -156,7 +156,7 @@
                                     <a href="static/Home/javascript:;" title="关闭" class="close">×</a>
                                 </div>
                                 <div class="theme-popbod dform">
-                                    <form id="order_form" class="theme-signin" name="loginform" method="post">
+                                    <form id="order_form" class="theme-signin" name="loginform" method="post" onkeydown="if(event.keyCode==13){return false;}">
                                         {{csrf_field()}}
                                         <div class="theme-signin-left">
 
@@ -176,7 +176,7 @@
                         <dd>
                             <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" disabled/>
                             <input id="text_box" name="num" type="text" value="{{$data->store==0 ? '0':'1'}}" style="width:40px;" />
-                            <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
+                            <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
                             <span id="Stock" class="tb-hidden">库存<span class="stock">{{$data->store}}</span>件</span>
                         </dd>
 

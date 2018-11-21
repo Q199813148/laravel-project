@@ -165,7 +165,7 @@
                     </div>
                     <div class="clear"></div>
                     {{--订单商品信息--}}
-                    <form action="/submit_order" method="post">
+                    <form action="/submit_order" method="post" onkeydown="if(event.keyCode==13){return false;}">
                     @foreach($data as $val)
                             <input type="hidden" name="cart_id[]" value="{{$val->cart_id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">

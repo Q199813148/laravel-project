@@ -163,7 +163,7 @@
                     </div>
                     <div class="clear"></div>
                     {{--订单商品信息--}}
-                    <form action="/submitorder" method="post">
+                    <form action="/submitorder" method="post"  onkeydown="if(event.keyCode==13){return false;}">
                         <input type="hidden" name="goods_id" value="{{$goods->id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">
                             @if(!empty($default))
