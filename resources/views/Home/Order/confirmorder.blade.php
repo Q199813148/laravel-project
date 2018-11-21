@@ -20,7 +20,7 @@
                 <h3>确认收货地址 </h3>
                 <a href="/personaladdress">
                 <div class="control">
-                    <div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div>
+                    <a href="/personaladdress"><div class="tc-btn createAddr theme-login am-btn am-btn-danger">使用新地址</div></a>
                 </div>
                 </a>
                 <div class="clear"></div>
