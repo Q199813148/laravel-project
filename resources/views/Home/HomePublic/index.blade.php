@@ -291,7 +291,9 @@ $(document).ready(function() {
 						<div class="ibar_login_box status_login personals">
 							<div class="avatar_box ">
 								<p class="avatar_imgbox ">
+									@if(!empty($pic->pic))
 									<img src="{{$pic->pic}}" />
+									@endif
 								</p>
 								<ul class="user_info ">
 									<li>
