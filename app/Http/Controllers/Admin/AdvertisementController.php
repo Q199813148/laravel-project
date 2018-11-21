@@ -148,7 +148,7 @@ class AdvertisementController extends Controller
             $data['pic'] = DB::table("advertisement")->select('pic')->where("id","=",$id)->first()->pic;
         }
 
-       // dd($data);
+       //dd($data);
         if(DB::table("advertisement")->where("id","=",$id)->update($data)){
             return redirect('/adminadvertisement')->with("success","修改成功");
         }else{
