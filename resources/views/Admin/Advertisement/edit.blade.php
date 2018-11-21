@@ -41,12 +41,12 @@
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>是否上架广告</h5></label><br>
                             <div class="form-check">
-                                <label class="form-check-label"><input class="form-check-input" id="optionsRadios1" type="radio" name="status" value="{{$advertisement->status}}" @if($advertisement->status==0) checked @endif>
+                                <label class="form-check-label"><input class="form-check-input" id="optionsRadios1" type="radio" name="status" value="0" @if($advertisement->status==0) checked @endif>
                                     <span class="input-helper">禁用</span></label>
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input class="form-check-input" id="optionsRadios1" type="radio" name="status" value="{{$advertisement->status}}" @if($advertisement->status==1) checked @endif>
+                                    <input class="form-check-input" id="optionsRadios1" type="radio" name="status" value="1" @if($advertisement->status==1) checked @endif>
                                     <span class="input-helper">启用</span></label>
                             </div>
                         </div>
