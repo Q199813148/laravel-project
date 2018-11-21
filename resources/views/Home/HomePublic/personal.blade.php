@@ -72,7 +72,7 @@
                         <div class="menu-hd">
                             <a id="mc-menu-hd" href="/cart" target="_top">
                                 <i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
-                                        id="J_MiniCartNum" class="h">0</strong>
+                                        id="J_MiniCartNum" class="h"></strong>
                             </a>
                         </div>
                     </div>
@@ -88,9 +88,9 @@
             <!--悬浮搜索框-->
 
             <div class="nav white">
-                <div class="logoBig">
+                <div class="logoBig" style="margin-top: 8px;">
                     <li>
-                        <a href="/"><img src="/static/Home/images/logobig.png"/></a>
+                        <a href="/"><img src="/static/Home/images/logo2.png" /></a>
                     </li>
                 </div>
 
@@ -201,7 +201,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="change.html">
+                            <a href="/refundx">
                                 退款售后
                             </a>
                         </li>
@@ -283,7 +283,10 @@
         //alert(links);
         $('.links').html(links);
     });
-
+    {{--获取购物车数量--}}
+    $.get('/cartnum',{},function (data) {
+        $('#J_MiniCartNum').html(data);
+    })
 </script>
 </body>
 </html>

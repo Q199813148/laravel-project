@@ -17,7 +17,7 @@
 								<hr>
 
 								<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
-									<form class="am-form am-form-horizontal" action="/personal/{{$data->id}}" method="post">
+									<form class="am-form am-form-horizontal" action="/addressedit/{{$data->id}}" method="post">
 
 										<div class="am-form-group">
 											<label for="user-name" class="am-form-label">收货人</label>

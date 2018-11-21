@@ -28,10 +28,13 @@
                             User_id
                           </th>
                           <th>
-                            Express
+                            Orderno
                           </th>
                           <th>
-                            Orderno
+                            Company
+                          </th>
+                          <th>
+                            Express
                           </th>
                           <th>
                             Time
@@ -64,6 +67,9 @@
                             {{$row->orderno}}
                           </td>
                           <td>
+                            {{$row->company}}
+                          </td>
+                          <td>
                             {{$row->express}}
                           </td>
                           <td>
@@ -73,13 +79,13 @@
                             {{$row->endtime}}
                           </td>
                           <td>
-                          <span class="badge badge-gradient-success status" style="cursor:pointer;">{{$row->status}}</span>
+                          <span class="badge badge-gradient-success status" style="cursor:pointer;"><a href="adminorders/{{$row->id}}/edit" style="color:#ffffff;">{{$row->status}}</a></span>
                           </td>
                           <td>
                           <span class="badge badge-danger refund" style="cursor:pointer;">{{$row->refund}}</span>
                           </td>
                           <td>
-                            <a href="">订单详情</a>
+                            <a href="/adminorders/{{$row->id}}">订单&emsp;详情</a>
                           </td>
                         </tr>
                         @endforeach

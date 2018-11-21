@@ -92,9 +92,9 @@ class AdminRoleController extends Controller
         $data = $request->only('name', 'status');
 //		执行修改
         if($data = DB::table("role")->where("id", '=',$id)->update($data)) {
-            return redirect("/adminusers")->with('success', '修改成功');
+            return redirect("/adminrole")->with('success', '修改成功');
         } else {
-            return redirect("/adminusers/".$id."/edit")->with('error', '修改失败');
+            return redirect("/adminrole/".$id."/edit")->with('error', '修改失败');
         }
     }
 

@@ -98,17 +98,15 @@ class CommentController extends Controller
                 $i++;
                 //切割数组成字符串
                 $put['pic'] = join(',',$pic);
+                if(!DB::table('comment')->insert($put)){
+                    return back()->with('error','评价失败,请重试');
+                }
             }
-            //写入数据库
-            if(DB::table('comment')->insert($put)){
-                DB::table('orders')->where('id',$order_id)->update(['status'=>4]);
-                return redirect("/myRate")->with('success','评价成功');
-            }else{
-                return back()->with('error','评价失败,请重试');
-            }
-
-
         }
+        if(DB::table('orders')->where('id',$order_id)->update(['status'=>4])){
+            return redirect("/myRate")->with('success','评价成功');
+        }
+
     }
 
     public function myRate()
@@ -121,6 +119,7 @@ class CommentController extends Controller
             ->join('goods','details.good_id','goods.id')
             ->select("details.good_id",'goods.photo','goods.name','details.taste','comment.content','comment.level','comment.addtime')
             ->where("user_id",$user_id)
+            ->orderBy('comment.id','desc')
             ->get();
 
         //获取有图评价数据
@@ -129,6 +128,7 @@ class CommentController extends Controller
             ->join('goods','details.good_id','goods.id')
             ->select("details.good_id",'goods.photo','goods.name','comment.pic','details.taste','comment.content','comment.level','comment.addtime')
             ->where([["user_id",$user_id],['comment.pic','<>',null]])
+            ->orderBy('comment.id','desc')
             ->get();
         foreach ($data1 as $value){
             $value->pic = explode(',',$value->pic);

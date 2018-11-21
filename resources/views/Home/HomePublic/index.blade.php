@@ -66,7 +66,7 @@
 					<div class="topMessage mini-cart">
 						<div class="menu-hd">
 							<a id="mc-menu-hd" href="/cart" target="_top">
-								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h"></strong>
+								<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong>
 							</a>
 						</div>
 					</div>
@@ -76,9 +76,9 @@
 								<i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span>
 							</a>
 						</div>
+					</div>
 				</ul>
 			</div>
-
 			<!--悬浮搜索框-->
 
 			<div class="nav white">
@@ -258,12 +258,12 @@ $(document).ready(function() {
 		<!--引导 -->
 		<div class="navCir">
 			<li class="active">
-				<a href="home.html">
+				<a href="/">
 					<i class="am-icon-home "></i>首页
 				</a>
 			</li>
 			<li>
-				<a href="sort.html">
+				<a href="#">
 					<i class="am-icon-list"></i>分类
 				</a>
 			</li>
@@ -273,7 +273,7 @@ $(document).ready(function() {
 				</a>
 			</li>
 			<li>
-				<a href="person/index.html">
+				<a href="/personal">
 					<i class="am-icon-user"></i>我的
 				</a>
 			</li>
@@ -351,16 +351,16 @@ $(document).ready(function() {
 						<p>
 							购物车
 						</p>
-						<p class="cart_num ">
-							0
-						</p>
+						@if(session('user'))
+						<p class="cart_num">0</p>
+							@endif
 					</div>
 					<div id="asset " class="item ">
-						<a href="# ">
+						<a href="/order_management ">
 							<span class="view "></span>
 						</a>
 						<div class="mp_tooltip ">
-							我的资产
+							我的订单
 							<i class="icon_arrow_right_black "></i>
 						</div>
 					</div>
@@ -387,17 +387,17 @@ $(document).ready(function() {
 						</div>
 					</div>
 
-					<div id="broadcast " class="item ">
-						<a href="# ">
-							<span class="chongzhi ">
-							<img src="/static/Home/images/chongzhi.png " />
-							</span>
-						</a>
-						<div class="mp_tooltip ">
-							我要充值
-							<i class="icon_arrow_right_black "></i>
-						</div>
-					</div>
+					{{--<div id="broadcast " class="item ">--}}
+						{{--<a href="# ">--}}
+							{{--<span class="chongzhi ">--}}
+							{{--<img src="/static/Home/images/chongzhi.png " />--}}
+							{{--</span>--}}
+						{{--</a>--}}
+						{{--<div class="mp_tooltip ">--}}
+							{{--我要充值--}}
+							{{--<i class="icon_arrow_right_black "></i>--}}
+						{{--</div>--}}
+					{{--</div>--}}
 
 					<div class="quick_toggle ">
 						<li class="qtitem ">
@@ -516,7 +516,11 @@ $(document).ready(function() {
 			//alert(links);
 			$('.links').html(links);
 		});
-
+		{{--获取购物车数量--}}
+        $.get('/cartnum',{},function (data) {
+            $('#J_MiniCartNum').html(data);
+            $('.cart_num').html(data);
+        })
 		</script>
 	</body>
 	

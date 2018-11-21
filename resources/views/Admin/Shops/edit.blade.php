@@ -57,6 +57,9 @@
 
                         <div class="form-group">
                             <label for="exampleInputName1"><h5>商品主图</h5></label>
+                            <i class="mdi mdi-arrow-right-bold"></i>
+                            <i class="mdi mdi-file-image"></i>
+                            <a href="{{$goods->photo}}" target="_blank" class="card-title text-danger" style="font-size: 14px;">查看原图</a>
                             <input type="file" class="form-control" id="exampleInputName1" name="photo" value="{{$goods->photo}}">
 
                         </div>

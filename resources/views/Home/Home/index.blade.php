@@ -102,7 +102,7 @@
 			<div class="mod-vip">
 				@if(session('user'))
 				<div class="m-baseinfo">
-					<a href="person/index.html">
+					<a href="/personal">
           <!-- 头像 -->
 						<img src="/static/Home/images/getAvatar.do.jpg">
 					</a>
@@ -134,16 +134,16 @@
 
 				@if(session('user'))
 				<div class="member-login" style="display: inline-block;">
-					<a href="#">
+					<a href="/order_management">
 						<strong>{{$orderInfo['dsh']}}</strong>待收货
 					</a>
-					<a href="#">
+					<a href="/order_management">
 						<strong>{{$orderInfo['dfh']}}</strong>待发货
 					</a>
-					<a href="#">
+					<a href="/order_management">
 						<strong>{{$orderInfo['dfk']}}</strong>待付款
 					</a>
-					<a href="#">
+					<a href="/order_management">
 						<strong>{{$orderInfo['dpj']}}</strong>待评价
 					</a>
 				</div>

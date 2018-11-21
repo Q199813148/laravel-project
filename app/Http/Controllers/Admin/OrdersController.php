@@ -18,7 +18,7 @@ class OrdersController extends Controller
         //获取搜索关键词
         $k = $request->input('keywords');
         //查询信息
-        $data = Orders::where('orderno','like','%'.$k."%")->paginate(4);
+        $data = Orders::where('orderno','like','%'.$k."%")->orderBy('id','desc')->paginate(4);
         // var_dump($data);exit;
         //加载模板
         return view("Admin.Orders.index",['data'=>$data,'request'=>$request->all()]);
@@ -94,9 +94,20 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //订单详情
     public function show($id)
-    {
-        //
+    {   
+        //查询数据
+        $data = DB::table('orders')
+        ->join('details','orders.id','=','details.order_id')
+        ->join('goods','details.good_id','=','goods.id')
+        ->where('orders.id','=',$id)
+        ->select('orders.name as name','orders.phone as phone','orders.address as address','orders.remarks as remarks','details.num as num','details.taste as taste','goods.name as good_name','goods.photo as photo','goods.price as price','details.good_id')
+        ->paginate(1);
+        // dd($data);
+        
+        //加载模板
+        return view('Admin.Orders.info',['data'=>$data]);
     }
 
     /**
@@ -107,7 +118,16 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        //
+        //查询信息
+        $data = DB::table('orders')->where('id','=',$id)->first();
+
+         if($data->status == 1 || $data->status == 2 ){
+             //加载模板
+             return view("Admin.Orders.edit",['data'=>$data]);
+         }else{
+             return back();
+         }
+
     }
 
     /**
@@ -119,7 +139,17 @@ class OrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //获取数据
+        // dd($request->all());
+        $data = $request->only(['express','company','status']);
+        // dd($data);
+        if(DB::table('orders')->where('id','=',$id)->update($data)){
+            return redirect('adminorders')->with("success","修改成功");
+            
+        }else{
+            return back()->with("error",'修改失败');
+        }
+        
     }
 
     /**

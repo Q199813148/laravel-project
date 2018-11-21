@@ -24,6 +24,7 @@
                 <div class="clear"></div>
                 <ul>
                     <div class="per-border"></div>
+                    @if(!empty($default))
                     {{--默认地址--}}
                     <li class="user-addresslist defaultAddr">
                         <input type="hidden" name="address_id" value="{{$default->id}}">
@@ -50,9 +51,9 @@
                         <div class="clear"></div>
 
                         <div class="new-addr-btn">
-                            <a href="#" class="hidden">设为默认</a>
+                            <a href="javascript:void(0);" class="hidden set-default">设为默认</a>
                             <span class="new-addr-bar hidden">|</span>
-                            <a href="#">编辑</a>
+                            <a href="/addressedit/{{$default->id}}/edit">编辑</a>
                             <span class="new-addr-bar">|</span>
                             <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
                         </div>
@@ -86,9 +87,9 @@
                             <div class="clear"></div>
 
                             <div class="new-addr-btn">
-                                <a href="#">设为默认</a>
+                                <a href="javascript:void(0);" class="set-default">设为默认</a>
                                 <span class="new-addr-bar">|</span>
-                                <a href="#">编辑</a>
+                                <a href="/addressedit/{{$value->id}}/edit">编辑</a>
                                 <span class="new-addr-bar">|</span>
                                 <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
                             </div>
@@ -96,6 +97,7 @@
                         </li>
                     @endforeach
                     {{--其他地址结束--}}
+                    @endif
                 </ul>
 
                 <div class="clear"></div>
@@ -162,9 +164,11 @@
                     <div class="clear"></div>
                     {{--订单商品信息--}}
                     <form action="/submitorder" method="post">
+                        <input type="hidden" name="goods_id" value="{{$goods->id}}">
                             <input type="hidden" name="user_id" value="{{session('user')->user_id}}">
-                            <input type="hidden" name="goods_id" value="{{$goods->id}}">
+                            @if(!empty($default))
                             <input type="hidden" name="address" value="{{$default->id}}">
+                        @endif
                             <input type="hidden" name="num" value="{{$data['num']}}">
                             <input type="hidden" name="taste" value="{{$data['taste']}}">
 
@@ -302,7 +306,7 @@
                                 </div>
 
                                 <div id="holyshit268" class="pay-address">
-
+                                    @if(!empty($default))
                                     <p class="buy-footer-address">
                                         <span class="buy-line-title buy-line-title-type">寄送至：</span>
                                         <span class="buy--address-detail">
@@ -317,15 +321,25 @@
 												<span class="buy-phone">{{$default->phone}}</span>
 												</span>
                                     </p>
+                                        @endif
                                 </div>
                             </div>
 
-                            <div id="holyshit269" class="submitOrder">
-                                <div class="go-btn-wrap">
-                                    <a id="J_Go" class="btn-go" tabindex="0"
-                                       title="点击此按钮，提交订单">提交订单</a>
+                            @if(!empty($default))
+                                <div id="holyshit269" class="submitOrder">
+                                    <div class="go-btn-wrap">
+                                        <a id="J_Go" class="btn-go" tabindex="0"
+                                           title="点击此按钮，提交订单">提交订单</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div id="holyshit269" class="submitOrder">
+                                    <div class="go-btn-wrap">
+                                        <a href="/personaladdress" class="btn-go" tabindex="0"
+                                           title="请添加地址">请添加地址</a>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -335,33 +349,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $('.user-addresslist').click(function () {
-            //点击更换地址
-            $(this).addClass('defaultAddr');
-            address = $(this).find('.province').html();
-            name = $(this).find('.buy-user').html();
-            phone = $(this).find('.buy-phone').html();
-            $('#holyshit268').find('.province').html(address);
-            $('#holyshit268').find('.buy-user').html(name);
-            $('#holyshit268').find('.buy-phone').html(phone);
-            address_id = $(this).find('input[name="address_id"]').val();
-            $('input[name="address"]').val(address_id);
-        })
-        //计算总金额
-        var price = 0;
-        $('.bundle-last').each(function(){
-            price += parseFloat($(this).find('.J_ItemSum').html());
-
-        })
-        $('.pay-sum').html(price.toFixed(2));
-        $('#J_ActualFee').html(price.toFixed(2));
-
-        //提交订单
-        $('#J_Go').bind('click',function(){
-            $('form').submit();
-            //防止重复提交
-            $(this).unbind('click');
-        })
-    </script>
+    <script src="static/Home/order/confirm_order.js"></script>
 @endsection

@@ -162,6 +162,7 @@
             <div class="collapse" id="general-pages">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="/adminorders"> 订单列表 </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/adminrefundx"> 退款管理 </a></li>
               </ul>
               </div>
           </li>
@@ -275,6 +276,24 @@
 	<div class="dropdown-divider"></div>	
 	<br /><br />
 	<h6 class="p-3 mb-0 text-center" style="color: #f00;">{{session('error')}}</h6>
+	<br /><br />
+</div>
+@endif
+@foreach ($errors->all() as $error)
+<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list show baocuo" style="position: fixed; top: 12%; left: 35%; width: 30%; " >
+	<h6 class="p-3 mb-0" style="text-align: center;">哔~~</h6>
+	<div class="dropdown-divider"></div>	
+	<br /><br />
+	<h6 class="p-3 mb-0 text-center" style="color: #f00;">{{session('error')}}</h6>
+	<br /><br />
+</div>
+@endforeach
+@if(session('success'))
+<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list show baocuo" style="position: fixed; top: 12%; left: 35%; width: 30%; " >
+	<h6 class="p-3 mb-0" style="text-align: center;">哔~~</h6>
+	<div class="dropdown-divider"></div>	
+	<br /><br />
+	<h6 class="p-3 mb-0 text-center" style="color: #1CCFB4;">{{session('success')}}</h6>
 	<br /><br />
 </div>
 @endif
