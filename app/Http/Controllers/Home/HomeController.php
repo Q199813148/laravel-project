@@ -613,6 +613,11 @@ class HomeController extends Controller
         return $data2;
 	}
 
+	public function map()
+	{ 
+		return view("Home.Home.map");
+	}
+
 	public function cartnum(){
         if(session('user')){
             //获取用户id
