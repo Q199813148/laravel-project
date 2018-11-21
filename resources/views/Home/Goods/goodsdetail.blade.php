@@ -216,7 +216,7 @@
 
     <div class="pay">
         <div class="pay-opt">
-            <a href="static/Home/home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+            <a href="/"><span class="am-icon-home am-icon-fw">首页</span></a>
             <a><span class="am-icon-heart am-icon-fw">收藏</span></a>
 
         </div>

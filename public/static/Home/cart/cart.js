@@ -153,9 +153,15 @@ $('.deleteAll').click(function () {
 })
 //获取选中的id信息,提交表单
 $('#J_Go').click(function () {
+    a = 0;
     $('input[name="items[]"]:checked').each(function(){
+        a++;
         id = $(this).parentsUntil('.bundle-main').find('input[name="cart_id[]"]').val();
         $(this).append("<input type='hidden' name='checked_id[]' value='"+id+"'>");
     })
-    $('#ConfirmOrder').submit();
+    if(a != 0){
+        $('#ConfirmOrder').submit();
+    }else{
+        alert("请选择商品!");
+    }
 })

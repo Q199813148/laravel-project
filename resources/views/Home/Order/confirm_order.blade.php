@@ -45,7 +45,7 @@
                             <ins class="deftip">默认地址</ins>
                         </div>
                         <div class="address-right">
-                            <a href="person/address.html">
+                            <a href="/personaladdress">
                                 <span class="am-icon-angle-right am-icon-lg"></span></a>
                         </div>
                         <div class="clear"></div>
