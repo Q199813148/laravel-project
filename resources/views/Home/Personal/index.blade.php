@@ -364,9 +364,6 @@
 					</div>
 					<span class="shop-title">{{$new->name}}</span>
 				</a>
-				<a class="follow " target="_blank">
-					关注
-				</a>
 			</div>
 		</div>
 		@endif

@@ -75,12 +75,11 @@
 <script>
   	$(".status").click(function(){
     	obj = $(this);
-       //alert('ss');
-      id=$(this).parents("tr").find("td:first").html();
+       //alert(obj);
+      id=$(this).next().val();
        //alert(id);
       $.get("/adminlinkss",{id:id},function(data){
         if(data['status'] == 1){
-         alert(data['status']);
           if(obj.html() == "启用" ){
             obj.html("禁用").attr('class',"badge badge-danger start");
           }else{

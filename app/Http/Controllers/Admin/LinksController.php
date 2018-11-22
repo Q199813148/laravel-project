@@ -64,7 +64,7 @@ class LinksController extends Controller
         //获取ID
         $id=$request->input("id");
         // echo $id;
-        $status = DB::table("links")->where("id","=",$id)->value("status");
+        $status = DB::table("links")->select('status')->where("id","=",$id)->first()->status;
         // 判断status
         if($status == 0){
             if(DB::table("links")->where("id","=",$id)->update(['status'=>1])){

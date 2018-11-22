@@ -631,4 +631,5 @@ class HomeController extends Controller
             echo '';
         }
     }
+
 }
