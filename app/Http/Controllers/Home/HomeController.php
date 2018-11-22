@@ -304,7 +304,9 @@ class HomeController extends Controller
     		}
     	if ($info->status==0) { 
     		return redirect('/login')->with('error',"该用户已被禁用");
-    	}
+    	}elseif ($info->status==2) {
+            return redirect('/login')->with('error',"请激活邮箱");
+        }
     	if ($info) {
             if (Hash::check($password, $info->password)) {
 //              删除密码并存入session

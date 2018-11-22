@@ -390,7 +390,7 @@
                                     <div class="am-comment-bd">
                                         <div class="tb-rev-item " data-id="255776406962">
                                             <div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-                                                {{$row->content}}
+                                                {{$row->content or "该买家很懒,没有评价内容!"}}
                                             </div>
                                             <div class="tb-r-act-bar">
                                                 口味：{{$row->taste}}&nbsp;&nbsp;数量：{{$row->num}}
@@ -401,10 +401,9 @@
 
 
                                                 @foreach($pic[$i++] as $v)
-                                                &emsp;<img src="{{$v}}" style="width: 50px;height: 50px;"/>
+                                                &emsp;<img src="{{$v}}" id="img" style="width: 50px;height: 50px;"/>
                                                 @endforeach
                                     <br><br>
-
                                     <!-- 评论内容 -->
                                 </div>
                             </li>

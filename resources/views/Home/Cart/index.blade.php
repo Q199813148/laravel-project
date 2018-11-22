@@ -37,7 +37,7 @@
 
             <div class="bundle  bundle-last ">
                 <div class="clear"></div>
-                <form action="/confirm_order" method="post" id="ConfirmOrder">
+                <form action="/confirm_order" method="post" id="ConfirmOrder"  onkeydown="if(event.keyCode==13){return false;}">
                 <div class="bundle-main">
                     @foreach($data as $v)
                         <ul class="item-content clearfix">
@@ -65,7 +65,7 @@
                             <li class="td td-info">
                                 <div class="item-props item-props-can">
                                     <span class="sku-line">口味：{{$v->taste}}</span>
-                                    <span tabindex="0" class="btn-edit-sku theme-login">修改</span>
+                                    {{--<span tabindex="0" class="btn-edit-sku theme-login">修改</span>--}}
                                     <i class="theme-login am-icon-sort-desc"></i>
                                 </div>
                             </li>
