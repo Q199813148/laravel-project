@@ -33,7 +33,7 @@
 							<div class="goods-box first-box">
 								<div class="goods-pic">
 									<div class="goods-pic-box">
-										<a class="goods-pic-link" target="_blank" href="/goodsdetail?id={{$row->id}}" title="{{$row->name}}">
+										<a class="goods-pic-link" target="_blank" href="/goodsdetail?id={{$row->goods_id}}" title="{{$row->name}}">
 											<img src="{{$row->photo}}" class="goods-img"></a>
 									</div>
 									<a class="goods-delete" href="/historydel?id={{$row->id}}"><i class="am-icon-trash"></i></a>

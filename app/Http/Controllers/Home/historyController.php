@@ -16,18 +16,12 @@ class historyController extends Controller
     public function index()
     {
         $user_id=session('user')->user_id;
-    	//$good_id=$request->input('good_id');
-    	$data = DB::table("history")->select('goods_id')->where('user_id','=',$user_id)->orderBy("id",'desc')->get();
-    	//dd($data);
-    	$arr = array();
-    	foreach ($data as $key => $value) {
-    		$arr[]=$value->goods_id;
-    	}
+
     	//dd($arr);
     	//goods history 联查
-    	$history = DB::table('goods')->join('history','goods.id','history.goods_id')->whereIn('goods.id',$arr)->orderBy('history.id','desc')->get();
+    	$history = DB::table('goods')->join('history','goods.id','history.goods_id')->where('user_id',$user_id)->orderBy('history.id','desc')->get();
     	//dd($history);
-        return view('Home.Personal.history',['data'=>$data,'history'=>$history]);
+        return view('Home.Personal.history',['history'=>$history]);
     }
 
     public function historydel(Request $request)
