@@ -103,9 +103,16 @@
                                                             </div>
                                                         </li>
                                                         <li class="td td-operation">
-                                                            <div class="item-operation">
-
-                                                            </div>
+                                                            @if(!empty($val->r_status) && $val->r_status == 1)
+                                                                <p class="Mystatus">已申请退款</p>
+                                                            @elseif(!empty($val->r_status) && $val->r_status == 2)
+                                                                <p class="Mystatus">以退款成功</p>
+                                                            @elseif(empty($val->r_status) && $value->status >= 1)
+                                                                <div class="item-operation">
+                                                                    <a href="/refundx/{{$val->id}}/edit">退款/退货</a>
+                                                                </div>
+                                                            @else
+                                                            @endif
                                                         </li>
                                                     </ul>
                                                 @endforeach

@@ -60,9 +60,9 @@
                             </div>
                             @endif
                         <div class="inquire">
-                                <span class="package-detail">物流：{{$data->company or '未发货'}}</span>
+                                <span class="package-detail">物流：{{$data->company or '未查询到快递信息'}}</span>
                                 <span class="package-detail">快递单号: </span>
-                                <span class="package-number">{{$data->express or '未发货'}}</span>
+                                <span class="package-number">{{$data->express or ''}}</span>
                                 <a
                                         class="am-btn am-btn-link"
                                         data-am-modal="{target: '#my-popup'}">
@@ -176,7 +176,7 @@
                                     <li class="td td-operation">
                                         <div class="item-operation">
                                             @if($data->status >= 1)
-                                            退款/退货
+                                                <a href="/refundx/{{$value->id}}/edit">退款/退货</a>
                                             @endif
                                         </div>
                                     </li>
@@ -233,23 +233,17 @@
                                             <a href="/order_management/{{$data->id}}/edit" onClick="return confirm('确定收货?');">
                                                 <div class="am-btn am-btn-danger anniu">确认收货</div>
                                             </a>
-                                            <a href="">
-                                                退货申请
-                                            </a>
+
                                         @elseif($data->status == 3)
                                             <a href="/comment?id={{$data->id}}">
                                                 <div class="am-btn am-btn-danger anniu">立即评价</div>
                                             </a>
-                                            <a href="">
-                                                退货申请
-                                            </a>
+
                                         @elseif($data->status == 4)
                                             <a href="/order_management/{{$data->id}}" onClick="return confirm('确定删除?');">
                                                 <div class="am-btn am-btn-danger anniu">删除订单</div>
                                             </a>
-                                            <a href="">
-                                                退货申请
-                                            </a>
+
                                         @elseif($data->status == 5)
                                             <a href="/order_management/{{$data->id}}" onClick="return confirm('确定删除?');">
                                                 <div class="am-btn am-btn-danger anniu">删除订单</div>

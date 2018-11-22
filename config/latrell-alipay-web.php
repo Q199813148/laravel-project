@@ -8,8 +8,8 @@ return [
 	'sign_type' => 'MD5',
 
 	// 服务器异步通知页面路径。
-	'notify_url' => '192.168.31.58/notify',
+	'notify_url' => 'http://192.168.31.58/notify',
 
 	// 页面跳转同步通知页面路径。
-	'return_url' => '192.168.31.58/return'
+	'return_url' => 'http://192.168.31.58/return'
 ];

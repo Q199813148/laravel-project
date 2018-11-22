@@ -66,9 +66,13 @@ class GoodsdetailController extends Controller
             ->select('users.name as name','user_info.pic as photo','comment.id as id','comment.addtime as addtime','comment.content as content','comment.pic as pic','details.taste as taste','details.num as num')
             ->orderBy("id",'desc')
             ->paginate(10);
-//         dd($details);
+            $pic = array();
+            foreach($details as $value){
+                $pic[] = explode(',',$value->pic);
+            }
+            $i=0;
 
-        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details,'request'=>$request->all()]);
+        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details,'request'=>$request->all(),'pic'=>$pic,'i'=>$i]);
         
 
 

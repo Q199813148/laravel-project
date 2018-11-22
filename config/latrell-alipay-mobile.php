@@ -14,5 +14,5 @@ return [
 	'public_key_path' => __DIR__ . '/key/public_key.pem',
 
 	// 异步通知连接。
-	'notify_url' => '192.168.31.58/notify'
+	'notify_url' => 'http://192.168.31.58/notify'
 ];

@@ -92,8 +92,11 @@ class RefundxController extends Controller
 		->join('goods','goods.id','details.good_id')
 		->where('details.id',$id)
 		->where('orders.user_id',$uid)
-		->select('details.id as id','orders.user_id as user_id','details.good_id as goods_id','details.order_id as order_id','goods.name as name','details.taste as taste','orders.orderno as orderno','goods.price as price','details.num as num','orders.time as time','goods.photo as photo')
+		->select('details.id as id','orders.user_id as user_id','details.good_id as goods_id','details.order_id as order_id','goods.name as name','details.taste as taste','orders.orderno as orderno','goods.price as price','details.num as num','orders.time as time','goods.photo as photo','orders.status as status')
 		->first();
+		if($data->status < 1){
+		    return back()->with('error','非法操作!未付款订单!');
+        }
 		$data->sum = $data->price*$data->num;
 		return view('Home.Refundx.edit',['data'=>$data]);
     }

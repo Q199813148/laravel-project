@@ -398,6 +398,13 @@
                                         </div>
 
                                     </div>
+
+
+                                                @foreach($pic[$i++] as $v)
+                                                &emsp;<img src="{{$v}}" style="width: 50px;height: 50px;"/>
+                                                @endforeach
+                                    <br><br>
+
                                     <!-- 评论内容 -->
                                 </div>
                             </li>

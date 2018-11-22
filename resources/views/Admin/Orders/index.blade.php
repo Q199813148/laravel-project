@@ -46,9 +46,6 @@
                             Status
                           </th>
                           <th>
-                            Refund
-                          </th>
-                          <th>
                               Operate
                           </th>
                         </tr>
@@ -82,10 +79,7 @@
                           <span class="badge badge-gradient-success status" style="cursor:pointer;"><a href="adminorders/{{$row->id}}/edit" style="color:#ffffff;">{{$row->status}}</a></span>
                           </td>
                           <td>
-                          <span class="badge badge-danger refund" style="cursor:pointer;">{{$row->refund}}</span>
-                          </td>
-                          <td>
-                            <a href="/adminorders/{{$row->id}}">订单&emsp;详情</a>
+                            <a href="/adminorders/{{$row->id}}">订单详情</a>
                           </td>
                         </tr>
                         @endforeach

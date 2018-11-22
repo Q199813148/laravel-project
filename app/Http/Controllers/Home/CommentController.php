@@ -101,6 +101,10 @@ class CommentController extends Controller
                 if(!DB::table('comment')->insert($put)){
                     return back()->with('error','评价失败,请重试');
                 }
+            }else{
+                if(!DB::table('comment')->insert($put)){
+                    return back()->with('error','评价失败,请重试');
+                }
             }
         }
         if(DB::table('orders')->where('id',$order_id)->update(['status'=>4])){

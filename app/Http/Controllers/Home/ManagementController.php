@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Model\Orders;
 
 class ManagementController extends Controller
 {
@@ -33,7 +32,6 @@ class ManagementController extends Controller
                 ->where('order_id',$value->id)
                 ->get();
         }
-
         //待付款订单
         $df_data = DB::table('orders')
             ->where([['user_id',$user_id],['status','0']])
@@ -197,7 +195,7 @@ class ManagementController extends Controller
     {
         $id = $request->input('id');
         //查询订单信息
-        $data = Orders::where('id',$id)->first();
+        $data = DB::table('orders')->where('id',$id)->first();
         //隐藏手机号
         $data->phone = substr_replace($data->phone,'****',3,4);
         //判断是否和查看详情的用户id是同一个id
@@ -211,7 +209,7 @@ class ManagementController extends Controller
             ->select('goods.*','details.*','details.num as dnum')
             ->where('order_id',$id)
             ->get();
-
+//        dd($data);
         $express = json_decode(curlGet("http://www.kuaidi100.com/query?type=$data->company&postid=$data->express",'get'));
         return view("Home.Order.info",['data'=>$data,'info'=>$info,'express'=>$express]);
     }

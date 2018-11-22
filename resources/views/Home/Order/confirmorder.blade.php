@@ -55,7 +55,7 @@
                         <div class="new-addr-btn">
                             <a href="javascript:void(0);" class="hidden set-default">设为默认</a>
                             <span class="new-addr-bar hidden">|</span>
-                            <a href="#">编辑</a>
+                            <a href="/addressedit/{{$default->id}}/edit">编辑</a>
                             <span class="new-addr-bar">|</span>
                             <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="new-addr-btn">
                                 <a href="javascript:void(0);" class="set-default">设为默认</a>
                                 <span class="new-addr-bar">|</span>
-                                <a href="#">编辑</a>
+                                <a href="/addressedit/{{$value->id}}/edit">编辑</a>
                                 <span class="new-addr-bar">|</span>
                                 <a href="javascript:void(0);" onclick="delClick(this);">删除</a>
                             </div>
@@ -262,33 +262,33 @@
                     </form>
 
                         <!--优惠券 -->
-                        <div class="buy-agio">
-                            <li class="td td-coupon">
+                        {{--<div class="buy-agio">--}}
+                            {{--<li class="td td-coupon">--}}
 
-                                <span class="coupon-title">优惠券</span>
-                                <select data-am-selected="">
-                                    <option value="a">
-
-
-
-
-                                        【不使用优惠券】
-
-                                    </option>
-                                    <option value="b" data-am-selected="">
-
-                                        ￥3
-
-
-                                        【无使用门槛】
-
-                                    </option>
-                                </select>
-                            </li>
+                                {{--<span class="coupon-title">优惠券</span>--}}
+                                {{--<select data-am-selected="">--}}
+                                    {{--<option value="a">--}}
 
 
 
-                        </div>
+
+                                        {{--【不使用优惠券】--}}
+
+                                    {{--</option>--}}
+                                    {{--<option value="b" data-am-selected="">--}}
+
+                                        {{--￥3--}}
+
+
+                                        {{--【无使用门槛】--}}
+
+                                    {{--</option>--}}
+                                {{--</select>--}}
+                            {{--</li>--}}
+
+
+
+                        {{--</div>--}}
                         <div class="clear"></div>
                     </div>
                     <!--含运费小计 -->
