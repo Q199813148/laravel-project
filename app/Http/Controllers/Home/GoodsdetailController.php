@@ -23,7 +23,7 @@ class GoodsdetailController extends Controller
         //看了又看(随机获取数据)
         $match = DB::select("SELECT * FROM goods WHERE id >= ((SELECT MAX(id) FROM goods)-(SELECT MIN(id) FROM goods)) * RAND() + (SELECT MIN(id) FROM goods) AND status=0 LIMIT 5");
         //猜你喜欢
-        $guess = DB::select("SELECT * FROM goods WHERE status=0 order by sales DESC LIMIT 12");
+        $guess = DB::select("SELECT * FROM goods WHERE status=0 AND type_id=$data->type_id  order by sales DESC LIMIT 12");
         //查询收藏数
         $collect = DB::table('collect')->where('good_id','=',$id)->count();
         //dd($collect);
