@@ -110,8 +110,8 @@
                 // 消息为空时弹窗
                 alert("消息不能为空");
                 return;
-            }else if(TalkWords.value == "哪个组最牛逼?"){
-                str = '<div class="btalk"><span>您 :' + '哪个组最牛逼?' +'</span></div>' ;
+            }else if(TalkWords.value == "哪个组最牛逼"){
+                str = '<div class="btalk"><span>您 :' + '哪个组最牛逼' +'</span></div>' ;
                 Words.innerHTML = Words.innerHTML + str;
                 str = '<div class="atalk"><span>客服 :' + '当然是缘分天空吖！这还来问我，你想什么呢？太无知了！' +'</span></div>';
                 Words.innerHTML = Words.innerHTML + str;
