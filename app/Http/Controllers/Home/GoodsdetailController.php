@@ -71,8 +71,12 @@ class GoodsdetailController extends Controller
                 $pic[] = explode(',',$value->pic);
             }
             $i=0;
-
-        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details,'request'=>$request->all(),'pic'=>$pic,'i'=>$i]);
+        $comment = DB::table('comment')
+            ->join('details','comment.detail_id','details.id')
+            ->where('details.good_id',$id)
+            ->get()
+            ->count();
+        return view("Home.Goods.goodsdetail", ['data' => $data, 'id' => $id, 'taste' => $taste, 'match' => $match, 'guess' => $guess,'dd' => $dd,'details'=>$details,'request'=>$request->all(),'pic'=>$pic,'i'=>$i,'comment'=>$comment]);
         
 
 

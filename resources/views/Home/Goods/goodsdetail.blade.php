@@ -137,7 +137,7 @@
                             <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">{{$data->sales}}</span></div>
                         </li>
                         <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">0</span></div>
+                            <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">{{$comment}}</span></div>
                         </li>
                     </ul>
                     <div class="clear"></div>

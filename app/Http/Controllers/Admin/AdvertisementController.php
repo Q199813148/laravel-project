@@ -125,7 +125,7 @@ class AdvertisementController extends Controller
     public function update(Request $request, $id)
     {
         //主图上传
-        //dd($request->all());
+//        dd($request->all());
         if($request->hasFile('pic')){
             //初始化名字
             $name=time()+rand(1,10000);
@@ -138,7 +138,7 @@ class AdvertisementController extends Controller
         }
 
         //获取数据
-        $data = $request->only(['title','descr','url','status']);
+        $data = $request->only(['title','descr','url','status','pic']);
         //判断是否有主图修改
         if(isset($data['pic'])){
             //拼接商品主图路径
