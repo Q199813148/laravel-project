@@ -31,8 +31,9 @@
         enableMessage:true,//设置允许信息窗发送短息
         message:"电话：4007001307"
     }
-    var infoWindow = new BMap.InfoWindow("地址：天河区宦溪西路20-12号万富商业大厦三层312室", opts);  // 创建信息窗口对象
+    var infoWindow = new BMap.InfoWindow("地址：天河区宦溪西路20-12号万富商业大厦三层312室(单身狗聚集地)", opts);  // 创建信息窗口对象
     marker.addEventListener("click", function(){
         map.openInfoWindow(infoWindow,point); //开启信息窗口
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
     });
 </script>
