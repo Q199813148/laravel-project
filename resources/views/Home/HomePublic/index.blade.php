@@ -403,13 +403,36 @@ $(document).ready(function() {
 
 					<div class="quick_toggle ">
 						<li class="qtitem ">
-							<a href="# ">
+							<a>
 								<span class="kfzx "></span>
 							</a>
 							<div class="mp_tooltip ">
 								客服中心<i class="icon_arrow_right_black "></i>
 							</div>
 						</li>
+						<script>
+                            function openWin(url) {
+                                var u = url;
+                                window.open(u, 'newwindow', 'height=600, width=800, top=30%,left=30%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');
+                            }
+                            $(function() {
+                                $('.qtitem').click(function() {
+                                    openWin('/chat');
+                                });
+                            });
+
+                            //当页面滚动高度大于100时显示出盒子
+                            $(function() {
+                                $(window).scroll(function() {
+                                    var top = $(window).scrollTop();
+                                    if (top > 100) {
+                                        $('.myside').fadeIn(800);
+                                    } else {
+                                        $('.myside').fadeOut(800);
+                                    }
+                                });
+                            })
+						</script>
 						<!--二维码 -->
 						<li class="qtitem ">
 							<a href="#none ">

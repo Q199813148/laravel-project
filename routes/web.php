@@ -223,4 +223,7 @@
     Route::get('/map',"Home\HomeController@map");
     //获取购物车数量
     Route::get("/cartnum", "Home\HomeController@cartnum");
+    //聊天
+    Route::get("/chat", "Home\HomeController@chat");
+    Route::get("/ajaxchat", "Home\HomeController@ajaxchat");
 
