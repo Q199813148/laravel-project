@@ -10,6 +10,6 @@ return [
 	// 服务器异步通知页面路径。
 	'notify_url' => 'http://www.laravel.com/notify',
 
-	// 页面跳转同步通知页面路径。
+	// 页面跳转同步通知页面路径。 
 	'return_url' => 'http://www.laravel.com/return'
 ];

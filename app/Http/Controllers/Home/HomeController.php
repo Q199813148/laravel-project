@@ -146,7 +146,7 @@ class HomeController extends Controller
     //遍历链接
     public function links()
     {
-        $links = DB::select("select * from links where status = 1 order by id asc limit 0,5");
+        $links = DB::select("select * from links where status = 1 order by id asc");
         //dd($links);
         foreach ($links as $value) {
             echo '
