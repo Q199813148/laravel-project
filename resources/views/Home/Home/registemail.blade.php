@@ -1,1 +1,1 @@
-欢迎注册零食么，请点击<a href="http://192.168.31.58/doregistemail?id={{$id}}&token={{$token}}">激活用户</a>以激活用户，如非本人操作，请忽略此信息。
+欢迎注册零食么，请点击<a href="http://www.laravel.com/doregistemail?id={{$id}}&token={{$token}}">激活用户</a>以激活用户，如非本人操作，请忽略此信息。
