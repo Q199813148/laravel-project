@@ -175,6 +175,8 @@
 	Route::get("/mecode", "Home\HomeController@mecode");
 //	邮箱注册
 	Route::post("/registemail", "Home\HomeController@registemail");
+//	重新发送邮箱
+	Route::post("/emailagain", "Home\HomeController@emailagain");
 //	成功发送邮箱
 	Route::post("/endemregist", "Home\HomeController@endemregist");
 //	执行邮箱验证

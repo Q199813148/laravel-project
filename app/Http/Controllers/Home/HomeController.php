@@ -305,7 +305,11 @@ class HomeController extends Controller
     	if ($info->status==0) { 
     		return redirect('/login')->with('error',"该用户已被禁用");
     	}elseif ($info->status==2) {
-            return redirect('/login')->with('error',"请激活邮箱");
+    		$update['token'] = rand(1,99999999);
+			$email = $info->email;
+			$emid = $info->user_id;
+			DB::table('users')->where('user_id',$info->user_id)->update($update);
+            return view('Home.Home.endemailregist',['email'=>$email,'emid'=>$emid,'token'=>$update['token']]);
         }
     	if ($info) {
             if (Hash::check($password, $info->password)) {
@@ -569,12 +573,28 @@ class HomeController extends Controller
 			return back()->with("error",'验证邮箱发送失败');
 		}
 	}
+//	重新发送邮箱
+	public function emailagain(Request $request)
+	{
+		$data = $request->only('email','id','token');
+		$dbdata = DB::table('users')->where('user_id','=',$data['id'])->select('token','email')->first();
+		if($dbdata->token == $data['token']) {
+			$email = $dbdata->email;
+			$id = $data['id'];
+			$update['token'] = rand(1,99999999);
+			DB::table('users')->where('user_id',$id)->update($update);
+		    $ddis = $this->emails($email,$id,$update['token']);
+			return redirect('/login')->with('success','发送邮箱成功，请激活邮箱');
+		}else{
+			return redirect('/login')->with('error','发送邮箱验证码信息错误');
+		}
+	}
 //	发送邮箱方法
 	public function emails($email,$id,$token)
 	{
         	 Mail::send('Home.Home.registemail', ['id'=>$id, 'token'=>$token], function($message)use($email) {
 			//发送主题
-			$message->subject('[零食么]你正在注册账号');
+			$message->subject('[零食么]');
 			//接收方
 			$message->to($email);
 			$message->cc('fate_silver@163.com');
